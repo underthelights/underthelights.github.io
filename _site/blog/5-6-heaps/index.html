@@ -1,0 +1,321 @@
+<h2 id="heaps-chapter-56">Heaps (Chapter 5.6)</h2>
+
+<h3 id="561-the-heap-abstract-data-type">5.6.1 The Heap Abstract Data Type</h3>
+
+<ul>
+  <li>
+    <p>Definitions</p>
+
+    <ul>
+      <li>
+        <p>A <strong>max tree</strong> is a tree in which the key value in each node is no smaller than the key values in its children (if any).</p>
+      </li>
+      <li>
+        <p>A <strong>max heap</strong> is a complete binary tree that is also a max tree.</p>
+      </li>
+      <li>
+        <p>A <strong>min tree</strong> is a tree in which the key value in each node is no larger than the key values in its children (if any).</p>
+      </li>
+      <li>
+        <p>A <strong>min heap</strong> is a complete binary tree that is also a min tree.</p>
+
+        <p><img width="317" alt="image-20211002210141520" src="https://user-images.githubusercontent.com/46957634/135757696-5a2c9de3-b869-4488-a3fb-83304b40953c.png" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Examples</p>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>- max heaps</th>
+      <th>- min heaps</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img width="275" alt="image-20211002210232492" src="https://user-images.githubusercontent.com/46957634/135757701-65cbc964-6eb3-4370-86a8-875147de7ca2.png" /></td>
+      <td><img width="275" alt="image-20211002210239396" src="https://user-images.githubusercontent.com/46957634/135757702-a67dc547-a6db-4e11-84c4-fb4b8c7bb3ac.png" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>ADT MaxHeap</p>
+
+    <script src="https://gist.github.com/underthelights/f5f9a0e62edbd7f39a4a0fd3927ba82d.js"></script>
+  </li>
+</ul>
+
+<h3 id="562-priority-queues">5.6.2 Priority Queues</h3>
+
+<ul>
+  <li>Heaps are frequently used to implement <strong>priority queues.</strong></li>
+  <li>Unlike general queues, a priority queue deletes the element with the highest (or the lowest) priority (key).</li>
+  <li>At any time, an element with arbitrary priority (key) can be inserted into a priority queue.</li>
+</ul>
+
+<h4 id="implementing-priority-queues">Implementing priority queues</h4>
+
+<ul>
+  <li>
+    <p>A priority queue can be implemented in multiple ways.</p>
+  </li>
+  <li>
+    <p>Unordered array, unordered linked list</p>
+
+    <ul>
+      <li>
+        <p>Elements are maintained unsorted in an array (or a linked list).</p>
+      </li>
+      <li>
+        <p>When inserting, the element is inserted at the end of the list.  $\rightarrow$  O(1)</p>
+      </li>
+      <li>
+        <p>When deleting, the largest (or smallest) element is searched and deleted from the list.  $\rightarrow$  O(n)</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Sorted array, sorted linked list</p>
+
+    <ul>
+      <li>
+        <p>Elements are maintained sorted (ascending or descending) in an array (or a linked list).</p>
+      </li>
+      <li>
+        <p>When inserting, the element is inserted in the right position so that the list remains sorted.  $\rightarrow$  O(n)</p>
+      </li>
+      <li>
+        <p>When deleting, the element at the end (or front) of the list is deleted.  $\rightarrow$  O(1)</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Heap</p>
+
+    <ul>
+      <li>
+        <p>Elements are maintained in a heap structure.</p>
+      </li>
+      <li>
+        <p>When inserting, the heap is reorganized in order to maintain its characteristics.</p>
+      </li>
+      <li>
+        <p>When deleting, the heap is reorganized in order to maintain its characteristics.</p>
+      </li>
+      <li>
+        <p>Time complexity of insertion and deletion?</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="563-insertion-into-a-max-heap">5.6.3 Insertion into a Max Heap</h3>
+
+<ul>
+  <li>
+    <p>First, we place the element in the new position (n+1th position) of the heap.</p>
+  </li>
+  <li>
+    <p>Then, we move along the path from the new node to the root. If the element of the current node is larger than the one of its parent, then exchange the nodes and continue.</p>
+  </li>
+</ul>
+
+<p><img width="262" alt="image-20211002210612678" src="https://user-images.githubusercontent.com/46957634/135757704-8f5b5be4-7a4e-49b8-8523-1ddc541f6953.png" /></p>
+
+<ul>
+  <li>For implementation, we will use the array representation of a binary tree.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define MAX_ELEMENTS 200   
+</span><span class="cm">/* maximum heap size + 1 */</span>
+<span class="cp">#define HEAP_FULL(n) (n == MAX_ELEMENTS – 1)
+#define HEAP_EMPTY(n) (!n)
+</span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">key</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">element</span><span class="p">;</span>
+<span class="n">element</span> <span class="n">heap</span><span class="p">[</span><span class="n">MAX_ELEMENTS</span><span class="p">];</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>In the following max heap, we will insert element 5.</p>
+
+    <p><img width="337" alt="image-20211002210647498" src="https://user-images.githubusercontent.com/46957634/135757706-e99cb9ba-562a-4591-9eb7-0af387d10e4f.png" /></p>
+  </li>
+  <li>
+    <p>First, insert the element at the new position in the complete binary tree.</p>
+
+    <p><img width="337" alt="image-20211002210656034" src="https://user-images.githubusercontent.com/46957634/135757707-95c8dee4-1bc5-41e4-b9c5-d19b4a52aa2c.png" /></p>
+  </li>
+  <li>
+    <p>From the new node, compare the key with its parent. Since 5 is less than or equal to 7, the node stays there. Insertion done.</p>
+
+    <p><img width="337" alt="image-20211002210703239" src="https://user-images.githubusercontent.com/46957634/135757782-9cfa685e-688b-4687-96b1-45b416f6e13a.png" /></p>
+  </li>
+  <li>
+    <p>Now we will insert element 20.</p>
+  </li>
+  <li>
+    <p>First, insert the element in the new position in the complete binary tree.</p>
+
+    <p><img width="337" alt="image-20211002210715296" src="https://user-images.githubusercontent.com/46957634/135757784-a970385c-ec6e-4ddd-a78e-def0ba7285e8.png" /></p>
+  </li>
+  <li>
+    <p>Next, we compare the key of the new node with its parent. Since 20 is larger than 7, we exchange position of the two nodes.</p>
+
+    <p><img width="337" alt="image-20211002210723481" src="https://user-images.githubusercontent.com/46957634/135757785-deca0a9b-3ffa-49bf-9645-139fd5f65bfa.png" /></p>
+  </li>
+  <li>
+    <p>Continuing, we compare the new node with its parent. Since 20 is larger than 8, we exchange the two nodes.</p>
+
+    <p><img width="337" alt="image-20211002210732548" src="https://user-images.githubusercontent.com/46957634/135757786-aa898414-296d-49c0-b337-2dd98937c37d.png" /></p>
+  </li>
+  <li>
+    <p>Continuing, we compare the new node with its parent. Since 20 is larger than 9, we exchange the two nodes.</p>
+
+    <p><img width="337" alt="image-20211002210745617" src="https://user-images.githubusercontent.com/46957634/135757789-07bc48c8-f25f-424d-98c1-5930a7feb58f.png" /></p>
+  </li>
+  <li>
+    <p>Function insert_max_heap</p>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/f02b5f265b679d911e77fe038ee6cf31.js"></script>
+
+<h4 id="analysis-of-insert_max_heap">Analysis of insert_max_heap</h4>
+
+<ul>
+  <li>First, we check whether the heap is full.</li>
+  <li>Then, we set i to the size of the new heap (n+1).</li>
+  <li>Then, using the while loop, we determine the correct position of the new item in the heap.</li>
+  <li>The while loop is iterated O(log2n) times.</li>
+  <li>Time complexity of the function O(log2n).</li>
+</ul>
+
+<h3 id="564-deletion-from-a-max-heap">5.6.4 Deletion from a Max Heap</h3>
+
+<ul>
+  <li>When we delete an element from a max heap, we always take it from the root of the heap.</li>
+  <li>
+    <p>If the heap had n elements, after deleting the element in the root,  the heap must become a complete binary tree with one less node, i.e., (n-1) elements.</p>
+  </li>
+  <li>We move the element at the nth position to the root. Then, we move down the heap, comparing the parent node with its children and exchanging outof-order nodes until the heap is re-established.</li>
+</ul>
+
+<p><img width="353" alt="image-20211002210843304" src="https://user-images.githubusercontent.com/46957634/135757790-71213659-f271-48b3-b9c8-b21b89c6628e.png" /></p>
+
+<ul>
+  <li>
+    <p>Suppose we have the following max heap, from which we are going to delete an element.</p>
+
+    <p><img width="353" alt="image-20211002210904028" src="https://user-images.githubusercontent.com/46957634/135757824-b9e59e15-2505-4f27-b9b8-84c6e2b65101.png" /></p>
+  </li>
+  <li>
+    <p>When deleting, we always delete the element at the root.</p>
+
+    <p><img width="353" alt="image-20211002210913301" src="https://user-images.githubusercontent.com/46957634/135757826-91d72062-c5fb-4a59-a044-30e6e11494bf.png" /></p>
+  </li>
+  <li>
+    <p>After deleting the root, we move the nth element to the root.</p>
+
+    <p><img width="353" alt="image-20211002210923376" src="https://user-images.githubusercontent.com/46957634/135757829-96507ee1-1b4e-4f6a-9cc7-3c096cd567d5.png" /></p>
+  </li>
+  <li>We now need to reorganize the heap.</li>
+  <li>Compare the new element with the larger element of its children.
+    <ul>
+      <li>If the new element is smaller than the child, exchange the two elements.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Here, since 8 is smaller than 15, exchange the new element with its left child.</p>
+
+    <p><img width="353" alt="image-20211002210941755" src="https://user-images.githubusercontent.com/46957634/135757830-3f563d79-b872-4d3e-8ce9-94c2fdfe53a2.png" /></p>
+  </li>
+  <li>
+    <p>Continuing, we compare the new element with the larger element of its children.</p>
+  </li>
+  <li>
+    <p>Since 8 is smaller than 9, we exchange the two elements.</p>
+
+    <p><img width="353" alt="image-20211002211005929" src="https://user-images.githubusercontent.com/46957634/135757831-b87dd805-288c-4cb0-805e-7a2c5ca981ff.png" /></p>
+  </li>
+  <li>
+    <p>Since 8 is larger than 7, we stop there.</p>
+  </li>
+  <li>
+    <p>The heap is re-established.</p>
+
+    <p><img width="353" alt="image-20211002211018088" src="https://user-images.githubusercontent.com/46957634/135757832-c870dc3f-15bd-40e5-80b0-38953b68e4f3.png" /></p>
+  </li>
+</ul>
+
+<h4 id="ex038">[ex038]</h4>
+
+<ul>
+  <li>Function delete_max_heap</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/37432270b03120dd6defc595d084f5e2.js"></script>
+
+<h4 id="analysis-of-delete_max_heap">Analysis of delete_max_heap</h4>
+
+<ul>
+  <li>The function delete_max_heap operates by moving down the heap, comparing and exchanging parent and child nodes until the heap characteristics is reestablished.</li>
+  <li>Since the height of the heap with n elements is     while loop is iterated O(log2n) times.</li>
+  <li>The time complexity of the function is O(log2n).</li>
+</ul>
+
+<h3 id="565-summary">5.6.5. Summary</h3>
+
+<ul>
+  <li>Implementation of priority queues and their time complexity for insertion and deletion.
+    <ul>
+      <li>n is the number of elements in the heap.</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Representation</th>
+          <th>Insertion</th>
+          <th>Deletion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>unordered array</td>
+          <td>O(1)</td>
+          <td>O(n)</td>
+        </tr>
+        <tr>
+          <td>unordered linked list</td>
+          <td>O(1)</td>
+          <td>O(n)</td>
+        </tr>
+        <tr>
+          <td>sorted array</td>
+          <td>O(n)</td>
+          <td>O(1)</td>
+        </tr>
+        <tr>
+          <td>sorted linked list</td>
+          <td>O(n)</td>
+          <td>O(1)</td>
+        </tr>
+        <tr>
+          <td>max heap</td>
+          <td>O(log2n)</td>
+          <td>O(log2n)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Max heap is useful when both insertion and deletion operations frequently occur in a program (or a function).</li>
+</ul>

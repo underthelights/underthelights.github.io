@@ -1,0 +1,40 @@
+<h2 id="additional-list-operations-chapter-45">Additional List Operations (Chapter 4.5)</h2>
+
+<h3 id="451-operations-for-chains">4.5.1 Operations for Chains</h3>
+
+<ul>
+  <li>Inverting a chain
+    <ul>
+      <li>We can do it “in place” by using three pointers.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img width="392" alt="image-20211003170554409" src="https://user-images.githubusercontent.com/46957634/135752226-10385d2a-7202-4982-a20d-8fc95003a614.png" /></p>
+
+<ul>
+  <li>Inverting a chain &amp;  Concatenating two chains</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/52b9055918584636e45cbbf338f04ed0.js"></script>
+
+<h3 id="452-operations-for-circularly-linked-lists">4.5.2 Operations for Circularly Linked Lists</h3>
+
+<ul>
+  <li>Inserting a new node at the front of a circular list
+    <ul>
+      <li>Since we have to change the link field of the last node, we must move down the list until we find the last node.</li>
+    </ul>
+
+    <p><img width="297" alt="image-20211003170653180" src="https://user-images.githubusercontent.com/46957634/135752227-9eab3865-b64f-45ac-b1cc-9cd9974087d3.png" /></p>
+
+    <ul>
+      <li>It could be more convenient if the pointer for the circular list points to the last node rather than the first.</li>
+    </ul>
+
+    <p><img width="343" alt="image-20211003170701302" src="https://user-images.githubusercontent.com/46957634/135752229-fc2051f3-7efa-47a7-a286-1ede5a7d8ce7.png" /></p>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/08fd4263a9881ef07ef29dacc4c29c50.js"></script>
+

@@ -1,0 +1,478 @@
+<h1 id="13-virtual-memory-concepts">13. Virtual Memory: Concepts</h1>
+
+<h1 id="address-spaces">Address spaces</h1>
+
+<h2 id="a-system-using-physical-addressing">A System Using Physical Addressing</h2>
+
+<p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled.png" alt="Untitled" /></p>
+
+<ul>
+  <li>address space : 주소 공간
+    <ol>
+      <li>process가 보는 address space -&gt; virtual address</li>
+      <li>Physical memory가 보는 -&gt; physical address</li>
+    </ol>
+  </li>
+</ul>
+
+<p>CPU입장에서 보자.</p>
+
+<ul>
+  <li>CPU가 main memory 접근을 하게 되면 CPU가 addressing하는 주소는 physical address에 해당하는 주소에 있는 data를 load/store할 수 있게 한다
+    <ul>
+      <li>ex. Physical memory고 load 를 통해 word를 가지고 옴</li>
+    </ul>
+  </li>
+  <li>→ Used in “simple” systems like embedded microcontrollers in devices like cars, elevators, and digital picture frames Physical address (PA) CPU 4 3 …
+CPU가 볼 때 물리적으로 load/store하며 수행하는 simple한 system에서 활용</li>
+  <li>VM지원하지 않는 경우에는 physical memory로 활용 (VM 개념자체가 없다)</li>
+</ul>
+
+<h2 id="a-system-using-virtual-addressing">A System Using Virtual Addressing</h2>
+
+<p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%201.png" alt="Untitled" /></p>
+
+<ul>
+  <li>CPU에서 virutal addreessing : 접근하는 주소가 virtual address (Not Physical addressing)</li>
+  <li>MMU : (memory managing unit) : 4100번지에서 load/store한다고 하면 physical address로 변환해 주는 HW (CPU안에 들어가 잇음)
+    <ul>
+      <li>Microcontrolloer 처럼 사실 CPU가 굉장히 간단했는데 VM 해주는 system에서는 CPU chip 자체가 앞에 있는 것 보다 복잡해졌는데, virtual address를 physical address로 변환해주는 역할을 MMU에서 수행(4100(VA) - 4(PA))</li>
+      <li>Used in all modern servers, laptops, and smart phones</li>
+      <li>One of the great ideas in computer science M-1: …</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="address-spaces-1">Address Spaces</h2>
+
+<p>어떻게 va-&gt; pa 변환될까?일단 정의부터 살펴보자.</p>
+
+<ul>
+  <li>Linear address space:
+    <ul>
+      <li>순서화 되어 있는 음수가 아닌 continguous한 정수 주소</li>
+      <li>Ordered set of contiguous non-negative integer addresses</li>
+      <li>{0, 1, 2, 3 … }</li>
+    </ul>
+  </li>
+  <li>Virtual address space:
+    <ul>
+      <li>n개의 bit로 표현한다고 하면 N = 2^n만큼으로</li>
+      <li>Set of N = 2n virtual addresses</li>
+      <li>{0, 1, 2, 3, …, N-1}
+        <ul>
+          <li>ex. n=4면 N = 2^4 = 16이므로 {0 ~ 15}까지 VA로 표현됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Physical address space:
+    <ul>
+      <li>물리적인 주소로 표현</li>
+      <li>VA&gt;PA인 경우가 많음 (일반 modern PC에서는) - VA를 PA로 표현하기 위한 N &gt; M (N!=M)</li>
+      <li>Set of M = 2m physical addresses</li>
+      <li>{0, 1, 2, 3, …, M-1}</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="why-virtual-memory-vm">Why Virtual Memory (VM)?</h2>
+
+<p>(의문) Linear address 그냥 쓰면 되는데 왜 VA/PA 쓰는 것일까?</p>
+
+<ul>
+  <li><strong>Uses main memory efficiently 
+ DRAM을 좀 더 효과적으로 사용하기 위하여 VM 사용</strong>
+    <ul>
+      <li>Use DRAM as a cache for parts of a virtual address space</li>
+      <li>VA의 일부만 DRAM에 올려 둔다 : process 공부할 때 text/ data /heap/ stack도 있고, 실제 process가 보는 virtual한 space</li>
+      <li>실제 program이 수행되면 .text, .data, .heap, .stack이 있을 것이고 중간에 memory map이 존재할 것이다.</li>
+      <li>프로그램이 실행되면 text나 data의 경우에도 time의 축에서 VM의 모든 구역을 다 memory에 올려둘 필요 없이 필요에 따라 DRAM에 올려 둔 main memory 공간을 cache: 특정 w time 구간동안 접근.</li>
+      <li>VA에 해당하는 모든 주소 공간에 있는 것들을 모드 memory에 올려놓을 필요는 없고, 자주/많이 접근되는 부분들만 VA일부로 하여 올려두겠다. DRAM은 정말 비싼 자원이기에 정말 필요한 것만 올려두는 역할을 수행하도록 한다.</li>
+      <li>그냥 물리적 주소였다면 그냥 memory mapping을 하면 됨</li>
+    </ul>
+  </li>
+  <li>Simplifies memory management
+    <ul>
+      <li>Each process gets the same uniform linear address space</li>
+    </ul>
+
+    <p>0~특정한 값까지 동일하게</p>
+
+    <ul>
+      <li>모든 process가 자기가 접근하는 VA의 값을 0~특정 공간까지 관리할 수 있도록 해 주자</li>
+    </ul>
+  </li>
+  <li>Isolates address spaces
+    <ul>
+      <li>One process can’t interfere with another’s memory</li>
+      <li>User program cannot access privileged kernel information and code 6</li>
+      <li>address space를 각 process마다 자신의 address space만 사용하게 고립시키자 :서로 isolate되어 있어 서로의 영역에 대해 접근할 수 없게 한다.
+        <ul>
+          <li>→ 다른 process의 memory와 interference (접근 못하게) 방지</li>
+        </ul>
+      </li>
+      <li>kernel은 접근할 수 있지만 process끼리는 서로 접근 못하게 하고 process는 kernel 정보를 touch하지 못하게 하여 access/modify 못 하게 해주기 위해 필요한 기술 중 하나.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="vm-as-a-tool-for-caching">VM as a Tool for Caching</h1>
+
+<ul>
+  <li>
+    <p>Conceptually, <strong>virtual memory</strong> is an array of N contiguous bytes stored on disk.</p>
+
+    <p><strong>개념적으로 어떻게 표현할 것인가</strong></p>
+
+    <ul>
+      <li>process가 보는 memory = VM</li>
+      <li>conceptually, process가 실제 memory에 올라와 구동되게 되는데, 개념적으로 VM이라는 것은 disk 공간에서 n개의 연속된 byte array로 보겠다는 것이다.</li>
+    </ul>
+
+    <p>= 어떤 process가 있다고 하면 contiguous한 linear addreess (0~)</p>
+
+    <ul>
+      <li>4KB/8KB page : 동일한 page들을 가상 주소가 disk에 mapping되어 있는 연속된 n개의 byte array로 표현한다고 가정하고 생각을 해 보면 실제 main memory에 올라온 physical memory 영역에서는 cached 부분만 올라옴</li>
+      <li>그리고 실제 main memory에 있는 공간은 : VM에 0번지 ~ N-1번지 까지 N개의 page가 있었다고 하면, PM에 0 ~ M-1번지, M&lt;N</li>
+      <li>
+        <blockquote>
+          <p>실제 가상 memory의 특정 page들이 사용되서 main meory에 mapping되어 올라와 있는 경우에 다음처럼 보인다. 나머지는 empty된 상태이다.</p>
+        </blockquote>
+      </li>
+      <li>물리적 메모리를 가져다 가상 메모리의 cache처럼 본다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>The contents of the array on disk are cached in <strong>physical memory (DRAM cache)</strong></p>
+    <ul>
+      <li>These cache blocks are called pages (size is P = 2p bytes)</li>
+    </ul>
+
+    <p>DRAM Cache : disk에 있다고 하면 (virtual page )</p>
+
+    <p>main memory에 있는 건 DRAM에 있는 disk 주소 공간의 cache (physical page)</p>
+
+    <ul>
+      <li>활성화된 active page들만 memory에 올라와 있음</li>
+      <li>
+        <blockquote>
+          <p>virtual memory를 cacheingg하기 위한 tool이라고 볼 수 있다!</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%202.png" alt="Untitled" /></p>
+
+<hr />
+
+<h2 id="dram-cache-organization">DRAM Cache Organization</h2>
+
+<ul>
+  <li>Fixed 크기의 block : page / block이라고 이야기함</li>
+  <li>PP에서 cached page 제외 나머지 empty공간을 내가 못 쓴다고 하면 다른 녀석을 가져다 caching하게 될 때 누군가를 쫓아내야 함 -&gt; 굉장히 복잡하지만 그 알고리즘도 overhead가 됨</li>
+  <li>cached page에 대해 mapping function 관리</li>
+  <li>DRAM cache organization driven by the enormous miss penalty
+    <ul>
+      <li>DRAM is about 10x slower than SRAM</li>
+      <li>Disk is about 10,000x slower than DRAM</li>
+    </ul>
+  </li>
+  <li>Consequences
+    <ul>
+      <li>Large page (block) size: typically 4 KB, sometimes 4 MB
+        <ul>
+          <li>page는 통상적으로 4KB (가끔 4MB)</li>
+        </ul>
+      </li>
+      <li>Fully associative
+        <ul>
+          <li>Any VP can be placed in any PP</li>
+          <li>
+            <p>Requires a “large” mapping function – different from cache memories</p>
+
+            <p>virtual page들을 physical page로 mapping할 수 있는데 어느 VP도 어느 PP로 들어갈 수 있다.  = CPU Cache는 VP가 물리적 slot에 어디나 들어가도 된다</p>
+          </li>
+        </ul>
+      </li>
+      <li>Highly sophisticated, expensive replacement algorithms
+        <ul>
+          <li>Too complicated and open-ended to be implemented in hardware</li>
+        </ul>
+      </li>
+      <li>Write-back rather than write-through 9
+        <ul>
+          <li>write 하게 되면 cache에 있는 page가 있어 실제 disk공간에 있는 page들인데</li>
+          <li>(1) write through : PP를 씀과 동시에 같이 쓸 것이냐</li>
+          <li>(2) write back
+            <ul>
+              <li>PP에 먼저 쓰고 나중에 evict할 때 VP와 동기화 할 것이냐</li>
+              <li>먼저 DRAM(cache)에 있는 것을 써 놓고 나중에 disk 공간에 있는 page가 evict될 때 VP와 동기화하여 씀</li>
+              <li>VM 개념을 도입했는데 실제 구현하려면</li>
+              <li>CPU 밖의 main memory를 이야기 중.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>SRAM Cache는 CPU안에 있음
+    <ul>
+      <li>HW로도 구현 : main memory중 어떤 memory에 cache한다고 할 때 누구를 쫓아내는가 등은 실제 program이 실행 될 때 cycle을 많이 소요 -&gt; HW로 faster 구현</li>
+      <li>SRAM&gt;DRAM&gt;Disk</li>
+      <li>SRAM Cache : CPU chip안에 있는 processor cache가 hw적으로 설계됨 -
+  CPU안에서 instruction fetch할 때 활용
+  (L1, L2) : cpu chip 안에 있어서 on chip cache
+  (L3) : off chip cache - 바로 밖에 붙어 있음</li>
+      <li>DRAM : CPU 밖 memory, l3 옆 가장 붙어 있는 memory</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="enabling-data-structure-page-table">Enabling Data Structure: Page Table</h2>
+
+<ul>
+  <li>A <strong>page table</strong> is an array of page table entries (PTEs) that maps virtual pages to physical pages.
+    <ul>
+      <li>앞에 있었던(8) : VA-&gt;PA로 mapping function</li>
+      <li>무언가 어쨌든 이 주소를 VP1이 PP1에 mapping되어있다는 정보 + page들의 mapping 정보. 다시 말하면 어떤 page들이 어떤 물리적 page에 mapping되어 있는가에 대한 정보가 필요함. 이를 관리하기 위한 table이 page table</li>
+      <li>inear table의 entry가 VA를 PA로 변환해주는 역할을 수행(translator) - page : 각각의 memory에서의 물리적인 공간</li>
+      <li>일정 크기의 page (block)을 mapping하기 위한 entry가 table에 들어가 있음</li>
+      <li>Entry는 가상 주소에 해당하며 이를 보게 되면 0번부터 N에 해당하는 index에서 N=8이라고 하면 PTE 0~7,</li>
+      <li>page : unallocated/ cached / uncached … - process 공간에서 data와 text로 보게 되고 heap을 쓰게 되면 위로 올라감/ 중간에 allcoate되지 않는 공간이 있을 것임. 영역을 할당하게 되면 위쪽PTE=0이 text/code, n-1쪽으로부터 heap이 쭉 올라간다고 보면 됨</li>
+      <li>entry안의 내용을 보게 되면 실제 physical page number가 들어가 있음</li>
+      <li>
+        <p>process마다 가지고 있는 OS의 data structure: OS Kernel DS로서 10개 프로세스에 해당하는 다음과 같은 table을 process마다 가지고 있음</p>
+      </li>
+      <li>Per-process kernel data structure in DRAM</li>
+    </ul>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%203.png" alt="Untitled" /></p>
+  </li>
+  <li>질문
+    <ul>
+      <li>CPU 개수랑은 완전히 orthogonal : process 개수 만큼</li>
+      <li>page table size : 1MB/4MB (OS시간에 배움)</li>
+      <li>page table 자체가 DRAM에 저장됨. 자체 주소는 process의</li>
+    </ul>
+
+    <p>process마다 process control block이라고 해서 자료구조가 있는데 여기서 page table에 대한 주소를 가지고 있음. 그 주소에 대한 page table이 선형적으로 들어가 있고, 나중에는 base line register에다가 process가 context switch될 때 주소를 가져다 넣는다.</p>
+
+    <ul>
+      <li>
+        <blockquote>
+          <p>Page Table은 kernel이 보는 것이고, kernel은 physical 주소를 본다. Virtual 주소도 보기는 하지만 physical 주소와도 1대1 대응하기에 Page table자체의 주소는 물리주소로 저장된다고 봐도 될 듯.</p>
+        </blockquote>
+      </li>
+      <li>fork하면 child process는 parent process와 같은 page table을 공유하는가? 그럼 같은 virtual memory가 서로 다른 physical memory를 가리키게 되는가? -&gt; page table이 복제되는데 새로은 page table로 update됨 (공유하지 않음) 부모 것 하나, 자식 것 하나 각각 따로따로 가지고 있음. 즉, 서로 다른 physical memory를 가리키게 됨.</li>
+    </ul>
+  </li>
+  <li>(PM) 실제 physically mapped : cached 영역 (1,2,7,4) to PP 0,1,2,3</li>
+  <li>(VM) unallocate / allocate되어 있지만 아직 cached 안 됨</li>
+  <li>page table을 통해서 주소 변환</li>
+</ul>
+
+<p>→Disk공간이라고 봐도 되고</p>
+
+<p>page table을 통하여 주소 변환을 해 주는 역할을 감당하게 된다.</p>
+
+<h2 id="page-hit">Page Hit</h2>
+
+<p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%204.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Page hit: reference to VM word that is in physical memory (DRAM cache hit)</li>
+  <li>나중에 VM을 가지고 mem copy를 한다고 하면 다른 VM으로 copy하게 되는데 그 주소는 ‘VA’
+    <ul>
+      <li>결국 내부적으로는 PA를 접근해야 한다. OS기저로 들어가면 내부 변환 작업을 수행해주어야 한다.</li>
+      <li>가상 주소가 DRAM에 있는가, Disk에 있는가는 page table 앞의 validity를 본다.
+        <ul>
+          <li>1인경우에만 main memory에 올라가 있는 형태: DRAM Cache에서 hit가 일어나서 DRAM에 접근하면 됨</li>
+          <li>0인경우: allocate 안 되어 있거나 VA가 실제 disk에 연결</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>해당하는 Validty를 확인한 후 DRAM Cache를 뒤져봄
+    <ul>
+      <li>Fault 발생</li>
+      <li>실제 접근했는데 접근하는 Page의 validity가 0으로 되어 있음 : physical하게 dram cache에 있는 게 아니라 dram cache에 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="page-fault">Page Fault</h2>
+
+<ul>
+  <li>Page fault: reference to VM word that is not in physical memory (DRAM cache miss)
+    <ul>
+      <li>Page가 없기 때문에 page missing →fault handling 필요</li>
+    </ul>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%205.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h3 id="handling-page-fault">Handling Page Fault</h3>
+
+<p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%206.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Page miss causes page fault (an exception)</li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>Page Fault Handler가
+    <ul>
+      <li>PP 0~3 중 모종의 이유로 PP3을 쫓아내겠다고 결정 (evict)</li>
+      <li>evict하게 될 때 VP4는 VM으로, VP3은 PM으로 이동</li>
+      <li>3번이 올라왔으니깐 virtual page number 3번으로 이동하게 된다. 이러한 어떤 작업을 수행해주어야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>→ Fault가 나오게 되면 누군가를 evict시켜주고 page table 을 update해주어야 한다. (4를 disk mapping, 3은 DRAM에 mapping)</p>
+
+<ul>
+  <li>demand paging</li>
+  <li>
+    <p>누군가를 evict하고 누군가를 가져와야 함</p>
+  </li>
+  <li>
+    <p>Page miss causes page fault (an exception)</p>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%207.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Page fault handler selects a victim to be evicted (here VP 4)</p>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%208.png" alt="Untitled" /></p>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%209.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Offending instruction is restarted : page hit</p>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%2010.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="allocating-pages">Allocating Pages</h2>
+
+<ul>
+  <li>
+    <p>Allocating a new page (VP 5) of virtual memory.</p>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%2011.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="locality-to-the-rescue-again">Locality to the Rescue Again!</h2>
+
+<ul>
+  <li>Virtual memory seems terribly inefficient, but it works because of locality.</li>
+  <li>At any point in time, programs tend to access a set of active virtual pages called the <strong>working set</strong>
+    <ul>
+      <li>Programs with better temporal locality will have smaller working sets</li>
+      <li>process 관점에서 봤을 때, VA를 PA로 바꾸어 주는 과정 자체가
+  내가 접근되는 memory주소에 따라서 어떤 놈은 DRAM, 어떤 놈은 DIsk에 있기 때문에 handling overhead가 상당히 큼
+        <ul>
+          <li>→ working set : 가상 메모리 페이지들의 집합.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>If (working set size &lt; main memory size)
+Working set &lt; 내가 가진 main memory size
+    <ul>
+      <li>Good performance for one process after compulsory misses
+  (Page fault가 발생하지 않을 것이니까)</li>
+    </ul>
+  </li>
+  <li>If ( SUM(working set sizes) &gt; main memory size )
+Working set &gt; 내가 가진 main memory size
+    <ul>
+      <li><strong>Thrashing:</strong> Performance meltdown where pages are swapped (copied) in and out continuously 18</li>
+      <li>working set이 커지게 되면 thrashing문제 발생 : 자꾸 disk mapping / dram 이랬다 저랬다 하면 disk 접근 때문에 발생하게 된다. (어떤 페이지가 in and out from disk -&gt; 성능이 완전히 melt down된다)</li>
+    </ul>
+  </li>
+  <li>
+    <p>cache size라는 것은 어느정도 적당한 크기로 보장되어야 함.</p>
+
+    <p>CPU 성능도 중요하지만 메모리 성능이 중요한 이유이다: 여러 프로그램을 돌리기 때문에 각 process마다 지금과 같은 process마다 dram cache영역이 확보되어야 한다. 구동시키는 프로그램(웹/다양한 프로그램)들로 인한 in n out으로 인해  thrashing 이 발생하여 속도가 완전히 죽어버림.</p>
+
+    <p>→ 가급적이면 memory 큰 pc를 구입</p>
+  </li>
+</ul>
+
+<h1 id="vm-as-a-tool-for-memory-management">VM as a Tool for Memory Management</h1>
+
+<h2 id="key-idea-each-process-has-its-own-virtual-address-space">Key idea: each process has its own virtual address space</h2>
+
+<ul>
+  <li>It can view memory as a simple linear array</li>
+  <li>Mapping function scatters addresses through physical memory
+    <ul>
+      <li>Well-chosen mappings can improve locality</li>
+    </ul>
+
+    <p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%2012.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<p>VM as a Tool for Memory Management</p>
+
+<ul>
+  <li><strong>Simplifying memory allocation</strong>
+    <ul>
+      <li>Each virtual page can be mapped to any physical page</li>
+      <li>A virtual page can be stored in different physical pages at different times</li>
+    </ul>
+  </li>
+  <li>Sharing code and data among processes
+    <ul>
+      <li>Map virtual pages to the same physical page (here: PP 6)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%2013.png" alt="Untitled" /></p>
+
+<h2 id="simplifying-linking-and-loading">Simplifying Linking and Loading</h2>
+
+<p><img src="https://raw.githubusercontent.com/underthelights/underthelights.github.io/main/_posts/SP/13/Untitled%2014.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Linking
+    <ul>
+      <li>Each program has similar virtual address space</li>
+      <li>Code, data, and heap always start at the same addresses.</li>
+    </ul>
+  </li>
+  <li>Loading
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">execve</code> allocates virtual pages brk for .text and .data sections &amp; creates PTEs marked as invalid</li>
+      <li>The <code class="language-plaintext highlighter-rouge">.text</code> and <code class="language-plaintext highlighter-rouge">.data</code> sections are copied, page by page, on demand by the virtual memory system</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="vm-as-a-tool-for-memory-protection">VM as a Tool for Memory Protection</h1>
+
+<ul>
+  <li>Extend PTEs with Permission bits</li>
+  <li>MMU checks these bits on each access</li>
+</ul>

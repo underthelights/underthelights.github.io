@@ -1,0 +1,490 @@
+<h1 id="10-dnn-2">10. DNN 2</h1>
+<ul>
+  <li>구조상 차이 : hidden layer 개수
+fully connected layer -&gt; conv layer</li>
+  <li>Activation, normalization 하는 부분들</li>
+  <li>weight update하는 부분들</li>
+</ul>
+
+<p>여러 학습 알고리즘이 제안되며 더 좋은 성능을 가지게 됨</p>
+
+<h1 id="data-processing">Data Processing</h1>
+
+<p>input layer - hidden lyaer - output layer로 그려진 NN</p>
+
+<ul>
+  <li>x, y, z (hidden lyaer 하나로만 두고 보면) y layer 의 첫 번째 node를 볼 때 각자 연결된다</li>
+  <li>fc 구조가 기본적인 구조</li>
+  <li>
+    <p>앞 node의 weight combination + bias</p>
+  </li>
+  <li>
+    <p>Consider what happens when the input to a neuron is always positive…</p>
+
+    <p><img src="10/Untitled.png" alt="Untitled" /></p>
+
+    <ul>
+      <li>i의 변화에 따라 x도 변화 → w가 모든 같은 부호</li>
+    </ul>
+  </li>
+  <li>w update slowly → learn slowly
+    <ul>
+      <li>이상적인 w에 도달하지 않을 수 있다</li>
+      <li>학습 시간에도 문제가 될 수 있다</li>
+    </ul>
+  </li>
+  <li>What can we say about the gradients on w?</li>
+  <li>Always all positive or all negative!</li>
+  <li>(this is also why you want zero-mean data!)
+    <ul>
+      <li>data normalization : $\mu = 0$</li>
+      <li>for input hidden layer</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="step-1-preprocess-the-data">Step 1: Preprocess the data</h2>
+
+<p>(Assume X [NxD] is data matrix, each example in a row)</p>
+
+<p><img src="10/Untitled_1.png" alt="Untitled" /></p>
+
+<ul>
+  <li>normalized data : $N(0, 1^2)$
+    <ul>
+      <li>learn faster</li>
+    </ul>
+  </li>
+</ul>
+
+<p>In practice, you may also see PCA and Whitening of the data</p>
+
+<p>PCA : dimensionality reduction, clustering (unsupervised)</p>
+
+<ul>
+  <li>decorrelated data
+    <ul>
+      <li>(data has diagonal covariance matrix)</li>
+      <li>axis방향으로 평행 : with x1 only (1dim)</li>
+      <li>from 2dim → 1dim compression (data info loss)</li>
+    </ul>
+  </li>
+  <li>whitened data
+    <ul>
+      <li>
+        <p>(covariance matrix is the identity matrix)</p>
+
+        <p>$\Sigma =$</p>
+      </li>
+      <li>
+        <p>acc 변화했을 수도 있으므로 performance 체크</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="10/Untitled_2.png" alt="Untitled" /></p>
+
+<p>In practice for Images: Zero-center only</p>
+
+<ul>
+  <li>e.g. consider CIFAR-10 example with [32,32,3] images</li>
+  <li>Subtract the mean image (e.g.AlexNet)
+    <ul>
+      <li>(mean image = [32,32,3] array)
+        <ul>
+          <li>RGB 평균 구해서 average</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Subtract per-channel mean (e.g.VGGNet)
+    <ul>
+      <li>(mean along each channel = 3 numbers)</li>
+    </ul>
+  </li>
+  <li>Not common to normalize variance (for PCA or whitening)
+    <ul>
+      <li>w 효과적으로</li>
+      <li>PCA → data rotation, whitening → Cov to Identity Mat</li>
+      <li>if original data에 대한 학습 중 특정 w를 학습해야 한다면</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="weight-initialization">Weight Initialization</h1>
+
+<p>원래 w : randomly init.</p>
+
+<ul>
+  <li>
+    <p>Q: what happens when W=0 init is used?</p>
+
+    <p><img src="10/Untitled_3.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<p>f’(0) x_i → wi에 update됨</p>
+
+<p>모든 w에 동일한 pattern으로 update</p>
+
+<p>i가 달라짐에 다르게 but 같게 실행 : 지그재그로 수행되는 것보다 성능이 안좋을 수 있음</p>
+
+<ul>
+  <li>First idea: Small random numbers
+    <ul>
+      <li>(gaussian with zero mean and 1e-2 standard deviation)</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">W</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">H</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>small w : hidden layer가 커질수록 → backprop되는 layer 적어짐
+        <ul>
+          <li>뒤 layer로 갈수록 앞 layer update 작아짐 : 학습 잘 안됨</li>
+        </ul>
+      </li>
+      <li>big w : vanishing GD : update 안될수록 f’ 작아짐
+        <ul>
+          <li></li>
+        </ul>
+      </li>
+      <li>Works ~okay for small networks, but problems with deeper networks.</li>
+    </ul>
+  </li>
+  <li>Lets look at some activation statistics
+    <ul>
+      <li>10-layer net with 500 neurons on each layer, using tanh</li>
+      <li>non-linearities, and initializing as described in previous slide.</li>
+    </ul>
+  </li>
+  <li>All activations become zero!</li>
+  <li>Q: think about the backward pass. What do the gradients look like?
+    <ul>
+      <li>Hint: think about backward pass for a W*X gate.</li>
+    </ul>
+  </li>
+  <li>*1.0 instead of *0.01</li>
+  <li>Almost all neurons completely saturated, either -1 and 1. Gradients will be all zero.</li>
+</ul>
+
+<p>Deep Neural Networks
+Weight Initialization</p>
+
+<p>“Xavier initialization” [Glorot et al., 2010]</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="n">fanin</span><span class="p">,</span> <span class="n">fanout</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fanin</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Reasonable initialization. (Mathematical derivation assumes linear activations) with tanh fn</li>
+  <li>현재 layer node의 sqrt로 init</li>
+  <li>but when using the ReLU nonlinearity it breaks. (0에 접근)</li>
+</ul>
+
+<p>He et al., 2015 (note additional /2)</p>
+
+<ul>
+  <li>error가 더 잘 감소됨을 확인할 수 있음</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="n">fanin</span><span class="p">,</span> <span class="n">fanout</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">fanin</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="proper-initialization-is-an-active-area-of-research">Proper initialization is an active area of research</h1>
+
+<ul>
+  <li>Understanding the difficulty of training deep feedforward neural networks
+by Glorot and Bengio, 2010</li>
+  <li>Exact solutions to the nonlinear dynamics of learning in deep linear neural networks by Saxe et al, 2013</li>
+  <li>Random walk initialization for training very deep feedforward networks by Sussillo and Abbott, 2014</li>
+  <li>Delving deep into rectifiers: Surpassing human-level performance on ImageNet classification by He et al., 2015</li>
+  <li>Data-dependent Initializations of Convolutional Neural Networks by Krähenbühl et al., 2015</li>
+  <li>All you need is a good init, Mishkin and Matas, 2015 …</li>
+</ul>
+
+<h1 id="batch-normalization">Batch Normalization</h1>
+
+<p>[Ioffe and Szegedy, 2015]</p>
+
+<p>layer에 data를 넣을 때 전체 data를 randomly partition하여 mini batch 생성</p>
+
+<ul>
+  <li>“you want unit gaussian activations? just make them so.”</li>
+  <li>
+    <p>consider a batch of activations at some layer.</p>
+  </li>
+  <li>To make each dimension unit gaussian, apply:
+    <ul>
+      <li>$\hat x^{(k)} = \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$
+        <ul>
+          <li>this is a vanilla differentiable function…</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>dimension 단위 normalilze</li>
+</ul>
+
+<ol>
+  <li>
+    <p>compute the empirical mean and variance independently for each dimension.</p>
+
+    <p><img src="10/Untitled_4.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Normalize</p>
+    <ul>
+      <li>$\hat x^{(k)} = \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$
+    - Usually inserted after Fully Connected or Convolutional layers, and before <strong>nonlinearity.</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="10/Untitled_5.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Normalize:
+    <ul>
+      <li>$\hat x^{(k)} = \frac{x^{(k)} - E[x^{(k)}]}{\sqrt{Var[x^{(k)}]}}$</li>
+      <li>$\hat x \sqrt{Var} + E[x] = X$</li>
+      <li>$\gamma = \sqrt{Var} , \beta = E[x]$</li>
+      <li>$\hat x$ : normalized data, X : original data</li>
+    </ul>
+  </li>
+  <li>And then allow the network to squash the range if it wants to:
+    <ul>
+      <li>$\hat y^{(k)} = \gamma^{(k)} \hat x^{(k)}+\beta^{(k)}$</li>
+    </ul>
+  </li>
+  <li>Note, the network can learn:to recover the identity mapping.
+    <ul>
+      <li>$\gamma^{(k)} = \sqrt{Var[x^{(k)}]}$ (stretch)</li>
+      <li>$\beta^{(k)} = E[x^{(k)}]$ (이동)</li>
+    </ul>
+  </li>
+  <li>$X \rightarrow \hat X$ : normalize : $\gamma, \beta$로 scaling된 y value</li>
+</ul>
+
+<p><img src="10/Untitled_6.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Improves gradient flow through the network</li>
+  <li>Allows higher learning rates</li>
+  <li>Reduces the strong dependence on initialization</li>
+  <li>Acts as a form of regularization in a funny way, and slightly reduces the need for dropout, maybe</li>
+  <li>
+    <p>Note: at test time BatchNorm layer functions differently:</p>
+  </li>
+  <li>The mean/std are not computed based on the <strong>batch(test batch)</strong>.</li>
+  <li>Instead, a single fixed empirical mean of activations during training is used.
+    <ul>
+      <li>(e.g. can be estimated during training with running averages)</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1>—</h1>
+
+<h1 id="model-ensembles">Model Ensembles</h1>
+
+<ol>
+  <li>Train multiple independent models</li>
+  <li>At test time average their results (여러 model result average)</li>
+</ol>
+
+<ul>
+  <li>
+    <p>Enjoy 2% extra performance</p>
+  </li>
+  <li>
+    <p>single model : learning method 변경</p>
+    <ul>
+      <li>ex. tanh → ReLU : 종합하여 result 추출</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="how-to-improve-single-model-performance">How to improve single-model performance?</h1>
+
+<p><img src="10/Untitled_7.png" alt="Untitled" /></p>
+
+<p>Regularization</p>
+
+<h1 id="regularization-add-term-to-loss">Regularization: Add term to loss</h1>
+
+\[L = \frac 1 N \Sigma_{i=1}^{N} \Sigma_{j\neq y_i}{\max(0, f(x_i);W)_j - f(x_i);W)_{y_i} +1} + \lambda R(W)\]
+
+<ul>
+  <li>Loss Fn : $\frac 1 N \Sigma_{i=1}^{N} \Sigma_{j\neq y_i}{\max(0, f(x_i);W)<em>j - f(x_i);W)</em>{y_i} +1}$</li>
+  <li>Lambda weight term $+ \lambda R(W)$</li>
+</ul>
+
+<p><img src="10/Untitled_8.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>In common use:</p>
+
+    <p><img src="10/Untitled_9.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h2 id="regularization-dropout">Regularization: Dropout</h2>
+
+<ul>
+  <li>
+    <p>In each forward pass, randomly set some neurons to zero Probability of dropping is a hyperparameter; 0.5 is common</p>
+
+    <p><img src="10/Untitled_10.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Srivastava et al, “Dropout: A simple way to prevent neural networks from overfitting”, JMLR 2014</p>
+  </li>
+</ul>
+
+<p>Example forward pass with a 3-layer network using dropout</p>
+
+<p><img src="10/Untitled_11.png" alt="Untitled" /></p>
+
+<p><img src="10/Untitled_12.png" alt="Untitled" /></p>
+
+<ul>
+  <li>How can this possibly be a good idea?</li>
+  <li>Forces the network to have a redundant representation;
+    <ul>
+      <li>Prevents co-adaptation of features</li>
+    </ul>
+
+    <p>개별 node들이 학습에 적극적으로 사용되도록 강제화시키는 작업</p>
+  </li>
+</ul>
+
+<p><img src="10/Untitled_13.png" alt="Untitled" /></p>
+
+<h3 id="how-can-this-possibly-be-a-good-idea">How can this possibly be a good idea?</h3>
+
+<p>randomly selection of node → network 구조 다양 - 종합적 사용</p>
+
+<ul>
+  <li>Another interpretation:
+    <ul>
+      <li>Dropout is training a large <strong>ensemble</strong> of models (that share parameters).</li>
+      <li>Each binary mask is one model</li>
+      <li>An FC layer with 4096 units has 24096 ~ 101233 possible masks!</li>
+      <li>Only ~ 1082 atoms in the universe..</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="dropout-test-time">Dropout: Test time</h1>
+
+<ul>
+  <li>
+    <p>Dropout makes our output random!</p>
+
+    <p><img src="10/Untitled_14.png" alt="Untitled" /></p>
+  </li>
+  <li>Want to “average out” the randomness at test-time
+    <ul>
+      <li>$y = f(x) = E_z[f(x,z)] = \int p(z)f(x,z)dz$ㅓㄹ</li>
+      <li>여러 var mask  ㅇ - mu, sum</li>
+    </ul>
+  </li>
+  <li>But this integral seems hard …</li>
+  <li>Want to approximate the integral
+    <ul>
+      <li>$y = f(x) = E_z[f(x,z)] = \int p(z)f(x,z)dz$</li>
+    </ul>
+  </li>
+  <li>
+    <p>Consider a single neuron.</p>
+
+    <p><img src="10/Untitled_15.png" alt="Untitled" /></p>
+  </li>
+  <li>At test time we have:
+    <ul>
+      <li>$E[a] = w_1x + w_2y$</li>
+    </ul>
+  </li>
+  <li>
+    <p>During training we have:</p>
+
+    <p><img src="10/Untitled_16.png" alt="Untitled" /></p>
+  </li>
+  <li><strong>At test time, multiply by dropout probability</strong></li>
+</ul>
+
+<p><img src="10/Untitled_17.png" alt="Untitled" /></p>
+
+<ul>
+  <li>p to be dropped → *p : 값을 줄여나가는 식으로 진행</li>
+  <li>At test time all neurons are active always
+    <ul>
+      <li>→ We must scale the activations so that for each neuron:</li>
+      <li>output at test time = expected output at training time</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="dropout-summary">Dropout Summary</h2>
+
+<ul>
+  <li>drop in forward pass
+    <ul>
+      <li>train때 사용된 w값이 test 시점에도 반영</li>
+    </ul>
+  </li>
+  <li>
+    <p>scale at test time</p>
+
+    <p><img src="10/Untitled_18.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h2 id="more-common-inverted-dropout">More common: “Inverted dropout”</h2>
+
+<ul>
+  <li>train시 p로 나누어줌</li>
+  <li>test time is unchanged!
+    <ul>
+      <li>test 단계에 적용 → test 에서는 X X</li>
+      <li>if v1 &gt; p → test시점 (1-p)</li>
+    </ul>
+
+    <p><img src="10/Untitled_19.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h1 id="regularization-a-common-pattern">Regularization: A common pattern</h1>
+
+<ul>
+  <li>Cross Entropy Loss : $-\Sigma y_i \lim P_i$
+    <ul>
+      <li>yi : the answer</li>
+      <li>Pi : prediction</li>
+    </ul>
+  </li>
+  <li>Training: Add some kind of randomness
+    <ul>
+      <li>randomness - regularize</li>
+      <li>$y = f_W (x,z)$</li>
+    </ul>
+  </li>
+  <li>Testing: Average out randomness (sometimes approximate)
+    <ul>
+      <li>$y = f(x) = E_z[f(x,z)] = \int p(z)f(x,z)dz$</li>
+      <li>iteration별 여러 mu, sigma → average를 구하여 test시점에 적용한다</li>
+      <li>BN도 regularization작업</li>
+    </ul>
+  </li>
+  <li>Example:BatchNormalization
+    <ul>
+      <li>Training:Normalize using stats from random mini batches</li>
+      <li>Testing:Use fixed stats to normalize</li>
+    </ul>
+  </li>
+</ul>

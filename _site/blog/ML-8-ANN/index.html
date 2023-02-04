@@ -1,0 +1,511 @@
+<h1 id="8-ann">8. ANN</h1>
+
+<h1 id="ann-introduction">ANN Introduction</h1>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280599-fd556de5-9369-437d-b9da-ddbac640bd3e.png" alt="h+ p ://cs231n.stanford.edu/slides/winter1516_lecture4.pdf" /></p>
+
+<p>h+ p ://cs231n.stanford.edu/slides/winter1516_lecture4.pdf</p>
+
+<ul>
+  <li></li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280605-6b5b6d58-7520-47aa-b52f-bc527b096ea1.png" alt="© 2017, SNU BioIntelligence Lab, h+ p ://bi.snu.ac.kr/" /></p>
+
+<p>© 2017, SNU BioIntelligence Lab, h+ p ://bi.snu.ac.kr/</p>
+
+<ul>
+  <li></li>
+  <li>Classification with a line, $y = ax + b$
+    <ul>
+      <li>single, multi layer perceptron with NN</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280608-8fc02bb6-d702-4a2d-9787-24b564739e9d.png" alt="Untitled_2" />
+  <img src="https://user-images.githubusercontent.com/46957634/188280609-111f213a-6d3f-40ec-9b44-0c154736abe1.png" alt="Untitled_3" /></p>
+  </li>
+  <li>
+    <p>Generalization</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280610-1e1b8f1f-7146-4151-8992-beecbd21148e.png" alt="Untitled_4" /></p>
+  </li>
+</ul>
+
+<h2 id="artificial-neural-networks-2-layers">Artificial Neural Networks (2 layers)</h2>
+
+<ul>
+  <li>NN 기본 구조 perceptron → hidden layer 쌓아 DNN</li>
+  <li>Two-layer network
+    <ul>
+      <li>input layer + output layer (2)</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280613-92493064-dc7e-4b5b-9e1c-eb139df14d42.png" alt="Untitled_6" /></p>
+
+    <ul>
+      <li>sigmoid 형태</li>
+      <li>no hidden layer → linearly separable prob only</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280612-1c48ef53-13ac-4d4d-b8e3-249d3b14124f.png" alt="Untitled_5" /></p>
+
+<h2 id="and">AND</h2>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280614-20e30d3a-eea9-4ee1-9d30-5ad80c6ffdba.png" alt="Untitled_7" />
+<img src="https://user-images.githubusercontent.com/46957634/188280615-3a2d3b4f-3ebb-41c3-8990-69ed36044297.png" alt="Untitled_8" />
+<img src="https://user-images.githubusercontent.com/46957634/188280617-419dd254-73e0-4147-a75f-9fbe63c5ffd3.png" alt="Untitled_9" /></p>
+
+<h2 id="or">OR</h2>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280618-c0b0a7a2-586e-4934-838f-4dd35f0ad0b9.png" alt="Untitled_10" />
+<img src="https://user-images.githubusercontent.com/46957634/188280619-f0e88fd8-f90f-4dd0-bb97-2fcc32431c8e.png" alt="Untitled_11" />
+<img src="https://user-images.githubusercontent.com/46957634/188280620-a5af0e0b-c03f-4713-bc74-c328d09f25f2.png" alt="Untitled_12" /></p>
+
+<h2 id="xor">XOR</h2>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280621-5b7cf2f0-6451-4b1c-9232-99f0db454138.png" alt="Untitled_13" />
+<img src="https://user-images.githubusercontent.com/46957634/188280622-ea215239-ba67-471a-815a-87601d488648.png" alt="Untitled_14" /></p>
+
+<ul>
+  <li>Two layer network cannot implement XOR.
+    <ul>
+      <li>perceptron 으로 분류 시 error가 크게 나타남</li>
+    </ul>
+  </li>
+  <li>Non-linear
+    <ul>
+      <li>two decision boundary (nonlinear)</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280623-6edf3a68-4022-4a53-8d79-4a482826ac5a.png" alt="Untitled_15" /></p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280625-b764e005-d90a-4d34-a441-a38c55250088.png" alt="Untitled_16" /></p>
+  </li>
+</ul>
+
+<h1 id="multi-layer-networks">Multi-layer Networks</h1>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280626-1a22355d-ff83-467f-bb86-05e868a63b2d.png" alt="Untitled_17" /></p>
+
+<ul>
+  <li>input - hidden - output</li>
+  <li>hidden layer 개수 → 몇 개인지에 따라 network 구조가 좌우됨
+    <ul>
+      <li>linearly nonsolvable 문제들도 풀 수 있게 된다</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280628-c3a6a074-c967-466a-b133-ce3d9d311c94.png" alt="Untitled_18" />
+<img src="https://user-images.githubusercontent.com/46957634/188280630-bb888c8e-ba9f-4ed4-b184-3f37dee0a88d.png" alt="Untitled_19" />
+<img src="https://user-images.githubusercontent.com/46957634/188280632-3398c4bf-532a-43fc-849b-6f597ee07b14.png" alt="Untitled_20" /></p>
+
+<ul>
+  <li>hidden layer 1개 추가 → 많은 가중치 w들을 학습한다</li>
+  <li>수백개 hidden layer →  수천, 수만 w 학습</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280633-8a876c51-60a8-488d-a21e-3d60d5bbf7da.png" alt="Untitled_21" />
+<img src="https://user-images.githubusercontent.com/46957634/188280635-184498eb-10dd-4446-a78e-25c1df09ee3f.png" alt="Untitled_22" />
+<img src="https://user-images.githubusercontent.com/46957634/188280636-97988193-22f4-4fa6-8b12-76a172f7e1b9.png" alt="Untitled_23" /></p>
+
+<ul>
+  <li>$wx = \Sigma_i w_i x_i$</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280637-228af070-e1ab-4faa-a98a-31e4e128191c.png" alt="Untitled_24" /></p>
+
+<ul>
+  <li>feature space : input layer → hidden layer</li>
+  <li>SVM과 유사한 효과 : high dimension
+    <ul>
+      <li>원래 feature space: 원래는 not linearly separable하지만 high dimension phi fn을 활용
+<img src="https://user-images.githubusercontent.com/46957634/188280640-d4713e9e-ab23-4794-9b84-8723cffdf9a2.png" alt="Untitled_25" />
+<img src="https://user-images.githubusercontent.com/46957634/188280641-0587860d-c9fc-4a66-a3a4-afd8d2b8b694.png" alt="Untitled_26" /></li>
+    </ul>
+  </li>
+  <li>hidden layer를 추가하면 → 복잡한 boundary를 구할 수 있다</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280643-c9e43cb8-8720-4718-86bd-48ffa1b8156d.png" alt="Untitled_27" /></p>
+<h1 id="ann-training">ANN Training</h1>
+
+<ul>
+  <li>ANN training?
+    <ul>
+      <li>Estimate w by using training data</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280645-267339ea-354b-4f80-8597-78065553e3f4.png" alt="Untitled_28" /></p>
+
+    <p>|  | training |
+  | — | — |
+  | perceptron | w |
+  | SVM | w :</p>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>margin, slack var, Phi fn</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>Bayesian</td>
+              <td>G(mu, sigma^2) : prior</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>density modeling → likelihood</p>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>prior P → post P</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>Decision Tree</td>
+              <td>Tree 구조</td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>kNN</td>
+              <td>save train data</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>k value : train통해 결정</li>
+      <li>dinstance metric  : 
+  L1 vs L2 vs Euclidean |
+  | ANN | w
+  NN Structure</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>I/H/O Layer개수</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>DNN</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>test data 분류 작업</p>
+      </li>
+      <li>regularizer</li>
+      <li>hyperparameter normalize</li>
+    </ul>
+  </li>
+  <li>By experiment ← train 중 parameter 결정</li>
+  <li>data  : multimedia</li>
+</ul>
+
+<h2 id="1-decide-input-layers-node-number">1. Decide input layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280647-6977fd58-709a-4a5a-89c4-7198e97e0c39.png" alt="Untitled_29" /></p>
+<h2 id="2-decide-output-layers-node-number">2. Decide output layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280648-ef85e47c-b544-4c90-b78c-a1052346482b.png" alt="Untitled_30" />
+<img src="https://user-images.githubusercontent.com/46957634/188280649-d3324505-f5bd-4df1-a18b-d51cb016fc29.png" alt="Untitled_31" /></p>
+
+<ul>
+  <li>구조만 보면 class가 몇 개인지 모른다</li>
+  <li>class 수 = node 수
+    <ul>
+      <li>classification : output layer node의 activation 여부 확인</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-decide-hidden-layers-node-number">3. Decide hidden layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280650-380a553d-089d-4fdd-b59c-91c44476c173.png" alt="Untitled_32" /></p>
+<h2 id="4-find-weight-using-training-algorithm">4. Find weight using training algorithm</h2>
+
+<ul>
+  <li>Use back-propagation algorithm. Supervised learning.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280652-89137d13-9776-4895-9188-edda2933dea3.png" alt="Untitled_33" /></p>
+
+<h1 id="back-propagation-algorithm">Back-propagation Algorithm</h1>
+
+<ul>
+  <li>등장 배경 : NN → SVM →DNN
+    <ul>
+      <li>image가 낮인지 밤인지 예견하는 문제</li>
+      <li>data를 잘 준비했어야 하는데 overfitting을 해결하지 못하여 SVM이 1990-2010년도 성행</li>
+    </ul>
+  </li>
+  <li>train with back propagation algorithm
+    <ul>
+      <li>w값 arbitraily initialize → feed forward :
+        <ul>
+          <li><strong>w : $\epsilon \downarrow$방향으로 update</strong></li>
+          <li>between prediction , ground truth value</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$y = f (\Sigma_i x_i w_{ij} + b)$
+    <ul>
+      <li>network의 구조가 결정되면 다음 layer의 node값에 bias를 더하는 함수</li>
+      <li>perceptron 문제와 유사하게 발생 :
+        <ul>
+          <li>local minima</li>
+          <li>many w → T 증가</li>
+          <li>iterative하게 w 구하는 과정</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280654-7626b34b-fdb4-4169-a409-fb02a3a56ecf.png" alt="Untitled_34" /></p>
+
+    <p>모든 edge에 할당된 w에 대하여 backpropagation</p>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280655-7390abaa-af14-4eb6-b7ac-a7f2e8393e48.png" alt="Untitled_35" /></p>
+
+<ul>
+  <li>w update하면 iteration 반복 많아짐</li>
+  <li>
+    <p>hidden 많아지면 update bigger</p>
+  </li>
+  <li>
+    <p>$E = \Sigma_k \frac 1 2 (z_k - t_k)^2$</p>
+
+    <p>tk : ground truth</p>
+
+    <ul>
+      <li>제곱을 하고 2로 나누어준 이유 : perceptron처럼, 미분을 위해 제곱하고 1/2 *2하면 표현식이 간단해진다</li>
+      <li>error 미분 : wij, wji 미분하여 update</li>
+    </ul>
+  </li>
+</ul>
+
+<p>chain rule</p>
+
+<ul>
+  <li>$\frac{\partial E}{\partial w_{kj}} = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial w_{kj}}$</li>
+  <li>$\frac{\partial E}{\partial w_{ji}} = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial w_{ji}}  = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial y_j}\frac{\partial y_j}{\partial w_{ji}}$</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280656-b3bbb82c-b51b-404b-983c-89b001b5b435.png" alt="Untitled_36" />
+<img src="https://user-images.githubusercontent.com/46957634/188280657-3d4e8155-0461-4529-aacb-4f22e646141d.png" alt="Untitled_37" />
+<img src="https://user-images.githubusercontent.com/46957634/188280658-060efecd-4e1a-4b11-afaf-857232a6c63e.png" alt="Untitled_38" />
+<img src="https://user-images.githubusercontent.com/46957634/188280659-753d7774-270d-4f3a-8b56-087a084f2726.png" alt="Untitled_39" /></p>
+
+<ul>
+  <li>big NN의 한계 : hidden layer 제한 → 다양한 성능 제한</li>
+  <li><strong>hidden layer수 증가 감소 이유 :???</strong>
+    <ul>
+      <li>output에서 input으로 backpropagate할 수록 더 많은 chain rule (Differentiation) 수행 → update양 감소</li>
+    </ul>
+  </li>
+  <li>To update weights far from the output layer, more nodes and their derivatives are involved. Due to the chain rule, the amount of update becomes smaller.</li>
+</ul>
+
+<h2 id="activation-function-sigmoid">Activation function: sigmoid</h2>
+
+<p>perceptron, SVM</p>
+
+<ul>
+  <li>input data (weight) - f(x) update
+    <ul>
+      <li>동일한 input에 대해 error 계산</li>
+      <li>error가 각 iteration별로 작아짐</li>
+    </ul>
+  </li>
+  <li>input data 바꾸면 - updated w도 new input data에 부적절할수도 있으니 fix해야 한다</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280660-50fa1def-3a03-4b0c-9aec-17747f5d1e33.png" alt="Untitled_40" /></p>
+<ul>
+  <li>부적합</li>
+  <li>SVM에서, nondifferentiable fn : hinge loss → 구간 나누어 미분 → 복잡해지는 미분 계산 과정 itreation
+    <ul>
+      <li>수학적으로 옳지는 않다??</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280661-d687f5c3-18e8-4ab5-a137-6fed144b840a.png" alt="Untitled_41" />
+<img src="https://user-images.githubusercontent.com/46957634/188280662-b775a1fd-9428-4e7e-953e-688559836ae3.png" alt="Untitled_42" /></p>
+<ul>
+  <li>back propagation example
+    <ul>
+      <li>Ex) 1st error = 0.298371109 
+  2nd error = 0.291027924
+  …
+  …
+  10000th error = 0.000035085</li>
+      <li>output neurons after 10000th iteration : 
+  0.015912196 (vs 0.01 target) 
+  0.984065734 (vs 0.99 target)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280663-18f4a527-57ac-4a79-a965-7dc9bb2e8228.png" alt="Untitled_43" /></p>
+
+<ul>
+  <li>error : 역전파하면서 error 감소
+    <ul>
+      <li>10000th로 갈수록 0으로 error 수렴</li>
+    </ul>
+  </li>
+  <li>output neuron : target에 근사</li>
+</ul>
+
+<h1 id="deep-neural-network">Deep Neural Network</h1>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280666-bf6f4813-099e-47a9-bac8-5e1f65a9b1df.png" alt="Untitled_44" /></p>
+
+<ul>
+  <li>raw data in real world : 영상 획득, microphone 녹음 등 ..</li>
+</ul>
+
+<p>DNN : Number of hidden layers</p>
+
+<ul>
+  <li>
+    <h1 id="of-hidden-layers-leq-1--shallow-neural-network">of hidden layers $\leq 1$ → Shallow Neural Network</h1>
+  </li>
+  <li>
+    <h1 id="of-hidden-layers-geq-2--deep-neural-network">of hidden layers $\geq 2$ → Deep Neural Network</h1>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280667-12a4453c-311d-4c89-8b39-ade39e245887.png" alt="Untitled_45" /></p>
+
+<h2 id="dnn-training">DNN Training</h2>
+
+<h3 id="vanishing-gradient-problem">Vanishing gradient problem</h3>
+
+<p>Problem with non-linear activation</p>
+
+<ul>
+  <li>As errors are back propagated, the gradient vanishes</li>
+  <li>Derivatives of sigmoid are 0~0.25. As these are multiplied at multiple layers, they become smaller and smaller</li>
+  <li>$w_{ji} = w_{ij} -\eta \frac {\partial E}{\partial w_{ji}}$: as $\frac {\partial E}{\partial w_{ji}}$becomes smaller, $w$ is not well updated, especially for the layers far from the output layer</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280669-e2e0bd8c-ab14-42f7-8653-bc7ec91adc16.png" alt="Untitled_46" /></p>
+
+<ul>
+  <li>Typically requires lots of labeled data
+    <ul>
+      <li>Collecting data is time consuming and expensive (time, price)</li>
+      <li>but time 소모 증가, 비용 증가
+        <ul>
+          <li>data collection, tagging, labeling</li>
+        </ul>
+      </li>
+      <li>2010년도 DNN의 발전배경  :
+        <ul>
+          <li>Big data → 수집 용이</li>
+          <li>GPU (HW Support)</li>
+          <li>Algorithm적 발달</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><em>Overfitting problem</em></strong>
+    <ul>
+      <li>When training data is not sufficient, model only can handle the training data well (poor performance at test time)</li>
+      <li>data 변화 요인에 w 학습하고 , 다양한 test에 대해서도 적용</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280670-892307f0-cbe3-4e9f-86e0-60f4836eb8b0.png" alt="Untitled_47" /></p>
+  </li>
+  <li>ground truth sampling → data에 fit하여 정답과 일치하도록</li>
+  <li>overfitting : regression, classification 시 정답을 보지 않아도 train well됨을 확인함</li>
+  <li>Get stuck in <strong>local minima : iteration시 유의</strong>
+    <ul>
+      <li>Problem even with enough training data</li>
+      <li>solution : 초기값을 randomly setting하고 train을 많이 하여 그 avearge를 추출한다
+        <ul>
+          <li>test set에 대해 일반적으로 성능 좋아짐</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Train Set 에서의 문
+    <ul>
+      <li>input data : raw data→ input layer : x1, x2</li>
+      <li>state of the nature $\in$ real world</li>
+      <li>학습 data로 model을 만들지만 prediction-ground truth가 0이라고 하여도 좋은 model인지 아닌지 확신할 수 없다.
+        <ul>
+          <li>사실 정답을 알 리가 없다 : 그 정답으로 추출된 제한된 관찰에 의해 얻어진 학습 data로 model을 구한 것이기에</li>
+        </ul>
+      </li>
+      <li>sol <strong>→ train data를 변화시키며 model이 얼마나 안정된 결과를 보이는지 (test data를 변화시키기도 해보자)</strong></li>
+    </ul>
+  </li>
+  <li>Vanishing gradient problem
+    <ul>
+      <li>ReLU(Rectified Linear Unit)
+        <ul>
+          <li>$\max(0,x)$ gradient update</li>
+        </ul>
+      </li>
+      <li>Layer-wise training
+        <ul>
+          <li>
+            <p>충분히 학습되었다면 건너뜀</p>
+
+            <p><img src="https://user-images.githubusercontent.com/46957634/188280673-e07ecb47-7d3a-46dc-9a95-8923804b9d01.png" alt="Untitled_48" /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Requires <strong>lots</strong> of labeled data</li>
+  <li><strong>Overfitting</strong> problem</li>
+  <li>Get stuck in <strong>local minima</strong>
+    <ul>
+      <li>Mitigated by increasing data and computation power</li>
+    </ul>
+  </li>
+  <li>시간 소모 :
+    <ul>
+      <li>depend on performance of HW</li>
+      <li>w update : vanishing gradient → activation fn 변화</li>
+    </ul>
+  </li>
+</ul>

@@ -1,0 +1,161 @@
+<h2 id="representing-polynomials-using-linked-lists-chapter-44">Representing Polynomials using Linked Lists (Chapter 4.4)</h2>
+
+<h3 id="polynomials">Polynomials</h3>
+
+<ul>
+  <li>
+    <p>Previously, we have looked at representing polynomials using arrays. Here, we would like to use linked lists to represent polynomials.</p>
+
+    <p>$A(x) = a_{m-1} x^{e_m-1} + … + a_0 x^{e_0}$</p>
+  </li>
+  <li>
+    <p>Sparse representation of polynomials</p>
+    <ul>
+      <li>We are going to store the coefficient of each term along with the exponent.</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/652ab6111ef7d69f1101e0d9afd88e32.js"></script>
+
+<ul>
+  <li>Example representations</li>
+</ul>
+
+<p><img width="298" alt="image-20211003170042462" src="https://user-images.githubusercontent.com/46957634/135752200-2d0d76f7-c2ee-4ed0-8b80-8d05163c925a.png" /></p>
+
+<h3 id="442-adding-polynomials-ex026">4.4.2 Adding Polynomials [ex026]</h3>
+
+<ul>
+  <li>Program 4.9
+    <ul>
+      <li>Compare this program with Program 2.6 (ex009).</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/14df39699814ba9aef2f1086c6cc09b3.js"></script>
+
+<h4 id="analysis-of-function-padd">Analysis of Function padd</h4>
+
+<ul>
+  <li>
+    <p>Similar to the analysis of Program 2.6.</p>
+  </li>
+  <li>Three cost measures:
+    <ul>
+      <li>coefficient additions</li>
+      <li>exponent comparisons</li>
+      <li>creation of new nodes for d</li>
+    </ul>
+  </li>
+  <li>0 ≤ number of coefficient additions ≤ $min[m, n]$</li>
+  <li>
+    <p>number of exponent comparisons and creation of new nodes is at most $m+n$</p>
+  </li>
+  <li>Therefore, its time complexity is $O(m + n)$</li>
+</ul>
+
+<h3 id="443-erasing-polynomials">4.4.3 Erasing Polynomials</h3>
+
+<ul>
+  <li>
+    <p>If a linked list representing a polynomial is no longer needed, we need to free the allocated memory.</p>
+  </li>
+  <li>
+    <p>We can use the following function erase to accomplish this.</p>
+    <ul>
+      <li>We should always make a link to the next node before deleting the current node.</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/840aea935bbac4600662915f61031073.js"></script>
+
+<h3 id="444-representing-polynomials-as-circular-lists">4.4.4 Representing Polynomials as Circular Lists</h3>
+
+<ul>
+  <li>
+    <p>We can represent a polynomial using a circular list.</p>
+
+    <ul>
+      <li>The last node points to the first node, instead of NULL</li>
+    </ul>
+
+    <p><img width="362" alt="image-20211003170230986" src="https://user-images.githubusercontent.com/46957634/135752201-020b56d1-6194-464b-9fb0-5b05e856ff8b.png" /></p>
+  </li>
+  <li>
+    <p>If the last node points to NULL, the structure is called a chain.</p>
+  </li>
+</ul>
+
+<h4 id="what-is-better-if-we-use-a-circular-list">What is better if we use a circular list?</h4>
+
+<ul>
+  <li>Suppose we frequently create and delete polynomials.</li>
+  <li>Whenever we delete a polynomial, we go through all the nodes in the linked list and free the nodes. (refer to function erase.)</li>
+  <li>When we delete a polynomial, instead of deallocating memory from all of its nodes, we will maintain a list of “available nodes” that can be reused.</li>
+</ul>
+
+<p><img width="186" alt="image-20211003170301679" src="https://user-images.githubusercontent.com/46957634/135752202-61ca68c7-3cde-4633-b852-53949383df1c.png" /></p>
+
+<ul>
+  <li>
+    <p>Now whenever we need a new node, we will examine the list of available nodes.</p>
+
+    <ul>
+      <li>
+        <p>If the list is not empty, then we will use one of its nodes.</p>
+      </li>
+      <li>
+        <p>If the list is empty, then we will use malloc to create a new node.</p>
+      </li>
+      <li>
+        <p>The function get_node will implement this operation.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>function get_node: retrieve a node from the available node list, or create a new node using malloc.</p>
+  </li>
+  <li>
+    <p>function ret_node: return a node to the available list</p>
+  </li>
+  <li>
+    <p>function cerase: erase a circular list</p>
+    <ul>
+      <li>What is the time complexity of this function, with regard to number of nodes in the circular list?</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/ffc74db72bbeb782c9eaf297b314b6d1.js"></script>
+
+<p><img width="186" alt="image-20211003170428722" src="https://user-images.githubusercontent.com/46957634/135752203-e7c00af6-c064-48aa-9fcf-72f543a02a42.png" /></p>
+
+<ul>
+  <li>
+    <p>Head node</p>
+
+    <ul>
+      <li>With circular lists, a zero polynomial becomes a special case that needs to be handled separately.
+        <ul>
+          <li>An If statement is used in the function cerase.</li>
+        </ul>
+      </li>
+      <li>
+        <p>We can avoid this by introducing a head node into each polynomial.</p>
+      </li>
+      <li>With head node representation, we may move the test for (*ptr) in the function cerase.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img width="298" alt="image-20211003170448723" src="https://user-images.githubusercontent.com/46957634/135752204-b5fcab03-680a-4299-acb0-bc263dcf1725.png" /></p>
+
+<ul>
+  <li>Function cpadd for adding two polynomials</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/60b7c6732a83d59da3c6d388a2158380.js"></script>
+

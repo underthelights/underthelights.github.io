@@ -1,0 +1,681 @@
+<h2 id="shortest-paths-and-transitive-closure-chapter-64">Shortest Paths and Transitive Closure (Chapter 6.4)</h2>
+
+<ul>
+  <li>Suppose we have a graph that represents the highway system.</li>
+  <li>In this graph, the vertices represent cities and edges represent sections of the highway</li>
+  <li>Each edge has a weight representing the distance between the two cities connected by the edge.</li>
+  <li>A motorist who wish to drive from city A to B will ask questions like:
+    <ul>
+      <li>Is there a path from A to B?</li>
+      <li>If there is more than one path from A to B, which path is the shortest?</li>
+    </ul>
+  </li>
+  <li>We define the length of a path as the sum of the weights of the edges on that path.</li>
+</ul>
+
+<h3 id="641-single-sourceall-destinations-nonnegative-edge-costs">6.4.1 Single Source/All Destinations: Nonnegative Edge Costs</h3>
+
+<ul>
+  <li>We are given the followings:
+    <ul>
+      <li>A directed graph G = (V, E)</li>
+      <li>A weighting function w(e) for the edges of G. (w(e) ≥ 0)</li>
+      <li>A source vertex. (vertex 1)</li>
+    </ul>
+  </li>
+  <li>Our goal is to determine a shortest path from vertex 1 to each of the remaining vertices of G.</li>
+</ul>
+
+<p><img width="353" alt="image-20211004010852261" src="https://user-images.githubusercontent.com/46957634/135762273-9dbdc3f9-d4de-4f5c-b7eb-30a96933a0a4.png" /></p>
+
+<h4 id="dijkstras-algorithm">Dijkstra’s algorithm</h4>
+
+<ul>
+  <li>A greedy algorithm to calculate shortest path from a single vertex to all other vertices.</li>
+</ul>
+
+<h5 id="example-1">example 1</h5>
+
+<ul>
+  <li>Each vertex maintains “distance” from the source vertex.
+    <ul>
+      <li>Initially, the distance of the source vertex is 0, while distance of all other vertices is set to infinity (a very large number).</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762262-cf8e9d83-6fab-4223-902a-53d33b784c8d.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>At each step of the algorithm we will extend SPT (shortest-path tree).</p>
+  </li>
+  <li>
+    <p>At the 1st step, we include the source vertex to SPT.</p>
+  </li>
+  <li>
+    <p>Then we update the distance to direct neighbors of the source vertex.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762282-5db528b9-50a0-4daa-889d-4ed723dcc121.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>At the 2nd step, we choose a vertice that is not yet included in SPT and has the minimum distance. This time it is vertex 2.</p>
+  </li>
+  <li>
+    <p>We include vertex 2 in the SPT.</p>
+  </li>
+  <li>Then, we update distance to adjacent vertices of vertex 2.
+    <ul>
+      <li>If a new path that passes through vertex 2 is shorter than the current distance, then the distance is updated.</li>
+      <li>Distance of vertex 3 is updated because $d[2] + w(2,3) = 3 &lt; d[3] = 4$</li>
+    </ul>
+  </li>
+  <li>
+    <p>d[u] is the current distance from source vertex to u. w(e) is the weight of edge e.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762287-bbf1a705-20a4-44ef-914a-1ec8a7d99863.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We repeat the same process.</p>
+  </li>
+  <li>
+    <p>At the 3rd step, we choose vertex 3 and include it to SPT.</p>
+  </li>
+  <li>
+    <p>Then, we update distance of adjacent vertices of vertex 3.</p>
+
+    <ul>
+      <li>Distance of vertex 5 is updated to 6.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762300-f945079e-bcab-4bab-a78d-e70a46a13cee.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We repeat the same process.</p>
+  </li>
+  <li>
+    <p>At the 4th step, we choose vertex 5 and include it to SPT.</p>
+  </li>
+  <li>Then, we update distance of adjacent vertices of vertex 5.
+    <ul>
+      <li>Distance of vertex 4 is updated to 8.</li>
+      <li>Distance of vertex 6 is updated to 11.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762310-f3f5055c-0a0a-4245-a77b-c9b09a5ca940.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We repeat the same process.</p>
+  </li>
+  <li>
+    <p>At the 5th step, we choose vertex 4 and include it to SPT.</p>
+  </li>
+  <li>Then, we update distance of adjacent vertices of vertex 4.
+    <ul>
+      <li>Distance of vertex 6 is updated to 9.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762325-1587222c-a7c9-4b20-93ba-4a2481c963ef.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Finally all vertices are included in the SPT.</p>
+  </li>
+  <li>
+    <p>The “length” column of the table has the length of the shortest path from the source vertex to each of the vertices.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762328-0cc91c7e-c3fa-445c-9ec8-bd0c2871b346.png" alt="image" /></p>
+  </li>
+</ul>
+
+<h5 id="example-2">example 2</h5>
+
+<ul>
+  <li>
+    <p>Find shortest path from vertex 0 to all other vertices.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762333-f237d1a7-4a8f-4231-89e8-5406fd1ec31e.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Initially, SPT includes vertex 0.</p>
+  </li>
+  <li>
+    <p>At this point, we can use only the incident edges of vertex 0.</p>
+  </li>
+  <li>
+    <p>The distances to vertices are updated.</p>
+  </li>
+  <li>
+    <p>We can see that vertex 3 has the shortest distance from vertex 0.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762345-c6df476d-4605-40f3-b09f-9a5188ddc6e8.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We choose vertex 3 and include it in SPT.</p>
+  </li>
+  <li>
+    <p>Then, we consider vertices where we have an edge from vertex 3.</p>
+  </li>
+  <li>
+    <p>In this case, vertex 4 is the only one.</p>
+  </li>
+  <li>
+    <p>We check whether we can get a shorter path to vertex 4. - This is called relaxation.</p>
+  </li>
+  <li>
+    <p>If $d[u]+w(u,v)&lt;d[v]$, then $d[v]=d[u]+w(u,v)$</p>
+  </li>
+  <li>
+    <p>We choose vertex 4 and include it in SPT.</p>
+  </li>
+  <li>Then, we consider vertices where we have an edge from vertex 4.
+    <ul>
+      <li>vertex 1 and vertex 2 are candidates.</li>
+    </ul>
+  </li>
+  <li>We perform relaxation.
+    <ul>
+      <li>Distance to vertex 1 is updated to 45.</li>
+      <li>Distance to vertex 2 remains the same.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762348-c6656050-d3ca-45ab-a34b-244a1ed6dbc5.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We choose vertex 1 and include it in SPT.</p>
+  </li>
+  <li>Then, we consider vertices where we have an edge from vertex 1.
+    <ul>
+      <li>vertex 2 and vertex 3 are candidates.</li>
+    </ul>
+  </li>
+  <li>We perform relaxation.
+    <ul>
+      <li>The distances to vertices remain the same.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135762366-6ebe64ba-8e1a-4e36-a136-92570a932087.png" alt="image" /></p>
+
+<ul>
+  <li>We choose vertex 2 and include it in SPT.</li>
+  <li>Then, we consider vertices where we have an edge from vertex 2.
+    <ul>
+      <li>vertex 4 is already visited, so there is no candidate for relaxation.</li>
+    </ul>
+  </li>
+  <li>Vertex 5 is next, but its distance is infinity. It means vertex 5 cannot be reached from vertex 0.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135762377-01823f7e-c3d7-4ee5-9566-4d59752cef27.png" alt="image" /></p>
+
+<h4 id="single-sourceall-destinations-nonnegative-edge-costs-ex045">Single Source/All Destinations: Nonnegative Edge Costs [ex045]</h4>
+
+<script src="https://gist.github.com/underthelights/8f5771dd739602021b4a5e6e8212c2e4.js"></script>
+
+<h5 id="analysis-of-dijkstras-algorithm">Analysis of Dijkstra’s algorithm</h5>
+
+<ul>
+  <li>The first for loop in function shortestPath needs to be iterated n times.</li>
+  <li>The second for loop in the function needs to be iterated n-2 times.
+    <ul>
+      <li>Inside the loop, calling function choose takes $O(n)$, because it has a for loop.</li>
+      <li>After calling choose, there is a for loop which iterates $n$ times.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Thus, the total time complexity for this implementation of Dijkstra’s algorithm is O(n2)</p>
+  </li>
+  <li>Using heap, it is also possible to implement Dijkstra’s algorithm in which the time complexity is O(e log n).</li>
+</ul>
+
+<h5 id="applying-dijkstras-algorithm-on-undirected-graphs">Applying Dijkstra’s algorithm on undirected graphs</h5>
+
+<ul>
+  <li>We can simply convert the undirected graph to a directed graph by converting each undirected edge to two directed edges in either direction.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135762392-76b3f069-9f64-4e97-a247-966c6b9fe099.png" alt="image" /></p>
+
+<h3 id="642-single-sourceall-destinations-general-weights">6.4.2 Single Source/All Destinations: General Weights</h3>
+
+<ul>
+  <li>Dijkstra’s algorithm only works when the edge weights are nonnegative.</li>
+  <li>We now consider a single-source all-destinations shortest-path problem when negative edges are allowed.</li>
+  <li>Although negative edges are allowed, the graph cannot have a negative cycle.
+    <ul>
+      <li>If there is a negative cycle, a path can become infinitely short by going through the cycle repeatedly.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135762402-fcf1a6b1-41b9-4f77-901e-bbcab7a4552f.png" alt="image" /></p>
+
+<h4 id="bellman-ford-algorithm">Bellman-Ford Algorithm</h4>
+
+<ul>
+  <li>
+    <p>Bellman-Ford algorithm can be used to solve this problem.</p>
+  </li>
+  <li>
+    <p>Let us first go through an example.</p>
+  </li>
+  <li>
+    <p>In the following graph, we would like to find the shortest path from vertex 0 to all other vertices.</p>
+
+    <ul>
+      <li><img src="https://user-images.githubusercontent.com/46957634/135762419-9f890bad-1998-4a34-8ce3-c158d674f940.png" alt="image" /></li>
+    </ul>
+  </li>
+  <li>
+    <p>Initially, the distance to the source vertex is zero, and the distance to all other vertices is infinity.</p>
+  </li>
+  <li>
+    <p>In each stage of the algorithm, we perform relaxation on all edges.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762434-ffc4f47b-3c16-40ab-b1fb-00507de82e25.png" alt="image" /></p>
+  </li>
+  <li>Suppose the order of edges in the adjacency list is:
+    <ul>
+      <li>(0,1),(0,2),(0,3),(1,4),(2,1),(2,4),(3,2),(3,5),(4,6),(5,6)</li>
+    </ul>
+  </li>
+  <li>We perform relaxation on each edge
+    <ul>
+      <li>
+        <p>ifd[1]&gt;d[0]+w(0,1),d[1]=d[0]+w(0,1)→d[1]becomes6</p>
+      </li>
+      <li>
+        <p>ifd[2]&gt;d[0]+w(0,2),d[2]=d[0]+w(0,2)→d[2]becomes5</p>
+      </li>
+      <li>
+        <p>ifd[3]&gt;d[0]+w(0,3),d[3]=d[0]+w(0,3)→d[3]becomes5</p>
+      </li>
+      <li>
+        <p>ifd[4]&gt;d[1]+w(1,4),d[4]=d[1]+w(1,4)→d[4]becomes5</p>
+      </li>
+      <li>
+        <p>ifd[1]&gt;d[2]+w(2,1),d[1]=d[2]+w(2,1)→d[1]becomes3</p>
+      </li>
+      <li>
+        <p>ifd[4]&gt;d[2]+w(2,4),d[4]=d[2]+w(2,4)→d[4]remains5</p>
+      </li>
+      <li>
+        <p>ifd[2]&gt;d[3]+w(3,2),d[2]=d[3]+w(3,2)→d[2]becomes3</p>
+      </li>
+      <li>
+        <p>ifd[5]&gt;d[3]+w(3,5),d[5]=d[3]+w(3,5)→d[5]becomes4</p>
+      </li>
+      <li>
+        <p>ifd[6]&gt;d[4]+w(4,6),d[6]=d[4]+w(4,6)→d[6]becomes8</p>
+      </li>
+      <li>
+        <p>ifd[6]&gt;d[5]+w(5,6),d[6]=d[5]+w(5,6)→d[6]becomes7</p>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/135762444-7e2e8d95-66a3-426c-9f93-d2632408189b.png" alt="image" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>2nd iteration
+    <ul>
+      <li>
+        <p>ifd[1]&gt;d[0]+w(0,1),d[1]=d[0]+w(0,1)→d[1]remains3</p>
+      </li>
+      <li>
+        <p>ifd[2]&gt;d[0]+w(0,2),d[2]=d[0]+w(0,2)→d[2]remains3</p>
+      </li>
+      <li>
+        <p>ifd[3]&gt;d[0]+w(0,3),d[3]=d[0]+w(0,3)→d[3]remains5</p>
+      </li>
+      <li>
+        <p>ifd[4]&gt;d[1]+w(1,4),d[4]=d[1]+w(1,4)→d[4]becomes2</p>
+      </li>
+      <li>
+        <p>ifd[1]&gt;d[2]+w(2,1),d[1]=d[2]+w(2,1)→d[1]becomes1</p>
+      </li>
+      <li>
+        <p>ifd[4]&gt;d[2]+w(2,4),d[4]=d[2]+w(2,4)→d[4]remains2</p>
+      </li>
+      <li>
+        <p>ifd[2]&gt;d[3]+w(3,2),d[2]=d[3]+w(3,2)→d[2]remains3</p>
+      </li>
+      <li>
+        <p>ifd[5]&gt;d[3]+w(3,5),d[5]=d[3]+w(3,5)→d[5]remains4</p>
+      </li>
+      <li>
+        <p>ifd[6]&gt;d[4]+w(4,6),d[6]=d[4]+w(4,6)→d[6]becomes5</p>
+      </li>
+      <li>
+        <p>ifd[6]&gt;d[5]+w(5,6),d[6]=d[5]+w(5,6)→d[6]remains5</p>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/135762448-ce11976e-ddee-48ea-b983-763899c32583.png" alt="image" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>3rd iteration
+    <ul>
+      <li>ifd[1]&gt;d[0]+w(0,1),d[1]=d[0]+w(0,1)→d[1]remains1</li>
+      <li>ifd[2]&gt;d[0]+w(0,2),d[2]=d[0]+w(0,2)→d[2]remains3</li>
+      <li>ifd[3]&gt;d[0]+w(0,3),d[3]=d[0]+w(0,3)→d[3]remains5</li>
+      <li>ifd[4]&gt;d[1]+w(1,4),d[4]=d[1]+w(1,4)→d[4]becomes0</li>
+      <li>ifd[1]&gt;d[2]+w(2,1),d[1]=d[2]+w(2,1)→d[1]remains1</li>
+      <li>ifd[4]&gt;d[2]+w(2,4),d[4]=d[2]+w(2,4)→d[4]remains0</li>
+      <li>ifd[2]&gt;d[3]+w(3,2),d[2]=d[3]+w(3,2)→d[2]remains3</li>
+      <li>ifd[5]&gt;d[3]+w(3,5),d[5]=d[3]+w(3,5)→d[5]remains4</li>
+      <li>ifd[6]&gt;d[4]+w(4,6),d[6]=d[4]+w(4,6)→d[6]becomes3</li>
+      <li>ifd[6]&gt;d[5]+w(5,6),d[6]=d[5]+w(5,6)→d[6]remains3</li>
+      <li><img src="https://user-images.githubusercontent.com/46957634/135762458-21543c00-b71e-4262-a52b-93c85affe867.png" alt="image" /></li>
+    </ul>
+  </li>
+  <li>4th iteration
+    <ul>
+      <li>ifd[1]&gt;d[0]+w(0,1),d[1]=d[0]+w(0,1)→d[1]remains1</li>
+      <li>ifd[2]&gt;d[0]+w(0,2),d[2]=d[0]+w(0,2)→d[2]remains3</li>
+      <li>ifd[3]&gt;d[0]+w(0,3),d[3]=d[0]+w(0,3)→d[3]remains5</li>
+      <li>ifd[4]&gt;d[1]+w(1,4),d[4]=d[1]+w(1,4)→d[4]remains0</li>
+      <li>ifd[1]&gt;d[2]+w(2,1),d[1]=d[2]+w(2,1)→d[1]remains1</li>
+      <li>ifd[4]&gt;d[2]+w(2,4),d[4]=d[2]+w(2,4)→d[4]remains0</li>
+      <li>ifd[2]&gt;d[3]+w(3,2),d[2]=d[3]+w(3,2)→d[2]remains3</li>
+      <li>ifd[5]&gt;d[3]+w(3,5),d[5]=d[3]+w(3,5)→d[5]remains4</li>
+      <li>ifd[6]&gt;d[4]+w(4,6),d[6]=d[4]+w(4,6)→d[6]remains3</li>
+      <li>ifd[6]&gt;d[5]+w(5,6),d[6]=d[5]+w(5,6)→d[6]remains3</li>
+      <li><img src="https://user-images.githubusercontent.com/46957634/135762461-35f7cbb3-7920-4768-990f-0913ab6fc2e2.png" alt="image" /></li>
+    </ul>
+  </li>
+  <li>
+    <p>No update was made in this iteration.</p>
+  </li>
+  <li>
+    <p>Then, this will be the answer.</p>
+  </li>
+  <li>
+    <p>In the Bellman-Ford algorithm, we perform relaxation for every edge in each step.</p>
+  </li>
+  <li>We repeat this step n-1 times.
+    <ul>
+      <li>At kth step, we at least obtain the shortest path from the source vertex to another vertex using k edges.</li>
+    </ul>
+  </li>
+  <li><img src="https://user-images.githubusercontent.com/46957634/135762479-6ff91161-992a-4526-9e66-a0a4dcb67323.png" alt="image" /></li>
+</ul>
+
+<h5 id="another-example">Another example</h5>
+
+<ul>
+  <li>
+    <p>Find shortest path from vertex 0 to all other vertices.</p>
+  </li>
+  <li>
+    <p>Dijkstra’s algorithm does not work for this graph due to the negative edge.</p>
+  </li>
+  <li>
+    <p>Edge order: (1, 2), (1, 4), (3, 2), (4, 3)</p>
+  </li>
+  <li>
+    <p>Edge order: (1, 2), (1, 4), (3, 2), (4, 3)</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762489-2478c1b0-6b01-4c56-b0e3-162dd41ecd83.png" alt="image" /></p>
+  </li>
+  <li>1st iteration
+    <ul>
+      <li>
+        <p>if d[2] &gt; d[1] + w(1,2), d[2] = d[1] + w(1,2) → d[2] becomes 3</p>
+      </li>
+      <li>
+        <p>if d[4] &gt; d[1] + w(1,4), d[4] = d[1] + w(1,4) → d[4] becomes 5</p>
+      </li>
+      <li>
+        <p>if d[2] &gt; d[3] + w(3,2), d[2] = d[3] + w(3,2) → d[2] remains 3</p>
+      </li>
+      <li>
+        <p>if d[3] &gt; d[4] + w(4,3), d[3] = d[4] + w(4,3) → d[3] becomes 7</p>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/135762494-0f81280b-b9d6-4b88-b1d2-095d0db996c1.png" alt="image" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Edge order: (1, 2), (1, 4), (3, 2), (4, 3)</p>
+  </li>
+  <li>2nd iteration
+    <ul>
+      <li>if d[2] &gt; d[1] + w(1,2), d[2] = d[1] + w(1,2) → d[2] remains 3</li>
+      <li>if d[4] &gt; d[1] + w(1,4), d[4] = d[1] + w(1,4) → d[4] remains 5</li>
+      <li>if d[2] &gt; d[3] + w(3,2), d[2] = d[3] + w(3,2) → d[2] becomes 1</li>
+      <li>if d[3] &gt; d[4] + w(4,3), d[3] = d[4] + w(4,3) → d[3] remains 7</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762530-65d2b35f-27d9-499b-bccc-058713d73998.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Edge order: (1, 2), (1, 4), (3, 2), (4, 3)</p>
+  </li>
+  <li>3rd iteration
+    <ul>
+      <li>if d[2] &gt; d[1] + w(1,2), d[2] = d[1] + w(1,2) → d[2] remains 3</li>
+      <li>if d[4] &gt; d[1] + w(1,4), d[4] = d[1] + w(1,4) → d[4] remains 5</li>
+      <li>if d[2] &gt; d[3] + w(3,2), d[2] = d[3] + w(3,2) → d[2] remains 1</li>
+      <li>if d[3] &gt; d[4] + w(4,3), d[3] = d[4] + w(4,3) → d[3] remains 7</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762533-e70e5784-b424-46fc-a558-8d1b58b17602.png" alt="image" /></p>
+  </li>
+</ul>
+
+<h4 id="ex046---pseudocode-of-bellman-ford-algorithm">[ex046] - Pseudocode of Bellman-Ford algorithm</h4>
+
+<script src="https://gist.github.com/underthelights/36e16d9adf87024bd20219df0b1463bd.js"></script>
+
+<h5 id="time-complexity-of-bellman-ford-algorithm">Time complexity of Bellman-Ford algorithm</h5>
+
+<ul>
+  <li>The outer for loop iterates for O(n) times.</li>
+  <li>In the inner for loop, basically we need to traverse every node in the adjacency list, or every element in the adjacency matrix.</li>
+  <li>If an adjacency list is used, it will take O(e) time.</li>
+  <li>If an adjacency matrix is used, it will take O(n2) time.</li>
+  <li>Thus, the total time complexity of Bellman-Ford algorithm is: - O(ne) or O(n3)</li>
+</ul>
+
+<h3 id="643-all-pairs-shortest-paths">6.4.3 All Pairs Shortest Paths</h3>
+
+<ul>
+  <li>In the all-pairs-shortest-path problem, we must find the shortest paths between all pairs of vertices.</li>
+  <li>If the edge weights are nonnegative, we could run Dijkstra’s algorithm to find the shortest paths from a single vertex to all other vertices.</li>
+  <li>We can apply Dijkstra’s algorithm n times to obtain solution for the all-pairs- shortest-path problem. Since Dijkstra’s algorithm has $O(n^2)$ time complexity, it will take $O(n^3)$ to calculate all pairs shortest path.</li>
+  <li>We have another solution for this problem called Floyd-Warshall algorithm, which is still asymptotically O(n3) but in practice runs faster.</li>
+  <li>Also, Floyd-Warshall algorithm works with negative edges as well.
+    <ul>
+      <li>Negative cycles are still disallowed.</li>
+    </ul>
+  </li>
+  <li>
+    <p>We represent the graph G by the cost adjacency matrix, cost[ ][ ].</p>
+
+    <ul>
+      <li>cost[i][j]=0ifi==j</li>
+      <li>cost[i][j] = inf (a very large number) if edge &lt;i, j&gt; is not in G.</li>
+      <li>cost[i][j] = cost of edge &lt;i, j&gt; if &lt;i, j&gt; is in G.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135796649-cd909112-2872-44e3-929e-a8bec50f587a.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Now we will define a matrix, Ak[][], that represents the length of shortest paths from a source vertex to a destination vertex.</p>
+  </li>
+  <li>
+    <p>$A^k [i][j]$ is defined as the shortest path length from vertex i to vertex j, only taking vertices 1 through k as intermediate vertices.</p>
+
+    <ul>
+      <li>$A^0[i][j]$ is the shortest path length from vertex i to j, where the path cannot include any intermediate vertex.</li>
+      <li>Thus, $A^0[][]$ is the same as the cost adjacency matrix.
+        <ul>
+          <li>In the example graph, we use 1 as the starting index for naming vertices. If we start at 0, the initial shortest path matrix should become $A^{-1}[][]$</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135796660-6041c5b2-b319-4447-975e-c8541da08dd9.png" alt="image" /></p>
+  </li>
+  <li>From $A^0$, we make $A^1$.
+    <ul>
+      <li>
+        <p>$A^1[i][j]$ indicates length of the shortest path from i to j, where the path may include <strong>vertex 1 as an intermediate vertex.</strong></p>
+      </li>
+      <li>
+        <p>Suppose we consider a path from vertex 4 to 2.</p>
+      </li>
+      <li>
+        <p>There is no edge &lt;4, 2&gt; in G, so $A^0[4][2]$ = inf.</p>
+      </li>
+      <li>In A1, the path through vertex 1 is allowed. (4 → 1 → 2)
+        <ul>
+          <li>Its length is $A^0[4][1] + A^0[1][2]$</li>
+        </ul>
+      </li>
+      <li>If $A^0[4][1] + A^0[1][2]$ $&lt; A^0[4][2], A^1[4][2]$ $= A^0[4][1] + A^0[1][2].$</li>
+      <li>Otherwise, $A^1[4][2] = A^0[4][2]$</li>
+      <li>In the example graph, $A^1[4][2] = A^0[4][1] + A^0[1][2] = 5$</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135797003-3d2e7ac6-ff99-4a47-85ed-31218164e46d.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>For each vertex pair (i, j), we perform relaxation.</p>
+
+    <ul>
+      <li>If $A^0[i][j] &gt; A^0[i][1] + A^0[1][j]$, $A^1[i][j] = A^0[i][1] + A^0[1][j]$</li>
+      <li>Otherwise, $A^1[i][j] = A^0[i][j]$</li>
+    </ul>
+  </li>
+  <li>
+    <p>Resulting A1 indicates the shortest paths where the paths can take only vertex 1 as an intermediate vertex.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135797057-c7613ed2-9f51-4928-bc7a-e6fc41ec4ef4.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>From $A^1$, we make $A^2$.</p>
+
+    <ul>
+      <li>For each vertex pair (i, j), we perform relaxation.
+        <ul>
+          <li>If $A^1[i][j] &gt; A^1[i][2] + A^1[2][j]$,$A^2[i][j] = A^1[i][2] + A^1[2][j]$,</li>
+          <li>Otherwise, $A^2[i][j] = A^1[i][j]$</li>
+        </ul>
+      </li>
+      <li>For example, let us consider the path from vertex 4 to 3.
+        <ul>
+          <li>$A^1[4][2]$ is the shortest path length from 4 to 2, possibly taking 1 as an intermediate.</li>
+          <li>$A^1[2][3]$ is the shortest path length from 2 to 3, possibly taking 1 as an intermediate.</li>
+          <li>Then, $A^1[4][2] + A^1[2$][3] is length of the path from 4 to 3, which passes through 2.</li>
+          <li>$A^1[4][3]$ is the length of the path from 4 to 3, which does not pass through 2.</li>
+          <li>Thus, minimum of the two is the shortest path from 4 to 3, possibly taking 1 and 2 as intermediates.</li>
+          <li>$A^2[4][3] = min(A^1[4][3], A^1[4][2] + A^1[2][3])$</li>
+          <li><img width="364" alt="image-20211004141126380" src="https://user-images.githubusercontent.com/46957634/135797629-0a09366c-4d67-4e32-a3f4-b11444369430.png" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>From $A^2$, we make $A^3$.</p>
+
+    <ul>
+      <li>
+        <p>For each vertex pair (i, j), we perform relaxation.</p>
+      </li>
+      <li>If $A^2[i][j] &gt; A^2[i][3] + A^2[3][j]$, $A^3[i][j] = A^2[i][3] + A^2[3][j]$,</li>
+      <li>Otherwise, $A^3[i][j] = A^2[i][j]$</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135797638-ff39ef30-06c1-422b-ace1-11fe810caa25.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>From $A^3$, we make $A^4$.</p>
+
+    <ul>
+      <li>For each vertex pair (i, j), we perform relaxation.</li>
+      <li>If $A^3[i][j] &gt; A^3[i][4] + A^3[4$][j]$, $ $A^4[i][j] = A^3[i][4] + A^3[4][j]$
+        <ul>
+          <li>Otherwise, $A^4[i][j] = A^3[i][j]$</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135797640-8524f0d7-321b-4eb1-8e1b-d7e6b0950e66.png" alt="image" /></p>
+
+    <ul>
+      <li>$A^4$ is our final answer, because it allows any vertex to become an intermediate vertex.</li>
+    </ul>
+  </li>
+  <li>Another example
+    <ul>
+      <li>Note that the initial matrix here is A-1 because the vertex index starts from 0.</li>
+    </ul>
+
+    <p><img width="229" alt="image-20211004141532294" src="https://user-images.githubusercontent.com/46957634/135798303-43e21037-c625-4cd9-b3ba-fd43b5b60bef.png" /></p>
+
+    <p><img width="281" alt="image-20211004141539515" src="https://user-images.githubusercontent.com/46957634/135798308-02f063f4-c882-4e03-b2ea-fed22e1c3a38.png" /></p>
+  </li>
+</ul>
+
+<h4 id="ex047---implementation-of-floyd-warshall-algorithm">[ex047] - Implementation of Floyd-Warshall algorithm</h4>
+
+<script src="https://gist.github.com/underthelights/4700ac3f12f6b4e8f4632393bb937729.js"></script>
+
+<ul>
+  <li>Time complexity: $O(n^3)$. (triple nested for loop, $O(n)$ each).</li>
+</ul>
+
+<h3 id="644-transitive-closure">6.4.4 Transitive Closure</h3>
+
+<ul>
+  <li>Suppose we have a directed graph G with unweighted edges.</li>
+  <li>
+    <p>Our goal is to determine if there’s a path from i to j for all values of i and j.</p>
+  </li>
+  <li>Definitions
+    <ul>
+      <li>The transitive closure matrix, denoted $A^+$, of a directed graph, G, is a matrix such that $A^+[i][j] = $1 if there is a path of length &gt; 0 from i to j; otherwise, $A^+ [i][j] = 0$.</li>
+      <li>The reflexive transitive closure matrix, denoted $A^<em>$, of a directed graph, G, is a matrix such that $A^</em> [i][j] = 1$ if there is a path of length ≥ 0 from i to j; otherwise, $A^*[i][j] = 0$.</li>
+      <li>The only difference between the two is that the reflexive transitive closure matrix allows zero-length paths. Thus, $A^*[i][i]$ is always 1. On the other hand, $A^+[i][i]$ is 1 only when there is a cycle starting and ending at vertex i.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="example">Example</h4>
+
+<p><img width="327" alt="image-20211004141941463" src="https://user-images.githubusercontent.com/46957634/135798311-b20ee071-84b7-4d86-bbac-a0e3b4095e37.png" /></p>
+
+<p><img width="411" alt="image-20211004141951888" src="https://user-images.githubusercontent.com/46957634/135798313-0a7e1cd7-649e-4cbb-a966-86a687f70538.png" /></p>
+
+<ul>
+  <li>Calculating A+
+    <ul>
+      <li>
+        <p>First, we assign 1 to all the edges in G.</p>
+
+        <p><img width="258" alt="image-20211004142031724" src="https://user-images.githubusercontent.com/46957634/135798316-13d16766-0457-4a7f-9a1e-ebaf7e78ecc8.png" /></p>
+      </li>
+      <li>
+        <p>In the adjacency matrix, we let A[i][j] = inf if &lt;i, j&gt; is not in G. Otherwise, A[i][j]=1.</p>
+      </li>
+      <li>
+        <p>Then, we run Floyd-Warshall algorithm on G and obtain the “distance” matrix.</p>
+      </li>
+      <li>
+        <p>Then, we change all non-infinity values to 1, and change infinity to 0 to obtain A+.</p>
+      </li>
+      <li>
+        <p>From A+, we change all values in the diagonal to 1 to obtain A*.</p>
+      </li>
+    </ul>
+
+    <p><img width="402" alt="image-20211004142044569" src="https://user-images.githubusercontent.com/46957634/135798317-a75589c7-4933-47b7-b36c-808f39e81fd4.png" /></p>
+  </li>
+  <li>Implementation of Transitive Closure ($A^+$)
+    <ul>
+      <li>$cost[i][j] = 1$ when &lt;i, j&gt; is in G.</li>
+      <li>$cost[i][j] = 0$ otherwise.</li>
+    </ul>
+  </li>
+  <li>Time Complexity: $O(n^3)$ (same as allCosts)</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/687e77d969ad5e44014850143e2a038a.js"></script>
+

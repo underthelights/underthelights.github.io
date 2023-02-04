@@ -1,0 +1,573 @@
+<h1 id="7-k-nearest-neighbor">7. k-Nearest Neighbor</h1>
+
+<h1 id="k-nearest-neighbor-classifier">k-Nearest Neighbor Classifier</h1>
+
+<ul>
+  <li>perceptron : linear classifier</li>
+  <li>SVM : linear, nonlinear classifier
+    <ul>
+      <li>given data → 분류하는 hyperplane를 구한다.</li>
+      <li>GD로 계산한다 : iteration 수천~수백 epoch 연산을 수행한다</li>
+      <li>(1) phi fn으로 고차원 mapping data 처리 가능
+        <ul>
+          <li>kernel trick ($\epsilon$→0)</li>
+        </ul>
+      </li>
+      <li>(2) soft margin</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280438-894d0968-cde4-4190-ae8b-c62c24c39ad5.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Store all training samples $(x_i, y_i)$ - 모든 데이터 저장
+    <ul>
+      <li>학습 data 저장하면 끝이다 (extra data task 불필요)</li>
+    </ul>
+  </li>
+  <li>Nearest Neighbor classifier
+    <ul>
+      <li>Given a test sample $x_t$, locate the nearest training sample $(x_{n1}, y_{n1})$,</li>
+      <li>then assign $y_{n1}$as the class label of $x_t$</li>
+      <li></li>
+    </ul>
+  </li>
+  <li>k-Nearest Neighbor classifier
+    <ul>
+      <li>Given a test sample $x_t$, locate the k-nearest training samples $(x_{n1}, y_{n1}), …,(x_{nk}, y_{nk})$  then assign <strong>majority class label</strong> of $y_{n1}, … y_{nk}$ to $x_t$
+        <ul>
+          <li><strong>majority class label</strong>  : majority voting, nearst sample labeling algorithm</li>
+        </ul>
+      </li>
+      <li>Take mean of , if they are real valued $\hat{f} = \frac 1 k \Sigma_{i=1}^{k} f(x_{ni})$</li>
+      <li>Also called as <strong>Instance</strong> based learning</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280441-356246a8-700c-418d-b8fd-bb316f88da72.png" alt="Untitled_1" /></p>
+
+<ul>
+  <li>test 시점에서 data 들어오면 해당 data와 near sample 판단 : <strong>sample간 거리 계산</strong>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$L^2$-norm : $\sqrt{\Sigma_{d=1}^{D}</td>
+              <td>x_{td} - x_{nd}</td>
+              <td>^2}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>test data에 대해 거리를 계산할 때 test sample과 near한지 distance 계산한다.</li>
+    </ul>
+  </li>
+  <li>sample dimension이 증가하면 → calculation cost 증가
+    <ul>
+      <li>모든 sample들끼리 거리를 계산하면 - dimension 증가되면</li>
+    </ul>
+
+    <p>(해결) kNN Optimization</p>
+
+    <ul>
+      <li>학습 시 계산 적게 storage 크게 : 어떻게 save하는가?</li>
+      <li>test 시 계산 많이 :  어떻게 줄이는가?</li>
+    </ul>
+  </li>
+  <li>When to consider
+    <ul>
+      <li>Vector features</li>
+      <li>~Less than 20 attributes (=20 dim)</li>
+      <li>Sufficient amount of training data</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280442-71a82d0e-674b-4690-9952-571501e3cf65.png" alt="Untitled_2" /></p>
+
+<ul>
+  <li><strong>Advantages</strong>
+    <ul>
+      <li><strong>Training is very fast :</strong> feature extraction &amp; save</li>
+      <li>Learn complex target functions</li>
+      <li>Don’t lose information</li>
+    </ul>
+  </li>
+  <li><strong>Disadvantages</strong>
+    <ul>
+      <li>Slow at query time ( ⇒ test time)
+        <ul>
+          <li><strong>train 에서의 연산이 많은 것이 좋을까?</strong> 아니면 test 에서의 연산이 많은 것이 좋을까?
+            <ul>
+              <li>test하기 전 enough time으로 저장 (sample 그대로 저장)</li>
+              <li>train offline / test online,offline</li>
+              <li><strong>so→ test 시점 연산이 적은 것이 유리함</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Requires large storage</li>
+      <li>Not robust against irrelevant <strong>attributes or outliers</strong>
+        <ul>
+          <li>SVM, Perceptron : boundary에 크게 영향이 없음</li>
+          <li>kNN : test sampel decision에 변화 가능함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="distance-metric">Distance Metric</h1>
+
+<ul>
+  <li>When we say ‘nearest’, it depends on the distance metric :
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Euclidean distance : $\sqrt{\Sigma_{d=1}^{D}</td>
+              <td>x_{td} - x_{nd}</td>
+              <td>^2}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>Manhattan distance : ${\Sigma_{d=1}^{D}</td>
+              <td>x_{td} - x_{nd}</td>
+              <td>}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$L^n$-norm : $\sqrt{\Sigma_{d=1}^{D}</td>
+              <td>x_{td} - x_{nd}</td>
+              <td>^n}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li>Each dimension can be differently <strong>scaled</strong>
+    <ul>
+      <li>Each dimension may have different impact</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>May <strong>bias</strong> the performance of the classifier $\sqrt{\Sigma_{d=1}^{D} w_d</td>
+              <td>x_{td} - x_{nd}</td>
+              <td>^2}$</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>동일한 기준 측정 X → performance bias 발생 가능</li>
+          <li>weight를 특정 feature에 넣어 거리의 상대적인 크기를 feature에 따라서 넣는다</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Search operation is expensive with high dimensions</li>
+</ul>
+
+<h2 id="distance">Distance</h2>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280443-bbf3f459-50e8-4aef-8978-c3acfa1f3700.png" alt="Untitled_3" /></p>
+
+<ul>
+  <li>모든 classify / regress에서 중요함
+    <ul>
+      <li>decision tree : nominal data → distance 불필요</li>
+      <li>각 feature 값들이 서로 다른 w를 가질 수 있음
+        <ul>
+          <li>ex. age, height</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>distance = 1/similarity</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280445-18f8b5b5-de29-4e9c-a4dd-18f06c25d09a.png" alt="Untitled_4" /></p>
+
+<p>feature vector하나 dimension은 의미가 없으며, 전체가 모여 압축된 형태로 표현된다.</p>
+
+<h2 id="equations-of-selected-distance-functions">equations of selected distance functions</h2>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280447-837c198f-b51d-4efd-83c0-c63a82f2a414.png" alt="Untitled_5" /></p>
+
+<ul>
+  <li></li>
+</ul>
+
+<h2 id="value-difference-metric-vdm">Value difference metric (VDM)</h2>
+
+<ul>
+  <li>attribute class 통해 판단 → 동일 class 속하는 것이 관찰되면 attribute가 더 가깝다고 본다.
+    <ul>
+      <li>ex. R-B가 더 많이 같은 class를 가지고 있으면 → R-B &gt; R-G</li>
+    </ul>
+  </li>
+  <li>Providing distance measurements for nominal attributes
+    <ul>
+      <li>$vdm_a(x,y) = \Sigma_{c=1}^C (\frac{N_{a,x,c}}{N_{a,x}}-\frac{N_{a,y,c}}{N_{a,y}})^2$</li>
+      <li>𝑵𝒂,𝒙 : # times attribute a had value x
+  𝑵𝒂,𝒙,𝒄: # times attribute a had value x and class was c
+  𝑪 : # output classes</li>
+      <li>a : color / x : big / y : medium, small ??</li>
+    </ul>
+  </li>
+  <li>Two values are considered closer if they have more similar classifications, i.e., if they have more similar correlations with the output classes</li>
+</ul>
+
+<h1 id="problem-with-euclidean-distance">Problem with Euclidean distance</h1>
+
+<ul>
+  <li>High dimensional data
+    <ul>
+      <li>dimension : color, length, weight…등의 data attribute</li>
+      <li>더 많은 attribute를 추가할수록 performance 상승</li>
+      <li>그러나 너무 많이 feature/ attribute 증가시키면 dim이 너무 많이 증가하여 curse of dimensionality에 빠질 수 있다
+        <ul>
+          <li>data가 고차원일수록 취급이 어려움
+  data에 관련하여 알아야 할 정보가 많은데 잘 활용치 못하면 classifier 성능 저하됨</li>
+        </ul>
+      </li>
+      <li>(Number of samples - available info) 양이 많고 + 정확한 정보라면 dimension이 높아도 괜찮다.</li>
+    </ul>
+  </li>
+  <li>Can produce counter-intuitive results</li>
+  <li>Shrinking density – sparsification effect
+    <ul>
+      <li>data dimension을 낮추어 처리하면 data가 sparse한 형태</li>
+    </ul>
+  </li>
+  <li>d가 같다고 data feature를 잘 반영하는지에 대해서는 잘 고려해봐야 함
+    <ul>
+      <li>각 feature dimesion이 data significance를 나타냄 → feature거리를 측정하는 것이 유사성과 차이점을 덜 반영할 수도 있음</li>
+      <li>binary feature : 과연 d가 동일한 값이라고 data feature를 잘 나타내는 것일까?</li>
+      <li>1 1 1 1 1 1 1 1 1 1 1 0
+  0 1 1 1 1 1 1 1 1 1 1 1
+  d = 1.4142</li>
+      <li>1 0 0 0 0 0 0 0 0 0 0 0
+  0 0 0 0 0 0 0 0 0 0 0 1
+  d = 1.4142</li>
+    </ul>
+  </li>
+  <li>hamming distance
+    <ul>
+      <li>각 bit 사이 같은/다른 bit 나타나는지 판단</li>
+    </ul>
+  </li>
+  <li>histogram intersection
+    <ul>
+      <li>
+        <p>$\Sigma_i \min(h_{1i}, h_{2i})$</p>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/188280448-36b79108-559b-458f-b175-bc51cdeb98a7.png" alt="Untitled_6" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="behavior-in-the-limit">Behavior in the limit</h1>
+
+<ul>
+  <li>성능
+    <ul>
+      <li>kNN ($\epsilon$ up) &lt; optimal classifier ($\epsilon$ down)</li>
+    </ul>
+  </li>
+  <li>$<strong>\epsilon^*(x)$  :</strong> Error of optimal prediction</li>
+  <li>$\epsilon_{NN}(x)$  : Error of nearaest neighbor</li>
+</ul>
+
+<p>Theorem :</p>
+
+\[\lim_{n\rightarrow \inf} \leq 2\epsilon^*\]
+
+<ul>
+  <li>proof:
+    <ul>
+      <li>
+        <p>$p_+$ : data가 (+)일 확률, $p_{NN\in(-)}$ : nearest neighbor이 (-)일 확률</p>
+      </li>
+      <li>$\epsilon_{NN} = p_+p_{NN\in(-)}+p_-p_{NN\in(+)} = p_+(1-p_{NN\in(+) })+(1-p_+)p_{NN\in(+)}$
+        <ul>
+          <li>$\epsilon_{NN} \sim\epsilon_{+}$  : Nearest Neighbor과 optimal한 sample의 결과가 동일하다</li>
+        </ul>
+      </li>
+      <li>$\lim_{n \rightarrow \infty} p_{NN\in (+)} = p_+$$lim_{n \rightarrow \inf} p_{NN\in (+)} = p_+$</li>
+      <li>$\lim_{n \rightarrow \inf} p_{NN\in (-)} = p_-$</li>
+      <li>$\lim_{n \rightarrow \inf} \epsilon_{NN} = p_+(1-p_+) + (1-p_+)p_+ = 2p_+(1-p_+) = 2\epsilon^<em>(1-\epsilon^</em>)\leq2 \epsilon^*$
+        <ul>
+          <li>$2p_+(1-p_+)$
+            <ul>
+              <li>prediction : (+) or (-)</li>
+              <li>$p_+$가 맞으면 $(1-\epsilon^<em>)$ 맞고 $\epsilon^</em>$ 틀림</li>
+              <li>$p_+$가 맞으면 $(1-\epsilon^<em>)$ 틀리고 $\epsilon^</em>$ 맞음</li>
+            </ul>
+          </li>
+          <li>$\epsilon^* \in [0,1]$</li>
+        </ul>
+      </li>
+      <li>NN Classifier can have up to twice as much error of <strong>optical error</strong>
+        <ul>
+          <li>= Bayesian Classifier</li>
+          <li>Sampling할 때 특정 d보고 sample → 전체 population know</li>
+          <li>→ 전체 population 정보가지고 classifier를 생성하면 classifier error : optimal classification error이고</li>
+          <li>우리가 얻을 최소의 error → optimal classifier</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Theorem :</p>
+
+\[\lim_{n\rightarrow \infty, k \rightarrow \infty, \frac k n \rightarrow 0 } \leq \epsilon^*\]
+  </li>
+</ul>
+
+<h1 id="standardization">Standardization</h1>
+
+<ul>
+  <li>Transform raw feature values into z-scores $z_{ij} = \frac{x_{ij} - \mu_j}{\sigma_j}$
+    <ul>
+      <li>$x_{ij}$ is the ith sample and jth feature (dimension)</li>
+      <li>$\mu_j$ is the average of all for feature</li>
+      <li>$\sigma_j$ is the standard deviation of all for feature</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280449-fa43b277-cf93-4647-9c9f-e23106401d05.png" alt="Untitled_7" /></p>
+
+<h1 id="efficient-searching">Efficient searching</h1>
+
+<ul>
+  <li>sample 주변을 확인해야 함 : 어떠한 data 주변에 존재할지</li>
+  <li>KD trees
+    <ul>
+      <li>
+        <p>n개 KD Tree 구성하면 - $\epsilon \downarrow$ : 각 class score, $w_{sum}$계산</p>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/188280454-230b928e-50cc-48cf-bbf8-ec451a650ffb.png" alt="Untitled_8" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Choose dimension</li>
+  <li>Choose pivot (median)</li>
+  <li>Split data, repeat</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280458-769e6646-8d0f-4270-90e4-465a2d4560d6.png" alt="Untitled_9" />
+<img src="https://user-images.githubusercontent.com/46957634/188280460-98006581-4b04-43a7-b04e-b2e5a8c128e9.png" alt="Untitled_10" />
+<img src="https://user-images.githubusercontent.com/46957634/188280465-3af88fef-0999-4a7a-864a-9eac81c4aac7.png" alt="Untitled_11" /></p>
+
+<h1 id="choosing-k">Choosing k</h1>
+
+<ul>
+  <li>Choosing the value of k:
+    <ul>
+      <li>If k is too small, sensitive to noise points</li>
+      <li>If k is too large, neighborhood may include points from other classes</li>
+    </ul>
+  </li>
+  <li>Rule of thumb:
+k = sqrt(N)
+N: number of training samples</li>
+  <li>Use N fold cross validation – Pick k to minimize the cross validation error</li>
+  <li>For each of N test example
+    <ul>
+      <li>Find its k nearest neighbors</li>
+      <li>Make a classification based on these k neighbors</li>
+      <li>Calculate classification error</li>
+      <li>Output average error over all examples</li>
+    </ul>
+  </li>
+  <li>Use the k that gives lowest average error on the training data
+    <ul>
+      <li>이론적으로 $k \uparrow$이면 smoother해짐</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280466-72d4dce3-116c-4a27-a4cc-289fe8431c46.png" alt="Untitled_12" /></p>
+
+<ul>
+  <li>Bayes-optimal boundary given true generating model
+    <ul>
+      <li>ideal case : $k, n \rightarrow \infty$, $\frac k n \rightarrow 0$, $\epsilon^* \leq \epsilon_{kNN}\leq2\epsilon^*$</li>
+    </ul>
+
+    <p>$
+  \lim_{n\rightarrow \infty, k \rightarrow \infty, \frac k n \rightarrow 0 } \leq \epsilon^*
+  $</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280472-195edbcf-fce1-45dd-beea-74c936c162ab.png" alt="Untitled_13" /></p>
+  </li>
+  <li>As number of training samples $\rightarrow \infty$, and k becomes large, k-Nearest Neighbor classifier shows performance as good as that of Bayes classifier</li>
+</ul>
+
+<h1 id="cross-validation">Cross-validation</h1>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280476-b918860f-457a-4c6f-8656-b995a549f991.png" alt="Untitled_14" /></p>
+
+<ul>
+  <li>train error가 낮아지는게 무작정 좋지는 않을 수 있다 (overfitting)</li>
+</ul>
+
+<h1 id="condensing">Condensing</h1>
+
+<ul>
+  <li>
+    <p>Aim is to reduce the number of training samples</p>
+
+    <p>더 작은 dataset으로의 압축</p>
+  </li>
+  <li>Retain only the samples that are needed to define the decision boundary</li>
+  <li>Decision Boundary Consistent – a <strong>subset</strong> whose nearest neighbor decision boundary is identical to the boundary of the entire training set
+    <ul>
+      <li>전체 original data와 동일한 boundary 구해짐</li>
+    </ul>
+  </li>
+  <li>Minimum Consistent Set – the <strong>smallest subset</strong> of the training data that correctly classifies all of the original training data
+    <ul>
+      <li>가장 작은 Sample sel</li>
+    </ul>
+  </li>
+  <li>
+    <p>Original data</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280477-b0fbefb3-f18b-4df1-8d6c-ed83d064a469.png" alt="Untitled_15" /></p>
+
+    <ul>
+      <li>decision boundary 구성 Sample만을 남겨 이 data만을 남긴다.</li>
+      <li>2,3개 씩 저장해도 boundary가 유지된다.</li>
+      <li>전체 Dataset을 활용해도 decision boundary는 동일하게 구해진다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Condensed data</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280479-496cf4e4-97c3-4596-b13e-2aa9b6266532.png" alt="Untitled_16" /></p>
+  </li>
+  <li>
+    <p>Minimum Consistent Set</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280480-774b74cf-65a8-425a-80d6-e93b97961a53.png" alt="Untitled_17" /></p>
+  </li>
+</ul>
+
+<h2 id="condensed-nearest-neighbor-cnn">Condensed Nearest Neighbor (CNN)</h2>
+
+<ul>
+  <li>iteration 최소 data로 errorless 구하기??
+    <ol>
+      <li>Initialize subset with a single (or k) training example</li>
+    </ol>
+    <ol>
+      <li>하나의 Data를 임의로 추출
+        <ol>
+          <li>Classify all remaining samples using the subset, and transfer any incorrectly classified samples to the other subset</li>
+        </ol>
+      </li>
+      <li>그 Data를 이용하여 NN → $\epsilon$이 나오는 임의의 Data 선택
+        <ol>
+          <li>Return to 2 until no transfers occurred or the subset is full</li>
+        </ol>
+      </li>
+      <li>data, error 구하기</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280481-fb0e9001-7ae2-4ecc-bdb7-f5461bf2bf67.png" alt="Untitled_18" /></p>
+
+<p>→ 초기 Data 선택에 따라 decision boundary 변화</p>
+
+<ul>
+  <li>kNN → decision boundary
+    <ul>
+      <li>어떤 group에 test data 속하는지 확인</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="condensation">Condensation</h1>
+
+<ul>
+  <li>Each cell contains one sample, and every location within the cell is closer to that sample than to any other sample.</li>
+  <li>A <strong>Voronoi diagram</strong> divides the space into such cells.
+    <ul>
+      <li>구획으로 나누고 boundary에 영향 없는 Sample을 제거하는 방향</li>
+    </ul>
+  </li>
+  <li>Every query point will be assigned the classification of the sample within that cell. The decision boundary separates the class regions based on the 1-NN decision rule.</li>
+  <li>Knowledge of this boundary is sufficient to classify new points.</li>
+  <li>The boundary itself is rarely computed; many algorithms seek to retain only those points necessary to generate an identical boundary.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280482-d75d6dbc-a64b-4e8d-823b-7ac92d69b1c7.png" alt="Untitled_19" /></p>
+<ul>
+  <li>data 주어지면 그로부터 얻는 1NN boundary가 유일하게 결정됨
+    <ul>
+      <li>→ train data 전부 저장하지 않아도 boundary만 저장하면 됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="voronoi-diagram-구성하는-방법">Voronoi Diagram 구성하는 방법</h2>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280483-4c905848-bb47-4630-a76b-c2afe813644e.png" alt="Untitled_20" /></p>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280484-69cf6b6b-23af-47bc-9747-5cac53ef4352.png" alt="Untitled_21" /></p>
+
+<ul>
+  <li><strong>Delaunay triangulation (Delone triangulation)</strong> for a given set P of discrete points is a triangulation DT(P) such that no point in P is inside the <strong>circumcircle</strong> of any triangle in DT(P)</li>
+  <li>Circumcircle (circumscribed circle) of a polygon is a circle that passes through all the vertices of the polygon</li>
+  <li>어떠한 점도 해당 Circle 내 들어가지 않도록, 다각형을 둘러싼 원 형성
+    <ul>
+      <li>→세 점을 둘러싼 원, 원 내부에 주어진 점을 포함하면 안 되는 형태로</li>
+    </ul>
+  </li>
+  <li>Avoid sliver triangles. (maximize angles of triangles) 
+예각삼각형을 피하고, 각도 최대화
+    <ul>
+      <li>Delaunay triangulation is not unique</li>
+    </ul>
+  </li>
+  <li>Circumcenters of Delaunay triangles are the vertices of the Voronoi diagram</li>
+  <li>
+    <p>If two triangles share an edge in the Delaunay triangulation, their circumcenters are to be connected with an edge in the Voronoi tesselation</p>
+  </li>
+  <li>방법 : delaunary triangle 만들고 → circumcircle의 가운뎃점 pt → centered point 연결</li>
+  <li>
+    <p>Voronoi Diagram의 최종 목표 : 모든 영역 안에 임의의 지점은 그 안의 Sample point와 최단 거리를 갖는 영역으로 정의함
+  <img src="https://user-images.githubusercontent.com/46957634/188280486-e4792763-20c5-47c1-8596-16fbbb6bfa86.png" alt="Untitled_22" />
+  <img src="https://user-images.githubusercontent.com/46957634/188280487-19927c11-95ec-4ef6-a142-e03bc25bd3bf.png" alt="Untitled_23" /></p>
+  </li>
+  <li>
+    <p>각 sample point의 class에 따라, 전체 영역의 class 결정</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280488-1e431642-0ab6-4331-8c77-92c1c6cb549d.png" alt="Untitled_24" /></p>
+  </li>
+  <li>
+    <p>test Data 들어오면, 이를 포함한 voronoi diagram이면 class 결정</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280490-dbfcdec6-4dc1-4f99-a4fe-f7e55e8191a7.png" alt="Untitled_25" /></p>
+  </li>
+</ul>

@@ -1,0 +1,266 @@
+<h2 id="disjoint-sets-chapter-510">Disjoint Sets (Chapter 5.10)</h2>
+
+<h3 id="5101-representation-of-disjoint-sets">5.10.1 Representation of Disjoint Sets</h3>
+
+<ul>
+  <li>We can use trees to represent sets.
+    <ul>
+      <li>
+        <p>For simplicity, here we will assume that the elements of the sets are numbers 0, 1, 2, …, n-1.</p>
+      </li>
+      <li>
+        <p>We also assume that the sets being represented are pairwise disjoint.</p>
+
+        <ul>
+          <li>An element can be included in only one of the sets.</li>
+          <li>Thus we call these sets “<strong>disjoint sets</strong>”.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Representation of sets S1, S2, and S3 using trees</p>
+
+    <ul>
+      <li>
+        <p>Instead of maintaining links to child nodes, here we maintain links to the parent.</p>
+
+        <p><img width="261" alt="image-20211002194634715" src="https://user-images.githubusercontent.com/46957634/135752484-e3054600-8496-4c52-9110-30206b8d7d9d.png" /></p>
+      </li>
+      <li>
+        <p>$S1 = {0, 6, 7, 8}, S2 ={1, 4, 9}, S3 = {2, 3, 5}$</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Mapping set names to trees</p>
+
+    <ul>
+      <li>
+        <p>We can have a separate array with elements that contain the set name and the pointer to the root of the tree.</p>
+
+        <p><img width="227" alt="image-20211002194708249" src="https://user-images.githubusercontent.com/46957634/135752487-7eb2ada9-06a0-47d0-aca2-4cac4a157547.png" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="array-representation">Array representation</h4>
+
+<ul>
+  <li>Since each node in the trees has a single link to its parent, we can use the parent array to represent the whole disjoint sets.</li>
+  <li>
+    <p>The index of array indicates the element (0, …, n-1) of the tree.</p>
+  </li>
+  <li>Parent of root nodes is -1.</li>
+  <li><img src="https://user-images.githubusercontent.com/46957634/135752488-34c82703-f797-4a87-b77f-a8d427922620.png" alt="image-20211002194726905" /></li>
+  <li>
+    <p><img width="265" alt="image-20211002194741956" src="https://user-images.githubusercontent.com/46957634/135752489-caf148b6-6e5e-4c9e-9da2-f74666f3a685.png" /></p>
+  </li>
+  <li>In the array representation, instead of using S1, S2, and S3 as set names, we can let the <strong>root elements represent each set</strong>.</li>
+</ul>
+
+<h3 id="5102-union-and-find-operations">5.10.2 Union and Find Operations</h3>
+
+<h4 id="operations-performed-on-disjoint-sets">Operations performed on disjoint sets</h4>
+
+<ul>
+  <li>Disjoint set union
+    <ul>
+      <li>If we wish to get the union of two disjoint sets Si and Sj, replace Si and Sj by 𝑆 ∪ 𝑆</li>
+    </ul>
+  </li>
+  <li>Find(i)
+    <ul>
+      <li>Find the set containing the element i.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="implementing-union-operation">Implementing <strong>Union</strong> operation</h4>
+
+<ul>
+  <li>We make one of the trees a subtree of the other.</li>
+  <li>Set the parent field of one of the roots to the other root.</li>
+  <li><img width="265" alt="image-20211002194835366" src="https://user-images.githubusercontent.com/46957634/135752492-4aca29f8-2b52-4ee5-b0eb-e4d714a410a4.png" /></li>
+</ul>
+
+<h4 id="implementing-find-operation">Implementing <strong>Find</strong> operation</h4>
+
+<ul>
+  <li>
+    <p>We can implement the find operation by simply following the indices starting at i and continuing until we reach a parent index that is a negative number.</p>
+  </li>
+  <li>
+    <p>Simple implementation of Find and Union.</p>
+  </li>
+  <li>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">simpleFind</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span> <span class="p">;</span> <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The argument to simpleUnion must be root of the trees</p>
+  </li>
+  <li>
+    <div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">simpleUnion</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="n">parent</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span> 
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="analysis-of-simpleunion-and-simplefind">Analysis of simpleUnion and simpleFind</h4>
+
+<ul>
+  <li>Consider executing the following sequence of union-find operations
+    <ul>
+      <li>union(0, 1), find(0) / union(1, 2), find(0) / union(2, 3), find(0) / union(3, 4), find(0) .. / union(n-2, n-1), find(0)</li>
+    </ul>
+  </li>
+  <li>This sequence of operations produces the following tree.</li>
+  <li>Since time taken for a union operation is constant, all n-1 unions can be processed in O(n) time.</li>
+  <li>For each find, if the element is at level i, then the time required to find its root is O(i). Hence the total time needed to process</li>
+  <li>the n-1 finds is  :$\Sigma_{i=1}^{n-1}{i} = O(n^2)$</li>
+</ul>
+
+<p><img width="50" alt="image-20211002195104486" src="https://user-images.githubusercontent.com/46957634/135752534-260bc8e2-acc5-4072-9778-d5ba0c7224ed.png" /></p>
+
+<ul>
+  <li>
+    <p>We can improve efficiency of the find operation by creating trees that are balanced. To achieve that, we use the weighting rule.</p>
+  </li>
+  <li>Weighting rule for union of i and j.
+    <ul>
+      <li>If the number of nodes in tree i is less than the number of nodes in tree j, then make j the parent of i; otherwise make i the parent of j.</li>
+    </ul>
+  </li>
+  <li>
+    <p>When we use this rule on the sequence of set unions described above, we obtain the following trees.</p>
+
+    <p><img width="288" alt="image-20211002195137200" src="https://user-images.githubusercontent.com/46957634/135752536-16d21592-2e71-4907-9df9-c259b983efb9.png" /></p>
+  </li>
+  <li>To implement the weighting rule, we need to know how many nodes there are in each tree.
+    <ul>
+      <li>We need to maintain a count field in the root of every tree.</li>
+      <li>We can maintain the count in the parent field of the roots as a negative number.</li>
+    </ul>
+  </li>
+  <li>The argument to the weightedUnion must be root of the trees</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/e7c06193262a9d2547a3da1dfb067d2c.js"></script>
+
+<ul>
+  <li>
+    <p>Lemma: Let T be a tree with n nodes created as a result of weightedUnion. No node in T has level greater than</p>
+  </li>
+  <li>Proof
+    <ul>
+      <li>The lemma is clearly true for n = 1.</li>
+      <li>Assume that it is true for all trees with i nodes, i ≤ n-1. We show that it is also true for i = n.</li>
+      <li>
+        <p>Let T be a tree with n nodes created by weightedUnion.</p>
+      </li>
+      <li>
+        <p>Consider the last union operation performed, union(k, j).</p>
+      </li>
+      <li>
+        <p>Let m be the number of nodes in tree j. Then, n-m is the number of nodes in k.</p>
+      </li>
+      <li>
+        <p>Without loss of generality, we may assume that .</p>
+      </li>
+      <li>
+        <p>Then, the maximum level of any node in T is either the same as k or is one more than j.</p>
+      </li>
+      <li>If the former is the case, then the maximum level in</li>
+      <li>If the latter is the case, then the maximum level in T ≤ logଶ 𝑚 + 2 ≤ logଶ 𝑛/2 + 2 ≤ logଶ 𝑛 + 1</li>
+    </ul>
+  </li>
+  <li>Consider the behavior of weightedUnion on the following sequence of unions starting from the initial configuration
+    <ul>
+      <li>union(0, 1), union(2, 3), union(4, 5), union(6, 7), union(0, 2), union(4, 6), union(0, 4)</li>
+      <li><img width="431" alt="image-20211002195237841" src="https://user-images.githubusercontent.com/46957634/135752538-c31410d0-8c09-4da0-b91d-7d4c96e31b76.png" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="analysis-of-simplefind-and-weightedunion">Analysis of simpleFind and weightedUnion</h4>
+
+<ul>
+  <li>The depth of the tree is $\lfloor{log_2 n\rfloor +1}$ when the number of nodes is n.</li>
+  <li>The time to process simpleFind in a tree of n nodes is $O(log_2 n)$.</li>
+  <li>If we process an intermixed sequence of n-1 union and m find operations, the time becomes $O(n+mlog_2n)$</li>
+</ul>
+
+<h4 id="a-further-improvement-collapsingfind">A further improvement: collapsingFind</h4>
+
+<ul>
+  <li>We know that in a find operation, we need to move from an arbitrary node in the tree all the way to the root.</li>
+  <li>It would be beneficial if we make the number of links from each node to its root as small as possible.</li>
+  <li>When we execute collapsingFind(i) operation, we make all nodes in the path from node i to the root directly point to its root.
+    <ul>
+      <li>Afterwards, find operation for these nodes will require only a single move to its root.</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/4a227123185c397179c65445909ad78c.js"></script>
+
+<h3 id="5103-equivalence-classes">5.10.3 Equivalence Classes</h3>
+
+<ul>
+  <li>In Chapter 4.6 (Lecture 13), we considered finding the equivalence classes using a linked list.
+    <ul>
+      <li>There are 12 items numbered from 0 to 11, and we have the following equivalence pairs.
+        <ul>
+          <li>(0, 4), (3, 1), (6, 10), (8, 9), (7, 4), (6, 8), (3, 5), (2, 11), (11, 0)</li>
+          <li><img width="378" alt="image-20211002195527305" src="https://user-images.githubusercontent.com/46957634/135752540-f709ba60-0666-496d-b677-5ea312f28767.png" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>We can use disjoint set trees to solve the problem of equivalence classes.</p>
+  </li>
+  <li>Initially, all n items are in an equivalance class of their own.
+    <ul>
+      <li><img width="384" alt="image-20211002195637302" src="https://user-images.githubusercontent.com/46957634/135752560-81b0065f-5632-4233-91ad-806995ffd70f.png" /></li>
+    </ul>
+  </li>
+  <li>
+    <p>When processing an equivalence pair (i, j), we first determine the sets containing i and j.</p>
+
+    <ul>
+      <li>
+        <p>If the two sets are the same, then nothing is to be done.</p>
+      </li>
+      <li>
+        <p>If not, we must union the two disjoint set trees.</p>
+      </li>
+      <li>
+        <p>Thus, for each equivalence pair, we need 2 find and 1 union operations.</p>
+      </li>
+    </ul>
+  </li>
+  <li>Disjoint set trees as the equivalence pairs are processed</li>
+</ul>
+
+<p><img width="482" alt="image-20211002195619743" src="https://user-images.githubusercontent.com/46957634/135752572-348bbf0c-e27d-4e16-baea-7db312dd1dc8.png" /></p>
+
+<h4 id="ex040">[ex040]</h4>
+
+<ul>
+  <li>Implement a program that takes number of items and equivalence pairs from user input and outputs equivalence classes.</li>
+  <li>Your program should use disjoint set trees.
+    <ul>
+      <li>Implement find and union operations as well as the main function.</li>
+    </ul>
+  </li>
+  <li>Refer to [ex034] on how to get user inputs. Following is an example stub.</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/07aac08563891e99d0fbea28a5809ce7.js"></script>
+

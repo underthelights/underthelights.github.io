@@ -1,0 +1,926 @@
+<h1 id="13-dimensionality-reduction">13. Dimensionality Reduction</h1>
+
+<p>Property 1: Goodfellow13, Bishop 12</p>
+
+<h1 id="introduction-of-dimensionality-reduction">Introduction of ‘Dimensionality Reduction’</h1>
+
+<ul>
+  <li>Unsupervised learning에서 중요한 dimensionality reduction
+    <ul>
+      <li>PCA, LDA 방식으로 수행 : eigen equation을 생성하여 covariance 생성
+        <ul>
+          <li>Covariance를 구하고 data var이 큰 방향으로 방향 vector를 구함 : eigenvector</li>
+          <li>분산 량 : eigenvalue</li>
+        </ul>
+      </li>
+      <li>분산 큰 쪽으로 좌표축을 잡아 표현하는 방법 → dimension(data attribute) 줄이는 방법 (차원 축소)</li>
+    </ul>
+  </li>
+  <li>PCA Principal Component Analysis - label X
+    <ul>
+      <li>unsupervised learning</li>
+    </ul>
+  </li>
+  <li>LDA Linear Discriminat Analysis - label O
+    <ul>
+      <li>supervised learning</li>
+    </ul>
+  </li>
+  <li>Semisupervised learning : unsupervised learning (부분적으로 Supervised)
+    <ul>
+      <li>물론 Clustering할 때도 일부 data에 label이 적용되어 알고 있을 수 있다 → label끼리 clustering할 때 정보를 활용하여 group화 할수 있음 (semi-supervised = unsupervised + supervised)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="dimensionality-reduction의-목적">Dimensionality Reduction의 목적</h2>
+
+<ul>
+  <li>1) Visualization 용이 : 3차원 이하로 Reduct하면 visualize 용이해짐</li>
+  <li>2) Performace 향상 : 데이터 다루기 쉬워져 performance (acc) 향상,</li>
+  <li>3) computation cost 감소 (time, computation 복잡도, memory)</li>
+</ul>
+
+<p>PCA, LDA</p>
+
+<h1 id="problems">Problems</h1>
+
+<ul>
+  <li>Image에 있는 특정 Object검출 / 분류 / 영역 segmentation / caption / 임의의anomaly 검출 / Etc
+    <ul>
+      <li>image detection : window 를 지정하고 obj가 있는지 없는지 O,X로 검색</li>
+      <li>image scan하며 반복 : 전체 Image 크기의 일정 비율만큼 되는지까지 반복 - 1초에 10장 이상의 Image window, 얼굴 하나만 검출해도 각 window에 대해 계속 반복해야 하므로</li>
+      <li>computationally intensive → 연산량을 줄이기 위한 dimensionality reduction</li>
+    </ul>
+  </li>
+  <li>Object Detection: Many detection windows
+    <ul>
+      <li>Each window is very high dimensional data</li>
+    </ul>
+
+    <p>→ computationally intensive (집약적)</p>
+  </li>
+</ul>
+
+<p><img src="13/Untitled.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>General framework</p>
+
+    <p><img src="13/Untitled_1.png" alt="Untitled" /></p>
+
+    <ul>
+      <li>고차원 Data</li>
+      <li>Feature extracted된 것은 일반적으로 reducted된 형태</li>
+      <li>Classifier / detection / segmentation</li>
+      <li>input data 가 image / signal/ video/ audio/ text이건 General 하게 사용가능</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="feature-extractiondimensionality-reduction-1">Feature extraction/Dimensionality reduction 1</h1>
+
+<h2 id="dimensionality-reduction의-목적-revisited">Dimensionality Reduction의 목적 (Revisited)</h2>
+
+<ul>
+  <li>1) Visualization 용이 : 3차원 이하로 Reduct하면 visualize 용이해짐</li>
+  <li>2) Performace 향상 : 데이터 다루기 쉬워져 performance (acc) 향상,</li>
+  <li>
+    <p>3) computation cost 감소 (time, computation 복잡도, memory)</p>
+  </li>
+  <li>It is impossible to process raw image data (pixels) directly
+    <ul>
+      <li>Too many of them (or data dimensionality too high)
+        <ul>
+          <li>data양이 너무 많음 : million cell을 넘어선 FHD, UHD 등 Resolution 이상 증가</li>
+          <li>e.g. 1M - 2M - 4M pixel 증가하기에 그대로 쓸 수는 없음 : 그대로 DNN에 넣어 처리하지는 않고 500*500 =250K정도로 줄여서 사용함</li>
+        </ul>
+      </li>
+      <li>Curse of dimensionality problem (차원의 저주)
+        <ul>
+          <li>Data dimension은 attribute로서 1d-2d-…-nd (data의 RGB, 길이, 크기 등) 많으면 많을수록 좋음 (더 많은 정보를 취합해서 처리할 수 있음)</li>
+          <li>그러나 너무 많아지면 오히려 accuracy가 떨어지게 되는 현상</li>
+          <li>RGB의 값과 무게 넓이를 측정하는데 Measured value 라는 것은 observed value로서 Boolean값이 아니기에 오차가 있을 수 있음.
+            <ul>
+              <li>(Boolean이 아닌, 오차가 포함된 observed value라면 값을 많이 추가하더라도 오히려 accuracy가 떨어지게 됨)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Process the raw pixel to produce a smaller set of numbers which will capture most information contained in the original data – this is often called a feature vector
+    <ul>
+      <li>Raw data 원본 data를 처리하여 smaller set으로 만듬</li>
+      <li>d차원에서 임의로 10개 뽑아 정리하는게 아닌, 원본 data의 최대한 많은 정보를 뽑을 수 있도록 feature vector extract</li>
+    </ul>
+  </li>
+  <li>Given data points in d-dimensions
+    <ul>
+      <li>Convert them to data points in $k(&lt;d)$ dimensions</li>
+      <li>k의 약 10% 정도로 d를 다룬다</li>
+      <li>With minimal loss of information</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="data-compression">Data Compression</h1>
+
+<p><img src="13/Untitled_2.png" alt="Untitled" /></p>
+
+<ul>
+  <li>z_1 상에 proejction한 형태로 reduct dimensionailty</li>
+</ul>
+
+<h2 id="reduce-data-from-3d-to-2d">Reduce data from 3D to 2D</h2>
+
+<ul>
+  <li>어떤 방향으로 Data를 투영하느냐에 따라 분포 모양이 달라짐</li>
+  <li>너무 뭉쳐서 투영되면 좋지 않은 reduction</li>
+</ul>
+
+<p><img src="13/Untitled_3.png" alt="Untitled" /></p>
+
+<p><img src="13/Untitled_4.png" alt="Untitled" /></p>
+
+<h1 id="feature-extractiondimensionality-reduction-2">Feature extraction/Dimensionality reduction 2</h1>
+
+<ul>
+  <li>Suppose we have a population measured on p random variables x1, …, xd.
+    <ul>
+      <li>random variable</li>
+    </ul>
+  </li>
+  <li>Note that these random variables represent the d-axes of the Cartesian coordinate system in which the population resides. Our goal is to develop a new set of k axes (linear combinations of the original d axes) in the directions of greatest variability: X2
+    <ul>
+      <li>cartesian coordinate system : 새로운 axis를 찾아내서 더 잘 Represent하도록 표현</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="13/Untitled_5.png" alt="Untitled" /></p>
+
+<ul>
+  <li>This is accomplished by rotating the axes 원래의 좌표축을 rotate하는 방법으로 진행
+    <ul>
+      <li>Rotates multivariate dataset into a new configuration which is easier to interpret</li>
+      <li>Purpose
+        <ul>
+          <li>simplify data (잘 압축하여 간소화)</li>
+          <li>look at relationships between variables , patterns of units (Data 간 관계, 패턴 분석 가능)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="basic-principle">Basic Principle</h2>
+
+<ul>
+  <li>From a raw data (vector) X of d-dimension to a new vector Y of k-dimensional (k &lt; &lt; d) via a transformation matrix A such that Y will capture most information in X</li>
+</ul>
+
+\[Y = AX\]
+
+<p><img src="13/Untitled_6.png" alt="Untitled" /></p>
+
+<ul>
+  <li>원래 데이터 X에 변환 Matrix A를 곱하여 Y라는 변환된 matrix</li>
+  <li>변환된 matrix : 회전된 좌표축에서의 data
+    <ul>
+      <li>→ X matrix를 raw matrix로 간주하고 d dimension to k dimension matrix</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h1>
+
+<ul>
+  <li>Goal: find k-dim projection that best preserves variance</li>
+</ul>
+
+<h2 id="calculation">Calculation</h2>
+
+<ol>
+  <li>compute mean vector $\mu$ and covariance matrix $\Sigma$ of original data
+    <ol>
+      <li>D-dim data로부터 Mean, Covariance 구함</li>
+      <li>$X = [X1, X2, … , Xn]$</li>
+      <li>(mean centered X) $X_{\mu_0} = X-\mu = [X1-\mu, X2-\mu, … , Xn-\mu]$</li>
+      <li>$\Sigma = X_{\mu_0} X_{\mu_0} ^T = \frac 1 n  \Sigma (X_i - \mu)(X_i - \mu)^T$</li>
+      <li>$S = \Sigma(X_i - \mu)(X_i - \mu)^T$</li>
+      <li>$\Sigma v = \lambda v$</li>
+    </ol>
+  </li>
+  <li>Compute eigenvectors and eigenvalues of $\Sigma$</li>
+  <li>Select top k eigenvectors
+    <ol>
+      <li>Top k개 eigenvalue에 대응하눈 eigenvector 구함</li>
+    </ol>
+  </li>
+  <li>Project points onto subspace spanned by them
+    <ol>
+      <li>$y = A(x-\mu)$</li>
+      <li>where y is the new data, x is the original data, and the rows of A are the eigenvectors</li>
+    </ol>
+  </li>
+  <li>When we said the eigenvector as</li>
+</ol>
+
+<p><img src="13/Untitled_7.png" alt="Untitled" /></p>
+
+<p>in the previous lecture, $A$ is $V^T$ (k vectors, $v_1$ … $v_k$)</p>
+
+<h2 id="feature-extractiondimensionality-reduction-3">Feature extraction/Dimensionality reduction 3</h2>
+
+<ul>
+  <li>Covariance matrix :
+    <ul>
+      <li>d dimension data로부터 d개의 eigenvector</li>
+      <li>2차원 data로부터 2개의 eigenvector, eigenvalue</li>
+      <li></li>
+    </ul>
+  </li>
+  <li><strong>The eigenvectors of $\Sigma$ define a new coordinate system 
+(새로운 coordinate system으로 적용)</strong>
+    <ul>
+      <li>Eigenvector with largest eigenvalue captures the <strong>most variation</strong> among data X
+        <ul>
+          <li><strong>eigenvector :PCA분석을 했을 때 data가 가장 크게 분산된 방향으로 표현하는 방향벡터이고 그 정도를 가리키는 것은 eigenvalue.</strong></li>
+        </ul>
+      </li>
+      <li>Eigenvector with smallest eigenvalue has least variation
+        <ul>
+          <li><strong>가장 작은 eigenvalue에 대응되는 Eigenvector는 분산이 제일 작다.</strong></li>
+        </ul>
+
+        <p><img src="13/Untitled_8.png" alt="Untitled" /></p>
+
+        <ul>
+          <li>v1이라는 axis로 투영한다면 Data가 가장 잘 분산되는 최적의 방향이다 → 최대 분산 방향으로 압축되면 제일 잘 분산되는 방향으로 data의 차원을 축소시키는 것이기에 원본 Data 정보 잘 반영</li>
+        </ul>
+      </li>
+      <li>Dimension reduction에 따른 원본 data의 information loss정도
+        <ul>
+          <li>1Dim 압축 : 가장 최소 eigenvector, 2Dim 압축 : 두 번째eigenvector</li>
+          <li>d dim에 대해서 D개를 모두 사용 → 어떠한 손실도 없이 원본 Data 수행 가능
+            <ol>
+              <li>표현된 Data는 동일하지만 PCA 분석이 되어 있기에 Dimension을 줄이면 됨</li>
+              <li>corelation이 감소된 형태로 좌표축 정립 : x1의 값이 변화할 때 x2의 값이 변화되는 정도</li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>We can compress the data by only using the top few eigenvectors
+    <ul>
+      <li>Corresponds to choosing a “linear subspace”
+        <ul>
+          <li>일정 constant를 곱한 형태이므로 linear</li>
+        </ul>
+      </li>
+      <li>These eigenvectors are known as the principal components</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="covariance">Covariance</h2>
+
+<ul>
+  <li>각 차원 별 Relation (corelation)</li>
+  <li>Variance and Covariance:
+    <ul>
+      <li>Measure of the “spread” of a set of points around their center of mass (mean)</li>
+      <li>각 차원에서의 data가 얼마나 많이 분산되어 있느냐에 대한 정보 제공</li>
+    </ul>
+  </li>
+  <li>Variance
+    <ul>
+      <li>Measure of the deviation from the mean for points in one dimension</li>
+    </ul>
+  </li>
+  <li>
+    <p>Covariance</p>
+
+    <p><img src="13/Untitled_9.png" alt="Untitled" /></p>
+
+    <ul>
+      <li>Measure of how much each of the dimensions vary from the mean with respect to each other</li>
+      <li>
+        <p>여러 차원에 걸쳐 분산을 계산하면 -&gt; covariance정보 얻을 수 있음</p>
+      </li>
+      <li>Covariance is measured between two dimensions</li>
+      <li>Covariance sees if there is a relation between two dimensions</li>
+      <li>Covariance in one dimension is the variance</li>
+    </ul>
+  </li>
+  <li>Positive: Both dimensions increase or decrease together
+    <ul>
+      <li>한 차원의 값이 증가하면 다른 차원의 값도 증가</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="13/Untitled_10.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Negative: While one increase the other decrease
+    <ul>
+      <li>한 차원의 값이 증가하면 다른 차원의 값은 반대로 감소</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="13/Untitled_11.png" alt="Untitled" /></p>
+
+<h2 id="식">식</h2>
+
+\[\Sigma = \frac 1 N \Sigma_{i=1}^{N}{(x_i -\mu)(x_i -\mu)^T}\]
+
+<ul>
+  <li>$\Sigma v = \lambda v$
+    <ul>
+      <li>$\Sigma$  : Square Matrix</li>
+      <li>$v$  : Eigenvector or characteristic vector (d)</li>
+      <li>
+        <p>$\lambda$ : Eigenvector or characteristic value (d*d)</p>
+
+        <p><img src="13/Untitled_12.png" alt="Untitled" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>$\Sigma v = \lambda v$</li>
+  <li>$(\Sigma -\lambda I) v=0$</li>
+  <li>$\Sigma -\lambda I=0 \iff M = 0$</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>$</td>
+          <td>\Sigma -\lambda I</td>
+          <td>=0 \iff</td>
+          <td>M</td>
+          <td>= 0$ // Characteristic Equation</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>The zero vector cannot be an eigenvector</li>
+  <li>The value zero can be an eigenvalue
+    <ul>
+      <li>Eigen solver - library 별로 Serving algorithm이 다름</li>
+    </ul>
+  </li>
+  <li>다른 좌표계의 값으로 해석
+    <ul>
+      <li>차원 축소로 인한 info loss를 최소화시킴</li>
+      <li>원래 좌표계에서 차원 축소하면 info loss가 너무 크기 때문에 변환하여</li>
+    </ul>
+  </li>
+  <li>
+    <p>From d original variables: $x_1, x_2, …, x_d$</p>
+
+    <p>x 라는 좌표축을 y 좌표축으로 변환 (y-axis: uncorrelated)</p>
+
+    <ul>
+      <li>Produce k new variables: $y_1, y_2, …, y_k$ - Eigenvector의 개수를 k«d개로 표현할 수 있음.</li>
+      <li>y좌표계에는 data diension간 correlation이 최소화</li>
+      <li>다른 좌표축으로 새롭게 변환하며 dimension reduction
+        <ul>
+          <li>표현 방법은 다르지만 data 자체는 동일하게 d variables : y1~ y1d</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="13/Untitled_13.png" alt="Untitled" /></p>
+
+    <p><img src="13/Untitled_14.png" alt="Untitled" /></p>
+  </li>
+  <li>such that:
+    <ul>
+      <li>
+        <p>$y_k$’s are uncorrelated (orthogonal)</p>
+
+        <p>새로운 좌표축 yk는 서로 수직인 관계 (uncorrelated, orthogonal)</p>
+      </li>
+      <li>$y_1$ explains as much as possible of original variance in data set
+        <ul>
+          <li>data의 가장 큰 Variance 방향으로</li>
+        </ul>
+      </li>
+      <li>$y_2$ explains as much as possible of remaining variance</li>
+      <li>etc.</li>
+    </ul>
+  </li>
+  <li>eigenvector / eigenvalue 대응 → characteristic equation으로 solve 가능
+    <ul>
+      <li>solver에 따라 solution이 다르게 나타나는데 eigenvector value가 잘 적합하게 구해졌는지 확인 (unstable하게 구해졌을 수가 있으므로)</li>
+    </ul>
+  </li>
+  <li>$v_1 = \left[ \begin{matrix}v_{11} &amp; v_{12} &amp; …&amp; v_{1d} \end{matrix} \right]^T$ is the 1st Eigenvector of covariance matrix, and coefficients of $y_1$ ( $v_1$ is the first principal component)</li>
+  <li>$v_2 = \left[ \begin{matrix}v_{21} &amp; v_{22} &amp; …&amp; v_{2d} \end{matrix} \right]^T$is the 2nd Eigenvector of covariance matrix, and coefficients of $y_2$ ( $v_2$ is the 2nd principal component)</li>
+</ul>
+
+<p>…</p>
+
+<ul>
+  <li>$v_k = \left[ \begin{matrix}v_{k1} &amp; v_{k2} &amp; …&amp; v_{kd} \end{matrix} \right]^T$is the kth Eigenvector of covariance matrix, and coefficients of $y_k$ ( $v_k$ is the kth principal component)</li>
+</ul>
+
+<p><img src="13/Untitled_15.png" alt="Untitled" /></p>
+
+<ul>
+  <li>eigenvector, eigenvalue가 나오게 되고 
+2개의 eigenvalue의 크기 순서대로 eigenvector을 내림차순으로 정렬
+    <ul>
+      <li>→ 가장 크게 var이 되는 방향으로 정렬하게 됨</li>
+    </ul>
+  </li>
+  <li>새로운 좌표계를 보면 제일 큰 분산 방향으로 분산을 표현해 낸 좌표축 v1, v2
+    <ul>
+      <li>첫 번째 eigenvalue에 해당하는 좌표축을 써서 data 표현해면 → info loss 최소화</li>
+      <li>
+        <p>더 분별력 잇는 방향으로 표현되나 data 자체는 동일하다.</p>
+
+        <p><img src="13/Untitled_16.png" alt="Untitled" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>더 분별력 잇는 방향으로 표현되나 data 자체는 동일 (x1, x2) → (y1, y2)
+    <ul>
+      <li>그 변환 관계는 x좌표와 y좌표의 연관</li>
+      <li>
+        <p>d차원을 k차원으로 줄어들게 됨 : 가장 큰 eigenvector로 해서 좌표축을 변환해도 잘 date들이 표현이 됨을 확인할 수 있다. (최대 분산 방향이므로)</p>
+
+        <p><img src="13/Untitled_17.png" alt="Untitled" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="pca-example">PCA Example</h2>
+
+<p><img src="13/Untitled_18.png" alt="Untitled" /></p>
+
+<p><img src="13/Untitled_19.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Calculate the covariance matrix
+    <ul>
+      <li>$cov = \left[ \begin{matrix}.616555556 &amp; .615444444 \ .615444444 &amp;.716555556\end{matrix} \right]$
+        <ul>
+          <li>covariance : $\sigma _{12} = \sigma _{21}$이 같은 값을 가지는 symmetric - &gt; correlation이 positive :</li>
+        </ul>
+      </li>
+      <li>since the non-diagonal elements in this covariance matrix are positive, we should expect that both the x and y variable increase together.</li>
+    </ul>
+
+    <ol>
+      <li>Zero mean data를 이용해 $XX^T$</li>
+      <li>각각의 data에서 mu를 빼 주어 n으로 나누자:  $\frac 1 n (x-\mu)(x-\mu)^T$
+        <ul>
+          <li>$\frac 1 n$으로 나누어주면 covariance</li>
+          <li>안 나누어주면 scatter matrix
+            <ul>
+              <li>: 나누어주냐 나누어주지 않느냐는 상수를 곱해주는 것이기 때문에 cov로 하던 scatter로 하던 방향과 크기를 이야기하는 것이기에 같게 나옴.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Calculate the eigenvectors and eigenvalues of the covariance matrix</p>
+
+    <p>characteristic equation을 구해 lambda를 구해 eigenvalue, vector</p>
+  </li>
+  <li>
+    <p>eigenvalues$= \left[ \begin{matrix}.0490833989 \ 1.28402771  \end{matrix} \right]$</p>
+  </li>
+  <li>eigenvectors$= \left[ \begin{matrix}-.735178656 &amp;-.677873399 \ .677873399 &amp;-.735178656 \end{matrix} \right]$
+    <ul>
+      <li>크기 순서대로 정렬하게 되면 v2 / v1</li>
+      <li>(-) (-) 북동/남서방향 : 서로 수직인 관계로 얻어짐</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="13/Untitled_20.png" alt="Untitled" /></p>
+
+<ul>
+  <li>eigenvectors are plotted as diagonal dotted lines on the plot.</li>
+  <li>Note they are perpendicular to each other.</li>
+  <li>Note one of the eigenvectors goes through the middle of the points, like drawing a line of best fit.</li>
+  <li>
+    <p>The second eigenvector gives us the other, less important, pattern in the data, that all the points follow the main line, but are off to the side of the main line by some amount.</p>
+  </li>
+  <li>
+    <p>Reduce dimensionality and form feature vector</p>
+
+    <p>차원 축소된 data : feature</p>
+
+    <ul>
+      <li>the eigenvector with the highest eigenvalue is the principle component of the data set.
+        <ul>
+          <li>원래 data dimension을 drop한 형태가 아닌 원래 거를 잘 조합해서 만든 feature vector</li>
+          <li>eigenvalue를 크기 순대로 대응하여 첫 번째 component로 간주한다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>In our example, the eigenvector with the largest eigenvalue was the one that goes through the middle of the data.</li>
+  <li>
+    <p>Once eigenvectors are found from the covariance matrix, the next step is to order them by eigenvalue, highest to lowest. This gives you the components in order of significance.</p>
+  </li>
+  <li>Eigen Feature Vector
+    <ul>
+      <li>
+        <p>Feature Vector = (eig1 eig2 eig3 … eign)</p>
+
+        <p>모든 eigenvector를 사용하면 원래 data 사용</p>
+
+        <ul>
+          <li>dim reduction은 없으나 correlation 최소되도록 좌표값 생성</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>We can either form a feature vector with both of the eigenvectors:
+    <ul>
+      <li>eigenvectors$= \left[ \begin{matrix}-.677873399 &amp; -.735178656 \ -.735178656 &amp;.677873399  \end{matrix} \right]$</li>
+    </ul>
+  </li>
+  <li>or, we can choose to leave out the smaller, less significant component and only have a single column:
+    <ul>
+      <li>less significant 한 eigenvector순으로 drop시키면 차원의 수 = data info loss 최소화 하는 방향으로 drop</li>
+      <li>eigenvalues$= \left[ \begin{matrix}.677873399 \ - .735178656 \end{matrix} \right]$</li>
+    </ul>
+  </li>
+  <li>Back to our example: Transform data to eigen-space $(x’, y’)$</li>
+</ul>
+
+<p><img src="13/Untitled_21.png" alt="Untitled" /></p>
+
+<p><img src="13/Untitled_22.png" alt="Untitled" /></p>
+
+<ul>
+  <li>좌표축의 반시계방향 회전 (data의 시계방향 회전) 이라고도 볼 수 있음</li>
+  <li>data를 eigenvector에 투영한다는 것은 :
+    <ul>
+      <li>Eigenvector를 원래 data point에 곱하는 것은
+  새로운 좌표값에서의 값이 나오게 됨.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="eigenface">Eigenface</h1>
+
+<p><img src="13/Untitled_23.png" alt="Untitled" /></p>
+
+<ul>
+  <li>data 분석할 때 : 특히 video 처리할 때 image 100*100만 되도 dimension 10000
+    <ul>
+      <li>→ 처리:</li>
+      <li>image column방향으로 이어붙여서 column vector륾 만들어 처리했는데 너무 dim이 컸음
+  PCA를 통해 dimension reduction을 하려고 했음</li>
+    </ul>
+  </li>
+  <li>When viewed as vectors of pixel values, face images are extremely high-dimensional
+    <ul>
+      <li>d = 100´100 image → 10,000 dimensions</li>
+      <li>Slow and lots of storage</li>
+    </ul>
+  </li>
+  <li>However, very few of 10,000 dimensional vectors are valid face images</li>
+  <li>We want to effectively model the subspace of face images</li>
+  <li>$X_{new} = \Sigma_i w_i x_i$</li>
+</ul>
+
+<p><img src="13/Untitled_24.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>Eigenspace 얼굴 이미지를 모아서 평균 face - PCA할 때 mean을 빼 주어 평균 얼굴을 빼 주어 수행</p>
+  </li>
+  <li>10000차원 data를 이용해 covariance mat를 구하고 이로부터 eigenvector/value를 구할 수 있음
+    <ul>
+      <li>그 eigenvector는 10000차원임 (d = 10000) / data 개수 n = 100
+        <ul>
+          <li>
+            <blockquote>
+              <p>covariance matrix의 차원은 : 10000 * 10000</p>
+            </blockquote>
+          </li>
+          <li>d*d로 pca하면 eigenvector d개 → 10000개 나오게 됨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>eigenvector : 10,000차원의 column vector를 100*100 이미지로 만들게 되면 eigenvalue모양이 얼굴 모양을 나타내게 됨.</li>
+  <li>eigenvalue와 data를 곱하게 되면 이를 feature vector로 다섯 개로 줄어듦</li>
+  <li>이런 식으로 feature vector로 나오게 된 것을 DT, bayesian에 넣는 것보다도 data 전체를 다 넣어서 NN에 넣는게 더 효율적이더라 :더 좋은 feature를 뽑아 classification도 잘 해줌</li>
+</ul>
+
+<p><img src="13/Untitled_25.png" alt="Untitled" /></p>
+
+<ul>
+  <li>$X_{\mu} = VY$</li>
+  <li>$X = \mu + VY$</li>
+</ul>
+
+<p><img src="13/Untitled_26.png" alt="Untitled" /></p>
+
+<p><img src="13/Untitled_27.png" alt="Untitled" /></p>
+
+<ul>
+  <li>(1) 원래 data를 이용하는 것 vs (2) eigenvector를 이용하는 것 중 어느 것이 더 효율적일까? (효과적일까)</li>
+</ul>
+
+<p>→ eigenvector가 더 효율적이다.</p>
+
+<p>이유)</p>
+
+<ul>
+  <li>original data X에는 많은 duplicate를 포함되어 있다.</li>
+</ul>
+
+<p>그러나</p>
+
+<ul>
+  <li>Eigenvector에는 그 duplicate가 제거된 correlation이 배제됨</li>
+  <li>심지어 원래는 i 100개를 다 써야 하는데 eigenvector를 쓰면 10000 iteration까지도 갈 수 있음/ data correlation 제거했기 때문에 고유성을 가진 vector들은 적은 data를 사용해도 전체 데이터를 표현할 수 있다</li>
+</ul>
+
+<p>→ original data 100개 돌려서 쓰는 것보다 10개 해서 쓰는게 더 효과적인 결과가 나올 수 있다</p>
+
+<h1 id="sift-feature-visualization">SIFT feature visualization</h1>
+
+<p><img src="13/Untitled_28.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>The top three principal components of SIFT descriptors from a set of images are computed</p>
+  </li>
+  <li>data image pixel을 조합하여 image표현하는 방법</li>
+  <li>등장 배경
+    <ul>
+      <li>고차원 data feature pixel(4k 해상도 등)을 개별적으로 처리하기에는 어려움이 큼</li>
+      <li>→ data를 10*10으로 쪼개서 unit pattern의 조합 block으로 SIFT Descriptor를 뽑아 PCA를 수행시킴 → correlation이 배제된 상위 몇 개의 eigenvector 구해짐</li>
+    </ul>
+  </li>
+  <li>상위 n개의 eigenvector를 가지고 원본 image로 mapping하기 위한 alpha값을 구할 수 있을 것.
+    <ul>
+      <li>Map these principal components to the RGB space
+        <ul>
+          <li>$\Sigma_i \alpha_i v_i$</li>
+          <li>alpha value는 3개로 나타남 : 어떤 image의 patch이건 RGB</li>
+        </ul>
+      </li>
+      <li>
+        <blockquote>
+          <p>image에 비슷한 경향을 나타나면 비스무리한 색으로 나타나게 된다.</p>
+        </blockquote>
+        <ul>
+          <li>pixels with similar colors share similar structures 32</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>→ data에 어떤 내용이 포함 되어 있을지에 대한 연구를 수행할 수 있다.</p>
+
+<p><img src="13/Untitled_29.png" alt="Untitled" /></p>
+
+<ul>
+  <li>임의의 차원의 data block을 원하는 차원으로 줄임
+    <ul>
+      <li>임의의 block에 PCA 분석을 수행시키고 eigenvector에 원하는 개수 만큼 수행하면 그 alpha값을 활용하여 dim reduction : unit patch에 대한 pca 분석</li>
+    </ul>
+  </li>
+  <li>Divide the original 372x492 image into patches:</li>
+  <li>Each patch is an instance that contains 12x12 pixels on a grid</li>
+  <li>View each as a 144-D vector 33</li>
+  <li>
+    <p>PCA compression: 144-D → 60 D</p>
+
+    <p><img src="13/Untitled_30.png" alt="Untitled" /></p>
+
+    <ul>
+      <li>144개 eigenvector 모두 : 원본 image와 동일한 quality
+  60개 eigenvector : data 해상도가 떨어지지만 dim은 절반 정도로 줄어듬</li>
+    </ul>
+  </li>
+  <li>
+    <p>16 most important eigenvectors</p>
+
+    <p><img src="13/Untitled_31.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>6 most important eigenvectors</p>
+
+    <p><img src="13/Untitled_32.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>PCA compression: 144-D → 3-D</p>
+
+    <p><img src="13/Untitled_33.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>60 most important eigenvectors</p>
+
+    <p><img src="13/Untitled_34.png" alt="Untitled" /></p>
+  </li>
+  <li>block의 대소에 따른 compression 정도의 차 :
+    <ul>
+      <li>compression 정도 - image quality 사이의 tradeoff 존재</li>
+    </ul>
+  </li>
+  <li>
+    <p>일정 크기의 patch에 대해 pca를 보고 상위 n개의 eigenvector</p>
+
+    <p>→ 어떤 image건 12*12 pixel은 60개의 숫자로 표현되는 60dim</p>
+
+    <p>Compression 많이 되면 잘 분간할 수 없을 정도가 될 수 있으므로 적절한 선에서 (1/10) 마무리하면 괜찮음</p>
+  </li>
+</ul>
+
+<h1 id="pca-vs-lda">PCA vs. LDA</h1>
+
+<ul>
+  <li>PCA maximizes the total scatter → PCA does not consider class information
+    <ul>
+      <li>PCA 분석 하면 data의 최대 분산 방향으로 eigenvector가 얻어지게 됨</li>
+      <li>최대 분산 방향으로 data 투영하게 되면 data label 구분이 없어짐 (섞임)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Linear Discriminant Analysis(LDA) considers class information</p>
+
+    <p>LDA</p>
+
+    <ul>
+      <li>data label 이용:</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="13/Untitled_35.png" alt="Untitled" /></p>
+
+<p><img src="13/Untitled_36.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>PCA maximizes projected total scatter
+label이 없으니 전체 data에 대해서 covariance를 구함</p>
+
+\[\Sigma = \frac 1 N \Sigma_{i=1}^{N}{(x_i -\mu)(x_i -\mu)^T}\]
+
+\[\Sigma v = \lambda v\]
+  </li>
+  <li>
+    <p>LDA maximizes ratio of projected between-class to projected within-class scatter</p>
+    <ul>
+      <li>LDA: 각 class별로 covariance matrix를 구함
+        <ul>
+          <li>within class scatter</li>
+        </ul>
+      </li>
+      <li>Eigen-decomposition: Sigma value가 최대화되는 방향 :
+        <ul>
+          <li>pca : covariance 최대화</li>
+          <li>lda : $\Sigma_b$ 최대화, $\Sigma_w$ 최소화</li>
+        </ul>
+      </li>
+      <li>cluser의 분산이 각각 cluster 내부에서는 cov가 최소
+  서로 다른 class 간에는 cov 최대의 방향</li>
+    </ul>
+
+\[\Sigma_w = \Sigma_{j=1}^{c}\frac 1 {N_c} \Sigma_{i=1}^{N_c}{(x_i -\mu_c)(x_i -\mu_c)^T}\]
+
+\[\Sigma_c = \frac 1 {c} \Sigma_{i=1}^{c}{(\mu_c-\mu)(\mu_c-\mu)^T}\]
+
+\[\frac{\Sigma_b}{\Sigma_w}v = \lambda v\]
+  </li>
+</ul>
+
+<h2 id="pca-vs-lda-for-reference">PCA vs. LDA (for reference)</h2>
+
+<ul>
+  <li>eigenvector PCA = var 최대 방향으로 vector를 구함
+    <ul>
+      <li>원래 vector를 transformation하여 var이 최대화되도록</li>
+    </ul>
+  </li>
+  <li>$z = w^Tx$</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Maximize $</td>
+          <td> </td>
+          <td>z</td>
+          <td> </td>
+          <td>= z^Tz$  , while $</td>
+          <td> </td>
+          <td>w</td>
+          <td> </td>
+          <td>= w^Tw = 1$</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>z를 maximize =</td>
+              <td>z</td>
+              <td>최대 = z^Tz 최대화</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>앞에서 이 weight matrix는 norm =1이 되는 방향으료 표준화해놓고 z 최대화하는 방향으로 eigenvalue vector 구함 → $z^Tz$</li>
+    </ul>
+  </li>
+  <li>$z^Tz = w^Tx(w^Tx)^T = w^Tx x^Tw = w^T \Sigma w$</li>
+  <li>
+    <p>$\max_w{(z^Tz - \lambda(w^T w-1))} = \max_w{(w^T \Sigma w - \lambda(w^Tw-1))}$</p>
+  </li>
+  <li>Take derivative w.r.t. $w$</li>
+  <li>$2 \Sigma w - 2 \lambda w = 0$</li>
+  <li>$\Sigma w = \lambda w$</li>
+</ul>
+
+<h2 id="pca-vs-lda-face-recognition-accuracy">PCA vs. LDA Face recognition accuracy</h2>
+
+<ul>
+  <li>
+    <p>Database 상 Face 중에서 어느 것과 가장 같은지 비교</p>
+
+    <p><img src="13/Untitled_37.png" alt="Untitled" /></p>
+
+    <ul>
+      <li>eigenvector 너무 적게하면 정보 손실된 것이니까 잘 비교 안됨</li>
+      <li>eigenvector(feature) 늘여보면 성능 올라감 / 떨어짐</li>
+    </ul>
+  </li>
+  <li>PCA (eigenfaces): 80.0%</li>
+  <li>LDA (fisherfaces): 93.2%</li>
+</ul>
+
+<p><img src="13/Untitled_38.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>FERET database</p>
+  </li>
+  <li>PCA : dim reduction
+    <ul>
+      <li>얼굴 data 이용하여 : row 방향이 아닌 column vector 모양</li>
+      <li>data에 대한 pca 분석 수행하면 eigenvector가 나오는데</li>
+    </ul>
+  </li>
+  <li>y = V^T X로 y가 나옴
+    <ul>
+      <li>V eigenvector 10000개 중 k=100~200로 쓰면 100~200 dim의 data로 수행</li>
+    </ul>
+  </li>
+  <li>PCA는 unsupervised learning에서 clustering, dimensionality reduction
+    <ul>
+      <li>Not for classification</li>
+    </ul>
+  </li>
+  <li>LDA는 supervised learning, dimensionality reduction
+    <ul>
+      <li>Classification을 위해 쓸 수 있으나 label 사용해서 unsupervised라고 볼 수는 없음</li>
+    </ul>
+  </li>
+  <li>사람의 수 = class 개수 → 수천만 개가 되면 class별 학습이 어려움
+    <ul>
+      <li>보통 얼굴인식할 때는 사람 수가 되게 많다 (수십 ~ 수백이나 폰에는 보통 한 명)</li>
+      <li>출입 시스템에 등록된 사람 : 수십~수백</li>
+      <li>CCTV block system : 수십 명</li>
+      <li>운전면허, 주민등록 얼굴 : 수천만 명</li>
+      <li>얼굴 인식할 때 등록되는 사람들 중 얼굴</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="identification">Identification</h2>
+
+<ul>
+  <li>one-to-n matching</li>
+  <li>k nearest neighbor를 사용하여 l2 distance가 가장 가까운 것을 새로운 얼굴에 대응되는 id라고 간주함</li>
+</ul>
+
+<h2 id="verification">Verification</h2>
+
+<ul>
+  <li>one-to-one matching</li>
+  <li>사용자가 id를 이야기하고 맞는지 판단하는 경우-해당 id가 맞느냐 틀리느냐</li>
+  <li>Attribute가 많아지는데 성능 떨어지면 curse of dimensionality / overfitting</li>
+</ul>

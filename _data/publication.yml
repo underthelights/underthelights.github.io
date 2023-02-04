@@ -1,0 +1,10 @@
+publications:
+  - type: Publications
+    list:
+      - title: "TBA"
+        author: <intext-highlight>Kyuhwan Shim</intext-highlight>, TBA
+        venue: <intext-highlight>TBA 202n</intext-highlight>. (to appear)
+        pdf: TBA
+        tags:
+          - 'HAI'
+      

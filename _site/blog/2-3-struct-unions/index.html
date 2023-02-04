@@ -1,0 +1,182 @@
+<h2 id="structures-and-unions-chapter-23">Structures and Unions (Chapter 2.3)</h2>
+
+<h3 id="231-structures">2.3.1 Structures</h3>
+
+<ul>
+  <li>A structure (called a record in many other programming languages) is a collection of data items, where each item is identified by its type and name.</li>
+  <li>For example, the following declaration creates a variable whose name is “person” with three fields.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">salary</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">person</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The structure member operator . is used to select a particular member of the structure.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">strcpy</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">"james"</span><span class="p">);</span>
+<span class="n">person</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">person</span><span class="p">.</span><span class="n">salary</span> <span class="o">=</span> <span class="mi">35000</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>We can create a new structure data type by using the typedef statement.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">salary</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">humanBeing</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Then we can declare variables of this type.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">humanBeing</span> <span class="n">person1</span><span class="p">,</span> <span class="n">person2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h4 id="program-24-ex006">Program 2.4 [ex006]</h4>
+
+<script src="https://gist.github.com/underthelights/455d5559c6d5d2121304f5393e1f13c1.js"></script>
+
+<ul>
+  <li>It is possible to use a structure data type as a member of another structure.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">year</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">date</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">salary</span><span class="p">;</span>
+    <span class="n">date</span> <span class="n">dob</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">humanBeing</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">person1</span><span class="p">.</span><span class="n">dob</span><span class="p">.</span><span class="n">month</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">person1</span><span class="p">.</span><span class="n">dob</span><span class="p">.</span><span class="n">day</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="n">person1</span><span class="p">.</span><span class="n">dob</span><span class="p">.</span><span class="n">year</span> <span class="o">=</span> <span class="mi">1944</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="232-unions-ex007">2.3.2 Unions [ex007]</h3>
+
+<ul>
+  <li>Fields that share memory space; only one field of union is active at any given time.</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/b918ffbde054fd94b34d50d92426bc1a.js"></script>
+
+<h3 id="233-internal-implementation-of-structures">2.3.3 Internal Implementation of Structures</h3>
+
+<ul>
+  <li>In most cases we do not need to be concerned with exactly how the C compiler will store the fields of structure in memory.</li>
+  <li>Generally, the values will be stored in the order specified in the structure definition.</li>
+</ul>
+
+<h3 id="234-self-referential-structures">2.3.4 Self-Referential Structures</h3>
+
+<ul>
+  <li>A self-referential structure is one in which one or more of its components is a pointer to itself.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">data</span><span class="p">;</span>
+    <span class="n">list</span> <span class="o">*</span><span class="n">link</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">list</span><span class="p">;</span>
+
+<span class="n">list</span> <span class="n">item1</span><span class="p">,</span> <span class="n">item2</span><span class="p">,</span> <span class="n">item3</span><span class="p">;</span>
+<span class="n">item1</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="sc">'a'</span><span class="p">;</span>
+<span class="n">item2</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="sc">'b'</span><span class="p">;</span>
+<span class="n">item3</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="sc">'c'</span><span class="p">;</span>
+<span class="n">item1</span><span class="p">.</span><span class="n">link</span> <span class="o">=</span> <span class="n">item2</span><span class="p">.</span><span class="n">link</span> <span class="o">=</span> <span class="n">item3</span><span class="p">.</span><span class="n">link</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="n">item1</span><span class="p">.</span><span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">item2</span><span class="p">;</span>
+<span class="n">item2</span><span class="p">.</span><span class="n">link</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">item3</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="notes-on-struct">Notes on struct</h3>
+
+<ul>
+  <li>This is a clarification slide for using struct in C.</li>
+  <li>A formal way to define a struct type.
+    <ul>
+      <li>The following code will define a new type called “struct person”.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">person</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">salary</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>This is how you declare variables of type struct person. struct person p1, p2;</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">person</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>You can rename “struct person” to another name such as “humanBeing” using typedef.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">person</span> <span class="n">humanBeing</span><span class="p">;</span>
+<span class="n">humanBeing</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>You can directly declare a variable of a struct type without naming the type.
+    <ul>
+      <li>In this case, you cannot reuse the type because the type does not have a name.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">salary</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>You can directly typedef a struct type without naming the type.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">salary</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">humanBeing</span><span class="p">;</span>
+</code></pre></div></div>
+
+<ul>
+  <li>In order to define a self-referential struct, you need to name the struct type.</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">list</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">data</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">link</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>If you are compiling with a C++ compiler, you can omit “struct” when declaring variables. (You need to use keyword struct when defining the type.)</li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">list</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">data</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">list</span> <span class="o">*</span><span class="n">link</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>

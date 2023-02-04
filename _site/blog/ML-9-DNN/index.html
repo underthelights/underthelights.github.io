@@ -1,0 +1,597 @@
+<h1 id="9-dnn">9. DNN</h1>
+<p>Property 1: Goodfellow6-9</p>
+
+<h1 id="deep-learning">Deep Learning</h1>
+
+<ul>
+  <li>A machine learning subfield. Exceptional performance in learning patterns.</li>
+  <li>Deep learning algorithms attempt to learn (multiple levels of) representation by using a hierarchy of multiple layers.</li>
+  <li>If you provide the system tons of information, it begins to understand it and respond in useful ways.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280841-5f543450-343f-428d-a710-2de87ec07d90.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Manually designed features are often over-specified, incomplete and take a long time to design and validate</li>
+  <li>Learned Features are easy to adapt, fast to learn</li>
+  <li>Deep learning provides a very flexible, (almost?) universal, learnable
+framework for representing world, visual and linguistic information.</li>
+  <li>Can learn both unsupervised and supervised</li>
+  <li>Effective end-to-end joint system learning</li>
+  <li>Utilize large amounts of training data</li>
+</ul>
+
+<h2 id="history">History</h2>
+
+<ul>
+  <li>In ~2012, deep learning (DL) started outperforming other machine learning (ML) techniques, first in speech and vision, then NLP</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280850-84f61fd3-b882-4e05-88c2-f3a9726f65e9.png" alt="Untitled_1" />
+<img src="https://user-images.githubusercontent.com/46957634/188280851-27c1c196-b18a-48ad-8d1f-995ab74974d7.png" alt="Untitled_2" /></p>
+
+<h2 id="structure">Structure</h2>
+
+<p>어떻게 DL이 좋은 성능을 내는가?</p>
+
+<ul>
+  <li>Fat + Short vs. Thin + Tall Networks</li>
+  <li>The same number of parameters</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280852-f4b51bc9-82ea-40b6-8444-335edc605fd6.png" alt="Untitled_3" /></p>
+
+<ul>
+  <li>Deep → Modularization</li>
+  <li>
+    <p><img src="https://user-images.githubusercontent.com/46957634/188280854-4800d400-c5a6-486d-9a1b-f5c9f0eac4ab.png" alt="Untitled_4" />
+<img src="https://user-images.githubusercontent.com/46957634/188280855-6388a472-0576-43ff-a35d-48ec1d93e0e8.png" alt="Untitled_5" />
+<img src="https://user-images.githubusercontent.com/46957634/188280857-b2c58c84-6ccd-40c2-bf71-c7c54072fa53.png" alt="Untitled_6" />
+<img src="https://user-images.githubusercontent.com/46957634/188280858-e8cb1992-3783-4534-ae1f-4aca21858335.png" alt="Untitled_7" />
+<img src="https://user-images.githubusercontent.com/46957634/188280860-ad51845e-23d1-433a-b6e2-8b4ce62bab6a.png" alt="Untitled_8" />
+<img src="https://user-images.githubusercontent.com/46957634/188280865-2800259e-5654-431e-a0f6-810f65f58103.png" alt="Untitled_9" />
+<img src="https://user-images.githubusercontent.com/46957634/188280869-d15d08ad-3e05-4ede-a963-a9f83b5b49e0.png" alt="Untitled_10" /></p>
+  </li>
+  <li>
+    <p>Before 2006, deeper usually does not imply better performance.</p>
+  </li>
+  <li><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">Geoffrey Hinton showed how to train deep network in 2006 [1]</a>
+    <ul>
+      <li>Learned layers one by one</li>
+    </ul>
+  </li>
+  <li><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">Deep Neural Networks showed good classification performance with large image data set in 2012. [2]</a>
+    <ul>
+      <li>GPU</li>
+      <li>Big data</li>
+      <li>Better learning algorithms</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280873-199a43e5-7947-49cb-a4e4-b95ea20e5443.png" alt="Untitled_11" /></p>
+
+<p><a href="http://www.gizmodo.com.au/2015/04/the-basic-recipe-for-machinelearning-explained-in-a-single-powerpoint-slide/">http://www.gizmodo.com.au/2015/04/the-basic-recipe-for-machinelearning-explained-in-a-single-powerpoint-slide/</a></p>
+
+<ul>
+  <li>Rectified Linear Unit (ReLU)
+    <ul>
+      <li>Fast to compute</li>
+      <li>Vanishing gradient problem</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280876-10d270b6-6457-4cfe-aa5a-33ac75a73968.png" alt="Untitled_12" /></p>
+
+<ul>
+  <li><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[Xavier Glorot, AISTATS’11] [3]</a></li>
+  <li><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[Andrew L. Maas, ICML’13] [4]</a></li>
+  <li><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[Kaiming He, arXiv’15] [5]</a></li>
+</ul>
+
+<h1 id="dropout">Dropout</h1>
+
+<p><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">Dropout [6]</a></p>
+
+<ul>
+  <li>Each time before computing the gradients</li>
+  <li>Each neuron has $p \times 100 \%$ chance to be dropped
+    <ul>
+      <li>The structure of the network is changed</li>
+    </ul>
+  </li>
+  <li>Use the new network for training</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280877-2dc86cb3-9b0d-4d4e-a023-9033c7feecfe.png" alt="Untitled_13" />
+<img src="https://user-images.githubusercontent.com/46957634/188280879-7b1bb0dc-9046-41c7-9b25-4a3a3181a9d7.png" alt="Untitled_14" /></p>
+
+<ul>
+  <li>Weights should be multiplied by (1-p) when testing</li>
+</ul>
+
+<h2 id="training-stage">Training stage</h2>
+
+<p>Assume dropout rate is 50%</p>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280880-ff0c4282-cd2d-4a25-8f52-c12f00c7b30f.png" alt="Untitled_15" /></p>
+
+<h3 id="testing-stage">Testing stage</h3>
+
+<p>No dropout</p>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280882-0f356b1b-47ae-4161-ba6c-0bae951b40ef.png" alt="Untitled_16" /></p>
+
+<h1 id="convolutional-neural-network">Convolutional Neural Network</h1>
+
+<h2 id="fully-connected-layer">Fully connected layer</h2>
+
+<ul>
+  <li>Example: 200x200 image * 40K hidden units → ~2B parameters</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280884-b24fcebf-e58f-4fa8-91a0-f07fb0ae74f4.png" alt="Slide Credit: Marc'Aurelio Ranzato" /></p>
+
+<p>Slide Credit: Marc’Aurelio Ranzato</p>
+
+<ul>
+  <li>Waste of resources + we have not enough training samples</li>
+  <li>Spatial correlation is local</li>
+</ul>
+
+<h2 id="locally-connected-layer">Locally Connected Layer</h2>
+
+<ul>
+  <li>Example: 200x200 image * 40K hidden units → ~4M parameters (Filter size: 10x10)
+Page 20- Spatial correlation is local</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280885-abf3d04d-52d9-4cc0-8e77-652c6a175602.png" alt="Untitled_18" /></p>
+
+<ul>
+  <li>Waste of resources + we have not enough training samples</li>
+  <li>Spatial correlation is local</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280888-46729577-a232-4023-83ae-b674f374652f.png" alt="Untitled_19" /></p>
+
+<ul>
+  <li>Statistics is similar at different locations
+    <ul>
+      <li>Share the same parameters across</li>
+    </ul>
+  </li>
+  <li>different locations (weight sharing)
+    <ul>
+      <li>Convolutions with learned kernels</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="convolution-operation">Convolution operation</h2>
+
+<p>$F(m,n) = f * h = \Sigma_{l= -\frac w 2}^{\frac f 2}\Sigma_{k= -\frac w 2}^{\frac w 2} {f(m+k, n+l) *h(\frac w 2 -k, \frac w 2 -l)}$</p>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280891-91050b9e-3257-4c55-8b39-17d9cfdb9f02.png" alt="Untitled_20" />
+<img src="https://user-images.githubusercontent.com/46957634/188280892-f7bb4b05-ff9c-4279-ab46-2a5d1fc9c858.png" alt="Untitled_21" /></p>
+
+<ul>
+  <li>If a feature is useful in some locations during training, detectors for that feature will be useful in all locations during testing</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/188280893-984efb4c-2f50-4619-ada2-f6163419c454.png" alt="Untitled_22" /></p>
+
+<h2 id="pooling">Pooling</h2>
+
+<ul>
+  <li>By “pooling” (e.g., taking max) filter responses at different locations, we gain robustness to the exact spatial location of features.</li>
+</ul>
+
+<p><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e67b7b1d-c185-4386-9709-7a1df8aa9300/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220903%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220903T170529Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=ea14f0e42827df426e05d2d83b2b582cb021c2809728eb87c440796e4de8d8c1&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="Untitled" /></p>
+
+<p><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/e50a0769-e4bf-459b-a7d7-694d8349d6d5/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220903%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220903T170547Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=086688091b424dd8949d23ca311338eb957bffd91cff034975057fbba1803b7c&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="Untitled" /></p>
+
+<p><img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/2c85de26-0778-4864-b757-e7fe1d00e352/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&amp;X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220903%2Fus-west-2%2Fs3%2Faws4_request&amp;X-Amz-Date=20220903T170601Z&amp;X-Amz-Expires=86400&amp;X-Amz-Signature=7c91f58dfc23593943ce40dd7b381a325b1ec8821b7e585b5787ade47df9584c&amp;X-Amz-SignedHeaders=host&amp;response-content-disposition=filename%20%3D%22Untitled.png%22&amp;x-id=GetObject" alt="Untitled" /></p>
+
+<h3 id="max-pooling">Max-pooling</h3>
+
+<p>$h_i^n(r,c) = max_{\bar r \in N(r), \bar c \in N(c), } h_i^{n-1} (\bar r, \bar c)$</p>
+
+<h3 id="average-pooling">Average-pooling</h3>
+
+<p>$h_i^n(r,c) = mean_{\bar r \in N(r), \bar c \in N(c), } h_i^{n-1} (\bar r, \bar c)$</p>
+
+<h3 id="l2-pooling">L2-pooling</h3>
+
+<p>$h_i^n(r,c) = \sqrt{\Sigma_{\bar r \in N(r), \bar c \in N(c), } h_i^{n-1} (\bar r, \bar c)}$</p>
+
+<h2 id="convolution-kernel-filter-examples">Convolution kernel (filter) examples</h2>
+
+<p><img src="9/Untitled_26.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>Examples of learned object parts from object categories</p>
+
+    <p><img src="9/Untitled_27.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h2 id="lenet-5-1998">LeNet-5 (1998)</h2>
+
+<p><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[7] Le-Net</a></p>
+
+<ul>
+  <li>Yann LeCun and his collaborators developed a really good recognizer for
+handwritten digits by using backpropagation in a feedforward net with
+    <ul>
+      <li>Many hidden layers (at that time),</li>
+      <li>3 convolution layer,</li>
+      <li>2 subsampling (pooling) layer</li>
+      <li>5*5 convolution kernels,</li>
+      <li>~340,000 connections,</li>
+      <li>~60,000 parameter</li>
+    </ul>
+  </li>
+  <li>
+    <p>Used for reading ~10% of the checks in North America</p>
+
+    <p><img src="9/Untitled_28.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<p><img src="9/Untitled_29.png" alt="Untitled" /></p>
+
+<p><img src="9/Untitled_30.png" alt="Untitled" /></p>
+
+<p><img src="9/Untitled_31.png" alt="Untitled" /></p>
+
+<h2 id="backpropagation-in-cnn">Backpropagation in CNN</h2>
+
+<ul>
+  <li>Same color shares the same weight</li>
+  <li>Compute the gradients as usual, and then modify the gradients so that they satisfy the constraints</li>
+</ul>
+
+<p><img src="9/Untitled_32.png" alt="Untitled" /></p>
+
+<p><img src="9/Untitled_33.png" alt="Untitled" /></p>
+
+<ul>
+  <li>The 82 errors made by LeNet5</li>
+  <li>Notice that most of the errors are cases that people find quite easy.</li>
+  <li>
+    <p>The human error rate is probably 20 to 30 errors.</p>
+  </li>
+  <li>LeNet uses knowledge about the invariances to design:
+    <ul>
+      <li>local connectivity</li>
+      <li>weight-sharing</li>
+      <li>Pooling</li>
+      <li>~ 80 errors</li>
+    </ul>
+  </li>
+  <li>Using many different transformations of the input and other tricks (Ranzato2008)
+    <ul>
+      <li>~ 40 errors</li>
+    </ul>
+  </li>
+  <li>Using carefully designed extra training data (Ciresan 2010)
+    <ul>
+      <li>For each training image, they produced many new training examples by applying many different transformations</li>
+      <li>~ 35 errors</li>
+    </ul>
+  </li>
+</ul>
+
+<p>[Ciresan 2010][8]</p>
+
+<p><img src="9/Untitled_34.png" alt="PyTorch implementation of LeNet-5 for MNIST, [https://github.com/radsn/LeNet5](https://github.com/radsn/LeNet5)" /></p>
+
+<p>PyTorch implementation of LeNet-5 for MNIST, <a href="https://github.com/radsn/LeNet5">https://github.com/radsn/LeNet5</a></p>
+
+<ul>
+  <li>The top printed digit is the right answer.</li>
+  <li>The bottom two printed digits are the network’s best two guesses.</li>
+  <li>The right answer is almost always in the top 2 guesses.</li>
+  <li>With model averaging they can now get about 25 errors.</li>
+</ul>
+
+<h1 id="from-handwritten-digits-to-3-d-objects">From Handwritten Digits to 3-D objects</h1>
+
+<ul>
+  <li>Recognizing real objects in color photographs downloaded from the web is much more complicated than recognizing hand-written digits:
+    <ul>
+      <li>Hundred times as many classes (1000 vs 10)</li>
+      <li>Hundred times as many pixels (256* 256 color vs. 28* 28 gray)</li>
+      <li>Two dimensional image of three-dimensional scene</li>
+      <li>Multiple objects in each image</li>
+      <li>Cluttered background</li>
+    </ul>
+  </li>
+  <li>Will the same type of convolutional neural network work?</li>
+</ul>
+
+<h1 id="the-ilsvrc-2012-competition-on-imagenet">The ILSVRC-2012 Competition on ImageNet</h1>
+
+<p><img src="9/Untitled_35.png" alt="Untitled" /></p>
+
+<ul>
+  <li>[9] ImageNet
+    <ul>
+      <li>Over 15 million labeled high-resolution images</li>
+      <li>Roughly 22,000 categories</li>
+      <li>Collected from the web</li>
+      <li>Labeled by human using Amazon’s Mechanical Turk crowd-sourcing tool</li>
+    </ul>
+  </li>
+  <li>ImageNet Large-Scale Visual Recognition Challenge (ILSVRC)
+    <ul>
+      <li>Uses a subset of ImageNet</li>
+      <li>1,000 categories</li>
+      <li>1.2 million training images</li>
+      <li>50,000 validation images</li>
+      <li>150,000 test images</li>
+    </ul>
+  </li>
+  <li>The classification task:
+    <ul>
+      <li>Get the “correct” class in your top 5 bets. There are 1000 classes.</li>
+    </ul>
+  </li>
+  <li>The localization task:
+    <ul>
+      <li>For each bet, put a box around the object. Your box must have at least 50%
+  overlap with the correct box.</li>
+    </ul>
+  </li>
+  <li>Some of the best existing computer vision methods were tried on this dataset by leading computer vision groups from Oxford, INRIA, XRCE(XEROX), …
+    <ul>
+      <li>Computer vision systems use complicated multi-stage systems</li>
+      <li>The early stages are typically hand-tuned by optimizing a few parameters</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="examples-from-the-test-set-with-the-networks-guesses">Examples from the test set (with the network’s guesses)</h2>
+
+<p><img src="9/Untitled_36.png" alt="Untitled" /></p>
+
+<p>Error rates on the ILSVRC-2012 competition</p>
+
+<p>|  | classification | classification &amp; localization |
+| — | — | — |
+| UToronto
+ | 16.4%  | 34.1% |
+| UTokyo | 26.1% | 53.6% |
+| Oxford University Computer Vision Group
+ | 26.9% | 50.0% |
+| INRIA + XRCE | 27.0% |  |
+| UAmsterdam | 29.5% |  |</p>
+<ul>
+  <li>UToronto (deep learning - Alex Krizhevsky, AlexNet)</li>
+  <li>INRIA (French national research institute in CS) + XRCE (Xerox Research Center Europe)</li>
+</ul>
+
+<h1 id="a-cnn-for-imagenet">A CNN for ImageNet</h1>
+
+<p>AlexNet[10]</p>
+
+<ul>
+  <li>
+    <p>Alex Krizhevsky (NIPS 2012) developed a very deep convolutional neural net of the type pioneered by Yann LeCun.</p>
+  </li>
+  <li>7 hidden layers not counting some max pooling layers</li>
+  <li>The early layers are convolutional, the last two layers are fully connected</li>
+  <li>The activation functions are
+    <ul>
+      <li>Rectified linear units in every hidden layer. These train much faster and are more expressive than sigmoid.</li>
+      <li>Normalization for better activation</li>
+    </ul>
+  </li>
+  <li>Use “dropout” to regularize the weights in the fully connected layers</li>
+  <li>224<em>224 patches are taken from the 256</em>256 images (10 different versions) and leftright reflections are used to get more data</li>
+  <li>Used all 10 different patches at test time</li>
+</ul>
+
+<p><img src="9/Untitled_37.png" alt="Untitled" /></p>
+
+<h2 id="more-examples-from-alexnet">More examples from AlexNet</h2>
+
+<p><img src="9/Untitled_38.png" alt="Untitled" /></p>
+
+<h2 id="hardware-for-alexnet">Hardware for AlexNet</h2>
+
+<ul>
+  <li>He uses a very efficient implementation of convolutional nets on two NvidiaGTX 580 Graphics Processor Units (over 1000 fast little cores)
+    <ul>
+      <li>GPUs are very good for matrix-matrix multiplies.</li>
+      <li>GPUs have very high bandwidth to memory.</li>
+      <li>This allows him to train the network in a week.</li>
+      <li>It also makes it quick to combine results from 10 patches at test time.</li>
+    </ul>
+  </li>
+  <li>We can spread a network over many cores if we can communicate the states fast enough.</li>
+  <li>As cores get cheaper and datasets get bigger, big neural nets will improve faster than old-fashioned computer vision systems.</li>
+</ul>
+
+<h1 id="evolution-of-the-dnn">Evolution of the DNN</h1>
+
+<ul>
+  <li>Network depths and the performance</li>
+  <li>
+    <p>ILSVRC classification error (top-5 error)</p>
+
+    <p><img src="9/Untitled_39.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h1 id="fully-convolutional-networks">Fully Convolutional Networks</h1>
+
+<ul>
+  <li>
+    <p>Fully connected layer constrains the input image size</p>
+
+    <p><img src="9/Untitled_40.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Fully convolutional network structure has no constrains on the input image size</p>
+
+    <p><img src="9/Untitled_41.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h1 id="machine-learning-deep-learning-data-mining-big-data">Machine Learning, Deep Learning, Data Mining, Big data</h1>
+
+<h2 id="big-data">Big Data</h2>
+
+<ul>
+  <li>기존 데이터의 크기 범주를넘어서는 규모(2010~)</li>
+  <li>기존 데이터 처리 이슈 공유</li>
+  <li>대용량 데이터 분산저장/처리 방법 필요</li>
+</ul>
+
+<h2 id="machine-learning">Machine Learning</h2>
+
+<ul>
+  <li>데이터의 속성을 일반적으로 분석하는 방법, 주로 분류/회귀 작업에 사용됨(1950~)</li>
+  <li>지도학습/비지도학습/군집화</li>
+  <li>체스 게임으로부터 발전</li>
+</ul>
+
+<h2 id="deep-learning-1">Deep learning</h2>
+
+<ul>
+  <li>심층 인공신경망 기술을 사용하는 기계학습 방법(2010~)</li>
+  <li>기존 기계학습 방법의 성능을 뛰어 넘음</li>
+</ul>
+
+<h2 id="data-mining">Data Mining</h2>
+
+<ul>
+  <li>데이터에 내재된 속성을 분석 (1930~)</li>
+  <li>기계학습과 유사하나 데이터 간의 규칙을 분석하는 측면으로 차별화</li>
+</ul>
+
+<h2 id="some-history">Some history</h2>
+
+<ul>
+  <li>
+    <p>Frank Rosenblatt, Perceptron (1957, 1962): Early description and engineering of single-layer and multilayer artificial neural networks.</p>
+
+    <p><img src="9/Untitled_42.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Kasparov vs Deep Blue, 1997</p>
+
+    <p><img src="9/Untitled_43.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Lee Sedol vs AlphaGo, 2016</p>
+
+    <p><img src="9/Untitled_44.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h3 id="timelines">timelines</h3>
+
+<ul>
+  <li>1943: Neural networks</li>
+  <li>1957-62: Perceptron</li>
+  <li>1970-86: Backpropagation, RBM, RNN</li>
+  <li>1979-98: CNN, MNIST, LSTM, Bidirectional RNN</li>
+  <li>2006: “Deep Learning”, DBN• 2009: ImageNet + AlexNet</li>
+  <li>2014: GANs</li>
+  <li>2016-17: AlphaGo, AlphaZero</li>
+  <li>Turing Award given for:
+    <ul>
+      <li>“The conceptual and engineering breakthroughs that have made deep neural
+  networks a critical component of computing.”
+  • Yann LeCun
+  • Geoffrey Hinton
+  • Yoshua Bengio</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="limitations-of-deep-learning">Limitations of Deep Learning</h2>
+
+<p><img src="9/Untitled_45.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>Prediction from Rodney Brooks:
+“By 2020, the popular press starts having stories that the era of Deep Learning is over.”</p>
+  </li>
+  <li>2019 is the year it became cool to say that “deep learning” has limitations.</li>
+  <li>Books, articles, lectures, debates, videos were released that learning-based methods cannot do commonsense reasoning.</li>
+</ul>
+
+<h2 id="statics-of-acceptance-rate-neurips">Statics of acceptance rate NeurIPS</h2>
+
+<p><img src="9/Untitled_46.png" alt="Untitled" /></p>
+
+<h2 id="deep-learning-frameworktoolkits">Deep Learning Framework/Toolkits</h2>
+
+<p><img src="9/Untitled_47.png" alt="Untitled" /></p>
+
+<h2 id="alexnet">AlexNet</h2>
+
+<p>https://sushscience.wordpress.com/2016/12/04/understanding-alexnet/</p>
+
+<p><img src="9/Untitled_48.png" alt="Untitled" /></p>
+
+<hr />
+
+<p>[1] Geoffrey Hinton showed how to train deep network in 2006</p>
+
+<p>[2] Deep Neural Networks showed good classification performance with large image data set in 2012.</p>
+
+<p><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[3] [Xavier Glorot, AISTATS’11]</a></p>
+
+<p>Deep Sparse Rectifier Neural Networks. <strong><em>Xavier Glorot, Antoine Bordes, Yoshua Bengio</em></strong>
+ <em>Proceedings of the Fourteenth International Conference on Artificial Intelligence and Statistics.</em> PMLR 15:315-323, 2011.</p>
+
+<ul>
+  <li><a href="https://proceedings.mlr.press/v15/glorot11a.html">https://proceedings.mlr.press/v15/glorot11a.html</a></li>
+</ul>
+
+<p><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[4] [Andrew L. Maas, ICML’13]</a></p>
+
+<p>Rectifier nonlinearities improve neural network acoustic models (2013) by Andrew L. Maas , Awni Y. Hannun , Andrew Y. Ng</p>
+
+<p><a href="https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf">https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf</a></p>
+
+<p><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[5] [Kaiming He, arXiv’15]</a></p>
+
+<p>Deep Residual Learning for Image Recognition📹
+by Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun</p>
+
+<p><a href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a></p>
+
+<p><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[6] Dropout: A Simple Way to Prevent Neural Networks from Overfitting</a></p>
+
+<p><strong><em>Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, Ruslan Salakhutdinov</em></strong>; 15(56):1929−1958, 2014.</p>
+
+<p><a href="https://www.notion.so/6-2-DropOut-7f9244899e884b27969f212af344b6a1">6.2. DropOut</a></p>
+
+<p><a href="https://www.notion.so/Dropout-A-simple-way-to-prevent-neural-networks-from-overfitting-2014-N-Srivastava-et-al-pdf-b70dbe733db749bfbff250abeb9813e4">Dropout: A simple way to prevent neural networks from overfitting (2014), N. Srivastava et al. [pdf]</a></p>
+
+<p><a href="https://jmlr.org/papers/v15/srivastava14a.html">https://jmlr.org/papers/v15/srivastava14a.html</a></p>
+
+<p><a href="https://www.notion.so/9-DNN-4bd3fcaa9c98476dbe325f886d729985">[7] Le-Net</a></p>
+
+<p><a href="http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf">http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf</a></p>
+
+<p><a href="https://www.notion.so/5-1-LeNet-8a448781423b4a3591b77dd91d76a272">5.1. <strong>LeNet</strong></a></p>
+
+<p>[8] [Ciresan 2010]</p>
+
+<p>[9] ImageNet</p>
+
+<p><a href="https://www.notion.so/ImageNet-67d9a42cba374a83afb7836c48e304f6">ImageNet</a></p>
+
+<p>ImageNet: A large-scale hierarchical image database</p>
+
+<p>by Jia Deng; Wei Dong; Richard Socher; Li-Jia Li; Kai Li; Li Fei-Fei</p>

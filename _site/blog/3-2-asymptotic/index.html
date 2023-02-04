@@ -1,0 +1,113 @@
+<h2 id="a-note-on-asymptotic-time-complexity-chapter-32">A Note on Asymptotic Time Complexity (Chapter 3.2)</h2>
+
+<ul>
+  <li>
+    <p>Time complexity of a program is given by the number of steps taken by the program to compute the function it was written for.</p>
+  </li>
+  <li>The number of steps taken by the program depends on the size of input.
+    <ul>
+      <li>For example, suppose we search for a number in an integer array of size n, and the numbers are not sorted.</li>
+      <li>If the number we are looking for is not in the integer array, we need to check n integers before we conclude the number is not in the array.</li>
+      <li>Therefore, time complexity is expressed as a function of the input size.</li>
+    </ul>
+  </li>
+  <li>The number of steps taken by the program also depends on the input itself.
+    <ul>
+      <li>Consider the above example of searching for a number in an integer array.</li>
+      <li>If the number we are looking for is in the first position of the array, then the program will quickly finish.</li>
+      <li>Therefore, we typically consider worst-case time complexity, or sometimes average-case time complexity.</li>
+    </ul>
+  </li>
+  <li>We typically use “asymptotic” time complexity, instead of counting exact number of steps taken in the program
+    <ul>
+      <li>Asymptotic means “as the input grows to infinity”.</li>
+      <li>So we are interested in how fast the running time will grow as the input size becomes larger.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="big-o">Big O</h3>
+
+<ul>
+  <li>To denote asymptotic time complexity, we typically use the big O notation.
+    <ul>
+      <li>Definition: We say f(n) = O(g(n)), iff there exist positive constants c and n0 such that f(n) ≤ c g(n) for all n, n ≥ n0.</li>
+      <li>Big-O indicates an upper bound on the asymptotic complexity.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img width="276" alt="image-20211003152608732" src="https://user-images.githubusercontent.com/46957634/135751019-bdc184e5-fa37-4f23-a124-aa00454294e7.png" /></p>
+
+<ul>
+  <li>Expressing asymptotic time complexity using Big-O notation
+    <ul>
+      <li>O(1): constant</li>
+      <li>O(logn): logarithmic</li>
+      <li>O(n): linear</li>
+      <li>O(n2): quadratic</li>
+      <li>O(n3): cubic</li>
+      <li>O(2n): exponential</li>
+    </ul>
+  </li>
+  <li>In order for the statement f(n) = O(g(n)) to be informative, g(n) should be as small a function of n as one can come up with for which f(n) = O(g(n)).</li>
+</ul>
+
+<p><img width="343" alt="image-20211003152624239" src="https://user-images.githubusercontent.com/46957634/135751040-977f1073-dc95-4326-8cc3-645a8b63eb39.png" /></p>
+
+<h3 id="limitation-of-asymptotic-time-complexity">Limitation of asymptotic time complexity</h3>
+
+<ul>
+  <li>Asymptotic complexity does not count for constant factors.
+    <ul>
+      <li>O(an + b) = O(n) when a and b are constants.</li>
+    </ul>
+  </li>
+  <li>Constant factors can dominate running time
+    <ul>
+      <li>Especially when the input size is typically small</li>
+      <li>e.g.) 1000n vs n2 when n &lt; 1000</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="omega">Omega</h3>
+
+<p>$f(n) = \Omega(g(n))$</p>
+
+<ul>
+  <li>iff there exist positive constants c and n0 such that f(n) ≥ c g(n) for all n, n ≥ n0.</li>
+  <li>Omega indicates a lower bound on the asymptotic time complexity.</li>
+  <li>In order for the statement f(n) = O(g(n)) to be informative, g(n) should be as large a function of n as one can come up with for which f(n) = Ω(g(n)).</li>
+</ul>
+
+<h3 id="theta">Theta</h3>
+
+<p>$f(n) = \Theta(g(n))$</p>
+
+<ul>
+  <li>iff there exist positive constants c1, c2 and n0 such that $c1g(n) ≤ f(n) ≤ c2g(n) \forall n, n ≥ n0$</li>
+  <li>Theta indicates a tight bound on the asymptotic time complexity.</li>
+</ul>
+
+<p><img width="276" alt="image-20211003152608732" src="https://user-images.githubusercontent.com/46957634/135751064-19831990-5df0-4cec-b148-8964a656da1d.png" /></p>
+
+<ul>
+  <li>If program P has complexity Θ(n) and program Q has complexity Θ(n2), we can assert that program P is faster than program Q for sufficiently large n.</li>
+  <li>For comparing performance of two programs (or functions), we typically use the big-O notation with smallest g(n).</li>
+  <li>number of step counts for different asymptotic functions.</li>
+</ul>
+
+<p><img width="366" alt="image-20211003152828640" src="https://user-images.githubusercontent.com/46957634/135751074-e382372f-e094-41d7-adad-ea2b9dbda745.png" /></p>
+
+<ul>
+  <li>plot of step count for different asymptotic functions.</li>
+</ul>
+
+<p><img width="279" alt="image-20211003152818439" src="https://user-images.githubusercontent.com/46957634/135751073-73a5070f-5506-4346-81c4-6949d4a0c2e1.png" /></p>
+
+<ul>
+  <li>Running time on a computer that executes 1 billion instructions per second.</li>
+</ul>
+
+<p><img width="384" alt="image-20211003152808228" src="https://user-images.githubusercontent.com/46957634/135751088-7ee93ad1-e917-41bc-b1dd-72a3f80325f3.png" /></p>

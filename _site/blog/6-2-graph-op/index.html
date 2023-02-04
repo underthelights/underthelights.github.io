@@ -1,0 +1,586 @@
+<h2 id="elementary-graph-operations-chapter-62">Elementary Graph Operations (Chapter 6.2)</h2>
+
+<ul>
+  <li>In Chapter 5, we looked at different ways of traversing a tree.
+    <ul>
+      <li>preorder traversal</li>
+      <li>inorder traversal</li>
+      <li>postorder traversal</li>
+    </ul>
+  </li>
+  <li>
+    <p>Here, we look at how to visit vertices that are reachable from a starting vertex.</p>
+
+    <ul>
+      <li>In other words, starting from a vertex v, we visit all vertices connected to v.</li>
+    </ul>
+  </li>
+  <li>Two ways of visiting connected vertices
+    <ul>
+      <li>DFS: depth first search</li>
+      <li>BFS: breadth first search</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="621-depth-first-search-dfs">6.2.1 Depth First Search (DFS)</h3>
+
+<ul>
+  <li>
+    <p>The procedure of function DFS</p>
+
+    <ol>
+      <li>we are given a starting vertex v, where we begin our search.</li>
+      <li>we “visit” the starting vertex v.
+        <ul>
+          <li>Here, we assume “visiting a vertex” means printing out its name.</li>
+        </ul>
+      </li>
+      <li>we select an unvisited vertex from v’s adjacent vertices.</li>
+    </ol>
+
+    <ul>
+      <li>We carry out a DFS on that vertex. - Call function DFS recursively.</li>
+    </ul>
+  </li>
+  <li>In order to implement this procedure, we first need to select a representation between an adjacency matrix and an adjacency list.</li>
+  <li>Also, we need a separate data structure for checking whether a vertex is visited or not.
+    <ul>
+      <li>We could use an array of size n, the number of vertices.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="procedures-of-dfs">Procedures of DFS</h4>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135760873-d6220c11-0b56-48ed-99c1-c052dfaa5756.png" alt="image" /></p>
+
+<ol>
+  <li>
+    <p>Suppose we would like to perform DFS on graph G, starting from vertex 0.</p>
+
+    <ul>
+      <li>So we make vertex 0 the “current” vertex.</li>
+      <li>Call DFS on vertex 0.</li>
+    </ul>
+  </li>
+  <li>
+    <p>First, we visit the current vertex.</p>
+
+    <ul>
+      <li>After visiting a vertex, we mark the vertex so we know it is already visited.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760886-decbdda5-6735-49a3-8210-ef885b17a657.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Then, we pick one of the vertices that is</p>
+
+    <ul>
+      <li>adjacent to the current vertex, and</li>
+      <li>is unvisited yet.</li>
+      <li>candidates are vertex 1 and vertex 2.</li>
+    </ul>
+
+    <p>We pick vertex 1, and so we call DFS on that vertex.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760889-3ea7038a-b0e2-4d83-8000-e4a8ff97d2d0.png" alt="image" /></p>
+  </li>
+  <li>Here, we go through the same procedure.
+    <ul>
+      <li>We visit the current vertex, which is vertex 1.</li>
+      <li>Then, we pick an adjacent vertex of 1 which is unvisited.</li>
+      <li>candidates are vertex 3 and 4.</li>
+      <li>We pick vertex 3, and so we call DFS on vertex 3.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760892-10612c83-1c78-45a0-aaac-8d6a6a5a8115.png" alt="image" /></p>
+  </li>
+  <li>We visit vertex 3, and pick an adjacent vertex that is unvisited.
+    <ul>
+      <li>The only candidate is vertex 7.</li>
+      <li>We call DFS on vertex 7.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760893-e8236a80-1d04-4bc5-82f0-ae42172b6055.png" alt="image" /></p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760960-827650f5-0ab0-47a2-9a36-47b374ccae93.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We visit vertex 7, and pick an adjacent vertex that is unvisited.</p>
+
+    <ul>
+      <li>candidates are vertex 4, 5, and 6.</li>
+      <li>We pick vertex 4, and call DFS on that vertex.</li>
+      <li>We visit vertex 4, and pick an adjacent vertex that is unvisited.</li>
+      <li>Since there are no vertex that meets the condition, we return to the caller.</li>
+      <li>The caller was DFS(7).</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760956-9d800ee3-4de4-4f12-84f5-45e2a4308908.png" alt="image" /></p>
+  </li>
+  <li>Since vertex 7 has adjacent vertices that are unvisited, the function continues.
+    <ul>
+      <li>We pick vertex 5, and call DFS on that vertex.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760969-a0a17fbf-dca9-4e1b-a12d-81dcb09c0670.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We visit vertex 5, and then call DFS on vertex 2.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135760970-b3c45f40-c0b9-4486-a0a6-6a249162578a.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We visit vertex 2, and we call DFS on vertex 6.</p>
+
+    <p>– There is no unvisited vertex now, so the functions will return.</p>
+
+    <ul>
+      <li>All vertices connected to vertex 0 have been searched.</li>
+      <li><img src="https://user-images.githubusercontent.com/46957634/135760971-362b4512-6323-4f2d-8bc7-d8a6b0184856.png" alt="image" /></li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li><img src="https://user-images.githubusercontent.com/46957634/135760973-d32b2bf2-bfc2-451c-8428-b52e009b8146.png" alt="image" /></li>
+  <li>If we select the edges we passed through and remove all other edges, it becomes a tree.</li>
+  <li>In the depth first search, we move far away from the starting vertex until we cannot go further. The resulting tree is “deep”, and that is why this scheme is called depth first search.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761000-7f052750-f885-4fd0-864b-3b070c7ad2c7.png" alt="image" /></p>
+
+<h4 id="ex041">[ex041]</h4>
+
+<ul>
+  <li>Recursive implementation of DFS
+    <ul>
+      <li>
+        <p>Which representation of graph is function dfs using?</p>
+
+        <ul>
+          <li>adjacency matrix or adjacency list?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Try completing the rest of the program
+    <ul>
+      <li>Let graph[] be the example graph shown in the previous slides.</li>
+      <li>The program should print the vertex ID in the visiting order.</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/977d07cf3965dd833bf80f45b8badef2.js"></script>
+
+<ul>
+  <li>Representation of the example graph</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761001-60e5b200-1030-40e0-a8c2-16bf6ad29f64.png" alt="image" /></p>
+
+<h4 id="analysis-of-function-dfs">Analysis of function DFS</h4>
+
+<ul>
+  <li>Let us assume we have a connected graph with n vertices.</li>
+  <li>In DFS, for each vertex, we need to check and process each of its adjacent vertices.</li>
+</ul>
+
+<ol>
+  <li>Adjacency list</li>
+</ol>
+
+<ul>
+  <li>If we use the adjacency list, we need to traverse the linked list of adjacent vertices to check whether the vertex is visited or not.
+    <ul>
+      <li>The total number of chain nodes in an adjacency list is 2e.</li>
+      <li>We need to visit all n vertices.</li>
+      <li>Time complexity: $O(n+e)$</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Adjacency Matrix</li>
+</ol>
+
+<ul>
+  <li>If we use the adjacency matrix, we need to traverse the row in order to check for adjacent vertices.
+    <ul>
+      <li>
+        <p>We need to visit all n vertices, and for each vertex we need to traverse all rows in the adjacency matrix.</p>
+      </li>
+      <li>
+        <p>Time complexity: $O(n^2)$</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="622-breadth-first-search-bfs">6.2.2 Breadth First Search (BFS)</h3>
+
+<ul>
+  <li>
+    <p>The procedure of function BFS</p>
+
+    <ul>
+      <li>Initially, we are given a starting vertex v, where we begin our search.</li>
+      <li>First, we visit the starting vertex v.</li>
+      <li>Then, we visit each of the adjacent vertices of v.</li>
+      <li>Then, we visit all the unvisited vertices that are adjacent to the first adjacent vertex of v.</li>
+      <li>Then, we visit all the unvisited vertices that are adjacent to the second adjacent vertex of v.</li>
+      <li>Continue in this manner until we have visited all vertices.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Implementation</p>
+
+    <ul>
+      <li>As we visit each unvisited vertex we place the vertex in a queue.</li>
+      <li>Once we are finished with the adjacent vertices, we remove a vertex from the queue and visit its adjacent vertices.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="procedures-of-dfs-1">Procedures of DFS</h4>
+
+<ol>
+  <li>Suppose we would like to perform DFS on graph G, starting from vertex 0.
+    <ul>
+      <li>We prepare a queue.</li>
+      <li>We first visit vertex 0, and add vertex 0 to the queue.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761018-d05961fe-06a0-43ac-9c1f-260781d07e52.png" alt="image" /></p>
+  </li>
+  <li>Then we go into a loop.
+    <ul>
+      <li>We remove a vertex (we will call this “v”) from the queue.</li>
+      <li>For all unvisited adjacent vertices of v, we visit them and also add them to the queue.</li>
+      <li>Here, we visit vertices 1 and 2, and add them to the queue.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761019-28e690e0-5bb7-4b26-a3e6-3397284df5c0.png" alt="image" /></p>
+  </li>
+  <li>We repeat the loop.
+    <ul>
+      <li>Remove a vertex from the queue → vertex 1.</li>
+      <li>Visit all unvisited adjacent vertices of vertex 1, and add them to the queue.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761022-1506441a-02e7-46ce-8ba2-0ddf0f3b31aa.png" alt="image" /></p>
+  </li>
+  <li>We repeat the loop.
+    <ul>
+      <li>Remove a vertex from the queue → vertex 2.</li>
+      <li>Visit all unvisited adjacent vertices of vertex 2, and add them to the queue.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761025-a40f12ed-2ccc-49ac-9e01-47b54720de60.png" alt="image" /></p>
+  </li>
+  <li>We repeat the loop.
+    <ul>
+      <li>Remove a vertex from the queue → vertex 3.</li>
+      <li>Visit all unvisited adjacent vertices of vertex 3, and add them to the queue.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761027-884301e9-cdf2-4294-8450-7324c48a469d.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We repeat the loop until the queue is empty. We are done with BFS.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761030-195c8139-fbd5-4ef7-9c43-e6d2e7f05f93.png" alt="image" /></p>
+  </li>
+</ol>
+
+<ul>
+  <li>In a breadth first search, we stay as close to the starting vertex while searching for vertices. The resulting tree is “broad”. That is why it is called breadth first search.</li>
+  <li><img src="https://user-images.githubusercontent.com/46957634/135761076-7e432f23-02b3-4e00-9c6a-2c0f0d67a922.png" alt="image" /></li>
+  <li><img src="https://user-images.githubusercontent.com/46957634/135761082-fea6c180-a367-493a-a5e7-87bb769ef352.png" alt="image" /></li>
+</ul>
+
+<h4 id="ex042">[ex042]</h4>
+
+<ul>
+  <li>
+    <p>Implementation of BFS using a queue.</p>
+  </li>
+  <li>
+    <p>Try completing the rest of the program.</p>
+
+    <ul>
+      <li>You will need to implement the queue and its operations.</li>
+      <li>The program should print the vertex ID in the visiting order.</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/6509f0f33ed93f9625b8ed423cce5fe7.js"></script>
+
+<h4 id="analysis-of-function-bfs">Analysis of function BFS</h4>
+
+<ul>
+  <li>Each vertex is placed on the queue exactly once, so the while loop is iterated at most n times.</li>
+</ul>
+
+<ol>
+  <li>Adjacency List</li>
+</ol>
+
+<ul>
+  <li>For adjacency list representation, the loop has a total cost of $d_0 + … + d_{n-1} = O(e)$,where $d_i = degree(v_i)$.
+    <ul>
+      <li>Thus, the time complexity is $O(n+e)$.</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>Adjacency Matrix</li>
+</ol>
+
+<ul>
+  <li>For adjacency matrix representation, the while loop takes $O(n)$ time for each vertex visited.</li>
+  <li>Thus, the time complexity is $O(n^2)$.</li>
+</ul>
+
+<h3 id="623-connected-components">6.2.3 Connected Components</h3>
+
+<ul>
+  <li>
+    <p>We can use DFS and BFS to determine whether a graph is connected or not, or find connected components of a graph.</p>
+  </li>
+  <li>
+    <p>Finding connected components of a graph</p>
+
+    <ul>
+      <li>Call DFS on a vertex.</li>
+      <li>If there is an unvisited vertex, call DFS on that vertex.</li>
+      <li>Repeat until there is no unvisited vertex left.</li>
+    </ul>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/640acf4585a1ce687517ea8f0fe28c21.js"></script>
+
+<h4 id="analysis-of-function-connected">Analysis of function connected</h4>
+
+<ul>
+  <li>If the graph is represented by an adjacency list, then the total time taken by dfs for a connected component is $O(n_i+e_i)$, where $n_i$ and $e_i$ is the number of vertices and edges that belong to the ith connected component. Since the sum of ni is n and the sum of ei is e, the total time needed to generate all connected components is $O(n+e)$.</li>
+  <li>If the graph is represented by an adjacency matrix, then the time needed to determine the connected components is $O(n^2)$.</li>
+</ul>
+
+<h3 id="624-spanning-trees">6.2.4 Spanning Trees</h3>
+
+<ul>
+  <li>A spanning tree of graph G is any tree that consists of edges in G and that includes all the vertices of G.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761149-8063d040-7e57-4233-afeb-232932d6375a.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>When we perform DFS or BFS on a graph, the search implicitly partitions the edges in G into two sets</p>
+
+    <ul>
+      <li>T: the set of edges used or traversed during the search (tree edges)</li>
+      <li>N: the set of remaining edges (nontree edges)</li>
+    </ul>
+  </li>
+  <li>
+    <p>If we remove the edges in N from the graph, we get a spanning tree.</p>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761151-5f9ebabf-1ef8-49f9-b0a6-93b3f3838979.png" alt="image" /></p>
+
+<ul>
+  <li>Properties of spanning trees
+    <ul>
+      <li>If we add a nontree edge (v, w) to the spanning tree, a cycle is created that consists of the edge (v, w) and all the edges on the path from w to v in T.</li>
+      <li>A spanning tree is a minimal subgraph G’ of G such that V(G’) = V(G) and G’ is connected.</li>
+    </ul>
+  </li>
+  <li>A minimal subgraph is the one with the fewest number of edges.</li>
+  <li>Any connected graph with n vertices must have at least n-1 edges. Thus, a spanning tree has n-1 edges.</li>
+</ul>
+
+<h3 id="625-biconnected-components">6.2.5 Biconnected Components</h3>
+
+<ul>
+  <li>Suppose G is an undirected graph.</li>
+  <li>An articulation point is a vertex v of G such that the deletion of v, together with all edges incident on v, produces a graph, G’, that has at least two connected components.</li>
+  <li>In the connected graph below, vertices 1, 3, 5, 7 are articulation points.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761204-8361d63f-d220-4543-a42f-9e9df213dcc7.png" alt="image" /></p>
+
+<ul>
+  <li>A biconnected graph is a connected graph that has no articulation points.</li>
+  <li>The following graph is a biconnected graph which has no articulation points.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761205-78108887-efd1-4055-baa6-b6c3e04423dd.png" alt="image" /></p>
+
+<ul>
+  <li>In practice, having articulation points is often undesirable.</li>
+  <li>For example, suppose the graph below represents a communication network, where vertices are routers and edges are links between them.</li>
+  <li>If the router at the articulation point fails, the network becomes disconnected.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761207-aab3261b-c693-4612-861a-77a59779d031.png" alt="image" /></p>
+
+<ul>
+  <li>A biconnected component of a connected undirected graph is a maximal biconnected subgraph, H, of G.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761208-be943fd5-f013-4c17-980c-2526f36bae7a.png" alt="image" /></p>
+
+<h4 id="properties">Properties</h4>
+
+<ul>
+  <li>Two biconnected components of the same graph have no more than one vertex in common.</li>
+  <li>No edge can be in two or more biconnected components of a graph</li>
+  <li>Thus, the biconnected components of G partition the edges of G.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761232-35863a58-c433-427a-9ea7-e97e01574e9c.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>Finding articulation points in a graph</p>
+
+    <ul>
+      <li>Suppose we would like to find articulation points in the following graph G.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761239-9739c0c6-31f8-4f17-88ad-0387cf1bd7c4.png" alt="image" /></p>
+
+<ul>
+  <li>A simple method
+    <ul>
+      <li>For every vertex v, do the following:
+        <ul>
+          <li>remove v from graph</li>
+          <li>see if the graph remains connected</li>
+          <li>add v back to the graph</li>
+        </ul>
+      </li>
+      <li>This method takes O(n*(n+e)), using an adjacency list.</li>
+      <li>From the next slide, we look at a more efficient method for finding articulation points.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761259-efef1f57-b528-41ae-90a2-30e7e271a199.png" alt="image" /></p>
+  </li>
+  <li>First, we get a spanning tree of the graph using DFS, with any starting vertex.
+    <ul>
+      <li>Suppose we make vertex 3 the starting vertex of DFS.</li>
+      <li>Then we get the following spanning tree. (left)</li>
+      <li>The spanning tree is rearranged to look more like a tree. (right)</li>
+      <li>The numbers outside the vertices indicates the visiting order; we will call this dfn.
+        <ul>
+          <li>dfn(3) = 0, dfn(0) = 4, dfn(9) = 8, etc.</li>
+        </ul>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/135761262-d943e036-ef19-44ec-9d05-d7475117cc54.png" alt="image" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>We are going to use this spanning tree to find articulation points.</li>
+  <li>If vertex u is an ancestor of vertex v in the spanning tree, dfn(u) &lt; dfn(v).</li>
+  <li>In the spanning tree, we add the nontree edges as dotted lines.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761278-0887f1c1-d78d-46f7-9bdf-0bb79e0cb6bf.png" alt="image" /></p>
+
+<ul>
+  <li>
+    <p>We say a nontree edge (u, v) is a back edge iff either u is an ancestor of v or v is an ancestor of u.</p>
+  </li>
+  <li>In a spanning tree generated from dfs, all nontree edges are back edges.
+    <ul>
+      <li>In DFS, unless an edge from vertex v connects to its ancestor u, the edge will be selected as a tree edge.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761280-69edacb7-ace9-43fe-9b71-9a6b9a0a0702.png" alt="image" /></p>
+  </li>
+  <li>First condition for an articulation point
+    <ul>
+      <li>If the root of the tree has two or more child vertices, the root vertex is an articulation point.</li>
+      <li>In the spanning tree below, vertex 3 is an articulation point.
+        <ul>
+          <li>Because it has two child vertices.</li>
+        </ul>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/135761283-bc3b65ae-a579-4aaf-8b7c-65b783c470db.png" alt="image" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Second condition for an articulation point
+    <ul>
+      <li>A vertex u other than the root of the spanning tree is an articulation point $\iff$ it has at least one child v such that no vertex in subtree rooted with v has a back edge to one of the ancestors of u.</li>
+      <li>For example, suppose u is 5. It has a single child 6, so v is 6. v and its descendents do not have a back edge to one of the ancestors of 5, which is vertex 3. Thus, vertex 5 is an articulation point.</li>
+      <li>On the other hand, vertex 4 is not an articulation point, because its descendant vertex 1 has a back edge to an ancestor of vertex 4 which is vertex 3.</li>
+    </ul>
+  </li>
+  <li>Checking for the second condition
+    <ul>
+      <li>We define a value called “low” for each vertex of G.</li>
+      <li>low(u) is the lowest dfn that we can reach from u using a path to descendants and a back edge. (The descendant of a vertex includes the vertex itself.)</li>
+      <li>For example, vertex 4 can reach vertex 3 using the path to descendant vertex 1 and then the back edge to vertex 3. Thus, low(4) = 0.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761291-0a3ef32e-0483-4582-9a15-66ee27539cac.png" alt="image" />
+<img src="https://user-images.githubusercontent.com/46957634/135761294-70269e79-f734-47d7-ba36-babbeca46bd5.png" alt="image" /></p>
+  </li>
+  <li>low value of vertices can be calculated as follows.
+    <ul>
+      <li>low(u) = min{ dfn(u), dfn(w) }, where w is an ancestor of u and there is a back edge from some descendant of u (including u) to w.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761314-be4a8e0b-4463-43f6-959d-e1cd36a85372.png" alt="image" /></p>
+  </li>
+  <li>A non-root vertex u in the spanning tree is an articulation point iff
+    <ul>
+      <li>it has at least one child v such that no vertex in subtree rooted with v has a back edge to one of the ancestors of u.</li>
+      <li>In other words, the low value of one of its child w is greater than or equal to dfn(u).
+        <ul>
+          <li>low(w) ≥ dfn(u)</li>
+        </ul>
+
+        <p><img src="https://user-images.githubusercontent.com/46957634/135761318-1c03bb72-b4c4-40c0-b76c-8da776a6727b.png" alt="image" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="ex043">[ex043]</h3>
+
+<ul>
+  <li>Function dfnlow: calculate dfn and low while performing DFS.</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/d9206b73fd22977c8aef86f3c04d1e63.js"></script>
+
+<ul>
+  <li>
+    <p>Time complexity when we find articulation points using dfnlow</p>
+  </li>
+  <li>
+    <p>Calling dfnlow requires the same amount of Ɵme as DFS → O(n+e).</p>
+  </li>
+  <li>Once we have dfn and low values, we can just check whether a vertex is an articulation point for each vertex.
+    <ul>
+      <li>For this operaƟon we need to go through adjacency list of each vertex → O(n+e).</li>
+    </ul>
+  </li>
+  <li>Thus, the time complexity is O(n+e).
+    <ul>
+      <li>smaller than the simple method whose time complexity is O(n*(n+e)).</li>
+    </ul>
+  </li>
+</ul>

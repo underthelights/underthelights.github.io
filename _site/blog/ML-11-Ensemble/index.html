@@ -1,0 +1,737 @@
+<h1 id="11-ensemble-learning">11. Ensemble Learning</h1>
+
+<p>Property 1: Bishop 14</p>
+
+<h1 id="ensemble-learning">Ensemble Learning</h1>
+
+<p>지금까지 배운 여러개의 classifier 각각 : parameter 변화하여 여러가지 model</p>
+
+<p>한 가지 model보다는 여러 model을 활용하여 prediction</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>model 여러개를 써서 여러개의 model을 조합하여 최종 model을 결정</p>
+
+<ul>
+  <li>Ensemble learning is a process that uses a set of models, each of them obtained by applying a learning process to a given problem. This set of models (ensemble) is integrated in some way to obtain the final prediction</li>
+  <li>Aggregation of multiple learned models with the goal of improving accuracy
+    <ul>
+      <li>목표 : 정확도 높이기 / classification, regression acc, clustering acc에서 좋은 성능 얻기</li>
+      <li>Intuition: simulate what we do when we combine an expert panel in a human decision-making process
+        <ul>
+          <li>사람들이 결정 내릴 때도 한 두명 생각보다는 전문 집단 panel에 의해서 결정 내리면 좀 더 합리적이고 좀 더 좋은 결정을 내릴거라 생각하는 것처럼 결정</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="types-of-ensembles">Types of ensembles</h2>
+
+<ul>
+  <li>fusion
+    <ul>
+      <li>다른 version의 dataset, algorithm을 갖고 종합해 최종 판단</li>
+      <li>두 개의 용어는 바슷한 개념으로 사용되고도 있고 엄밀하게 분류하기 애매함</li>
+    </ul>
+  </li>
+  <li>ensemble
+    <ul>
+      <li>randomness : 한 쪽은 NN, SVM &lt;- 2 model, no randomness</li>
+      <li>NN 사용 시 w randomly init : w 초기값이 다른 model을 여러 가지 만들면 randomness로 model 만든 ensemble</li>
+    </ul>
+  </li>
+</ul>
+
+<p>→ randomness 추가된 부분 : ensemble / Randomness excluded : Fusion (섞어서 사용하기도 함)</p>
+
+<hr />
+
+<ul>
+  <li>Ensemble methods are used for:
+    <ul>
+      <li>Classification
+        <ul>
+          <li>각 model들이 분류 결과를 만들어나면 이를 조합하여 최종 (average)</li>
+          <li>classification alg 바꾸기 or dataset 변화를 주어 다른 모델 만들 수 있음</li>
+        </ul>
+      </li>
+      <li>Regression</li>
+      <li>Clustering (also known as consensus clustering)
+        <ul>
+          <li>clustering : 여러 version의 clustering에서 average를 취하여 어떻게 avg할 것인가가 차이
+            <ul>
+              <li>group의 category로 분류 : label이 학습할 때 주어진게 아님
+  → 1번 그룹 안 어떤 sample들이 동일한 그룹 안에 있다는 게 의미</li>
+              <li>1번, 2번 group은 다른 group임이 의미
+  -&gt; clustering의 결과가 나타날 때 어떻게 합칠 것인가</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Ensembles can also be classifed as :
+    <ul>
+      <li>Homogeneous: It uses only one induction algorithm
+        <ul>
+          <li>동일한 분류 algorithm의 경우에도 (induction algorithm = classifier)
+            <ul>
+              <li>Bayesian classifier에서도 pdf로 gaussian 사용 -&gt; classifier의 구조를 바꾸면 다른 구조의 algorithm</li>
+              <li>아예 다르게 바꾸게 되면 perceptron / svm/ decision tree 등 DNN/ CNN 자체도 구조는 차이가 있음</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Heterogeneous: It uses different induction algorithms
+        <ul>
+          <li>algorithm의 구조에 차이가 있으면 heterogeneous</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="some-comments">Some Comments</h2>
+
+<ul>
+  <li>
+    <p>Combining models adds complexity</p>
+
+    <ul>
+      <li>
+        <p>It is, in general, more difficult to characterize and explain predictions</p>
+
+        <p>Model의 개수가 늘어나니까 전체 complexity 증가 → 설명하기도 어려워지고, 어떤 결과값이 나올지, 그 결과값 설명하기도 어려워짐</p>
+      </li>
+      <li>
+        <p>The accuracy may increase</p>
+
+        <p>하지만 정확도는 일반적으로 향상됨</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Violation of Ockham’s Razor: <strong>“Simplicity leads to better accuracy”</strong></p>
+    <ul>
+      <li>simple decision boundary가 일반적으로 좋은 성능을 보인다</li>
+      <li>Identifying the best model requires identifying the proper “model complexity”
+        <ul>
+          <li>좋은 성능을 내는 model을 찾으려면 complexity를 고민해야 하는데</li>
+          <li>occam에 거스르긴 하지만, 여러 model 사용하게 되면 개별 model은 복잡하지만 종합한 model은 smooth한 모양일수도 있음</li>
+        </ul>
+
+        <p>→ simple하게 만드는 과정이라 볼 수 있고, occam’s razor에 적합</p>
+
+        <ul>
+          <li>simple boundary = simple alg이라고 생각했는데, complexity를 올림으로 db가 simple해질수도 있다!</li>
+        </ul>
+      </li>
+      <li>Decision boundary may become simpler, eventually. E</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="the-ensemble-learning-process">The Ensemble Learning Process</h2>
+
+<p>data가 주어지면 그에 대해 함수들을 생성 - 각각이 분류 함수들 k개의 model 생성→ pruning</p>
+
+<p>→ 최종 함수 fk 도출</p>
+
+<p><img src="11/Untitled.png" alt="Untitled" /></p>
+
+<h1 id="methods-to-generate-ensembles">Methods to Generate Ensembles</h1>
+
+<ul>
+  <li>
+    <p>Data Manipulation</p>
+
+    <ol>
+      <li>Train set에 변화</li>
+    </ol>
+
+    <p>Supervised learning에서 train set에 대해 train 되어 얻어진 model</p>
+
+    <ul>
+      <li>다른 train set을 사용하면 -&gt; 다른 model : 분류 성능이 다름</li>
+      <li>it changes the training set in order to obtain different models</li>
+    </ul>
+  </li>
+  <li>
+    <p>Modeling process manipulation</p>
+
+    <ol>
+      <li>algorihtm에 변화</li>
+    </ol>
+
+    <ul>
+      <li>model process manipulation : algorithm의 변화</li>
+      <li>parameter만 변화하는 경우도 있고, classifier 자체를 변경할수도 있음, algorithm 자체를 변화시킬수도 있고</li>
+      <li>→ 다양한 model (f1 _ /// fk)</li>
+      <li>it changes the induction algorithm, the parameter set or the model in order to obtain different models</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="11/Untitled_1.png" alt="Untitled" /></p>
+
+<h2 id="data-manipulation">Data manipulation</h2>
+
+<p>Data, algorithm에 대한 구분</p>
+
+<ul>
+  <li>data : data의 src로부터 subset 추출</li>
+</ul>
+
+<p>Data src / sensor (visible, thermal, near infrared)</p>
+
+<p>빛의 파장이 가시광선, 적외선 등에 따라 영상이 다양히 나타나는데 개별적인 src로 판단할 수 있고 이를 조합하는 것 또한 ensemble이라 볼 수 있다</p>
+
+<ul>
+  <li>
+    <p>그런 식의 ensemble을 Fusion이라고 볼 수도 있다.</p>
+  </li>
+  <li>
+    <p>Manipulating the input features</p>
+
+    <p><img src="11/Untitled_2.png" alt="Untitled" /></p>
+
+    <p>movie data features : rating, actor, genre
+  -&gt; 흥행할것인지, 수익이 어느정도일 것인지, 그룹의 사람들이 좋아할지</p>
+
+    <ul>
+      <li>세 feature를 다르게 조합하여 각각의 경우가 모두 다른 classifier model</li>
+    </ul>
+  </li>
+  <li>
+    <p>Sub-sampling from the training set</p>
+
+    <p><img src="11/Untitled_3.png" alt="Untitled" /></p>
+
+    <p>data의 분할 : subset들 조합하여 최종 결과</p>
+  </li>
+</ul>
+
+<h2 id="modeling-process-manipulation">Modeling process manipulation</h2>
+
+<ul>
+  <li>Manipulating the parameter sets
+    <ul>
+      <li>hyperparameter : network layer, 초기값을 어떻게 설정할지,
+  node 개수, activation fn은 어떻게 설정할지</li>
+    </ul>
+
+    <p><img src="11/Untitled_4.png" alt="Untitled" /></p>
+  </li>
+  <li>
+    <p>Manipulating the induction algorithm</p>
+
+    <p><img src="11/Untitled_5.png" alt="Untitled" /></p>
+  </li>
+</ul>
+
+<h2 id="how-to-combine-models">How to Combine Models</h2>
+
+<ul>
+  <li>Algebraic methods : Score를 어떻게 처리할 것인가
+    <ul>
+      <li>Average</li>
+      <li>Weighted average</li>
+      <li>Sum</li>
+      <li>Weighted sum</li>
+      <li>Product</li>
+      <li>Maximum</li>
+      <li>Minimum</li>
+      <li>Median</li>
+    </ul>
+  </li>
+  <li>Voting methods
+    <ul>
+      <li>Majority voting</li>
+      <li>Weighted majority voting</li>
+      <li>Borda count</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="11/Untitled_6.png" alt="Untitled" /></p>
+
+<p><img src="11/Untitled_7.png" alt="Untitled" /></p>
+
+<h1 id="characteristics-of-the-base-models">Characteristics of the Base Models</h1>
+
+<ul>
+  <li>The Base classifiers should be as accurate as possible and having diverse errors, while each classifier provides some positive evidences
+    <ul>
+      <li>diverse한 error가 나타나야 함. (Alg1, alg2 … 결과가 diverse)</li>
+      <li>어느 정도의 정확도를 가지면서 정답의 다양성을 가져야 classify의 의미가 있다</li>
+      <li>여러 version의 classifier를 ensemble하여 좋은 classifier</li>
+    </ul>
+  </li>
+  <li>The average error of the base learners should be as small as possible</li>
+  <li>The variance (of the predicted values) of the base learners should be as small as possible
+    <ul>
+      <li>Variance : when alg1 is trained</li>
+    </ul>
+
+    <p>Random한 initial value에 의하여 train 여러번하는데</p>
+
+    <p>Variance 정확도가 많이 변화한다면 좋은 classifier가 아닐 것</p>
+
+    <p>diversity</p>
+
+    <p>Stability : 한 알고리즘을 볼 때 다양하지 않은 결과</p>
+
+    <p>bias : ansewr과의 차이</p>
+
+    <p>Variance : 얼마나 정답이 다양하겠는가</p>
+  </li>
+</ul>
+
+<p><img src="11/Untitled_8.png" alt="Untitled" /></p>
+
+<h2 id="popular-ensemble-methods">Popular Ensemble Methods</h2>
+
+<p>Bagging:</p>
+
+<ul>
+  <li>
+    <p>Averaging the prediction over a collection of predictors generated from <strong>bootstrap samples</strong> (both classification and regression)</p>
+
+    <p>bootstrap sample :trian data있으면 subset sampling</p>
+
+    <ul>
+      <li>
+        <p>각각 sampling으로부터 classifier 학습</p>
+
+        <p>Random하게 sampling하며 다양한 model</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Boosting:</p>
+
+<ul>
+  <li>
+    <p>Weighted vote with a collection of classifiers that were trained sequentially from training sets given priority to instances <strong>wrongly classified</strong></p>
+
+    <p>Boosting : 여러 단계를 거쳐 classifier 학습</p>
+
+    <ul>
+      <li>이전 단계의 classifier의 오답에 초점을 맞춘다.</li>
+    </ul>
+
+    <p>오류가 나오는 data들을 모아 다음 stage에서 초점을 맞추어 학습하여 융합한다</p>
+  </li>
+</ul>
+
+<p>RandomForest:</p>
+
+<ul>
+  <li>Averaging the prediction over a collection of trees constructed using a <strong>randomly selected subset of features</strong>
+    <ul>
+      <li>tree를 randomly생성하여 randomly select해서 만든다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Ensemble learning via negative correlation learning:</p>
+
+<ul>
+  <li>Generating sequentially new predictors <strong>negatively correlated</strong> with the existing ones
+    <ul>
+      <li>현재 classifier하고 negative corelation갖는 classifier를 학습하여 융합한다</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Heterogeneousensembles:</p>
+
+<ul>
+  <li>Combining a set of <strong>heterogeneous predictors</strong>
+    <ul>
+      <li>NN + SVM + DT 등 융합</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="bagging-bootstrap-aggregating">Bagging: Bootstrap AGGregatING</h1>
+
+<p><img src="11/Untitled_9.png" alt="Untitled" /></p>
+
+<ul>
+  <li>
+    <p>Analogy: Diagnosis based on multiple doctors’ majority vote</p>
+
+    <p>여러 명의 의사들의 진단 결과를 융합하는 방법</p>
+
+    <p>Ex. Max score, average score 등</p>
+
+    <ul>
+      <li>여러 model을 만들기 위해서 bootstrap sampling</li>
+    </ul>
+  </li>
+  <li>
+    <p>Training</p>
+    <ul>
+      <li>Given a set D of d tuples, at each iteration i, a training set $D_i$ of $d$ tuples is sampled with replacement from D (i.e. bootstrap)
+        <ul>
+          <li>bootstrap 방법 : sampling with replacement - 전체 dataset으로부터 sampling하여 modeling하고 다시 복원</li>
+          <li>각각의 data subset에 대하여 model을 만듬</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>average, Sum 은 같은 방식 : sum에서 classifier number만큼 나눠주면 average value</p>
+
+<ul>
+  <li>bootstrapping = original data로부터 sampling</li>
+  <li>aggregating = 그것들로부터 각각의 classifier를 만들어 병합하는 방법</li>
+  <li>Classification: classify an unknown sample X
+    <ul>
+      <li>Each classifier $M_i$ returns its class prediction</li>
+      <li>The bagged classifier $M^*$ counts the votes and assigns the class with the most votes to X
+        <ul>
+          <li>각 classifier가 sample에 대한 class 예측값을 계산하고, 그리고 최종 판단은 voting / sum/ 등 여러 방법을 사용할 수 있다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Prediction:
+    <ul>
+      <li>can be applied to the prediction of continuous values by taking the average value of each prediction for a given test tuple</li>
+    </ul>
+  </li>
+  <li>Accuracy
+    <ul>
+      <li>
+        <p>Often significantly better than a single classifier derived from</p>
+
+        <p>significantly better : 5 ~ 10% 상승</p>
+
+        <ul>
+          <li>물론 model을 여러번 쓰고 연산량은 그만큼 증가</li>
+          <li>test stage : Test sample에서는 model들 다 유지해서 그만큼 분류 작업 수행 후 융합</li>
+        </ul>
+
+        <p>Train + test stage 연산량 증가</p>
+      </li>
+      <li>For noisy data: not considerably worse, more robust
+        <ul>
+          <li>noisy data : robust하게 됨 (boost sampling : Noisy data가 빠진 형태로 학습)</li>
+        </ul>
+      </li>
+      <li>Proved improved accuracy in prediction</li>
+    </ul>
+  </li>
+  <li>Requirement: need unstable classifier types
+    <ul>
+      <li>Unstablemeansasmallchangetothetrainingdatamayleadtomajor decision changes</li>
+      <li>requirement : unstable classifier</li>
+    </ul>
+
+    <p>Unstable : train data를 조금 바꿀 경우 model decision이 크게 바뀌는 model을 의미함</p>
+
+    <p>(Remind) Model이 바뀐 train data에 대해서 diverse한 error = variance가 커야 한다.</p>
+
+    <ul>
+      <li>bagging의 관점에서는 var 큰게 좋다 (일반적으로는 별로 안 좋다)</li>
+    </ul>
+  </li>
+  <li>Stability in Training
+    <ul>
+      <li>Training: construct classifier from</li>
+      <li>
+        <p>Stability: small changes on results in small changes on</p>
+
+        <p>Training : f를 d로부터 형성</p>
+      </li>
+      <li>Decision trees are a typical unstable classifier</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="11/Untitled_10.png" alt="Untitled" /></p>
+
+<p><img src="11/Untitled_11.png" alt="Untitled" /></p>
+
+<h1 id="boosting">Boosting</h1>
+
+<ul>
+  <li>
+    <p>Analogy: Consult several doctors, when there are disagreements, we focus more attention on that case</p>
+
+    <p>의사들의 의견이 갈릴 때 합치되지 않는 의견들에 대해 더 주의를 기울인다.</p>
+  </li>
+  <li>Incrementally create models selectively using training examples based on some distribution.
+    <ul>
+      <li>Incrementally하게 sample이 subset으로 selection된 확률값을 가지고 있음</li>
+    </ul>
+  </li>
+  <li>How boosting works?
+    <ul>
+      <li>Weights are assigned to each training example</li>
+      <li>A series of k classifiers is iteratively learned</li>
+      <li>After a classifier $M_i$  is learned, the weights are updated to allow the subsequent classifier, $M_i +1$, to pay more attention to the training examples that were misclassified by</li>
+      <li>The final $M^*$ combines the votes of each individual classifier, where the weight of each classifier’s vote is a function of its accuracy 𝒊</li>
+    </ul>
+  </li>
+  <li>각 sample들이 weight를 가지고 있음.</li>
+</ul>
+
+<p>그리고 우리는 k개의 classifier를 학습할 것</p>
+
+<p>그런데 M_i가 학습 된 다음, classifier가 학습된 이후에는</p>
+
+<p>weight을 update하는데 앞 단계에서 학습된 model들이 misclassified 에 더 주의를 기울인다 (weight를 올린다)</p>
+
+<ul>
+  <li>
+    <blockquote>
+      <p>higher chance to be selected</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>즉 misclassified sample들이 점점 그 쪽으로 select되면서 hard sample들이 점점 추가되어 뒤쪽 classifier 학습</p>
+
+<p>1~k개 classifier를 조합하여 m*</p>
+
+<ul>
+  <li>weighted combination : weight는 accuracy에 비례</li>
+  <li>boosting 기본 아이디어 : disagreement, hard sample</li>
+</ul>
+
+<p>Hard sample에 초점 맞추는 방법 : classifier 1번을 만들고 misclassified에 대해서 classifier 2번을 만들고 m1, m2가 다른 결정을 내리는 sample에 대해서 classifier 3번을 만들어 test sample이 들어오면 m1, m2를 돌려 최종 결과로 사용하고 두 분류기 결과가 다르면 m3를 활용하여 결과 도출</p>
+
+<p>(data가 다시 sampling될 확률값 조정하는 방식 : adaboosting)</p>
+
+<ul>
+  <li>M_i : weak classifier</li>
+</ul>
+
+<h2 id="adaboost">Adaboost</h2>
+
+<ul>
+  <li>Using Different Data Distribution
+    <ul>
+      <li>Start with uniform weighting</li>
+      <li>misclassified sample의 weight 증가</li>
+      <li>well classified sample에 대해서는 weight 감소</li>
+      <li>During each step of learning
+        <ul>
+          <li>Increase weights of the examples which are not correctly learned by the weak learner</li>
+          <li>Decrease weights of the examples which are correctly learned by the weak learner</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Idea
+    <ul>
+      <li>Focus on difficult examples which are not correctly classified in the previous steps</li>
+      <li>difficult example에 더 주의를 기울인 케이스</li>
+    </ul>
+  </li>
+  <li>Weighted Voting
+    <ul>
+      <li>Construct strong classifier by weighted voting of the weak classifiers</li>
+      <li></li>
+      <li>strong classifier 만들 때 weak classifier 에 weight를 주고 weighted voting / weighted sum 등 일반적인 ensemble 방법 적용</li>
+      <li>weak classifier를 많이 첨가하여 combined classifier의 accuracy 증가 (strong classifier/learner)</li>
+    </ul>
+  </li>
+  <li>Idea
+    <ul>
+      <li>Better weak classifier gets a larger weight</li>
+      <li>Iteratively add weak classifiers
+        <ul>
+          <li>Increase accuracy of the combined classifier through minimization of a cost function Ensemble Learning Adaboost Introduction to Machine Learning Page 17</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="11/Untitled_12.png" alt="Untitled" /></p>
+
+<ul>
+  <li>Differences with Bagging:bagging과의 차이점
+    <ul>
+      <li>Models are built sequentially on modified versions of the data
+        <ul>
+          <li>random하게 sample된게 아니라 weight에 의해 sample된 data에 의해 학습</li>
+        </ul>
+      </li>
+      <li>The predictions of the models are combined through a weighted sum/vote
+        <ul>
+          <li>점점 hard sample에 대해 학습되니 easy sample / hard sample의 classifier가 동일한 weight를 가질 수 없음 : bagging은 동일한 조건으로 randomly sampling (no weight)
+            <ul>
+              <li>거의 동등한 조건이기 때문에 weight를 주지 않음</li>
+              <li>boosting의 경우 misclassified에 대해 overfitting (hard sample이 증가하는 방향으로 weight update)-&gt; ensemble하면 점점 hard sample 추가되며 overfitting 위험</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Boosting algorithm can be extended for numeric prediction
+    <ul>
+      <li>Comparing with bagging: Boosting tends to achieve greater accuracy, but it also risks overfitting the model to misclassified data</li>
+    </ul>
+  </li>
+  <li>
+    <p>The diagram should be interpreted with the understanding that the algorithm is sequential: classifier $C_k$ is created before classifier $C_{k+1}$, which in turn requires that $\beta_k$ and the current distribution $D_k$ be available</p>
+
+    <p><img src="11/Untitled_13.png" alt="Untitled" /></p>
+
+    <ul>
+      <li>sequential = 앞서 misclassified sample을 구해야 이를 바탕으로 추가 학습을 진행하기에
+  ck는 ck+1보다 학습이 사전에 이루어져야 하며
+  Beta k : 4th classifer의 error / 현재 data distribution을 알아야 다음 단계 classifer를 학습시킬 수 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="comments">Comments</h3>
+
+<p>이런식으로 sample distribution에 의해 data update하여 학습하면
+앞 쪽 단계 misclassified data들이 current stage에 학습</p>
+
+<ul>
+  <li>hard sample에 편중하여 학습이 일어남 (undemocratic voting scheme)
+Weighted majority voting : ensemble 대상 단위의 classifier들이 성능 상 큰 차이 존재가 있어 weight를 줄 수밖에 없고 성능 좋은 classifier에 대해 더 높은 weight를 주는 게 더 자연스러울 수 있고, 이런게 democratic하지는 않다.</li>
+  <li>This distribution update ensures that instances misclassified bythe previous classifier are more likely to be included in the training data of the next classifier.</li>
+  <li>Hence, consecutive classifiers’ training data are geared towards increasingly hard-to-classify instances.</li>
+  <li>Unlike Bagging, AdaBoost uses a rather undemocratic voting scheme, called the weighted majority voting.
+    <ul>
+      <li>The idea is an intuitive one: those classifiers that have shown good performance during training are rewarded with higher voting weights than the others.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>##</p>
+
+<h1 id="random-forest">Random Forest</h1>
+
+<ul>
+  <li>Random Forest: A variation of the bagging algorithm - bagging처럼 여러 개 ensemble</li>
+  <li>Created from individual decision trees
+    <ul>
+      <li>Diversity is guaranteed by selecting randomly at each split, a subset of the original features during the process of tree generation</li>
+      <li><strong>tree 구조 : unstable 구조 → diversity가 guaranteed됨 automatically</strong></li>
+    </ul>
+  </li>
+  <li>R.F 활용
+    <ul>
+      <li>During classification, each tree votes and the most popular class is returned
+        <ul>
+          <li>classification에서는 : vote를 가장 많이 받은 class가 최종 결과 decision</li>
+        </ul>
+      </li>
+      <li>During regression, the result is the averaged prediction of all generated trees
+        <ul>
+          <li>regression에서는 :각 tree들이 result을 만드는데 이를 average 취하면 random forest result</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>random selection이 : feature selection / data sampling</p>
+  </li>
+  <li>
+    <p>Two Methods to construct RandomForest:</p>
+
+    <p>Random forest 만드는 두 가지 방법</p>
+
+    <ol>
+      <li>Random input selection : 각 node에서 attribute를 randomly selection하는 방법
+        <ul>
+          <li>Forest-RI (random input selection): Randomly select, at each node, F attributes as candidates for the split at the node. The CART methodology is used to grow the trees to maximum size</li>
+        </ul>
+      </li>
+      <li>Random linear combination: 기존 feature에 대한 linear combination 작업을 취하여 여러 개의 attribute에 linear combination을 바탕으로 tree 학습을 진행한다.
+        <ul>
+          <li>Forest-RC (random linear combinations): Creates new attributes (or features) that are a linear combination of the existing attributes (reduces the correlation between individual classifiers)</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>adaboost와 유사한 특징을 가지지만 error / outlier에 더 robust한 특성을 보인다.
+    <ul>
+      <li>Comparable in accuracy to Adaboost, but more robust to errors and outliers</li>
+    </ul>
+  </li>
+  <li>민감하게 반응하지는 않고 더 빠르게 실행 : decision tree 생성 과정은 학습 model 자체가 효율적으로 구성될 수 있기 때문에 (tree 구성)
+    <ul>
+      <li>Insensitive to the number of attributes selected for consideration at each split, and faster than bagging or boosting</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="model-selection">Model Selection</h1>
+
+<ul>
+  <li>
+    <p>Given a problem, which algorithms should we use?</p>
+  </li>
+  <li>Golden rule: there is no algorithm that is the best one for all the problems
+    <ul>
+      <li>하나의 특정 알고리즘이 다른 모든 problem 모두를 해결하지는 않는다</li>
+    </ul>
+  </li>
+  <li>Typically, two approaches (or both) can be adopted:
+    <ul>
+      <li>To choose the algorithm more suitable for the given problem</li>
+      <li>To adapt the given data for the intended algorithm (using pre-processing, for instance)
+        <ul>
+          <li>주어진 data를 잘 tuning할 수 있도록 한다 for 사용하고자 하는 algorithm (preprocessing)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>The concept of “good algorithm” depends on the problem:
+    <ul>
+      <li>good algorithm : prob by prob</li>
+      <li>Explainability : model이 어떤 판단을 내린다면 판단의 정확도도 중요하나 그 결정의 이유도 중요함 : bayesian, decision tree는 쉽게 설명할 수 있는데 그 외에는 설명이 쉽지 않음</li>
+      <li>분류 관리 문제에 있어서는 이송 시간 예측 정확도가 가장 중요한 선택요인</li>
+      <li>For a doctor, the interpretation of the model can be a major criterion for the selection of the model (decision trees and Bayesian networks are very appreciated)</li>
+      <li>For logistics, the accuracy of travel time prediction is, typically, the most important selection criterion.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="statistical-validation">Statistical Validation</h1>
+
+<ul>
+  <li>Mixture of Experts
+    <ul>
+      <li>Combine votes or scores</li>
+    </ul>
+
+    <p><img src="11/Untitled_14.png" alt="Untitled" /></p>
+  </li>
+  <li>Stacking
+    <ul>
+      <li>Combiner f() is another learner (Wolpert, 1992)</li>
+      <li>
+        <p>adaboost도 최종 함수 : 개별 classifier에 근거하여 accuracy로부터 sequentially 생성</p>
+
+        <p>Stacked generalization by <a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608005800231#!">David H.Wolpert</a><a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608005800231#aep-article-footnote-id1"></a></p>
+
+        <p><a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608005800231">https://www.sciencedirect.com/science/article/abs/pii/S0893608005800231</a></p>
+      </li>
+    </ul>
+
+    <p><img src="11/Untitled_15.png" alt="Untitled" /></p>
+  </li>
+  <li>Cascading
+    <ul>
+      <li>Use next level of classifier if the previous decision is not confident enough</li>
+    </ul>
+
+    <p><img src="11/Untitled_16.png" alt="Untitled" /></p>
+  </li>
+</ul>

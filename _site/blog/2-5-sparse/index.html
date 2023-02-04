@@ -1,0 +1,103 @@
+<h2 id="sparse-matrix-chapter-25">Sparse Matrix (Chapter 2.5)</h2>
+
+<h3 id="251-sparse-matrix-adt">2.5.1 Sparse Matrix ADT</h3>
+
+<ul>
+  <li>
+    <p>A sparse matrix is a matrix which contains many zero entries.</p>
+  </li>
+  <li>
+    <p>If a two-dimensional array is used to represent a sparse matrix, a lot of space is used to store the same value 0.</p>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/3200c7ff23786ddb7fd179ed61c6e1f7.js"></script>
+
+<h3 id="252-sparse-matrix-representation">2.5.2 Sparse Matrix Representation</h3>
+
+<ul>
+  <li>We can characterize uniquely any element within a matrix by a triple $&lt;row, col, value&gt;$</li>
+  <li>We organize the triples so that row indices are in ascending order and among those with the same row indices are ordered in ascending order of column indices.</li>
+  <li>To ensure that the operations terminate, we must know the number of rows and columns, and the number of non-zero elements in the matrix.</li>
+</ul>
+
+<pre><code class="language-pseudocode">Sparse_Matrix Create(max_row, max_col) ::=
+	#define Max_TERMS 101 
+	/* maximum number of terms +1*/ 
+	typedef struct {
+		int col; int row; int value; 
+	} term;
+	term a[MAX_TERMS];
+</code></pre>
+
+<p><img width="374" alt="image-20211003145012237" src="https://user-images.githubusercontent.com/46957634/135751659-caa091e2-f68d-48e9-93d4-1e3b6e07cb71.png" /></p>
+
+<h3 id="253-transposing-a-matrix-ex010">2.5.3 Transposing a Matrix [ex010]</h3>
+
+<ul>
+  <li>A simple algorithm</li>
+</ul>
+
+<pre><code class="language-pseudocode">for each row i take element &lt;i, j, value&gt; and store it as element &lt;j, i, value&gt; of the transpose;
+</code></pre>
+
+<ul>
+  <li>
+    <p>We will not know exactly where to place element &lt;j, i, value&gt; in the transpose until we have processed all the elements that precede it.</p>
+  </li>
+  <li>
+    <p>For instance,</p>
+
+    <ul>
+      <li>(0, 0, 15) becomes (0, 0, 15)</li>
+    </ul>
+  </li>
+  <li>(0, 3, 22) becomes (3, 0, 22)</li>
+  <li>
+    <p>(0, 5, -15) becomes (5, 0, -15)</p>
+  </li>
+  <li>
+    <p>We need move elements in order to maintain the correct order.</p>
+  </li>
+  <li>We can avoid data movement by using the column indices to determine the placement of elements in the transpose matrix.</li>
+</ul>
+
+<pre><code class="language-pseudocode">for each element in column j
+    place element &lt;i, j, value&gt; in element &lt;j, i, value&gt;;
+</code></pre>
+
+<h4 id="program-28-transpose-of-a-sparse-matrix-ex011">Program 2.8: Transpose of a Sparse Matrix [ex011]</h4>
+
+<script src="https://gist.github.com/underthelights/f3ee7f95f482a107070957fb57153b94.js"></script>
+
+<ul>
+  <li>
+    <p>Time complexity of function transpose: $O(columns · elements)$</p>
+  </li>
+  <li>
+    <p>If elements = $O(rows · columns)$, then $O(columns · elements)$ becomes $O(rows · columns^2)$.</p>
+  </li>
+  <li>
+    <p>A transpose algorithms using dense representation:</p>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">columns</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">rows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Time complexity: $O(rows·columns)$</li>
+</ul>
+
+<h4 id="program-29-a-faster-transpose-function-ex012">Program 2.9: A faster transpose function [ex012]</h4>
+<script src="https://gist.github.com/underthelights/d37da008b4d3da76975670ea04798682.js"></script>
+
+<p><img width="154" alt="image-20211003144603071" src="https://user-images.githubusercontent.com/46957634/135751696-fc661d81-b85e-4c8d-8d34-79899903075a.png" /></p>
+
+<ul>
+  <li>Time complexity of fast_transpose: O(columns + elements)</li>
+  <li>If elements = O(rows · columns), then O(columns + elements) becomes O(rows · columns).</li>
+</ul>
+

@@ -1,0 +1,150 @@
+<h2 id="binary-tree-traversalchapter-53">Binary Tree Traversal(Chapter 5.3)</h2>
+
+<h3 id="binary-tree-traversals">Binary Tree Traversals</h3>
+
+<ul>
+  <li>
+    <p>One of the operations that arises frequently is traversing a tree, that is, visiting each node in the tree exactly once.</p>
+  </li>
+  <li>
+    <p>A full traversal produces a linear order for the information in a tree.</p>
+  </li>
+  <li>
+    <p>When traversing a tree, we want to treat each nodeand its subtrees in the same way.</p>
+  </li>
+  <li>
+    <p>Let, for each node in the tree,</p>
+
+    <ul>
+      <li>
+        <p>L stand for moving left,</p>
+      </li>
+      <li>V stand for visiting the node(e.g.printing out the data field)</li>
+      <li>R stand for moving right.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Six possible combinations of traversal</p>
+
+    <ul>
+      <li>
+        <p>LVR : inorder traversal</p>
+      </li>
+      <li>
+        <p>LRV : postorder traversal</p>
+      </li>
+      <li>
+        <p>VLR : preorder traversal</p>
+      </li>
+      <li>
+        <p>The other three combinations visit the right child before left child.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>There is a natural correspondence between these traversalsand producing the infix, postfix, and prefix forms of an expression</p>
+  </li>
+  <li>
+    <p>An example binary tree with arithmetic expression</p>
+
+    <p><img width="301" alt="image-20211002230116117" src="https://user-images.githubusercontent.com/46957634/135752668-fc93f563-d43d-4874-8e73-53789e7e79da.png" /></p>
+  </li>
+</ul>
+
+<h3 id="lvr--inorder-traversal">LVR : Inorder traversal</h3>
+
+<ul>
+  <li>Result : A/ B* C* D + E</li>
+</ul>
+
+<p><img width="238" alt="image-20211002230223915" src="https://user-images.githubusercontent.com/46957634/135752678-74cc2ff0-cd11-490c-82d9-5eda5910a801.png" /></p>
+
+<p><img width="249" alt="image-20211002230211364" src="https://user-images.githubusercontent.com/46957634/135752676-3f1ce3e5-0692-4885-aaab-b37181c2dc8d.png" /></p>
+
+<script src="https://gist.github.com/underthelights/2d432ce15cccd3e0580631ca0b0a6f91.js"></script>
+
+<h3 id="vlr-preorder-traversal">VLR: Preorder traversal</h3>
+
+<ul>
+  <li>Result : $ + * */ A BCD E$</li>
+</ul>
+
+<p><img width="238" alt="image-20211002230401687" src="https://user-images.githubusercontent.com/46957634/135752713-e8c74242-9ca7-4774-bf6f-2ff67296dea8.png" /></p>
+
+<script src="https://gist.github.com/underthelights/2816bd04528784fb85c674dfa117bd9c.js"></script>
+
+<h3 id="lrv-postorder-traversal">LRV: Postorder traversal</h3>
+
+<ul>
+  <li>Result : $AB /C* D * E+$</li>
+</ul>
+
+<p><img width="238" alt="image-20211002230356190" src="https://user-images.githubusercontent.com/46957634/135752737-233ceeb0-1373-4c63-b086-6cf488235e41.png" /></p>
+
+<script src="https://gist.github.com/underthelights/08fbe30388770a826d1e01f0020f9b49.js"></script>
+
+<h3 id="iterative-inorder-traversal">Iterative inorder traversal</h3>
+
+<ul>
+  <li>The previous implementation of inorder traversal was recursive.</li>
+  <li>We can use a stack to implement inorder traversal in an iterative way.</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/827f9d5f4216c76db8f44938a5f7ddbf.js"></script>
+
+<h4 id="analysis-of-iter_inorder">Analysis of iter_inorder</h4>
+
+<ul>
+  <li>
+    <p>Let n be the number of nodes in the tree.</p>
+  </li>
+  <li>
+    <p>Note that every node of the tree is placed onand removed from the stack exactly once.</p>
+  </li>
+  <li>
+    <p>The time complexity is O(n).</p>
+  </li>
+  <li>
+    <p>The space complexity is equal to the depth of the tree which is O(n).</p>
+  </li>
+</ul>
+
+<h3 id="level-order-traversal">Level order traversal</h3>
+
+<ul>
+  <li>
+    <p>Level order traversal visits the nodes using the ordering scheme used in complete binary trees.</p>
+  </li>
+  <li>
+    <p>Implementation of level order traversal requires a queue.</p>
+  </li>
+  <li>
+    <p>result : $+ * E * D / C A B$</p>
+
+    <p><img width="342" alt="image-20211002230611532" src="https://user-images.githubusercontent.com/46957634/135752739-bb7278b2-5644-400d-94bc-b8042ad43e24.png" /></p>
+  </li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/e6d979bfae17a3369caf7925e83589f0.js"></script>
+
+<h3 id="exerciseex036">Exercise[ex036]</h3>
+
+<ul>
+  <li>
+    <p>Create functions iter_preorderand iter_postorder that performs preorderand postorder traversal in an iterative manner.</p>
+  </li>
+  <li>
+    <p>In the main function, a tree is built like the figure below.</p>
+  </li>
+  <li>
+    <p>Then, we call the following functions one by one.</p>
+
+    <ul>
+      <li>iter_inorder, iter_preorder, iter_postorder, level_order</li>
+    </ul>
+  </li>
+  <li>
+    <p>Complete necessary functions to obtain correct results</p>
+  </li>
+</ul>
+

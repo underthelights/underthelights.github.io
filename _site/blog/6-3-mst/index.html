@@ -1,0 +1,354 @@
+<h2 id="minimum-cost-spanning-trees-chapter-63">Minimum Cost Spanning Trees (Chapter 6.3)</h2>
+
+<ul>
+  <li>Here we consider a weighted undirected graph that is connected.
+    <ul>
+      <li>Edges have weights (costs).</li>
+    </ul>
+  </li>
+  <li>The cost of a spanning tree is the sum of the costs of the edges in the spanning tree.</li>
+  <li>A minimum (cost) spanning tree is a spanning tree of that has the least cost.</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135761789-77ecbffc-5796-4ea4-963d-29047214a39e.png" alt="image" /></p>
+
+<ul>
+  <li>Spanning trees of graph G and their costs
+    <ul>
+      <li>Because there are 4 vertices in the graph, its spanning tree has exactly 3 edges.</li>
+      <li>We choose 3 edges out of 5 edges, so total number of combinations is 10.</li>
+      <li>Among them, 2 combinations lead to cycles.</li>
+      <li>Thus we have a total of 8 different spanning trees.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761793-9bdb1161-25c5-495b-9aa5-5a637248342f.png" alt="image" /></p>
+  </li>
+  <li>Algorithms for finding the minimum cost spanning tree of a graph
+    <ul>
+      <li>Kruskal’s algorithm</li>
+      <li>Prim’s algorithm</li>
+      <li>Sollin’s algorithm</li>
+    </ul>
+  </li>
+  <li>All three algorithms are greedy algorithms.
+    <ul>
+      <li>At each stage, we make a decision that is the best decision at that time.</li>
+      <li>Since we cannot change this decision later, we make sure that the decision will result in a feasible solution.</li>
+    </ul>
+  </li>
+  <li>To find a minimum spanning tree using a greedy algorithm
+    <ul>
+      <li>At each stage, we select a least cost edge based on some constraints.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="631-kruskals-algorithm">6.3.1 Kruskal’s Algorithm</h3>
+
+<ul>
+  <li>Kruskal’s algorithm builds a minimum cost spanning tree T by adding edges to T one at a time.</li>
+  <li>The algorithm selects the edges for inclusion in T in nondecreasing order of their cost.</li>
+  <li>An edge is added to T if it does not form a cycle with edges that are already in T.</li>
+  <li>If G is connected and has vertices n &gt; 0, exactly n-1 edges will be selected for inclusion in T.</li>
+</ul>
+
+<h4 id="pseudocode-for-kruskals-algorithm">Pseudocode for Kruskal’s algorithm</h4>
+
+<script src="https://gist.github.com/underthelights/1499176ab2f5c64b324ab0753bed6c65.js"></script>
+
+<ul>
+  <li>Example
+    <ul>
+      <li>We would like to find a minimum cost spanning tree of the following graph.</li>
+      <li>We will denote this graph as G = (V, E)</li>
+      <li>The set of edges in the spanning tree is called T.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761821-19832d95-b183-4427-983d-4c808089f440.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We start from an empty set of edges.</p>
+
+    <ul>
+      <li>T={}</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761825-14b582e3-2e62-418c-a466-5d36fd4fad11.png" alt="image" /></p>
+  </li>
+  <li>We select an edge from E that
+    <ul>
+      <li>isnotinT.</li>
+      <li>does not create a cycle with edges in T.</li>
+      <li>has the minimum cost.</li>
+      <li>T becomes {(0,5)}</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761913-9c539b3b-8e4d-408c-82bd-277fd6a610bb.png" alt="image" /></p>
+  </li>
+  <li>We repeat this process
+    <ul>
+      <li>T={(0,5)}</li>
+      <li>T={(0,5),(2,3)}</li>
+      <li>T={(0,5),(2,3),(1,6)}</li>
+      <li>T={(0,5),(2,3),(1,6),(1,2)}</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761921-817356bc-2fcd-4411-bbe7-81c5a514d411.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>The next minimum cost edge is (3, 6), but adding this edge to T will create a cycle. Thus, this edge is not selected.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761931-04afb2ca-5f53-4ac1-bf5d-693d3fe63310.png" alt="image" /></p>
+  </li>
+  <li>We continue selecting least cost edges that does not create a cycle in T. – We stop when we have n-1 edges in T.
+    <ul>
+      <li>Selecting edges in Kruskals’ algorithm</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135761932-b74b7e62-4235-4dc1-9b04-82ffc7708e18.png" alt="image" /></p>
+  </li>
+</ul>
+
+<h4 id="implementing-kruskals-algorithm">Implementing Kruskal’s algorithm</h4>
+
+<ul>
+  <li>In order to implement the algorithm, we need two things:
+    <ol>
+      <li>
+        <p>Selecting an edge in E and not in T that has the minimum cost</p>
+      </li>
+      <li>
+        <p>Checking whether adding an edge in T will create a cycle</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Selecting an edge in E and not in T that has the minimum cost</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762003-1f2d20f3-0d63-405e-9951-71f03f8aa1ba.png" alt="image" /></p>
+
+    <ul>
+      <li>We can use a data structure where edges are sorted in the ascending order of their costs (weights).</li>
+      <li>At each stage, we can delete the edge from the data structure.</li>
+      <li>We can use a min heap for this purpose.</li>
+    </ul>
+  </li>
+  <li>Checking whether adding an edge in T will create a cycle
+    <ul>
+      <li>Suppose the edge we select next is (u, w).</li>
+      <li>Then, we should find out whether u and w is already connected in T.</li>
+      <li>We can use disjoint sets and union-find operations for this purpose.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="1-selecting-an-edge-in-e-and-not-in-t-that-has-the-minimum-cost">1. Selecting an edge in E and not in T that has the minimum cost</h4>
+
+<ul>
+  <li>
+    <p>Edges sorted in the ascending order of cost in a min heap</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762055-407a9e8c-3dd6-4805-9011-9e3218d0afbf.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>The position of nodes in the heap could vary based on how the heap is created.</p>
+  </li>
+</ul>
+
+<h4 id="2-checking-whether-adding-an-edge-in-t-will-create-a-cycle">2. Checking whether adding an edge in T will create a cycle</h4>
+
+<ul>
+  <li>Disjoint Sets
+    <ul>
+      <li>Initially, all vertices are in different sets.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762056-d48de037-526c-4393-b9d5-610ede30dde1.png" alt="image" /></p>
+  </li>
+  <li>Once an edge (u, v) is inserted to T, the disjoint set trees containing u and v are combined using the union operation.
+    <ul>
+      <li>vertices in the same disjoint set tree are connected.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762084-0cd88f21-3efc-4d9a-8f31-4fc110c8e145.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We skip a few steps until we come to this point.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762090-4b1bf867-40b3-4906-bb6b-5e115539c779.png" alt="image" /></p>
+  </li>
+  <li>The next least cost edge is (3, 6), but Find(3) and Find(6) will result in the same number.
+    <ul>
+      <li>This means that vertices 3 and 6 are already connected in T.</li>
+      <li>If we add (3, 6) to T, it will create a cycle.</li>
+      <li>Thus, (3, 6) is discarded → this is how we avoid cycles.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762108-74aa1bd6-48ef-44c8-9cb9-f06d89400fb8.png" alt="image" /></p>
+  </li>
+</ul>
+
+<p>[ex044]</p>
+
+<ul>
+  <li>Time complexity when implemented using min heap and disjoint sets</li>
+  <li>
+    <p>Suppose n is the number of vertices and e is the number of edges in the graph.</p>
+  </li>
+  <li>Creating the min heap
+    <ul>
+      <li>We insert edges into the min heap.</li>
+      <li>Each insertion requires O(log e) time.</li>
+      <li>We need to insert e edges.</li>
+      <li>Thus, the time complexity for creating min heap is O(e log e).</li>
+    </ul>
+  </li>
+  <li>Manipulating disjoint set trees
+    <ul>
+      <li>For each stage, we delete an edge from min heap and check whether the end points are connected.
+        <ul>
+          <li>To find out if they are connected, we need to run two find operations → O(log n)</li>
+          <li>To combine two disjoint trees, we need to run a single union operation → O(1)</li>
+        </ul>
+      </li>
+      <li>The time complexity for manipulating disjoint set trees is O(e log n).</li>
+    </ul>
+  </li>
+  <li>The total time complexity is O(e log e) or O(e log n).
+    <ul>
+      <li>Sincee=O(n2),loge=O(2logn)=O(logn)</li>
+      <li>Thus, O(e log e) is equivalent to O(e log n)</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="632-prims-algorithm">6.3.2 Prim’s Algorithm</h3>
+
+<ul>
+  <li>Prim’s algorithm constructs the minimum cost spanning tree by adding one edge at a time.
+    <ul>
+      <li>At each stage, the set of selected edges forms a tree.</li>
+    </ul>
+  </li>
+  <li>
+    <p>The algorithm begins with a tree, T, that contains a single vertex. – The starting vertex may be arbitrary.</p>
+  </li>
+  <li>Next,weaddaleastcostedge(u,v)toTsuchthatTՍ{(u,v)}isalsoatree.</li>
+  <li>We repeat this edge addition step until T contains n-1 edges.</li>
+  <li>
+    <p>To make sure that the added edge does not form a cycle, at each step we choose the edge (u, v) such that exactly one of u or v is in T.</p>
+  </li>
+  <li>Pseudocode for Prim’s algorithm</li>
+</ul>
+
+<script src="https://gist.github.com/underthelights/08cc0bbb270e59225fb9db3f257b5048.js"></script>
+
+<ul>
+  <li>Example
+    <ul>
+      <li>We would like to find a minimum cost spanning tree of the following graph.</li>
+      <li>We will denote this graph as G = (V, E)</li>
+      <li>The set of edges in the spanning tree is called T.</li>
+      <li>The set of vertices in the spanning tree is called TV.</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762121-f905d619-8eb2-4159-814f-0c6d1506c75c.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Initially, we select any vertex from G and insert to TV. T is empty.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762127-df79865d-edf6-4552-a192-b428106d2d46.png" alt="image" /></p>
+  </li>
+  <li>For all vertices not in TV, select a vertex v where
+    <ul>
+      <li>(u,v)is in E</li>
+      <li>u is included in TV</li>
+      <li>among candidate edges that satisfy the condition, (u, v) is has the minimum cost</li>
+    </ul>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762143-02b28985-816e-4284-b4bb-e508fb471531.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>We repeat the process until T has n-1 edges.</p>
+  </li>
+  <li>
+    <p>Time complexity of Prim’s algorithm</p>
+  </li>
+  <li>An O(n2) implementation is possible using adjacent matrix (or an adjacency list.)</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/46957634/135762175-af6a813a-ca42-4b47-96c5-9df85a257eb0.png" alt="image" /></p>
+
+<script src="https://gist.github.com/underthelights/1e0977d2006de3d7eee33fd206c77b60.js"></script>
+
+<h4 id="time-complexity-of-prims-algorithm">Time complexity of Prim’s algorithm</h4>
+
+<ul>
+  <li>Using a priority queue, Prim’s algorithm can be implemented so that its time complexity is O(e log n), which is the same as Kruskal’s algorithm.</li>
+</ul>
+
+<h3 id="633-sollins-algorithm">6.3.3 Sollin’s algorithm</h3>
+
+<ul>
+  <li>Unlike Kruskal’s and Prim’s algorithm, Sollin’s algorithm selects multiple edges for inclusion in T at each stage.</li>
+  <li>At the start of a stage, the selected edges, together with all n graph vertices, form a spanning forest.
+    <ul>
+      <li>At initial stage, the set of selected edges is empty.</li>
+    </ul>
+  </li>
+  <li>During a stage, we select one edge for each tree in the forest. The edge is a minimum cost edge that has exactly one vertex in the tree.
+    <ul>
+      <li>If both vertices are in the tree, that would result in a cycle.</li>
+    </ul>
+  </li>
+  <li>Since two trees in the forest could select the same edge, we need to eliminate multiple copies of edges.</li>
+  <li>The algorithm terminates when there is only one tree at the end of a stage or no edges remain for selection.</li>
+</ul>
+
+<h4 id="example">Example</h4>
+
+<ul>
+  <li>
+    <p>We would like to find a minimum cost spanning tree of the following graph.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762187-950eb7a2-fe3a-47d1-b701-315026ffad72.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Initially, each vertex is a tree in the spanning forest.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762188-f8e27b07-d9f6-47f1-a441-70110b6a2f4b.png" alt="image" /></p>
+  </li>
+  <li>For each tree, we select the minimum cost edge. Only one of the vertices of the edge should be in the tree.
+    <ul>
+      <li>The tree with vertex 0 chooses (0, 5)</li>
+      <li>The tree with vertex 1 chooses (1, 6)</li>
+      <li>The tree with vertex 2 chooses (2, 3)</li>
+      <li>The tree with vertex 3 chooses (3, 2)</li>
+      <li>The tree with vertex 4 chooses (4, 3)</li>
+      <li>The tree with vertex 5 chooses (5, 0)</li>
+      <li>The tree with vertex 6 chooses (6, 1)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Duplicate edges (3, 2), (5, 0), (6, 1) are eliminated.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762201-dc0e0d2f-6523-4162-b549-8e5e967bfd8f.png" alt="image" /></p>
+  </li>
+  <li>We repeat the process
+    <ul>
+      <li>The tree with vertices 0 and 5 chooses (5, 4)</li>
+      <li>The tree with vertices 1 and 6 chooses (1, 2)</li>
+      <li>The tree with vertices 2, 3, and 4 chooses (2, 1)</li>
+    </ul>
+  </li>
+  <li>
+    <p>The duplicate edge (2, 1) is eliminated.</p>
+  </li>
+  <li>
+    <p>Since we have a single tree, the algorithm terminates.</p>
+
+    <p><img src="https://user-images.githubusercontent.com/46957634/135762211-48ebb0eb-c43f-4830-9aad-6a4b85d4b9b5.png" alt="image" /></p>
+  </li>
+</ul>
