@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-02-04T11:34:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">KyuHwan Shim</title><subtitle>Undergrad. HAI</subtitle><author><name>KyuHwan Shim</name><email>skh7343@cnsh.hs.kr</email></author><entry xml:lang="en"><title type="html">[SP] 13. Virtual Memory: Concepts</title><link href="http://localhost:4000/blog/13-sp-vm/" rel="alternate" type="text/html" title="[SP] 13. Virtual Memory: Concepts" /><published>2022-06-18T12:26:09+09:00</published><updated>2022-06-18T12:26:09+09:00</updated><id>http://localhost:4000/blog/13-sp-vm</id><content type="html" xml:base="http://localhost:4000/blog/13-sp-vm/">&lt;h1 id=&quot;13-virtual-memory-concepts&quot;&gt;13. Virtual Memory: Concepts&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-25T21:07:26+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">KyuHwan Shim</title><subtitle>Undergrad. HAI</subtitle><author><name>KyuHwan Shim</name><email>skh7343@cnsh.hs.kr</email></author><entry xml:lang="en"><title type="html">[SP] 13. Virtual Memory: Concepts</title><link href="http://localhost:4000/blog/13-sp-vm/" rel="alternate" type="text/html" title="[SP] 13. Virtual Memory: Concepts" /><published>2022-06-18T12:26:09+09:00</published><updated>2022-06-18T12:26:09+09:00</updated><id>http://localhost:4000/blog/13-sp-vm</id><content type="html" xml:base="http://localhost:4000/blog/13-sp-vm/">&lt;h1 id=&quot;13-virtual-memory-concepts&quot;&gt;13. Virtual Memory: Concepts&lt;/h1&gt;
 
 &lt;h1 id=&quot;address-spaces&quot;&gt;Address spaces&lt;/h1&gt;
 
@@ -2034,7 +2034,7 @@ Working set &amp;gt; 내가 가진 main memory size
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Bellman Eq&lt;/strong&gt;&lt;/p&gt;
 
-\[V(s) = max_a(R(s,a) + \gamma V(s&apos;))\]
+\[V(s) = max_a(R(s,a) + \gamma V(s'))\]
 
     &lt;ul&gt;
       &lt;li&gt;$R(s,a)$ : reward: state에서 취한 action에 따른 reward&lt;/li&gt;
@@ -2051,7 +2051,7 @@ Working set &amp;gt; 내가 가진 main memory size
       &lt;/li&gt;
     &lt;/ul&gt;
 
-\[V(s) = max_a(R(s,a) + \gamma V(s&apos;))\]
+\[V(s) = max_a(R(s,a) + \gamma V(s'))\]
 
     &lt;ul&gt;
       &lt;li&gt;By calculating V(s) for all states
@@ -2340,7 +2340,7 @@ env는 action을 받아들여서 agent에게 주고 변환된 statement를 agent
 
 &lt;h1 id=&quot;bellman-equation&quot;&gt;Bellman equation&lt;/h1&gt;
 
-\[V(s) = max_a(R(s,a) + \gamma V(s&apos;))\]
+\[V(s) = max_a(R(s,a) + \gamma V(s'))\]
 
 &lt;ul&gt;
   &lt;li&gt;$R(s,a)$ : reward: state에서 취한 action에 따른 reward&lt;/li&gt;
@@ -2390,7 +2390,7 @@ V(s’) : all futer reward&lt;/li&gt;
 
 &lt;p&gt;&lt;img src=&quot;14/Untitled_10.png&quot; alt=&quot;Untitled&quot; /&gt;&lt;/p&gt;
 
-\[V(s) = max_a(R(s,a) + \gamma V(s&apos;))\]
+\[V(s) = max_a(R(s,a) + \gamma V(s'))\]
 
 &lt;ul&gt;
   &lt;li&gt;By calculating V(s) for all states
@@ -7029,7 +7029,7 @@ framework for representing world, visual and linguistic information.&lt;/li&gt;
   &lt;li&gt;Example: 200x200 image * 40K hidden units → ~2B parameters&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/46957634/188280884-b24fcebf-e58f-4fa8-91a0-f07fb0ae74f4.png&quot; alt=&quot;Slide Credit: Marc&apos;Aurelio Ranzato&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/46957634/188280884-b24fcebf-e58f-4fa8-91a0-f07fb0ae74f4.png&quot; alt=&quot;Slide Credit: Marc'Aurelio Ranzato&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Slide Credit: Marc’Aurelio Ranzato&lt;/p&gt;
 
