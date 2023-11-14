@@ -1846,8 +1846,8 @@ textarea {
 	font-size: 20px !important;
 	font-weight: 500;
 	color: #333333;
-	font-family: Poppins;
-	text-transform: uppercase;
+	font-family: Lato;
+	/* text-transform: uppercase; */
 }
 
 .section-header a {
@@ -2099,7 +2099,8 @@ a .section-body:hover {
 
 .author-text p {
 	color: #868e96;
-	font-family: Poppins, 'Noto Sans KR', Arial, sans-serif;
+	/* font-family: Poppins, 'Noto Sans KR', Arial, sans-serif; */
+	font-family: 'Noto Sans KR', Arial, sans-serif;
 	font-size: 12px;
 	font-weight: 300;
 	letter-spacing: .25px;

@@ -72,8 +72,9 @@
   {% endunless %}
   {% endfor %}
 
+  <!-- 블로그 메인 타이틀 : browser tab에 뜨는 이름 -->
   <title>
-    {% if page.title %} {{ page.title }} | KyuHwan Shim {% else %} SHIM KYU HWAN {% endif %}
+    {% if page.title %} {{ page.title }} ⚹ Kyuhwan Shim {% else %} Kyuhwan Shim  {% endif %}
   </title>
   {% if page.excerpt %}<meta name="description" content="{{ page.excerpt | strip_html }}">{% endif %}
   {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}

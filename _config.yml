@@ -36,8 +36,8 @@ compress_html:
   comments: all
 
 # Site meta
-title: 'KyuHwan Shim'
-tagline: Sogang CSE undergrad.
+title: 'Kyuhwan Shim'
+tagline: CS.
 description: 'Undergrad. HAI'
 keywords: 'kyuhwan, hai, hci, ai'
 url: https://underthelights.github.io
@@ -48,8 +48,8 @@ logo: /assets/icons/apple-icon-144x144.png
 dark_theme: true
 
 author:
-  name: KyuHwan Shim
-  bio: Sogang CSE undergrad. 
+  name: Kyuhwan Shim
+  bio: CS.
   image: author
   url: https://underthelights.github.io
   email: skh7343@cnsh.hs.kr
