@@ -2,10 +2,13 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://localhost:4000/publication/xx</loc>
-<lastmod>2023-11-15T22:29:22+09:00</lastmod>
+<lastmod>2023-11-15T23:08:49+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/404</loc>
+</url>
+<url>
+<loc>http://localhost:4000/oconnect/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/artwork/</loc>
@@ -14,10 +17,10 @@
 <loc>http://localhost:4000/publication/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/project</loc>
+<loc>http://localhost:4000/music/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/music/</loc>
+<loc>http://localhost:4000/news/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/cv/</loc>
@@ -26,7 +29,7 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/news/</loc>
+<loc>http://localhost:4000/project</loc>
 </url>
 <url>
 <loc>http://localhost:4000/assets/pdf/award_%EA%B0%95%EC%84%9C%EA%B5%AC_%EC%B5%9C%EC%9A%B0%EC%88%98%EC%83%81.pdf</loc>

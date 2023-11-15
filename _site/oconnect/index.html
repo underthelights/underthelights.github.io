@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>oconnect ✱ Kyuhwan Shim</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <link href="/assets/fontawesome/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  <!-- GA -->
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-KV9ZGJ6V"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GTM-KV9ZGJ6V');
+</script>
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/main/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/main/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/main/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/main/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/main/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/main/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/main/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/main/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/main/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/main/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/main/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/main/favicon/favicon-16x16.png">
+  <link rel="manifest" href="">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/main/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Opengraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/main/favicon/ms-icon-310x310.png">
+  <meta property="og:title" content="oconnect | Kyuhwan Shim">
+  <meta property="og:description" content="oconnect">
+
+  <!-- Google scholar -->
+  
+</head>
+<body><header class="page-content">
+  <nav class="navbar navbar-expand-md navbar-light py-4">
+    <div class="container-fluid">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  active " aria-current="page" href="/oconnect">oconnect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/cv">CV</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">fun</a>
+              <div class="dropdown-menu">
+                  <a href="/music" class="dropdown-item">music</a>
+                  <a href="/artwork" class="dropdown-item">artwork</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dropdown-toggle {
+    background-color: transparent;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+  }
+  .dropdown-toggle:hover {
+    font-weight: 500
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ .dropdown-menu {
+    --bs-dropdown-border-radius: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+ }
+ .dropdown-item {
+  font-size: .95rem !important;
+  padding: .3rem .75rem !important;
+ }
+ .dropdown-item:active {
+  background-color: #999 !important
+ }
+</style><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+<!-- OCONNECT Section -->
+<div class="container py-4">
+  <div class="row">
+    <div class="col-12">
+      <main>
+        <header>
+          <h1>OCONNECT</h1>
+        </header>
+        <section id="oconnect-info">
+          <p>Website: <a href="http://oconnect.kr">OCONNECT</a></p>
+          <p>Product: ONE STEP, an easy-to-plug-in outlet</p>
+          <p>REP. CEO: Hyeong-Jun Bang</p>
+          <p>MEMBERS:
+          <ul>
+            <li>CTO: Jinseo Park</li>
+            <li>CDO: Kyuhwan Shim</li>
+          </ul>
+          </p>
+          <p>LOCATION: UNISPARK, UNIST Bldg. 307 1F, 50, UNIST-gil, Eonyang-eup, Ulju-gun, Ulsan, Republic of Korea</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- OCONNECT Awards Section -->
+<section id="oconnect-awards">
+  <h2>Awards</h2>
+  <div class="dated-entry">
+    <div class="dated-date">Jul 2022</div>
+    <div class="dated-content">
+      <b>JAMES DYSON AWARD 2022</b> - Nat’l, Korea, James Dyson Foundation<br>
+      Winner (TOP 3), International Competition<br>
+      <a href="URL_TO_AWARD_CERTIFICATE">View Award Certificate</a>
+    </div>
+  </div>
+
+  <div class="dated-entry">
+    <div class="dated-date">Dec 2021</div>
+    <div class="dated-content">
+      <b>PIN UP Concept Design Award 2021</b>, KAID<br>
+      BEST 100 in Living Goods Design<br>
+      <a href="URL_TO_AWARD_CERTIFICATE">View Award Certificate</a>
+    </div>
+  </div>
+
+  <div class="dated-entry">
+    <div class="dated-date">Dec 2021</div>
+    <div class="dated-content">
+      <b>Busan-Ulsan-KyungPook Startup Day Innovation Ventures League</b><br>
+      Samsung Electronics, KyungPook, Ulsan, Busan Creative Econ. & Innov. Center<br>
+      Excellence Prize at Futures’ League<br>
+      <a href="URL_TO_AWARD_CERTIFICATE">View Award Certificate</a>
+    </div>
+  </div>
+  <div class="dated-entry">
+    <div class="dated-date">Oct 2021</div>
+    <div class="dated-content">
+      <b>Challenge K-Startup Expo : Collegiate Competition</b><br>
+      Ministry of SMEs and Startups, Korean Institute of Startup & Entrepreneurship Development<br>
+      Top 10, Offline Exhibition Oct 2021<br>
+      Top 50, Offline Exhibition Aug 2019<br>
+      <a href="URL_TO_AWARD_CERTIFICATE_2021">View Award Certificate (2021)</a><br>
+      <a href="URL_TO_AWARD_CERTIFICATE_2019">View Award Certificate (2019)</a>
+    </div>
+  </div>
+
+  <div class="dated-entry">
+    <div class="dated-date">Sep 2020 – Dec 2020</div>
+    <div class="dated-content">
+      <b>Social Challenge alpha 7</b>, OhMyCompany, BSS, LISCC<br>
+      Challenge Award, Crowd Funding (Funded 1,424,000 KRW)<br>
+      <a href="URL_TO_AWARD_CERTIFICATE">View Award Certificate</a>
+    </div>
+  </div>
+
+  <div class="dated-entry">
+    <div class="dated-date">Nov 2020</div>
+    <div class="dated-content">
+      <b>Ulsan Collegiate Startup Excellent Idea Contest</b><br>
+      Ulsan Creative Econ. & Innov. Center<br>
+      Winner: Grand Prize Nov 2020<br>
+      <a href="URL_TO_AWARD_CERTIFICATE">View Award Certificate</a>
+    </div>
+  </div>
+
+  <div class="dated-entry">
+    <div class="dated-date">Dec 2020 – Nov 2019</div>
+    <div class="dated-content">
+      <b>Institute of Science & Technology Startups Competition</b><br>
+      KAIST, GIST, DGIST, UNIST, POSTECH<br>
+      Representative of UNIST (Top 2 at UNIST) Dec 2020<br>
+      Representative of UNIST (Top 3 at UNIST) Nov 2019<br>
+      <a href="URL_TO_AWARD_CERTIFICATE_2020">View Award Certificate (2020)</a><br>
+      <a href="URL_TO_AWARD_CERTIFICATE_2019">View Award Certificate (2019)</a>
+    </div>
+  </div>
+  <!-- OCONNECT Fundings & Support Program Section -->
+  <section id="oconnect-fundings-support">
+    <h2>Fundings & Support Program</h2>
+    <div class="dated-entry">
+      <div class="dated-date">Aug 2022 – Jul 2023</div>
+      <div class="dated-content">
+        <b>DIDIMDOL First Step - Startup Growth Development Project</b><br>
+        Ministry of SMEs and Startups<br>
+        Recommended from Ulsan Creative Econ. & Innov. Center<br>
+        <a href="URL_TO_PROGRAM_DETAILS">View Program Details</a>
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-date">Mar 2022 – Dec 2022</div>
+      <div class="dated-content">
+        <b>Ulju Youth Startup Academy</b><br>
+        Ulsan Youth Startup Center<br>
+        <a href="URL_TO_PROGRAM_DETAILS">View Program Details</a>
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-date">Jul 2022 – Nov 2022</div>
+      <div class="dated-content">
+        <b>Pre-IBK Changgong @ UNIST</b><br>
+        UNIST, IBK Changgong<br>
+        <a href="URL_TO_PROGRAM_DETAILS">View Program Details</a>
+      </div>
+    </div>
+
+
+    <div class="dated-entry">
+      <div class="dated-date">May 2022 – Oct 2022</div>
+      <div class="dated-content">
+        <b>Private-Sector Open Start-up Revitalization Project</b><br>
+        Ulsan Creative Econ. & Innov. Center<br>
+        <a href="URL_TO_PROGRAM_DETAILS">View Program Details</a>
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-date">Mar 2022 – Sep 2022</div>
+      <div class="dated-content">
+        <b>BUSAN BIGS Program</b><br>
+        Busan-si, KSD, KHUG, KOSPO, HF, KIBO, Busan PA, BNK<br>
+        <a href="URL_TO_PROGRAM_DETAILS">View Program Details</a>
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-date">Jun 2021 – Aug 2022</div>
+      <div class="dated-content">
+        <b>Innopolis Campus for Ulsan Collegiate</b><br>
+        UNIST, Innopolis<br>
+        <a href="URL_TO_PROGRAM_DETAILS">View Program Details</a>
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-date">Mar 2021 – Dec 2021</div>
+      <div class="dated-content">
+        <b>12th UEPA Startup Incubator</b><br>
+        Ulsan Youth Startup Center<br>
+        <a href="URL_TO_PROGRAM_DETAILS">View Program Details</a>
+      </div>
+    </div>
+    <!-- Continuing Fundings & Support Program Section for OCONNECT -->
+
+    <div class="dated-entry">
+      <div class="dated-date">Nov 2020 – Nov 2021</div>
+      <div class="dated-content">
+        <b>SBC Youth Entrepreneurship Academy</b><br>
+        Korea SMEs and Startups Agency<br>
+        <ul>
+          <li>Most Funded Startup Company (100,000,000 KRW)</li>
+          <li>Excellent Completion at Pre-School</li>
+          <li>'Pre-School' Completion of Excellence & Youth Startup Academy Nov 2020 – Nov 2021</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-date">Sep 2019 - Feb 2021</div>
+      <div class="dated-content">
+        <b>UNIST UNIcorn Start-Up Support Program</b><br>
+        UNIST<br>
+        <ul>
+          <li>Funding (12,000,000 KRW)</li>
+          <li>Participated for Four Semesters Sep 2019 – Feb 2021</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-date">Apr 2020– Dec 2020</div>
+      <div class="dated-content">
+        <b>KISED Pre-Startup Package (General Field)</b><br>
+        Korea Institute of Startup & Entrepreneurship Development<br>
+        <ul>
+          <li>Most Funded (70,000,000 Won) Apr 2020– Dec 2020</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Add more entries following the same format for other funding and support programs -->
+
+
+  </section>
+
+  <!-- OCONNECT Activities Section -->
+  <section id="oconnect-activities">
+    <h2>Activities</h2>
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>Ulsan Knowledge-Technology Startup Center, Ulsan Technopark</b><br>
+        Oct 2020
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>Patent IP Training Education, Intellectual Property Office</b><br>
+        Jun 2020 – Dec 2020
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>K-Camp Busan, Krypton</b><br>
+        Nov 2019 – May 2020
+      </div>
+    </div>
+  </section>
+
+  <!-- OCONNECT Medias Section -->
+  <section id="oconnect-medias">
+    <h2>Medias</h2>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>UNIST Startup OCONNECT wins at JAMES DYSON AWARD 2022</b><br>
+        UNIST Press, CHOSUN Ilbo, Segye Ilbo, Sisa-news, Newsis Feb 2022
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>UNIST 2021 Innopolis Performance Presentation</b><br>
+        UNIST Press, UlsanDaily, ETNews Feb 2022
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>UNIST UNISPARK for Young Entrepreneurs UNIST Magazine 2021 Winter</b><br>
+        Dec 2021
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>Southeast Venture Competition held by UNIST Lab Startup Innovation Group</b><br>
+        The Korea Economy TV Dec 2021
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>”New evolution of electrical outlets...” OneStep is released</b><br>
+        The Korea Economic Daily Dec 2021
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>”Make a ’National Outlet’ which ’Connects’ warmth to each other”</b><br>
+        UNIST Magazine 2021 Spring Feb 2021
+      </div>
+    </div>
+
+    <div class="dated-entry">
+      <div class="dated-content">
+        <b>”Doing businesses regardless of COVID-19” - Leap forward with technology</b><br>
+        SBS, UBC
+      </div>
+    </div>
+  </section>
+
+  <!-- OCONNECT Patents Section -->
+  <section id="oconnect-patents">
+    <h2>Patents</h2>
+    <!-- Patents Section -->
+
+    <div class="patent-entry">
+      <b>Patent Registration</b>
+      <!-- Add any relevant details or dates -->
+    </div>
+
+    <div class="patent-entry">
+      <b>Patent Application</b>
+      <!-- Add any relevant details or dates -->
+    </div>
+
+    <div class="patent-entry">
+      <b>Design Registration Application</b>, H. J. Bang(2021)
+      <!-- Add any relevant details or dates -->
+    </div>
+
+    <div class="patent-entry">
+      <b>International PCT Application</b>
+      <!-- Add any relevant details or dates -->
+    </div>
+
+    <div class="patent-entry">
+      <b>Trademark Application</b>
+      <!-- Add any relevant details or dates -->
+    </div>
+
+  </section>
+
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
+
+  <style>
+    /* reset base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* page header */
+    header {
+      margin-bottom: 2rem;
+      padding-left: 6.5rem;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    header p {
+      margin: .5rem 0;
+      font-size: 1rem !important
+    }
+
+    main b {
+      font-weight: 500
+    }
+
+    /* normal body content */
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      margin-left: 6.5rem;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      border-bottom: 1px solid black;
+      font-size: .9rem;
+      margin: 1rem 0 .5rem 6.5rem
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: inherit;
+      /*#0000ee;*/
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    /* misc */
+    .pdf {
+      font-size: .9rem !important;
+      font-weight: 300;
+      margin-left: 1.5rem;
+      white-space: nowrap;
+    }
+
+    .pdf i {
+      margin-right: .1rem;
+    }
+
+    .material {
+      font-size: small;
+      margin-left: .5rem;
+    }
+
+    :global(i) {
+      padding-right: 4px !important
+    }
+
+    /* dated entries */
+    .dated-entry {
+      display: flex;
+      flex-flow: row wrap;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .dated-date {
+      width: 6.5rem;
+      text-align: right;
+      padding-top: .15rem;
+      padding-right: 1.5rem;
+      font-size: .8rem
+    }
+
+    .dated-content {
+      width: calc(100% - 6.5rem);
+      font-size: .95rem
+    }
+
+    .oneline-entries {
+      margin-bottom: 0.5rem;
+    }
+
+    .oneline-entries .dated-entry {
+      margin-bottom: 0;
+    }
+
+    /* hide extra awards info for now, not sure what to include */
+    #awards em {
+      display: none;
+    }
+
+    .author-tooltip {
+      font-weight: 400;
+      font-size: .8rem !important;
+      text-align: center;
+    }
+
+    /* on narrow displays, make the font smaller */
+    @media (max-width: 480px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    /* when printing, make the font smaller and the page full-width */
+    @media print {
+      html {
+        font-size: 12px;
+      }
+
+      main {
+        margin-top: 0;
+        max-width: 100%;
+      }
+    }
+  </style>
+      </div>
+    </main><footer>
+  <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">
+  <div class="row m-0">
+    <div class="col-12 col-md-3 col-sm-4 mb-4 mb-sm-0">
+      <p>
+        <a href="https://github.com/underthelights/underthelights.github.io" style="font-weight: 300">Kyuhwan Shim</a>
+        <br>Up-to-date as of <span id="date">loading...</span></p>
+      <i class="fas fa-location-dot mr-1"></i> Seoul is <img style="width: auto; height: 23px;" id="weather_icon">
+      <span id="weather">Loading...</span>
+    </div>
+    <div class="col-12 col-md-9 col-sm-8">
+      <p>
+        <a style="font-weight: 300" href="https://linkedin.com/in/kyuhwan-shim"><i class="fab fa-linkedin" style="margin-right: 10.5px"></i>LinkedIn</a><br>
+        <a style="font-weight: 300" href="https://fb.com/s.kyuhwn"><i class="fab fa-facebook" style="margin-right: 8px"></i>Facebook</a><br>
+        <a style="font-weight: 300" href="https://www.instagram.com/s.kyuhwn"><i class="fab fa-instagram" style="margin-right: 10.5px"></i>Instagram</a><br>
+        <a style="font-weight: 300" href="https://github.com/underthelights"><i class="fab fa-github" style="margin-right: 10.5px"></i>GitHub</a><br>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="/assets/js/weather.js"></script>
+<script src="/assets/js/github_date.js"></script>
+</body>
+
+</html>
