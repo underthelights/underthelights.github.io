@@ -1,85 +1,38 @@
 ---
 layout: default
-font: serif
 ---
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-{% include core/metabar.html %}
-
-<article class="content post">
-  <header class="hero">
-    <a id="{{ page.title | url_encode }}">
-      <h1 class="hero-title">{{ page.title }}</h1>
-    </a>
-    {% include core/date.html %}
-    {% if page.image %}
-    <div class="hero-image"
-      style="background-image: url('{{ site.baseurl }}{{ site.assets }}{{ site.images }}/posts/{{ page.ref }}.jpg'); background-image: -webkit-image-set( url('{{ site.baseurl }}{{ site.assets }}{{ site.images }}/posts/{{ page.ref }}.jpg') 1x, url('{{ site.baseurl }}{{ site.assets }}{{ site.images }}/posts/{{ page.ref }}-large.jpg') 2x )">
-    </div>
-    {% endif %}
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.modified_date -%}
+        ~ 
+        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
+        <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
+          {{ mdate | date: date_format }}
+        </time>
+      {%- endif -%}
+      {%- if page.author -%}
+        • {% for author in page.author %}
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
+            {%- if forloop.last == false %}, {% endif -%}
+        {% endfor %}
+      {%- endif -%}</p>
   </header>
 
-  <div class="content-style">
-    <aside class="content-author">
-      <div class="tags">
-        <p>
-          {% for tag in page.tags %}
-          <a title="" href="" style="text-transform: capitalize; pointer-events: none;"># {{ tag }}</a>
-          {% endfor %}
-        </p>
-      </div>
-    </aside>
-
+  <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
-
-    {% include core/share.html %}
-    {% if page.exclude != true %}
-    {% include core/comment.html %}
-    {% endif %}
-
-    {% assign next_page = page.next %}
-    {% for counter in (0..9) %}
-    {% if next_page.url and page.exclude != true and next_page.exclude != true %}
-    <aside class="content-next">
-      <article class="next-post">
-        <h4 class="next-header">Next Post</h4>
-        {% if next_page.image %}
-        <div class="next-image"
-          style="background-image: url('{{ site.baseurl }}{{ site.assets }}{{ site.images }}/posts/{{ next_page.ref }}-small.jpg')">
-        </div>
-        {% endif %}
-        <h5 class="next-title"><a href="{{ site.baseurl }}{{ next_page.url }}">{{next_page.title}}</a></h5>
-      </article>
-    </aside>
-    {% break %}
-    {% endif %}
-    {% assign next_page = next_page.next %}
-    {% endfor %}
   </div>
+
+  {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
-
-{% if site.related_posts != empty and page.exclude != true %}
-<aside class="content-related">
-  <div class="related-container">
-    <h3>Related Posts</h3>
-    <div class="related-posts">
-      {% assign counter = 0 %}
-      {% for page in site.related_posts %}
-      {% if page.exclude != true %}
-      {% assign counter = counter | plus:1 %}
-      <section class="related-post">
-        <h4><a href="{{ site.baseurl }}{{ page.url }}" aria-label="{{ page.title }}">{{ page.title }}</a></h4>
-        {% include core/date.html %}
-      </section>
-      {% if counter == 3 %}
-      {% break %}
-      {% endif %}
-      {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</aside>
-{% endif %}
-
-
-
-{% include core/footer.html %}

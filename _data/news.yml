@@ -1,11 +1,9 @@
-news:
-  - title: GitBlog Rearrange
-    date: July 23, 2021
-    description: Third Innovation of <intext-highlight>Github Blog</intext-highlight>
-  # - title: LiquidEye paper accepted to <a href="https://jmir.org/">JMIR</a>
-  #   date: February 25, 2021
-  #   description: Our paper on exploring design guidelines for computer-based CVS intervention has been accepted to <intext-highlight>Journal of Medical Internet Research</intext-highlight>
-  # - title: BlahBlahBot poster accepted to <a href="https://chi2021.acm.org/">CHI 2021</a>
-  #   date: February 19, 2021
-  #   description: BlahBlahBot poster has been accepted to <intext-highlight>CHI 2021 Late-Breaking Work</intext-highlight>. See you at the conference!
-    
+list: # format date as dd/mm/yyyy
+  - title: "Spring & Summer internship at Nota Inc"
+    date: "02/03/2023~31/08/2023" # Oct 21, 2021
+    description: "Pleased to be working as a Machine Learning Engineer Intern at ITS Team of <a href='https://nota.ai'>Nota Inc.</a>"
+  
+  #강서구 데이터 공모전
+  - title: "Winner "
+    date: "13/01/2023" # Oct 21, 2021
+    description: "Gangseo"

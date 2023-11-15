@@ -1,87 +1,25 @@
-# Dependencies
-markdown: kramdown
-highlighter: rouge
-
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-gist
-  - jekyll-redirect-from
-  - jekyll-seo-tag
-  - jekyll-paginate
-
-# Settings
-exclude:
-  [
-    CNAME,
-    README.md,
-    LICENSE.md,
-    .gitignore,
-    package.json,
-    yarn.lock,
-    _js,
-    _scss,
-    _images,
-    gulpfile.js,
-    gulpconfig.js,
-    node_modules,
-    gemfile,
-    Gemfile.lock,
-    lint-staged.config.js,
-    prettier.config.js,
-  ]
-permalink: /blog/:title/
-compress_html:
-  clippings: all
-  comments: all
-
-# Site meta
-title: 'Kyuhwan Shim'
-tagline: CS.
-description: 'Undergrad. HAI'
-keywords: 'kyuhwan, hai, hci, ai'
-url: https://underthelights.github.io
-assets: /assets
-images: /images
-image: index-large.jpg
-logo: /assets/icons/apple-icon-144x144.png
-dark_theme: true
-
+title: Kyuhwan Shim
 author:
   name: Kyuhwan Shim
-  bio: CS.
-  image: author
-  url: https://underthelights.github.io
-  email: skh7343@cnsh.hs.kr
-  facebook: s.kyuhwn
-  instagram: s.kyuhwn
+  email: kyuhwan.shim@sogang.ac.kr
+description: > # this means to ignore newlines until "show_excerpts:"
+  Kyuhwan Shim is a senior undergraduate in CS at Sogang University.
 
-social:
-  facebook: https://fb.com/s.kyuhwn
-  instagram: https://instagram.com/s.kyuhwn
-  github: https://github.com/underthelights
+show_excerpts: false # set to true to show excerpts on the homepage
 
-version: 4.0.0
+permalink: /:title
 
-github:
-  repo: https://github.com/underthelights
+url: "https://underthelights.github.io" # the base hostname & protocol for your site
+  
+# Minima date format
+# refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
+ - jekyll-sitemap
 
-google_fonts:
-  Poppins: 300, 400, 500, 600, 700
-  Noto Sans KR: 300, 400, 500, 600, 700, 800, 900
-  Noto Sans TC: 300, 500, 700
-
-google_analytics_key: UA-124170475-1
-excerpt_separator: <!-- Read more -->
-
-paginate: 7
-paginate_path: "/blog/page:num/"
+collections:
+  publication:
+    output: true
 
 theme: minima
-
-# Conversion
-markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false

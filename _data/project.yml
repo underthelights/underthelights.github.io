@@ -1,97 +1,96 @@
-projects:
-  - title: "Development of Carbon Footprint Calculator"
-    id: carbon-footprint
-    slide: "BIGCONTETS_INSIGHT_DAVENGERS.pdf"
-    code: "https://underthelights.github.io/DAVENGERS/carbon-footprint/"
+project:
+  - title: Camera Invariant Domain Adaptation
+    image: samsung_ai.jpg
+    paper: 
+    presentation: samsung_ai.pdf
+    detail: >
+      <p>Implemented a </p>
+      <p style='text-align: center;'><b>Team: Hyunjae Kim</b></p>
     tags:
-        - '# BIGCONTEST'
-        - '# Streamlit'
-        - '# Data Analysis'
-    image: flight.gif
-    detail: "Interactive Travel Carbon Footprint Calculator"
-    description: |
-        <p>In the second half of 22, Team DAVENGERES was formed with members of Sogang University's data science association <INSIGHT>. We participated in the big contest data analysis league innovation field hosted by the Korea Intelligence Information Society Agency and Shinhan Card, and focused on directly processing data in the field and designing algorithms to extract insights. They collaborated efficiently by distributing roles such as data crawling and processing parts, visualization implementation parts, algorithm design and implementation parts, and form production, and won the top prize as the second overall.</p>
-        <p>We started the project by diversifying management, computer engineering, and data for the theme of this innovation league, **Eco-friendly ESG Jeju Travel Route for the MZ Generation to Leave**. The given tasks were [1] After constructing a carbon footprint calculator for each travel area for transportation, F&B, accommodation, and tourism areas, [2] based on this, designing an eco-friendly travel route for Jeju for 3 nights and 4 days.</p>
-        <p>Internal data was actively utilized in developing carbon footprint calculators, and raw data crawled from 'VISIT JEJU' & 'Naver Map' was supplemented in the complete configuration of logic. Travel was largely divided into transportation, restaurants, accommodation, and tourism, and data was refined, analyzed, and processed according to each logic to design and implement field-specific carbon calculators algorithms, implemented and distributed in Streamlit.</p>
-        <hr>
-        <p><b>[What I'm doing in this project]</b><br> Construct Interactive Calculator with Streamlit, Assist on Data Analysis for the internal data and crawled data</p>
-        <p href="https://underthelights.github.io/DAVENGERS/carbon-footprint/">[Link]<\p>
-    
+      - Semantic Segmentation
+      - Domain Adaptation
+      - Data Analysis
+    description: >-
+      Domain Adaptation with SePiCo
+    id: samsung_ai
+  - title: Game Review NLP Dashboard
+    image: game-review-analysis.jpg
+    paper: 
+    presentation: game-review-analysis-ppt.pdf
+    detail: >
+      <p>Implemented a Game Review NLP Dashboard applying NLP methods such as BiLSTM and Fine-tuned KoBERT. The project received the Grand Prize at the 2023 Spring INSIGHT Projects Competition.</p>
 
-  - title: "Jeju Island Travel Route Recommender System for Eco-Friendly & Gen-MZ"
-    id: rec-sys
-    slide: "BIGCONTETS_INSIGHT_DAVENGERS.pdf"
-    code: "https://underthelights.github.io/DAVENGERS/recsys/"
+      <p>Developed the main page configuration using Python, Pandas, NumPy, PyTorch, TensorFlow, Docker, FastAPI, KoNLPy, and Plotly.</p>
+
+      <p style='text-align: center;'><b>Team: Hyunjae Kim, ChanJoong Lee, Beomyun Kwon, Chanho Park, Minhye Lee</b></p>
     tags:
-        - '# BIGCONTEST'
-        - '# Streamlit'
-        - '# Recommender System'
-    image: whole-hexagon.gif
-    detail: "Rule-Based ML RecSys for Jeju Island Tour Schedule"
-    description: |
-        <p>In the second half of 22, Team DAVENGERES was formed with members of Sogang University's data science association <INSIGHT>. We participated in the big contest data analysis league innovation field hosted by the Korea Intelligence Information Society Agency and Shinhan Card, and focused on directly processing data in the field and designing algorithms to extract insights. They collaborated efficiently by distributing roles such as data crawling and processing parts, visualization implementation parts, algorithm design and implementation parts, and form production, and won the top prize as the second overall.</p>
-        <p>We started the project by diversifying management, computer engineering, and data for the theme of this innovation league, **Eco-friendly ESG Jeju Travel Route for the MZ Generation to Leave**. The given tasks were [1] After constructing a carbon footprint calculator for each travel area for transportation, F&B, accommodation, and tourism areas, [2] based on this, designing an eco-friendly travel route for Jeju for 3 nights and 4 days.</p>
-        <p>The implemented carbon footprint calculator was sufficient to use as basic data for the second task, the travel route recommendation system. We also approached business administration and thought about how to define a persona based on the designed route recommendation algorithm to design a route, and how to explain to the audience how personalized and recommended routes are printed. After clustering by measuring similarity from data using Word2Vec, we reduced it to t-SNE and applied it to facilitate visualization and calculated the destination score. We have implemented Hexagon that is customized to receive interactive input from users on natural, cultural sites, activities, hot place indices, travel density, and the degree of pursuit of good restaurants. Based on the rule-based machine learning algorithm, we compared the similarity between user matrix and processed tourist matrix obtained from the information we built with Streamlit and implemented a recommendation system based on the basis of recommending nearby tourist attractions, accommodations, and restaurants.</p>
-        <hr>
-        <p><b>[What I'm doing in this project]</b><br> Construct Interactive Travler Taste Shot with Streamlit&Plotly, Assist on Natural Language Processing/Clusterin and sketching of Recommender System </p>
-        <p href="https://underthelights.github.io/DAVENGERS/recsys/">[Link]<\p>
-        https://underthelights-recommend-tour-input-recommend-input-k4wcm6.streamlitapp.com
+      - NLP
+      - Game Review
+      - Dashboard
+      - Data Analysis
+      - Python
+    description: >-
+      Developed a Game Review NLP Dashboard with advanced features using various NLP techniques.
+    id: game_review_dashboard
 
-  - title: "Shell Project"
-    id: shell
-    category:
-        - "develop"
+  - title: Risk Rating Model for Small Business Owners
+    image: risk-rating-model.jpg
+    presentation: risk-rating-model-ppt.pdf
+    detail: >
+      <p>Developed a Risk Rating model for small business owners in Gangseo-gu using the credit rating model. Received the Mayor of Gangseo-gu Office Award.</p>
+
+      <p>Conducted data analysis and processing, and designed a presentation using Python, Pandas, NumPy, and Tableau.</p>
+
+      <p style='text-align: center;'><b>Team: Heejin Park, Mijung Bang</b></p>
     tags:
-        - '# Develop'
-        - '# Coursework'
-        - '# System_Programming'
-    image: sp1prj.png
-    detail: "Shell Project in Linux with C"
-    description: |
-        <p>Built my own linux shell with C Language, which executes with Linux Basic Command s.t. 'cd', 'mkdir', 'rmdir' and so on. <\p>
-        <p>Create child process with 'fork()' function, and parent process create a new child process with pipe for each instruction in Pipeline command with 'dup2()'.</p>
+      - Risk Rating
+      - Data Analysis
+      - Business
+      - Dashboard
+    description: >-
+      Implemented a Risk Rating Model for small business owners, focusing on data from the Seoul Credit Guarantee Foundation.
+    id: risk_rating_model
 
+  - title: Carbon Footprint Calculator & Eco-friendly Travel Route Recommendation
+    image: carbon-footprint-calculator.jpg
+    presentation: carbon-footprint-calculator-ppt.pdf
+    detail: >
+      <p>Developed a Carbon Footprint calculator and Eco-friendly travel route recommendation system in Jeju Island. Awarded the Innovation League Grand Prize (Runner-Up) at BIG CONTEST '22.</p>
 
-        <hr>
-        <p><b>[What I'm doing in this project]</b><br>C, Process-based Approach in Linux</p>
-        <p>[link](https://github.com/underthelights/System-Programming-/tree/main/Project1)<\p>
-  
-  - title: "Stock Server Project"
-    id: stock-server
-    category:
-        - "develop"
+      <p>Utilized Streamlit for deployment, applied NLP methods, and designed user-specific ML algorithms.</p>
+
+      <p style='text-align: center;'><b>Team: Jeonghyun Ha, Kyunghoon Na, Kyungjoo Ko, Hannah Jung</b></p>
     tags:
-        - '# Develop'
-        - '# Coursework'
-        - '# System_Programming'
-    image: sp2prj.png
-    detail: "Event-based and Thread-based Approach"
-    description: |
-        <p>Built a stock project with some Approaches :  Event-based and Thread-based</p>
-        <p> 주식을 사고 팔 수 있는 stock server 를 여러 client 가 동시에 접속하여 서비스할 수 있도록 Event-driven, Thread-based approach 의 두 가지 구현 방법을 활용하여 concurrent server 를 구축한다. <\p>
-        <p> 주식을 stock.txt 파일로 관리한다. 해당 concurrent stock server 에서는 show 명령어를 통해 stock.txt 에 쓰여진 현재 stock 의 상태를 ‘[stock ID] [stock 개수] [stock price]’의 순으로 보여준다. <\p>
-        <p> Buy 는 stock 을 구입하고, sell 은 stock 을 판매할 때 사용되는 명령어이며 둘다 ‘buy / sell [stock ID] [stock 개수]’. <\p>
-        <p> Exit 명령어를 통해 해당 stock server 에서 나가고, 갱신된 stock 상태의 내용은 stock.txt 에 다시 쓰여지며 concurrent 하게 구현한다.<\p>
-        
-        <hr>
-        <p><b>[What I'm doing in this project]</b><br>Deep dive into the concepts of process, events and thread.</p>
-        <p>[link](https://github.com/underthelights/System-Programming-/tree/main/Project2)<\p>
+      - Recommender System
+      - Dashboard
+      - Business
+      - NLP
+    description: >-
+      Developed a comprehensive system for calculating carbon footprint and recommending eco-friendly travel routes in Jeju Island.
+    id: carbon_footprint_calculator
 
-  - title: "Dreaming Developers"
-    id: dev-dreamers
-    category:
-        - "develop"
+  - title: Shell Project
+    image: shell-project.jpg
+    github_link: shell-project-github
+    detail: >
+      <p>Designed a custom shell that translates user's commands to the Kernel using C language. Built Linux shell with basic commands like 'cd', 'mkdir', 'rmdir', etc.</p>
+
+      <p>Created child processes with the 'fork()' function and implemented a parent process to create new child processes for each instruction.</p>
     tags:
-        - '# Develop'
-        - '# Personal'
-        - '# Web'
-    image: dreamdevintro.png
-    detail: "Team Building Platform for Undergraduate Developers "
-    description: |
-        <p>Undergraduate Developers frequently meet the difficulty to gather team to make and develop with. We provided such a nice alternative platform than other community sites for those. <br><br></p>
-        <p>Led by <a href="">Young-Uk Song</a>, with my wonderful colleagues, MinSung Kwon and ByeongHyeok Kwak</p>
-        <p>I'd quit because of my busy works caused by millitary services.</p>
-        <img src="site.baseurl/assets/images/projects_detail/dreamdev.png" class="img-responsive">
-        <p style="text-align: center; font-size: 14px;"><b>Photos of Mainpage</b></p>
-        <hr>
-        <p><b>[What I'm doing in this project]</b><br>FrontEnd Develop based Vue.js, HTML, CSS3</p>
+      - System 
+    description: >-
+      Developed a custom shell for Linux with various basic commands and processes.
+    id: shell_project
+
+  - title: Stock Server Project
+    image: stock-server.jpg
+    github_link: stock-server-github
+    detail: >
+      <p>Constructed a concurrent stock server that can be connected by multiple clients for buying or selling stocks concurrently.</p>
+
+      <p>Implemented two approaches: Event-based and Thread-based. Displayed the status of the current stock written from the stock.txt file.</p>
+    tags:
+      - System
+    description: >-
+      Created a concurrent stock server with event-based and thread-based approaches.
+    id: stock_server

@@ -1,22 +1,24 @@
 ---
 layout: default
-lang: en
-ref: not-found
-title: "404: Oh Crumbs."
-permalink: 404.html
-exclude: true
 ---
 
-{% include core/metabar.html %}
+<style type="text/css" media="screen">
+  .container {
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
+  }
+  h1 {
+    margin: 30px 0;
+    font-size: 4em;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+</style>
 
-<article class="content page">
-	<header class="content-header">
-		<svg class="content-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>
-	</header>
-	<div class="content-style">
-		<h2>404: Not found.</h2>
-		<p>Sorry, we’ve misplaced that URL or it’s pointing to something that doesn’t exist. <a href="{{ site.url }}{{ site.baseurl }}">Head back home</a> to try finding it again.</p>
-	</div>
-</article>
+<div class="container">
+  <h1>404</h1>
 
-{% include core/footer.html %}
+  <p><strong>Page not found :(</strong></p>
+  <p>The requested page could not be found.</p>
+</div>
