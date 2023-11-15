@@ -1,11 +1,12 @@
+// [TODO]
 var sets = [
-    {"sets": [2], "label": "Design", "position": "bottom", "size": 50, "data":"TalkingBoogie (CHI '20)<br>Persona in Chatbot (MobileHCI '20; CHI '20)<br>LiquidEye (JMIR, '21)<br>BlahBlahBot (CHI '21)<br>Older Adults in MOOC (CHI '22, currently under R&R)<br>Satellite imagery XAI (NeurIPS '21)"},
-    {"sets": [0], "label": "Translational Science", "position": "top", "size": 50, "data":"TalkingBoogie (CHI '20)<br>BlahBlahBot (CHI '21)<br>Persona in Chatbot (MobileHCI '20; CHI '20)<br>Trkic G00gle (CSCW '21)<br>Satellite imagery XAI (NeurIPS '21)"},
-    {"sets": [1], "label": "Generative AI", "position": "top", "size": 50, "data":"BlahBlahBot (CHI '21)<br>Trkic G00gle (CSCW '21)<br>Satellite imagery XAI (NeurIPS '21)"},
-    {"sets": [0, 1], "label": "", "position": "top", "size": 10, "data":"BlahBlahBot (CHI '21)<br>Trkic G00gle (CSCW '21)<br>Satellite imagery XAI (NeurIPS '21)"},
-    {"sets": [0, 2], "label": "", "position": "top", "size": 10, "data":"TalkingBoogie (CHI '20)<br>BlahBlahBot (CHI '21)<br>Persona in Chatbot (MobileHCI '20; CHI '20)<br>Satellite imagery XAI (NeurIPS '21)"},
-    {"sets": [1, 2], "label": "", "position": "top", "size": 10, "data":"BlahBlahBot (CHI '21)<br>Satellite imagery XAI (NeurIPS '21)"},
-    {"sets": [0, 1, 2], "label": "", "position": "top", "size":20, "data":"BlahBlahBot (CHI '21)<br>Satellite imagery XAI (NeurIPS '21)"}];
+    {"sets": [2], "label": "Data Analytics", "position": "bottom", "size": 50, "data":"BIGCONTEST 2022"},
+    {"sets": [0], "label": "Computer Vision", "position": "top", "size": 50, "data":"Samsung AI Challenge"},
+    {"sets": [1], "label": "NLP", "position": "top", "size": 50, "data":"-"},
+    {"sets": [0, 1], "label": "", "position": "top", "size": 10, "data":"-"},
+    {"sets": [0, 2], "label": "", "position": "top", "size": 10, "data":"-"},
+    {"sets": [1, 2], "label": "", "position": "top", "size": 10, "data":"-"},
+    {"sets": [0, 1, 2], "label": "", "position": "top", "size":20, "data":"-"}];
 
 var svgContainer = d3.select("#venn").append("svg")
     .attr("width", 250)
@@ -45,13 +46,13 @@ div.selectAll("g.venn-area")
         tooltip.transition().duration(250).style("opacity", 1);
 
         if (d.sets.includes(0)) {
-            d3.select("#translational-science").transition().duration(150).style("background-position-y", "100%");
+            d3.select("#cv").transition().duration(150).style("background-position-y", "100%");
         }
         if (d.sets.includes(1)) {
-            d3.select("#generative-ai").transition().duration(150).style("background-position-y", "100%");
+            d3.select("#nlp").transition().duration(150).style("background-position-y", "100%");
         }
         if (d.sets.includes(2)) {
-            d3.select("#design").transition().duration(150).style("background-position-y", "100%");
+            d3.select("#data_analytics").transition().duration(150).style("background-position-y", "100%");
         }
 
         if (d.position == "top") {

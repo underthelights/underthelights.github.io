@@ -1,10 +1,13 @@
 project:
-  - title: Camera Invariant Domain Adaptation
-    image: samsung_ai.jpg
-    paper: 
-    presentation: samsung_ai.pdf
+  - title: Camera Invariant Domain Adaptation (Samsung AI)
+    image: samsung_ai.png
+    code : 
+    link : https://dacon.io/competitions/official/236132/overview/description
+    # paper: 
+    # slide: samsung_ai.pdf
     detail: >
-      <p>Implemented a </p>
+      <p>Autonomous driving involves utilizing various sensors to perceive the surrounding environment and control the vehicle. Camera sensors, depending on their placement, type, and driving conditions, can exhibit disparities between images known as Domain Gap. Previous research has extensively applied Unsupervised Domain Adaptation techniques to overcome performance degradation due to photometry and texture gaps in images. However, most existing studies neglect the optical characteristics of cameras, especially geometric distortion in images. <br> Therefore, in this competition, we propose the development of an AI algorithm capable of achieving high-performance image segmentation (Semantic Segmentation) for distorted images (Target Domain). This will be accomplished by leveraging undistorted images (Source Domain) and their corresponding labels. </p>
+      <p>We selected 'SePiCo: Semantic-Guided Pixel Contrast for Domain Adaptive Semantic Segmentation' as a method of Domain Adaptation</p>
       <p style='text-align: center;'><b>Team: Hyunjae Kim</b></p>
     tags:
       - Semantic Segmentation
@@ -13,16 +16,32 @@ project:
     description: >-
       Domain Adaptation with SePiCo
     id: samsung_ai
+  - title: LG Aimers - Data Intellgence (LG AI Research)
+    image: lg_aimers.jpg
+    # code : 
+    link : https://dacon.io/en/competitions/official/236080/overview/description
+    award : https://drive.google.com/file/d/1PA8f44wlax5uR_29AvfnqPGz51SPycP6/view 
+    slide: samsung_ai.pdf
+    detail: >
+      <p>스마트 공장의 제어 시스템 구축을 위한 제품 품질 분류 AI 모델 개발</p>
+      <p style='text-align: center;'><b>Team: Yunah Choi</b></p>
+    tags:
+      - Machine Learning
+      - Data Analysis
+    description: >-
+      Domain Adaptation with SePiCo
+    id: lg_aimers
   - title: Game Review NLP Dashboard
     image: game-review-analysis.jpg
-    paper: 
-    presentation: game-review-analysis-ppt.pdf
+    code : nlp-dashboard
+    link : https://itsnowkim-nlp-dashboard-main-fpsbhh.streamlit.app/Analytics
+    paper: game-review-analysis-ppt.pdf
     detail: >
       <p>Implemented a Game Review NLP Dashboard applying NLP methods such as BiLSTM and Fine-tuned KoBERT. The project received the Grand Prize at the 2023 Spring INSIGHT Projects Competition.</p>
 
       <p>Developed the main page configuration using Python, Pandas, NumPy, PyTorch, TensorFlow, Docker, FastAPI, KoNLPy, and Plotly.</p>
 
-      <p style='text-align: center;'><b>Team: Hyunjae Kim, ChanJoong Lee, Beomyun Kwon, Chanho Park, Minhye Lee</b></p>
+      <p style='text-align: center;'><b>Team: Hyunjae Kim, Chanjoong Lee, Beomyun Kwon, Chanho Park, Minhye Lee</b></p>
     tags:
       - NLP
       - Game Review
@@ -33,13 +52,15 @@ project:
       Developed a Game Review NLP Dashboard with advanced features using various NLP techniques.
     id: game_review_dashboard
 
-  - title: Risk Rating Model for Small Business Owners
-    image: risk-rating-model.jpg
-    presentation: risk-rating-model-ppt.pdf
+  - title: Risk Rating Model for Small Business Owners (Gangseo-gu)
+    image: gangseo.png
+    award : award_강서구_최우수상.pdf
+    paper: gangseo_risk-rating-model.pdf
+    link: https://public.tableau.com/app/profile/heejin.park2241/viz/_16793225446900/sheet0
     detail: >
       <p>Developed a Risk Rating model for small business owners in Gangseo-gu using the credit rating model. Received the Mayor of Gangseo-gu Office Award.</p>
 
-      <p>Conducted data analysis and processing, and designed a presentation using Python, Pandas, NumPy, and Tableau.</p>
+      <p>Conducted data analysis and processing, and designed a slide using Python, Pandas, NumPy, and Tableau.</p>
 
       <p style='text-align: center;'><b>Team: Heejin Park, Mijung Bang</b></p>
     tags:
@@ -51,9 +72,11 @@ project:
       Implemented a Risk Rating Model for small business owners, focusing on data from the Seoul Credit Guarantee Foundation.
     id: risk_rating_model
 
-  - title: Carbon Footprint Calculator & Eco-friendly Travel Route Recommendation
-    image: carbon-footprint-calculator.jpg
-    presentation: carbon-footprint-calculator-ppt.pdf
+  - title: Carbon Footprint Calculator & Eco-friendly Travel Route Recommendation (Shinhan Card & NIA)
+    image: flight.gif
+    award : award_최우수상-BIGCONTEST.pdf
+    link: https://underthelights.github.io/DAVENGERS/
+    paper: davengers_carbon_footprint_recsys.pdf
     detail: >
       <p>Developed a Carbon Footprint calculator and Eco-friendly travel route recommendation system in Jeju Island. Awarded the Innovation League Grand Prize (Runner-Up) at BIG CONTEST '22.</p>
 
@@ -71,7 +94,7 @@ project:
 
   - title: Shell Project
     image: shell-project.jpg
-    github_link: shell-project-github
+    code: System-Programming-
     detail: >
       <p>Designed a custom shell that translates user's commands to the Kernel using C language. Built Linux shell with basic commands like 'cd', 'mkdir', 'rmdir', etc.</p>
 
@@ -84,7 +107,7 @@ project:
 
   - title: Stock Server Project
     image: stock-server.jpg
-    github_link: stock-server-github
+    code: System-Programming-
     detail: >
       <p>Constructed a concurrent stock server that can be connected by multiple clients for buying or selling stocks concurrently.</p>
 
@@ -94,3 +117,33 @@ project:
     description: >-
       Created a concurrent stock server with event-based and thread-based approaches.
     id: stock_server
+
+  - title: Solar Power System considering the impact of Wave Height
+    image: wave_height_solar.png
+    award : award_우수상-2018과학전람회.pdf
+    paper: 파고의 영향을 고려한 수상 추적식 태양광 발전 시스템의 제안.pdf
+    slide : wave_height_solar_poster.pdf
+    detail: >
+      <p>
+        Existing water photovoltaic power generation uses the sun's semi-permanent energy and water, an idle resource. And this can only be applied on the water without waves. Therefore, we built a water-tracking solar power generation system.
+      </p>
+    tags:
+      - Develop 
+    description: >-
+      Solar Power System considering the impact of Wave Height.
+    id: wave_height_solar
+
+  - title: Laser Cutting Machine Using Mechanum Wheel
+    image: mechanum_wheel.png
+    paper : 메카넘 휠을 활용한 레이저 커팅기 개발.pdf
+    award : award_특상-2017과학전람회.pdf
+    slide : mechanum_wheel_poster.pdf
+    detail: >
+      <p>
+        Laser cutting machines can easily process materials, but they are heavy and have the disadvantage that the size of the material is limited depending on the size of the laser cutting machine. Our team wants to compensate for the shortcomings of the laser cutting machine by using the Mechanum wheel. The driving equation and efficiency according to the direction of movement of the mechanical wheel are explored. It also develops a device that cuts the material by moving it according to the drawing.
+      </p>
+    tags:
+      - Develop
+    description: >-
+      Laser Cutting Machine Using Mechanum Wheel
+    id: mechanum_wheel
