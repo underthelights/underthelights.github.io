@@ -1,7 +1,7 @@
 name: "Build and Deploy"
 on:
   repository_dispatch:
-    types: [WORKFLOW_DISPATCH_NotionPost]
+    types: [RUN_WORKFLOW_DISPATCH]
       
 permissions:
   contents: write
