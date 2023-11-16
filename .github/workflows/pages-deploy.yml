@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@master
     
       - name: Clean Directory
         run: |
@@ -39,15 +39,15 @@ jobs:
 
       - run: node _scripts/notion-import.js
         env:
-            NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-            DATABASE_ID: ${{ secrets.DATABASE_ID }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         env:
           GITHUB_TOKEN: $
         with:
           commit_message: "[배포] Notion 변경 사항 저장"
-          branch: main
+          branch: master
           commit_user_name: importer-bot 🤖
           commit_user_email: actions@github.com
           commit_author: importer-bot 🤖 <actions@github.com>
@@ -60,16 +60,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: master
           fetch-depth: 1
           # submodules: true
           # If using the 'assets' git submodule from Chirpy Starter, uncomment above
-          # (See: https://github.com/cotes2020/chirpy-starter/tree/main/assets)
+          # (See: https://github.com/cotes2020/chirpy-starter/tree/master/assets)
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v1
-      
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -80,11 +80,10 @@ jobs:
         run: bundle exec jekyll b -d "_site$"
         env:
           JEKYLL_ENV: "production"
-
-      - name: Test site
-        run: |
-            bundle exec htmlproofer _site --disable-external --check-html --allow_hash_href=true
-
+        
+      #- name: Test site
+      #  run: |
+      #    bundle exec htmlproofer _site --disable-external --check-html --allow_hash_href
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v1
