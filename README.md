@@ -1,4 +1,8 @@
-# Kyuhwan Shim
+## I am
+
+- Computer Science @ BS undergrad at Sogang University
+- Previously ML Engineer 💻 Intern at **Nota Inc.**
+
 ## Test & Deploy
 
 ### Run locally
