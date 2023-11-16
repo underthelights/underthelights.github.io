@@ -1,9 +1,93 @@
 ---
 layout: default
 ---
+<style>
+  /* General styling for all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Arial', sans-serif;
+    /* Use a modern font */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* Updated styling for h1 */
+  h1 {
+    font-size: 2em;
+    /* Increase font size for main titles */
+    color: #333333;
+    border-bottom: none;
+    /* Remove bottom border */
+    padding-bottom: 0;
+    /* Adjust padding if needed */
+  }
+
+  h2 {
+    font-size: 1.25em;
+    color: #4a4a4a;
+  }
+
+  h3 {
+    font-size: 1em;
+    color: #6a6a6a;
+  }
+
+  h4 {
+    font-size: 0.75em;
+    color: #888888;
+  }
+
+  h5 {
+    font-size: 0.5em;
+    color: #a6a6a6;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #bcbcbc;
+  }
+
+  /* Add some additional styling if needed */
+  .post-content {
+    line-height: 1.6;
+    /* Improve readability */
+    color: #333333;
+    /* Dark grey color for text */
+  }
+
+  /* Styling for the ToC to make it scroll with the page */
+  .toc {
+    font-size: 1em;
+    position: fixed;
+    /* Fixed position */
+    right: 0;
+    /* Align to the right side of the screen */
+    top: 50;
+    /* Adjust this value as needed based on your header size */
+    max-height: 100vh;
+    /* Set maximum height to viewport height */
+    overflow-y: auto;
+    /* Allows scrolling within the ToC if it's too long */
+    padding: 20px;
+    /* Add some padding */
+    background-color: white;
+    /* Optional: background color for visibility */
+    z-index: 1000;
+    /* To ensure it stays on top of other elements */
+    width: 250px;
+    /* Adjust the width as needed */
+  }
+</style>
+
+
+
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="toc">
-    <a href="#">&lt;맨 위로&gt;</a>
+    <a href="#">&lt;On the Top&gt;</a>
     {% include toc.html html=content %}
   </div>
 
@@ -15,19 +99,39 @@ layout: default
         {{ page.date | date: date_format }}
       </time>
       {%- if page.modified_date -%}
-        ~ 
-        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
-        <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
-          {{ mdate | date: date_format }}
-        </time>
+      ~
+      {%- assign mdate = page.modified_date | date_to_xmlschema -%}
+      <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
+        {{ mdate | date: date_format }}
+      </time>
       {%- endif -%}
       {%- if page.author -%}
-        • {% for author in page.author %}
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
-            {%- if forloop.last == false %}, {% endif -%}
-        {% endfor %}
-      {%- endif -%}</p>
+      • {% for author in page.author %}
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
+      {%- if forloop.last == false %}, {% endif -%}
+      {% endfor %}
+      {%- endif -%}
+    </p>
+    <!-- 태그와 카테고리 표시 -->
+    <div class="post-tags-categories">
+      {% if page.tags %}
+      <strong>Tags:</strong>
+      {% for tag in page.tags %}
+      <a href="{{ '/tags/' | append: tag | slugify }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+      {% endfor %}
+      {% endif %}
+      <br>
+      {% if page.categories %}
+      <strong>Categories:</strong>
+      {% for category in page.categories %}
+      <a href="{{ '/categories/' | append: category | slugify }}">{{ category }}</a>{% unless forloop.last %}, {%
+      endunless %}
+      {% endfor %}
+      {% endif %}
+    </div>
+
+  </header>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
@@ -35,31 +139,30 @@ layout: default
   </div>
 
   {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
+  {%- include disqus_comments.html -%}
   {%- endif -%}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
-
 <script>
   function getTOCNodes(master) {
     var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-    var tocNodes = nodes.filter(function(elem) {
-        return elem.tagName == "A";
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
     });
     return tocNodes;
   }
   function getHeaderNodes(master) {
     var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-    var headerNodes = nodes.filter(function(elem) {
-        return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
     });
     return headerNodes;
   }
 
   var title = document.getElementsByClassName("post-title")[0];
   var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-  
+
   var article = document.getElementsByClassName("post-article")[0];
   var articleY = window.pageYOffset + article.getBoundingClientRect().top;
 
@@ -70,26 +173,26 @@ layout: default
 
   var before = undefined;
 
-  document.addEventListener('scroll', function(e) {
-    if (window.scrollY >= articleY-60) {
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
       toc.style.cssText = "position: fixed; top: 60px;";
     }
     else {
       toc.style.cssText = "";
     }
 
-    var current = headerNodes.filter(function(header) {
+    var current = headerNodes.filter(function (header) {
       var headerY = window.pageYOffset + header.getBoundingClientRect().top;
       return window.scrollY >= headerY - 60;
     });
 
     if (current.length > 0) {
-      current = current[current.length-1];
+      current = current[current.length - 1];
 
-      var currentA = tocNodes.filter(function(tocNode) {
+      var currentA = tocNodes.filter(function (tocNode) {
         return tocNode.innerHTML == current.innerHTML;
       })
-      
+
       currentA = currentA[0];
       if (currentA) {
         if (before == undefined) before = currentA;
@@ -102,13 +205,13 @@ layout: default
         currentA.classList.add("toc-active");
       }
       else {
-        if (before) 
+        if (before)
           before.classList.remove("toc-active");
       }
     }
     else {
-      if (before) 
-          before.classList.remove("toc-active");
+      if (before)
+        before.classList.remove("toc-active");
     }
 
   }, false);

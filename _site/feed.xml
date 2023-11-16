@@ -1,2 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-17T01:02:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Kyuhwan Shim</title><subtitle>Kyuhwan Shim is a senior undergraduate in CS at Sogang University.
-</subtitle><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-17T03:00:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Kyuhwan Shim</title><subtitle>Kyuhwan Shim is a senior undergraduate in CS at Sogang University.
+</subtitle><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><entry><title type="html">회고와 대회</title><link href="http://localhost:4000/%ED%9A%8C%EA%B3%A0%EC%99%80-%EB%8C%80%ED%9A%8C" rel="alternate" type="text/html" title="회고와 대회" /><published>2023-11-16T00:00:00+09:00</published><updated>2023-11-16T00:00:00+09:00</updated><id>http://localhost:4000/%ED%9A%8C%EA%B3%A0%EC%99%80-%EB%8C%80%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/%ED%9A%8C%EA%B3%A0%EC%99%80-%EB%8C%80%ED%9A%8C"><![CDATA[<h1 id="블로그">블로그</h1>
+
+<ul>
+  <li>리디자인</li>
+</ul>
+
+<h1 id="대회">대회</h1>
+
+<ul>
+  <li>2022
+    <ul class="task-list">
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />2022 빅콘테스트</li>
+    </ul>
+  </li>
+  <li>2023
+    <ul class="task-list">
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />강서구 데이터 공모전</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />LG Aimers</li>
+      <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Samsung AI Challenge</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="일">일</h1>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Nota ITS ML Engineer 인턴 후기
+    <ul>
+      <li>들어가야 하는 내용
+        <ul>
+          <li>지원 계기
+            <ul>
+              <li>타 기업에 대비하여 가질 수 있었던 이점</li>
+            </ul>
+          </li>
+          <li>가서 주로 맡은 업무</li>
+          <li>가서 배운 일</li>
+          <li>앞으로의 할 일</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />앞으로 할 일에 대한 정리
+    <ul>
+      <li>대학원과 취업 사이의 기로</li>
+      <li>전공</li>
+      <li>ML</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Plan" /><category term="Career" /><summary type="html"><![CDATA[블로그]]></summary></entry></feed>
