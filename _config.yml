@@ -18,6 +18,14 @@ plugins:
  - jekyll-seo-tag
  - jekyll-sitemap
 
+# Analytics
+analytics:
+  provider               : "google-gtag" 
+                          # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id          : "G-VG8LB4J4EL"
+    anonymize_ip         : # true, false (default)
+
 collections:
   publication:
     output: true
