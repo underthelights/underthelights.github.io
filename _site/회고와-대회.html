@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en"><head>
   
+  <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         TeX: {
+         equationNumbers: {
+             autoNumber: "AMS"
+         }
+         },
+         tex2jax: {
+         inlineMath: [ ['$', '$'] ],
+         displayMath: [ ['$$', '$$'] ],
+         processEscapes: true,
+     }
+     });
+     MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -155,10 +178,19 @@
     margin-top: 20px;
     margin-bottom: 10px;
   }
+  .post-title {
+    font-size: 2em; /* 폰트 크기 증가 */
+    font-weight: bold; /* 볼드체 */
+    color: #333; /* 색상 변경 */
+    /* background-color: #f8f8f8; 배경색 추가 */
+    padding: 10px; /* 배경색과 함께 패딩 추가 */
+    box-shadow: inset 0 -20px 0 #bbb7e8;
+    max-width: max-content;
+  }
 
   /* Updated styling for h1 */
   h1 {
-    font-size: 2em;
+    font-size: 1.5em;
     /* Increase font size for main titles */
     color: #333333;
     border-bottom: none;
@@ -168,12 +200,12 @@
   }
 
   h2 {
-    font-size: 1.25em;
+    font-size: 1.2em;
     color: #4a4a4a;
   }
 
   h3 {
-    font-size: 1em;
+    font-size: 1.1em;
     color: #6a6a6a;
   }
 
@@ -239,21 +271,24 @@
         Nov 16, 2023
       </time></p>
     <!-- 태그와 카테고리 표시 -->
-    <div class="post-tags-categories">
+    <div class="post-categories">
       
-      <strong>Tags:</strong>
+      <strong><span>📚 Categories:</span></strong>
       
-      <a href="tags-일상기록">일상기록</a>
-      
-      
-      <br>
-      
-      <strong>Categories:</strong>
-      
-      <a href="categories-경험">경험</a>
+      <a href="blog-categories-경험">경험</a>
       
       
     </div>
+
+    <div class="post-tags">
+      
+      <strong><span>🏷️ Tags:</span></strong>
+      
+      <a href="blog-tags-일상기록">일상기록</a>
+      
+      
+    </div>
+
 
   </header>
   </header>

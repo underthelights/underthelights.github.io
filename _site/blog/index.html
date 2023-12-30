@@ -136,110 +136,10 @@
       <div class="wrapper">
         
 
-
 <!DOCTYPE html>
 <html>
   <head>
-      <style>
-      /* 공통 스타일 */
-      .news-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .news-item {
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-        
-        /* 리스트 뷰 스타일 */
-        .list-view .news-item {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-            height: 120px; /* 고정된 높이 */
-        }
-
-        .list-view .news-thumbnail {
-            display: none; /* 리스트 뷰에서는 썸네일 숨김 */
-        }
-
-        .news-title, .news-date, .news-description {
-            margin: 0;
-        }
-
-        .news-title {
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        .news-date {
-            font-size: 0.85rem;
-            color: grey;
-        }
-
-        .news-description {
-            font-size: 0.95rem;
-        }
-
-        /* 액자 뷰 스타일 */
-        .frame-view {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-        }
-
-        .frame-view .news-item {
-            width: calc(33.333% - 20px); /* three items per row */
-            border: 1px solid #ddd;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 15px;
-        }
-
-        .news-thumbnail {
-            width: 100%; /* responsive */
-            height: 150px; /* fixed height */
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 10px;
-        }
-        button#toggleView {
-            --background: #275efe;
-            --text: #fff;
-            --font-size: 16px;
-            --duration: 0.44s;
-            --move-hover: -4px;
-            --shadow: 0 2px 8px -1px rgba(39, 94, 254, 0.32);
-            --shadow-hover: 0 4px 20px -2px rgba(39, 94, 254, 0.5);
-            padding: 16px 32px;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 500;
-            line-height: 1;
-            border-radius: 24px;
-            display: block;
-            outline: none;
-            appearance: none;
-            border: none;
-            text-decoration: none;
-            font-size: var(--font-size);
-            letter-spacing: 0.5px;
-            background: var(--background);
-            color: var(--text);
-            box-shadow: var(--shadow);
-            transform: translateY(0);
-            transition: transform var(--duration) ease, box-shadow var(--duration) ease;
-        }
-
-        button#toggleView:hover {
-            --shadow: var(--shadow-hover);
-            transform: translateY(var(--move-hover));
-        }
-
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head> 
   <body>
 
@@ -275,6 +175,35 @@
     
           
           
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#경험" style="color: inherit; text-decoration: none;">#경험</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#일상기록" style="color: inherit; text-decoration: none;">#일상기록</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
     
           <div class="post-entry">
             
@@ -286,20 +215,8 @@
             
           </div>
           
-    
-          
-          <div class="blog-tags">
-            <span>Tags:</span>
-            <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-            <ul class="d-inline list-inline" role="list">
-              
-              <li class="list-inline-item">
-                <a href="http://localhost:4000/tags#일상기록">일상기록</a>
-              </li>
-              
-            </ul>
-          </div>
-          
+
+        
     
         </article>
       </li>
@@ -311,8 +228,8 @@
     
           
     
-          <a href="http://localhost:4000/ALG-1.4.-MSS-(1)">
-            <h2 class="post-title">[ALG] 1.4. MSS (1)</h2>
+          <a href="http://localhost:4000/ALG-4.3.-Misc">
+            <h2 class="post-title">[ALG] 4.3. Misc.</h2>
     
             
           </a>
@@ -320,40 +237,55 @@
           
           <p class="post-meta">
             
-            Posted on September 8, 2022
+            Posted on September 30, 2022
           </p>
     
           
     
           
           
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
     
           <div class="post-entry">
             
-            
-  최대 부분 수열의 합 Maximum Subsequence Sum
-
+            [ALG] Huffman (1)
 
             
             
-              <a href="http://localhost:4000/ALG-1.4.-MSS-(1)" class="post-read-more">[Read&nbsp;More]</a>
+              <a href="http://localhost:4000/ALG-4.3.-Misc" class="post-read-more">[Read&nbsp;More]</a>
             
           </div>
           
-    
-          
-          <div class="blog-tags">
-            <span>Tags:</span>
-            <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-            <ul class="d-inline list-inline" role="list">
-              
-              <li class="list-inline-item">
-                <a href="http://localhost:4000/tags#Algorithm">Algorithm</a>
-              </li>
-              
-            </ul>
-          </div>
-          
+
+        
     
         </article>
       </li>
@@ -365,8 +297,8 @@
     
           
     
-          <a href="http://localhost:4000/ALG-1.3.-Order-of-Algorithms-(1)">
-            <h2 class="post-title">[ALG] 1.3. Order of Algorithms (1)</h2>
+          <a href="http://localhost:4000/ALG-4.2.-DP-Application">
+            <h2 class="post-title">[ALG] 4.2. DP Application</h2>
     
             
           </a>
@@ -374,37 +306,55 @@
           
           <p class="post-meta">
             
-            Posted on September 8, 2022
+            Posted on September 29, 2022
           </p>
     
           
     
           
           
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
     
           <div class="post-entry">
             
-            제일 먼저 생각 Input Size Problem을 풀고자 하는데 이를 sol하고자 하는 algorithm에서, 알고리즘에 들어오는 data의 크기는 어떻게 되는가. 문제 상황에 따라 가로 n, 세로 m의 데이터가 들어오면 (n,m) n일수도 nm일수도 있다. data size가 커짐에 따라 얼마나 시간이 걸리는가 분석 : 얼마난 크기의 데이터가 들어왔을 때, 얼마나 시간이 걸리는가. 시간 분석의...
+            [ALG] 4.5. [응용1] Longest Common Subsequence (LCS) (1)
+
             
             
-              <a href="http://localhost:4000/ALG-1.3.-Order-of-Algorithms-(1)" class="post-read-more">[Read&nbsp;More]</a>
+              <a href="http://localhost:4000/ALG-4.2.-DP-Application" class="post-read-more">[Read&nbsp;More]</a>
             
           </div>
           
-    
-          
-          <div class="blog-tags">
-            <span>Tags:</span>
-            <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-            <ul class="d-inline list-inline" role="list">
-              
-              <li class="list-inline-item">
-                <a href="http://localhost:4000/tags#Algorithm">Algorithm</a>
-              </li>
-              
-            </ul>
-          </div>
-          
+
+        
     
         </article>
       </li>
@@ -416,8 +366,8 @@
     
           
     
-          <a href="http://localhost:4000/ALG">
-            <h2 class="post-title">[ALG] </h2>
+          <a href="http://localhost:4000/ALG-4.1.-DP-Concepts">
+            <h2 class="post-title">[ALG] 4.1. DP - Concepts</h2>
     
             
           </a>
@@ -425,38 +375,410 @@
           
           <p class="post-meta">
             
-            Posted on September 7, 2022
+            Posted on September 28, 2022
           </p>
     
           
     
           
           
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
     
           <div class="post-entry">
             
-            1. How to think and solve problems with computer
-
+            divide and conquer: top - down 효율적이기도 하나 매우 비효율적이 되기도 함 splitted된 사례들이 서로 관련 없는 문제를 풀때 잘 통함 dynamic programming : bottom -up 아래에서 위로 올라가며 효율을 추구하자는 방식 NOW Divide-and-Conquer Method Dynamic Programming Method Greedy Method Backtracking Method Local Search Method Branch-and-Bound Method Etc. From Wikipedia: Dynamic...
             
             
-              <a href="http://localhost:4000/ALG" class="post-read-more">[Read&nbsp;More]</a>
+              <a href="http://localhost:4000/ALG-4.1.-DP-Concepts" class="post-read-more">[Read&nbsp;More]</a>
             
           </div>
+          
+
+        
+    
+        </article>
+      </li>
+      
+      <!-- 'news-item' 클래스를 'li' 태그에 추가합니다. -->
+      <li class="news-item">
+        <article>
           
     
           
-          <div class="blog-tags">
-            <span>Tags:</span>
-            <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-            <ul class="d-inline list-inline" role="list">
-              
-              <li class="list-inline-item">
-                <a href="http://localhost:4000/tags#Algorithm">Algorithm</a>
-              </li>
-              
-            </ul>
+    
+          <a href="http://localhost:4000/ALG-3.3.-Master-Theorem">
+            <h2 class="post-title">[ALG] 3.3. Master Theorem </h2>
+    
+            
+          </a>
+    
+          
+          <p class="post-meta">
+            
+            Posted on September 26, 2022
+          </p>
+    
+          
+    
+          
+          
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
+    
+          <div class="post-entry">
+            
+            Master Theorem 1
+
+            
+            
+              <a href="http://localhost:4000/ALG-3.3.-Master-Theorem" class="post-read-more">[Read&nbsp;More]</a>
+            
           </div>
           
+
+        
+    
+        </article>
+      </li>
+      
+      <!-- 'news-item' 클래스를 'li' 태그에 추가합니다. -->
+      <li class="news-item">
+        <article>
+          
+    
+          
+    
+          <a href="http://localhost:4000/ALG-3.2.-Selection-Algorithm">
+            <h2 class="post-title">[ALG] 3.2. Selection Algorithm</h2>
+    
+            
+          </a>
+    
+          
+          <p class="post-meta">
+            
+            Posted on September 26, 2022
+          </p>
+    
+          
+    
+          
+          
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
+    
+          <div class="post-entry">
+            
+            1. Selection of Both Maximum and Minimum Elements
+
+            
+            
+              <a href="http://localhost:4000/ALG-3.2.-Selection-Algorithm" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+          
+
+        
+    
+        </article>
+      </li>
+      
+      <!-- 'news-item' 클래스를 'li' 태그에 추가합니다. -->
+      <li class="news-item">
+        <article>
+          
+    
+          
+    
+          <a href="http://localhost:4000/ALG-3.1.-Sorting">
+            <h2 class="post-title">[ALG] 3.1. Sorting</h2>
+    
+            
+          </a>
+    
+          
+          <p class="post-meta">
+            
+            Posted on September 19, 2022
+          </p>
+    
+          
+    
+          
+          
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
+    
+          <div class="post-entry">
+            
+            [ALG] 3.1.1. Merge Sort (1)
+
+            
+            
+              <a href="http://localhost:4000/ALG-3.1.-Sorting" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+          
+
+        
+    
+        </article>
+      </li>
+      
+      <!-- 'news-item' 클래스를 'li' 태그에 추가합니다. -->
+      <li class="news-item">
+        <article>
+          
+    
+          
+    
+          <a href="http://localhost:4000/ALG-3.0.-Algorithm-Design-(1)">
+            <h2 class="post-title">[ALG] 3.0. Algorithm Design (1)</h2>
+    
+            
+          </a>
+    
+          
+          <p class="post-meta">
+            
+            Posted on September 19, 2022
+          </p>
+    
+          
+    
+          
+          
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
+    
+          <div class="post-entry">
+            
+            
+  Divide-and-Conquer Techniques and Sorting Techniques
+    
+      Divide-and-Conquer Method
+      Dynamic Programming Method
+      Greedy Method
+      Backtracking Method
+      Local Search Method
+      Branch-and-Bound Method
+      Etc.
+    
+  
+
+
+            
+            
+              <a href="http://localhost:4000/ALG-3.0.-Algorithm-Design-(1)" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+          
+
+        
+    
+        </article>
+      </li>
+      
+      <!-- 'news-item' 클래스를 'li' 태그에 추가합니다. -->
+      <li class="news-item">
+        <article>
+          
+    
+          
+    
+          <a href="http://localhost:4000/ALG-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1)">
+            <h2 class="post-title">[ALG] 2.1. Heap-based Priority Queues and Heap Sort (1)</h2>
+    
+            
+          </a>
+    
+          
+          <p class="post-meta">
+            
+            Posted on September 12, 2022
+          </p>
+    
+          
+    
+          
+          
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
+    
+          <div class="post-entry">
+            
+            Heap이라는 개념 - 매우 전공에서 중요한 자료구조. 실제로 컴퓨터 system에서 메모리르 다루는 데 쓰이는 핵심적인 구조중 하나 Insert, delete : 원소를 집어넣고 빼고 - queue Push, Pop : 데이터를 집어넣었다가 빼고 - stack data를 넣었다가 뺐다가 이런것을 반복하는 것들. 구현이 적합한 stack → queue, stack은 굉장히 특정 형태를 갖는 방식으로...
+            
+            
+              <a href="http://localhost:4000/ALG-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1)" class="post-read-more">[Read&nbsp;More]</a>
+            
+          </div>
+          
+
+        
     
         </article>
       </li>
@@ -484,6 +806,35 @@
     
           
           
+
+            <!-- 카테고리 버튼 -->
+            
+            <div class="blog-categories">
+              <span>📚 Categories:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/categories#Notes" style="color: inherit; text-decoration: none;">#Notes</a>
+                  </button>
+                
+              </div>
+            </div>
+            
+  
+            <!-- 태그 버튼 -->
+            
+            <div class="blog-tags">
+              <span>🏷️ Tags:</span>
+              <div class="d-inline">
+                
+                  <button class="button">
+                    <a href="http://localhost:4000/blog/tags#Algorithm" style="color: inherit; text-decoration: none;">#Algorithm</a>
+                  </button>
+                
+              </div>
+            </div>
+            <br>
+  
     
           <div class="post-entry">
             
@@ -495,20 +846,8 @@
             
           </div>
           
-    
-          
-          <div class="blog-tags">
-            <span>Tags:</span>
-            <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-            <ul class="d-inline list-inline" role="list">
-              
-              <li class="list-inline-item">
-                <a href="http://localhost:4000/tags#Algorithm">Algorithm</a>
-              </li>
-              
-            </ul>
-          </div>
-          
+
+        
     
         </article>
       </li>
@@ -525,25 +864,8 @@
       });
     </script>
     <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var toggleBtn = document.getElementById('toggleView');
-        var newsList = document.querySelector('.news-list');
-
-        // 뷰 전환 버튼의 기능을 추가합니다.
-        toggleBtn.addEventListener('click', function() {
-            if (newsList.classList.contains('frame-view')) {
-                newsList.classList.remove('frame-view');
-                newsList.classList.add('list-view');
-                toggleBtn.textContent = 'Frame View';
-            } else {
-                newsList.classList.remove('list-view');
-                newsList.classList.add('frame-view');
-                toggleBtn.textContent = 'List View';
-            }
-        });
-
-    });
+    <script src="listview.js"></script>
+    
     </script>
   </body>
 </html>

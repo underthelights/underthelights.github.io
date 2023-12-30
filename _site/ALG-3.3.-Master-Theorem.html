@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         TeX: {
+         equationNumbers: {
+             autoNumber: "AMS"
+         }
+         },
+         tex2jax: {
+         inlineMath: [ ['$', '$'] ],
+         displayMath: [ ['$$', '$$'] ],
+         processEscapes: true,
+     }
+     });
+     MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>[ALG] 3.3. Master Theorem  ✱ Kyuhwan Shim</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <link href="/assets/fontawesome/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  <!-- GA -->
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8LB4J4EL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VG8LB4J4EL');
+</script>
+
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/main/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/main/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/main/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/main/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/main/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/main/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/main/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/main/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/main/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/main/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/main/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/main/favicon/favicon-16x16.png">
+  <link rel="manifest" href="">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/main/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Opengraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/main/favicon/og.png%5BALG%5D-3.3.-Master-Theorem-.jpg">
+  <meta property="og:title" content="[ALG] 3.3. Master Theorem  | Kyuhwan Shim">
+  <meta property="og:description" content="Paper overview of  et al., ">
+
+  <!-- Google scholar -->
+  
+  <meta name="citation_title" content="[ALG] 3.3. Master Theorem ">
+  
+  <meta name="citation_publication_date" content="">
+  
+  <meta name="citation_conference_title" content="">
+  
+  <meta name="citation_pdf_url" content="https://underthelights.github.io/assets/pdf/[ALG]-3.3.-Master-Theorem-.pdf">
+  
+</head>
+<body><header class="page-content">
+  <nav class="navbar navbar-expand-md navbar-light py-4">
+    <div class="container-fluid">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/news">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/oconnect">oconnect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/cv">CV</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">fun</a>
+              <div class="dropdown-menu">
+                  <a href="/music" class="dropdown-item">music</a>
+                  <a href="/artwork" class="dropdown-item">artwork</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dropdown-toggle {
+    background-color: transparent;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+  }
+  .dropdown-toggle:hover {
+    font-weight: 500
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ .dropdown-menu {
+    --bs-dropdown-border-radius: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+ }
+ .dropdown-item {
+  font-size: .95rem !important;
+  padding: .3rem .75rem !important;
+ }
+ .dropdown-item:active {
+  background-color: #999 !important
+ }
+</style><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <style>
+  /* General styling for all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Arial', sans-serif;
+    /* Use a modern font */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .post-title {
+    font-size: 2em; /* 폰트 크기 증가 */
+    font-weight: bold; /* 볼드체 */
+    color: #333; /* 색상 변경 */
+    /* background-color: #f8f8f8; 배경색 추가 */
+    padding: 10px; /* 배경색과 함께 패딩 추가 */
+    box-shadow: inset 0 -20px 0 #bbb7e8;
+    max-width: max-content;
+  }
+
+  /* Updated styling for h1 */
+  h1 {
+    font-size: 1.5em;
+    /* Increase font size for main titles */
+    color: #333333;
+    border-bottom: none;
+    /* Remove bottom border */
+    padding-bottom: 0;
+    /* Adjust padding if needed */
+  }
+
+  h2 {
+    font-size: 1.2em;
+    color: #4a4a4a;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    color: #6a6a6a;
+  }
+
+  h4 {
+    font-size: 0.75em;
+    color: #888888;
+  }
+
+  h5 {
+    font-size: 0.5em;
+    color: #a6a6a6;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #bcbcbc;
+  }
+
+  /* Add some additional styling if needed */
+  .post-content {
+    line-height: 1.6;
+    /* Improve readability */
+    color: #333333;
+    /* Dark grey color for text */
+  }
+
+  /* Styling for the ToC to make it scroll with the page */
+  .toc {
+    font-size: 1em;
+    position: fixed;
+    /* Fixed position */
+    right: 0;
+    /* Align to the right side of the screen */
+    top: 50;
+    /* Adjust this value as needed based on your header size */
+    max-height: 100vh;
+    /* Set maximum height to viewport height */
+    overflow-y: auto;
+    /* Allows scrolling within the ToC if it's too long */
+    padding: 20px;
+    /* Add some padding */
+    background-color: white;
+    /* Optional: background color for visibility */
+    z-index: 1000;
+    /* To ensure it stays on top of other elements */
+    width: 250px;
+    /* Adjust the width as needed */
+  }
+</style>
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="toc">
+    <a href="#">&lt;On the Top&gt;</a>
+    <ul><li><a href="#master-theorem-1">Master Theorem 1</a></li><li><a href="#master-theorem-2">Master Theorem 2</a></li><li><a href="#alg-34-miscellaneous-1">[ALG] 3.4. Miscellaneous (1)</a></li><li><a href="#finding-the-closest-pair-of-2d-points">Finding the Closest Pair of 2D Points</a><ul><li><a href="#1-내용">1. 내용</a></li><li><a href="#2-applying-the-divide-and-conquer-strategy">2. Applying the Divide-and-Conquer Strategy</a></li></ul></li></ul>
+
+  </div>
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[ALG] 3.3. Master Theorem </h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-09-26T00:00:00+09:00" itemprop="datePublished">
+        Sep 26, 2022
+      </time></p>
+    <!-- 태그와 카테고리 표시 -->
+    <div class="post-categories">
+      
+      <strong><span>📚 Categories:</span></strong>
+      
+      <a href="blog-categories-notes">Notes</a>
+      
+      
+    </div>
+
+    <div class="post-tags">
+      
+      <strong><span>🏷️ Tags:</span></strong>
+      
+      <a href="blog-tags-algorithm">Algorithm</a>
+      
+      
+    </div>
+
+
+  </header>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="master-theorem-1">Master Theorem 1</h1>
+
+<p>[Neapolitan 2.8]</p>
+
+<ul>
+  <li>Let a, b, and c be nonnegative constants.</li>
+  <li>The solution to the recurrence $T (1)=1$, and $T(n)=aT(\frac n c)+bn$, for <em>n</em>&gt;1 for <em>n</em> a power of <em>c</em> is
+    <ul>
+      <li>$T(n)=O(n)$, if $a&lt;c$
+        <ul>
+          <li>a=3, b=4 → n ⇒ $\frac n 3, \frac n 3$</li>
+        </ul>
+      </li>
+      <li>$T(n)=O(n \log n)$ if $a=c$
+        <ul>
+          <li></li>
+        </ul>
+      </li>
+      <li>$T(n) = O(n \log_c a)$ if a &gt; c
+        <ul>
+          <li>$a=4, c=2$면? → $O(n^{\log_2 4})$</li>
+          <li>a&gt;c이면 log_c a &gt; 1이게 됨
+            <ul>
+              <li>$O(n \log n)$ vs $O(n^{1.00000000001})$</li>
+              <li>$\lim_{n\rightarrow \infty}{\frac {f(n)}{g(n)}} = \infty, c, 0$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>o(n) &lt; O(n \log n) &lt; O(n \log_c a)</p>
+
+<p>$T(n) = T(\frac n 5) + T(\frac 3 4 n) + bn$</p>
+
+<p>Prove this by induction!</p>
+
+<ul>
+  <li>Avoid divided-and-conquer if, for example–
+    <ul>
+      <li>An instance of size n is divided into two or more instances each almost of size <em>n</em>.</li>
+      <li>An instance of size n is divided into almost <em>n</em> instance of size $\frac n c$, where <em>c</em> is a constant.</li>
+    </ul>
+  </li>
+  <li>The divide-and-conquer strategy often leads to efficient algorithms, although not always!</li>
+</ul>
+
+<h1 id="master-theorem-2">Master Theorem 2</h1>
+
+<p>212p</p>
+
+<p>Theorem</p>
+
+<p>if $T(n) \leq a \cdot T(\frac n b) + O(n^d) $ for $a \geq 1, b&gt;1$ and $d \geq 0$</p>
+
+<p>→ then</p>
+
+<p>$T(n) = O(n^d \log n) $ if $a = b^d$</p>
+
+<p>$T(n) = O(n^d) $ if $a &lt; b^d$</p>
+
+<p>$T(n) = O(n^d \log n) $ if $a &gt; b^d$</p>
+
+<p>divide and conquer : linear time이라는 보장은 없다.</p>
+
+<p>스스로 한번 이해해보고, 이해가 안 됐을 때 또 다시 생각해보기 (숙제!)</p>
+
+<ul>
+  <li>직관적으로, 논리적으로 맞느지 스스로 이해를 해보라,</li>
+</ul>
+
+<h1 id="alg-34-miscellaneous-1">[ALG] 3.4. Miscellaneous (1)</h1>
+
+<h1 id="finding-the-closest-pair-of-2d-points">Finding the Closest Pair of 2D Points</h1>
+
+<h2 id="1-내용">1. 내용</h2>
+
+<p><strong>[J. Kleinberg and E. Tardos, Algorithm Design, Addison Wesley, 2005. 5.4]</strong></p>
+
+<ul>
+  <li>Problem
+    <ul>
+      <li>
+        <p>Given <em>n</em> points in the plane, find the pair that is closest together.</p>
+
+        <p>n</p>
+      </li>
+    </ul>
+  </li>
+  <li>Notation</li>
+  <li>Naïve algorithm
+    <ul>
+      <li>Compute the distance between each pair of points</li>
+      <li>take the minimum → $O(n^2)$ time
+undefined
+        <h2 id="2-applying-the-divide-and-conquer-strategy">2. Applying the Divide-and-Conquer Strategy</h2>
+      </li>
+    </ul>
+  </li>
+  <li>[Shamos and Hoey]</li>
+  <li>Simple assumption for an easy explanation
+    <ul>
+      <li>No two points in <em>P</em> have the same _x_coordinate or the same _y_coordinate.</li>
+    </ul>
+  </li>
+  <li>General idea
+    <ul>
+      <li>[Preprocessing]
+        <ul>
+          <li>Build a list <em>Px</em> in which all the points in <em>P</em> have been sorted by increasing _x_coordinate→ $O(n \log n)$</li>
+          <li>Build another list <em>Py</em> in which all the points in <em>P</em> have been sorted by increasing _y_coordinate→ $O(n \log n)$</li>
+        </ul>
+      </li>
+      <li>[Recursion for <em>P</em> with $∣P∣=n$]
+        <ul>
+          <li>[Divide] Partition <em>P</em> into two subsets <em>Q</em> and <em>R</em> → <em>O</em>(<em>n</em>)</li>
+          <li>[Conquer] Find the closest pairs in <em>Q</em> and <em>R</em>, respectively→ $2T(\frac n 2)$</li>
+          <li>[Combine] Use this information to get the closest pair in P→ <em>O</em>(<em>n</em>)</li>
+          <li>Time-complexity
+            <ul>
+              <li>$O(n \log n) + T(n)$ where $T(n) = cn +2T(n/2) → O(n \log n)$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>The stage [Divide]: Partition <em>P</em> into two subsets <em>Q</em> and <em>R</em>.
+    <ul>
+      <li>Create <em>Q</em> and <em>R</em>, where
+        <ul>
+          <li>Q: the set of points in the first  $\lceil(\frac n 2)\rceil$positions of the list $P_x$ (the “left half”),</li>
+          <li>R_R_: the set of points in the final $\lfloor(\frac n 2) \rfloor$positions of the list $P_x$ (the “right half”).</li>
+        </ul>
+      </li>
+      <li>Furthermore, create $Q_x, Q_y, R_x$, and $R_y$, where
+        <ul>
+          <li>$Q_x$ consisting of the points in <em>Q</em> sorted by increasing _x_coordinate,</li>
+          <li>$Q_y$ consisting of the points in <em>Q</em> sorted by increasing _y_coordinate,</li>
+          <li>$R_x$ consisting of the points in <em>R</em> sorted by increasing _x_coordinate,</li>
+          <li>$R_y$ consisting of the points in <em>R</em> sorted by increasing _y_coordinate.</li>
+        </ul>
+      </li>
+      <li>✓ Can be done in $O(n)$</li>
+    </ul>
+  </li>
+  <li>The stage [Conquer]: Find the closest pairs in <em>Q</em> and <em>R</em>, respectively.
+    <ul>
+      <li>Recursively determine a closest pair $(q_0, q_1)$ of points in <em>Q</em></li>
+      <li>Recursively determine a closest pair $(r_0, r_1)$ of points in <em>R</em>.
+        <ul>
+          <li>Can be done in $2T(\frac n 2)$.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>The stage [Combine]: Use the obtained info. to get the closest pair in <em>P</em>.
+    <ul>
+      <li>Question : are there points $q \in Q, r \in R$ for which $d(q,r)&lt;\delta$?
+        <ul>
+          <li>How can we answer this question in linear time?</li>
+        </ul>
+      </li>
+      <li>[Fact 1] (Why?)
+        <ul>
+          <li>if there $∃q∈Q,r∈R $for which $d(q,r)&lt;\delta$</li>
+          <li>then each of <em>q</em>,<em>r</em> lies within a distance $\delta$ of $L$</li>
+        </ul>
+      </li>
+      <li>[Fact 2]
+        <ul>
+          <li>$∃q∈Q,r∈R$ for which $d(q,r)&lt;\delta⟺ ∃s,s′∈S$ for which $ d(s,s′)&lt;δ$</li>
+          <li>
+
+            <p><img src="/assets/img/2022-09-26-[ALG]-3.3.-Master-Theorem-.md/0.png" alt="0" /></p>
+          </li>
+          <li>$x^*$: the x-coordinate of the rightmost point in <em>Q</em></li>
+          <li>$\delta=min(d(q_0^<em>,q_1^</em>),d(r_0^<em>,r_1^</em>))$</li>
+          <li>
+
+            <p><img src="/assets/img/2022-09-26-[ALG]-3.3.-Master-Theorem-.md/1.png" alt="1" /></p>
+          </li>
+        </ul>
+      </li>
+      <li>[Fact 3]
+        <ul>
+          <li>if $s, s^{‘ } \in S$ have the property that $d(s, s^{‘})&lt;\delta$, then $s, s^{‘}$ re within 15 positions of each other in the sorted list $S_y$
+            <ul>
+              <li>$S_y$ : the list consisting of the points in <em>S</em> sorted by increasing _y_coordinate.</li>
+              <li>Each box contains at most one point of <em>S</em>. (Why?)</li>
+              <li>If two points in <em>S</em> are at least 16 positions apart in $S_y$ , …</li>
+            </ul>
+          </li>
+          <li>
+
+            <p><img src="/assets/img/2022-09-26-[ALG]-3.3.-Master-Theorem-.md/2.png" alt="2" /></p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>[merge] : <em>O</em>(<em>n</em>)</p>
+
+        <p>O(n)</p>
+
+        <ol>
+          <li>For each $s \in S_y$ , compute its distance to each of the next 15 pts in $S_y$</li>
+          <li>Let $s, s^{‘}$ be the pair achieving the minimum of these distances</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Compare $d(s, s^{‘})$ with $δ$</p>
+
+<p><img src="/assets/img/2022-09-26-[ALG]-3.3.-Master-Theorem-.md/3.png" alt="3" /></p>
+
+
+  </div><a class="u-url" href="/ALG-3.3.-Master-Theorem" hidden></a>
+</article>
+<script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
+
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
+      </div>
+    </main><footer>
+  <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">
+  <div class="row m-0">
+    <div class="col-12 col-md-3 col-sm-4 mb-4 mb-sm-0">
+      <p>
+        <a href="https://github.com/underthelights/underthelights.github.io" style="font-weight: 300">Kyuhwan Shim</a>
+        <br>Up-to-date as of <span id="date">loading...</span></p>
+      <i class="fas fa-location-dot mr-1"></i> Seoul is <img style="width: auto; height: 23px;" id="weather_icon">
+      <span id="weather">Loading...</span>
+    </div>
+    <div class="col-12 col-md-9 col-sm-8">
+      <p>
+        <a style="font-weight: 300" href="https://linkedin.com/in/kyuhwan-shim"><i class="fab fa-linkedin" style="margin-right: 10.5px"></i>LinkedIn</a><br>
+        <a style="font-weight: 300" href="https://fb.com/s.kyuhwn"><i class="fab fa-facebook" style="margin-right: 8px"></i>Facebook</a><br>
+        <a style="font-weight: 300" href="https://www.instagram.com/s.kyuhwn"><i class="fab fa-instagram" style="margin-right: 10.5px"></i>Instagram</a><br>
+        <a style="font-weight: 300" href="https://github.com/underthelights"><i class="fab fa-github" style="margin-right: 10.5px"></i>GitHub</a><br>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="/assets/js/weather.js"></script>
+<script src="/assets/js/github_date.js"></script>
+</body>
+
+</html>

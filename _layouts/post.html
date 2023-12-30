@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink:
 ---
 <style>
   /* General styling for all headings */
@@ -14,10 +15,19 @@ layout: default
     margin-top: 20px;
     margin-bottom: 10px;
   }
+  .post-title {
+    font-size: 2em; /* 폰트 크기 증가 */
+    font-weight: bold; /* 볼드체 */
+    color: #333; /* 색상 변경 */
+    /* background-color: #f8f8f8; 배경색 추가 */
+    padding: 10px; /* 배경색과 함께 패딩 추가 */
+    box-shadow: inset 0 -20px 0 #bbb7e8;
+    max-width: max-content;
+  }
 
   /* Updated styling for h1 */
   h1 {
-    font-size: 2em;
+    font-size: 1.5em;
     /* Increase font size for main titles */
     color: #333333;
     border-bottom: none;
@@ -27,12 +37,12 @@ layout: default
   }
 
   h2 {
-    font-size: 1.25em;
+    font-size: 1.2em;
     color: #4a4a4a;
   }
 
   h3 {
-    font-size: 1em;
+    font-size: 1.1em;
     color: #6a6a6a;
   }
 
@@ -114,22 +124,25 @@ layout: default
       {%- endif -%}
     </p>
     <!-- 태그와 카테고리 표시 -->
-    <div class="post-tags-categories">
-      {% if page.tags %}
-      <strong>Tags:</strong>
-      {% for tag in page.tags %}
-      <a href="{{ '/tags/' | append: tag | slugify }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-      {% endfor %}
-      {% endif %}
-      <br>
+    <div class="post-categories">
       {% if page.categories %}
-      <strong>Categories:</strong>
+      <strong><span>📚 Categories:</span></strong>
       {% for category in page.categories %}
-      <a href="{{ '/categories/' | append: category | slugify }}">{{ category }}</a>{% unless forloop.last %}, {%
+      <a href="{{ '/blog/categories/' | append: category | slugify }}">{{ category }}</a>{% unless forloop.last %}, {%
       endunless %}
       {% endfor %}
       {% endif %}
     </div>
+
+    <div class="post-tags">
+      {% if page.tags %}
+      <strong><span>🏷️ Tags:</span></strong>
+      {% for tag in page.tags %}
+      <a href="{{ '/blog/tags/' | append: tag | slugify }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+      {% endfor %}
+      {% endif %}
+    </div>
+
 
   </header>
   </header>

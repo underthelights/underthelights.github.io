@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         TeX: {
+         equationNumbers: {
+             autoNumber: "AMS"
+         }
+         },
+         tex2jax: {
+         inlineMath: [ ['$', '$'] ],
+         displayMath: [ ['$$', '$$'] ],
+         processEscapes: true,
+     }
+     });
+     MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>[ALG] 4.3. Misc. ✱ Kyuhwan Shim</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <link href="/assets/fontawesome/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  <!-- GA -->
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8LB4J4EL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VG8LB4J4EL');
+</script>
+
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/main/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/main/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/main/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/main/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/main/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/main/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/main/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/main/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/main/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/main/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/main/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/main/favicon/favicon-16x16.png">
+  <link rel="manifest" href="">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/main/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Opengraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/main/favicon/og.png%5BALG%5D-4.3.-Misc.jpg">
+  <meta property="og:title" content="[ALG] 4.3. Misc. | Kyuhwan Shim">
+  <meta property="og:description" content="Paper overview of  et al., ">
+
+  <!-- Google scholar -->
+  
+  <meta name="citation_title" content="[ALG] 4.3. Misc.">
+  
+  <meta name="citation_publication_date" content="">
+  
+  <meta name="citation_conference_title" content="">
+  
+  <meta name="citation_pdf_url" content="https://underthelights.github.io/assets/pdf/[ALG]-4.3.-Misc.pdf">
+  
+</head>
+<body><header class="page-content">
+  <nav class="navbar navbar-expand-md navbar-light py-4">
+    <div class="container-fluid">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/news">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/oconnect">oconnect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/cv">CV</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">fun</a>
+              <div class="dropdown-menu">
+                  <a href="/music" class="dropdown-item">music</a>
+                  <a href="/artwork" class="dropdown-item">artwork</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dropdown-toggle {
+    background-color: transparent;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+  }
+  .dropdown-toggle:hover {
+    font-weight: 500
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ .dropdown-menu {
+    --bs-dropdown-border-radius: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+ }
+ .dropdown-item {
+  font-size: .95rem !important;
+  padding: .3rem .75rem !important;
+ }
+ .dropdown-item:active {
+  background-color: #999 !important
+ }
+</style><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <style>
+  /* General styling for all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Arial', sans-serif;
+    /* Use a modern font */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .post-title {
+    font-size: 2em; /* 폰트 크기 증가 */
+    font-weight: bold; /* 볼드체 */
+    color: #333; /* 색상 변경 */
+    /* background-color: #f8f8f8; 배경색 추가 */
+    padding: 10px; /* 배경색과 함께 패딩 추가 */
+    box-shadow: inset 0 -20px 0 #bbb7e8;
+    max-width: max-content;
+  }
+
+  /* Updated styling for h1 */
+  h1 {
+    font-size: 1.5em;
+    /* Increase font size for main titles */
+    color: #333333;
+    border-bottom: none;
+    /* Remove bottom border */
+    padding-bottom: 0;
+    /* Adjust padding if needed */
+  }
+
+  h2 {
+    font-size: 1.2em;
+    color: #4a4a4a;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    color: #6a6a6a;
+  }
+
+  h4 {
+    font-size: 0.75em;
+    color: #888888;
+  }
+
+  h5 {
+    font-size: 0.5em;
+    color: #a6a6a6;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #bcbcbc;
+  }
+
+  /* Add some additional styling if needed */
+  .post-content {
+    line-height: 1.6;
+    /* Improve readability */
+    color: #333333;
+    /* Dark grey color for text */
+  }
+
+  /* Styling for the ToC to make it scroll with the page */
+  .toc {
+    font-size: 1em;
+    position: fixed;
+    /* Fixed position */
+    right: 0;
+    /* Align to the right side of the screen */
+    top: 50;
+    /* Adjust this value as needed based on your header size */
+    max-height: 100vh;
+    /* Set maximum height to viewport height */
+    overflow-y: auto;
+    /* Allows scrolling within the ToC if it's too long */
+    padding: 20px;
+    /* Add some padding */
+    background-color: white;
+    /* Optional: background color for visibility */
+    z-index: 1000;
+    /* To ensure it stays on top of other elements */
+    width: 250px;
+    /* Adjust the width as needed */
+  }
+</style>
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="toc">
+    <a href="#">&lt;On the Top&gt;</a>
+    <ul><li><a href="#alg-huffman-1">[ALG] Huffman (1)</a></li><li><a href="#alg-intractable-problem-and-approximation-alg-1">[ALG] Intractable Problem and Approximation Alg (1)</a></li><li><a href="#polynomial-and-exponential-time-function">Polynomial and Exponential Time Function</a></li><li><a href="#다양한-문제들">다양한 문제들</a><ul><li><a href="#hamiltonian-path">Hamiltonian Path</a></li><li><a href="#longest-path">Longest path</a></li></ul></li><li><a href="#how-do-you-bp">How do you BP~~</a></li><li><a href="#0-1-knapsack-problem">0-1 Knapsack Problem</a></li><li><a href="#subset-sum-problem">Subset Sum Problem</a></li><li><a href="#bin-packing">Bin Packing</a><ul><li><a href="#why-bp-is-a-hard-problem">why bp is a hard problem?</a></li><li><a href="#3-sat">3 SAT</a></li><li><a href="#vertex-cover-vc">Vertex Cover (VC)</a></li><li><a href="#set-cover">Set Cover</a></li></ul></li><li><a href="#alg-lps-1">[ALG] LPS (1)</a></li><li><a href="#17">17</a></li><li><a href="#21">21</a></li></ul>
+
+  </div>
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[ALG] 4.3. Misc.</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-09-30T00:00:00+09:00" itemprop="datePublished">
+        Sep 30, 2022
+      </time></p>
+    <!-- 태그와 카테고리 표시 -->
+    <div class="post-categories">
+      
+      <strong><span>📚 Categories:</span></strong>
+      
+      <a href="blog-categories-notes">Notes</a>
+      
+      
+    </div>
+
+    <div class="post-tags">
+      
+      <strong><span>🏷️ Tags:</span></strong>
+      
+      <a href="blog-tags-algorithm">Algorithm</a>
+      
+      
+    </div>
+
+
+  </header>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="alg-huffman-1">[ALG] Huffman (1)</h1>
+
+<p>Huffman Correctness Proof</p>
+
+<p>Proof by Induction</p>
+
+<p>if the set of trees obtained in the ith step are branches in a binary tree corresponding to an optimal code, then the set of trees obtained i+1 th step</p>
+
+<h1 id="alg-intractable-problem-and-approximation-alg-1">[ALG] Intractable Problem and Approximation Alg (1)</h1>
+
+<p>Millenium problems</p>
+
+<p>NP Hard</p>
+
+<ul>
+  <li>0-1 knapsack
+    <ul>
+      <li>문제 size n에 대해서 솔루션 찾지도, 증명도 못하였지만 상수시간에 못 푸리라 생각한 NP</li>
+      <li>1,2, …, n번 물건 중 몇 개만 훔칠건데, 훔친 것들 무게의 합이 가방 용량보다는 같거나 작으면서 내가 훔쳤을 때 얻을 수 있는 이득의 총합</li>
+    </ul>
+  </li>
+  <li>subset sum
+    <ul>
+      <li>양의 정수 n개가 있는데, n개 중 몇 개를 뽑을 건데 해당 조건을 만족하면서 뽑은 것들의 총 합이 주어진 조건보다 작거나 같으면서 뽑은 것들의 무게를 최대화하는것</li>
+      <li>뽑은 것들의 무게의 합을 최대화 : $\Sigma_{i \in A} w_i$</li>
+    </ul>
+  </li>
+  <li>뭐가 더 어려울까?
+    <ul>
+      <li>둘 다 아무도 n에 대해서 효율적인 알고리즘 (polynomial time)을 찾지 못했고 없다고 증명도 못했고 단지 없을 것이라고 생각함.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="polynomial-and-exponential-time-function">Polynomial and Exponential Time Function</h1>
+
+<ul>
+  <li>$n^k$까지가 Polynomial time - $2^n$ 은 exponential time</li>
+  <li>polynomial solution이 존재하면 효율적인 알고리즘이 존재한다.</li>
+</ul>
+
+<p>intractable problem = hard problem</p>
+
+<ul>
+  <li>무궁무진하게 많으나 아무런 솔루션을 찾지 못했음</li>
+</ul>
+
+<p>polynomial</p>
+
+<p>없다고 증명할 수 있으면 해라</p>
+
+<p>효율적인 알고리즘을 못 찾았는데 - 내가 못해서 그런가보다</p>
+
+<p>효율적인 알고리즘을 못 찾았는데 - 실제로 가능하지도 않다</p>
+
+<p>효율적인 알고리즘을 못 찾았는데 - 그런데 알고 봤더니 이것이 np complete이다.</p>
+
+<ul>
+  <li>→ 그 많은 알고리즘 하는 사람이 못 찾았고 나도 못 찾았다.</li>
+</ul>
+
+<p>np complete, hard일 가능성이 큼</p>
+
+<ul>
+  <li>→ Approximation alg, Heuristic alg를 통해
+    <ul>
+      <li>최대화, 극대화해주지는 못하지만 그에 대한 근사치를 찾아주는, 그렇지만 효율적으로 polynomial time 안에 돌아가는 solution을 찾아주는 알고리즘</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="다양한-문제들">다양한 문제들</h1>
+
+<h2 id="hamiltonian-path">Hamiltonian Path</h2>
+
+<ul>
+  <li>가급적 지나간 곳은 지나가지 않는다.</li>
+</ul>
+
+<h2 id="longest-path">Longest path</h2>
+
+<h1 id="how-do-you-bp">How do you BP~~</h1>
+
+<p>&lt; 시험 무조건 나옴&gt;</p>
+
+<h1 id="0-1-knapsack-problem">0-1 Knapsack Problem</h1>
+
+<ul>
+  <li>optimization 문제 : 0-1 knapsack, subset sum
+    <ul>
+      <li>무언가를 최대로 최적화하는 문제</li>
+      <li>Ex. 훔친 물건의 무게, 가격, 가방의 용량 → 내 가방에 담을 수 있는 선에서 해당 profit을 maximize해주는 selection을 찾아라.</li>
+    </ul>
+  </li>
+  <li>이에 대응되는 ‘Decision problem’
+    <ul>
+      <li>Ex. 훔친 물건의 무게, 가격, 가방의 용량, ‘T’</li>
+      <li>T : decision problem이니까 답이 Yes or No로 나뉘어 나옴 : 이런 무게와 profit, W가 주어졌을 때 허용된 용량 안에서 물건을 훔치며 관련 주어진 T보다 큰 것이 가능한가가 문제
+        <ul>
+          <li>가방에 담으려하는데, 담은 가격의 합이 주어진 값 T보다 많을 수 있느냐 (Ex. 5000원보다 더 훔쳐올 수 있느냐)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>→ optimization이 어려움</li>
+</ul>
+
+<h1 id="subset-sum-problem">Subset Sum Problem</h1>
+
+<ul>
+  <li>Decision Problem
+    <ul>
+      <li>Given a set of positive integers ${s_1, s_2, … s_n}$ of size n and a positive integer T, does there exist a suset A of {1,2,…,n} such that $S_i = \Sigma_{i \in A} s_i$?</li>
+      <li>훔칠 것들의 무게 s,</li>
+      <li>이중에 몇 개를 뽑는다. 뽑은 것들의 합이 주어진 s와 같게 해줄 수 있느냐?
+        <ul>
+          <li>S라는 집합이 있고 T가 주어졌을 때, 몇 개를 뽑아 T값이 나오도록 하는 선택이 가능하냐 (T보다 더 많이 훔쳐낼 수 있냐</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>knapsack이 조금 더 어렵다
+    <ul>
+      <li>$subset sum \leq_p 0-1 knapsack$ (polynomial time에 transform이 가능하다)</li>
+      <li>Polynomial Reduction: from suset sum to 0-1 knapsack
+        <ul>
+          <li>0-1 knapsack만  polynomial time에 풀 수 있으면 subset sum도 풀 수 있다.</li>
+        </ul>
+      </li>
+      <li>둘 다 정답 Yes or No</li>
+    </ul>
+  </li>
+</ul>
+
+<p>언제 n, s_1, s_2, ..n에서 합이 정답이 S가 나올까? 넘으면 Yes, 아니면 No</p>
+
+<p>문제의 답이 No면 정답도 No를 출력해 줌.</p>
+
+<p>해당 답을 가지고 transform을 통해 parameter를 만들어 냄 : n은 그대로 n으로 가고, w1..wn과 p1,,, pn을 만들어냄. 어떻게 하면 될까? →</p>
+
+<p>n은 그대로 집어넣고,  s1_… sn은 w1…wn에 그대로 넣고 T값을 W, T에도 넣어줌</p>
+
+<ul>
+  <li>0-1 knapsack에서 w1, w2, .. wn - p1, p2, … pn → 뽑은 것들의 $\Sigma s_i \geq T, \Sigma s_i \leq T \rightarrow \Sigma s_i = T$</li>
+  <li>이 중에 몇개를 뽑아서 합이 T가 되도록 하는 것이 가능하냐
+    <ul>
+      <li>문제를 transform : 언제 Yes를 출력할까? 우리가 이 문제에서 (가방 용량 허용하는 선에서 물건을 훔치는데 훔친 가격의 합이 T보다 크면 Yes.) (profit, 무게를 subset sum에서의 값으로 바꾸었으니까 $\Sigma s_i \geq T, \Sigma s_i \leq T \rightarrow \Sigma s_i = T$가 가능한가.</li>
+    </ul>
+  </li>
+  <li>Transform
+    <ul>
+      <li>집어넣는 과정 : linear time에 가능</li>
+    </ul>
+  </li>
+  <li>0-1 knapsack
+    <ul>
+      <li>Polynomial time</li>
+    </ul>
+  </li>
+  <li>subset sum
+    <ul>
+      <li>0-1 knapsack으로 polynomial reduction으로 전환</li>
+      <li>np hard라고 증명 = polynomial에 찾는 게 사실 말이 안됨
+        <ul>
+          <li>찾지도 못했고 없다고 증명도 못했고</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Fact 2읽어보기</p>
+
+<ul>
+  <li>knapsack을 polynomial에 대해 풀수 있으면 subset problem도 polynomial 시간안에
+    <ul>
+      <li>np complete : very hard</li>
+      <li>polynomial solution을 찾아오던지, 없다고 증명하던지</li>
+    </ul>
+  </li>
+</ul>
+
+<p>$B,C  \in NP-Comlete$ 이면 $C \leq_p B \leq_p A$</p>
+
+<p>Polynomial reduction을 해서 C도 NP Complete임을 증명 … 줄줄이 증명</p>
+
+<ul>
+  <li>→ 원조 문제 $X \leq_p … \leq_p B \leq_p A$
+    <ul>
+      <li>이미 알고 있던 np complete문제를 가지고 reduction : 태초에 문제가 하나 있어야 Polynomial reduction하여 np-complete</li>
+      <li>Subset sum가지고 0-1 knapsack, …</li>
+      <li>원조 문제는 무엇일까:
+        <ul>
+          <li>Proof by Cook</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>CNF Conjunctive normal form
+    <ul>
+      <li>formula
+        <ul>
+          <li>$(p \lor q \lor s) \land (\bar q \lor r ) \land () \land () \land (\bar p \lor \bar s \lor \bar q)$</li>
+          <li>or들의 and로 되어 있음</li>
+          <li>신호니까 0 or 1이 input으로 들어감</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>SAT Satisfiability Problem
+    <ul>
+      <li>각각의 input에다가 0 or 1을 assign해서 CNF formula 결과가 true가 나오는 truth assignment가 존재하는가?</li>
+      <li>실제 회로를 설계햇을 때 True로</li>
+    </ul>
+  </li>
+  <li>3- SAT
+    <ul>
+      <li>CNF Formula에서 식을 3개로 제한하여 놓음 → polynomial 시간에 불가능</li>
+      <li>모든 경우를 따져보면 $2^n, n!$ solution은 쉽게 나온다.</li>
+    </ul>
+  </li>
+  <li>Cook’s Theorem
+    <ul>
+      <li>SAT 문제를 가지고 Clique \leq_p vertex cover \leq_p …  → NP Complete</li>
+      <li>어려운 정도가 동등함 (증명되어 있음)</li>
+      <li></li>
+    </ul>
+  </li>
+  <li>NP Complete
+    <ul>
+      <li>이들을 모아둔 것이 ‘NP Complete’</li>
+      <li>P : polynomial time algorithm 문제를 모두 모아둔 것</li>
+      <li>NP Complete = $NP \cap NP Hard$
+        <ul>
+          <li>polynomial solution을 찾아오던지 or 없다고 증명하던지</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>BP</p>
+
+<ul>
+  <li>동영상에 넣어 출력하자</li>
+</ul>
+
+<p>Independent Set</p>
+
+<ul>
+  <li>알고 봤더니 1,2번이 싸웠더라 - 3,6,7은 3각관계라서 서로 마주치면 안된다 - 내일 파티를 하는데 싸운 애들은 나타나지 않게 한다. 모든 구성원과 서로의 관계를 줄 때, 최대로 인원을 뽑은 경우</li>
+  <li>Ex.
+    <ul>
+      <li>1,4,5,6 → 싸우지 않은 괜찮은 사람들의 조합</li>
+    </ul>
+  </li>
+  <li>sol : Exponential time algorithm</li>
+</ul>
+
+<p>→ 이런 문제들에 대해서 어덯게 대처할 것인가</p>
+
+<ul>
+  <li>Approximation Algorithm for BP : FFD Approach</li>
+  <li>최대 solution은 못 찾지만 어느정도의 범위는 보장되는 알고리즘
+    <ul>
+      <li>애매한 89% 정도까지는 최적의 솔루션이 보장되는 polynomial time solution</li>
+      <li>heuristic algorithm은 페이던스?케이던스라는 미국 회사에서 제공해주는 알고리즘 사용 (실제 반도체 회로에서의 유효성을 검증하기 위한 heuristic)</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="bin-packing">Bin Packing</h1>
+
+<p>Examples</p>
+
+<ul>
+  <li>제한된 용량의 CD에다 파일을 저장하는데, CD에다 굽고싶은 경우.</li>
+  <li>2^n 알고리즘으로 쉽게 생각할 수 있음 → 그러나 np-hard로서 없을 것이라고 추정만 하는 상태</li>
+</ul>
+
+<h2 id="why-bp-is-a-hard-problem">why bp is a hard problem?</h2>
+
+<ul>
+  <li>
+    <partition prob="">
+</partition>
+    <ul>
+      <li>A의 부분집합인 A’과 A에서 A’ 뺀 차집합이 가능하냐 가능하지 않느냐.</li>
+    </ul>
+  </li>
+  <li>if we have a polynomial time algorithm for the bin packing problem,
+    <ul>
+      <li>집합이 있을 때 이를 두 부분으로 나누어 각자 맞</li>
+    </ul>
+  </li>
+  <li>$PARTITION \leq_p BP$
+    <ul>
+      <li>문제들 간 어떻게 연결이 되어있느냐 이해하기</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-sat">3 SAT</h2>
+
+<h2 id="vertex-cover-vc">Vertex Cover (VC)</h2>
+
+<ul>
+  <li>Vertex 와 Edge로 구성된 graph가 있을 때, 꼭짓점 중 몇 개를 뽑을 것인가 : 해당 graph의 어떤 edge를 가지고 와도 빨간 애가 항상 연결되어 있는 - 어떤 애를 가져와도 최소한 빨간 애가 항상 연결되어 있는 경우</li>
+  <li>간단해 보이나 쉽지 않다 :
+    <ul>
+      <li>exponential alg르 푸는건 쉽지 않을 것이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="set-cover">Set Cover</h2>
+
+<p>S라는 집합이 있는데, 그들의 부분집합이 존재한다. 그 m개의 부분집합에서 많아야 k개를 뽑아서 그들의 합집합이 S가 되게 함이 가능한가? → Yes or No</p>
+
+<p>많아야 최대 k개까지 뽑아서 그들의 합집합이 S가 되게 하는 것이 가능한가?</p>
+
+<ul>
+  <li>Example</li>
+  <li>$VC \leq_p SC$
+undefined
+$S = {S_1, S_2, … S_n}$</li>
+</ul>
+
+<p>NP, NP Complete</p>
+
+<h1 id="alg-lps-1">[ALG] LPS (1)</h1>
+
+<details>
+  <summary>17</summary>
+
+
+![0](/assets/img/2022-09-30-[ALG]-4.3.-Misc..md/0.png)
+
+
+
+  </details>
+<details>
+  <summary>21</summary>
+
+
+![1](/assets/img/2022-09-30-[ALG]-4.3.-Misc..md/1.png)
+
+
+![2](/assets/img/2022-09-30-[ALG]-4.3.-Misc..md/2.png)
+
+
+![3](/assets/img/2022-09-30-[ALG]-4.3.-Misc..md/3.png)
+
+
+![4](/assets/img/2022-09-30-[ALG]-4.3.-Misc..md/4.png)
+
+
+
+  </details>
+<ol>
+  <li>다음과 같은 문제를 고려하자.</li>
+</ol>
+
+<h1 id="17">17</h1>
+
+<p>“NURSESRUN” 처럼 앞에서부터 읽으나 뒤에서부터 읽으나 동일한 문자열을 회문 (palindrome)이라고 한다. 어떤 문자열의 부분 문자열은 원래의 문자열에서 일부 문자만 뽑아 순서를 유지하면서 나열한 문자열으로서, “ABDGI”는 “ABCDEFGHIJ”의 부분 문자열이다. 한 문자열의 부분 문자열 중 회문이면서 길이가 가장 긴 것을 Longest Palindromic Subsequence (LPS)라 한다 (예를 들어, “BBABCBCAB”의 LPS는 “BABCBAB” 임). 이제 주어진 문자열의 LPS를 찾는 문제를 생각하자.</p>
+
+<p>입력 문자열 X[1],X[2], XOX1X2…X-1의 각 문자들이 배열 X[0], x[n-1] 에 저장되어 있다고 하자.조건0 ≤i≤j≤n-1을 만족하는 모든 i, j에 대해 L[i][j]를 X[i]에서 X[j]까지의 연속한 문자열, 즉 XiXi1Xi-2…Xj의 부분 문자열 중 가장 길이가 긴 회문의 길이를 나타낸다고 하자.</p>
+
+<p>가. L[i][i] 값은 무엇인가?</p>
+
+<p>→ L[i][i] = 1</p>
+
+<p>나, i&lt;j인 모든 i, j에 대해 L[i][j] 값은 dynamicprogramming 기법의 원리를 고려하여 다음과 같이 구할 수 있다. 이때 빈칸에 들어갈 내용을 정확히 기술하라. (힌트: 주어진 문자열에 대해 가급적 앞에서나 뒤에서 문자를 한 개씩 제거하여 문제의 크기를 줄일 것)</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="p">{</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
+<span class="c1">//      L[i][j] = max(L[i+1][j], L[i][j-1]);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span> <span class="c1">// X[i] == X[j]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="c1">//          L[i][j] = L[i+1][j-1] + 2;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<h1 id="21">21</h1>
+
+<p>다음과 같은 Longest Palindromic Subsequence 문제를 고려하자.</p>
+
+<p>“NURSESRUN” 처럼 앞에서부터 읽으나 뒤에서부터 읽으나 동일한 문자열을 회문 (palindrome)이라고 한다. 어’떤 문자열의 부분 문자열은 원래의 문자열에서 일부 문자만 뽑아 순서를 유지하면서 나열한 문자열으로서, “ABDGI”는 “ABCDEFGHIJ”의 부분 문자열이다. 한 문자열의 부분 문자열 중 회문이면서 길이가 가장 긴 것을 Longest Palindromic Subsequence (LPS)라 한다(예를 들어, “BBABCBCAB” 의 LPS는 “BABCBAB” 임). 이제 주어진 문자열의 LPS를 찾는 문제를 생각하자.</p>
+
+<p>입력 문자열 X0X1X2…X-1의 각 문자들이 배열 X[0], X[1], X[2], …, x[n-1] 에 저장되어 있다고 하자. 조건 0≤i≤j≤n-1 을 만족하는 모든 i, j에 대해 L[i][j]를X[i]에서 X[j]까지의 연속한 문자열, 즉 XiXi+1Xi+2…X의 부분 문자열 중 가장 길이가 긴 회문의 길이를 나타낸다고 하자. 이제 다음과 같은 코드에 대하여 dynamic programming 기법에 기반을 두어 위 문제를 해결해주는 두 함수 Fillup_L_M_Tables()와 Print_LPS()를 구현하려고 한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="c1"> </span><span class="cp">
+#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span>
+<span class="cp">#define L(i, j) *(T_L+ (j)-(i))*n - ((j)-(i)-1)*((j)-(i))/2+i)
+#define M(i, j) *(T_M+ (j)-(i))*n - ((j)-(i)-1)*((j)-(i))/2+i)
+</span>
+<span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="o">*</span><span class="n">T_L</span><span class="p">;</span>
+<span class="kt">char</span> <span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="o">*</span><span class="n">lps</span><span class="p">,</span> <span class="o">*</span><span class="n">T_M</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">Find_LPS</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T_L</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">n</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">T_M</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">n</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="n">lps</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+
+    <span class="n">Fillup_L_M_Tables</span><span class="p">();</span>
+    <span class="n">Print_LPS</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"input_O.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)))</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Error in reading the file %s. Wn"</span><span class="p">,</span> <span class="s">"input_0.txt"</span><span class="p">);</span>
+    <span class="n">fscanf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">fscanf</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"%s"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="err">'</span><span class="n">WO</span><span class="err">'</span><span class="p">;</span>
+    <span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"^^^Input size is %d.Wn"</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"^^^Input sequence is %s. WnWn"</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">Find_LPS</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>먼저 함수 Fillup_L_M_Tables()의 구현을 보자.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 'L': remove left end, 'R': remove right</span>
+<span class="c1">// 'B': remove both ends, 'U': use it</span>
+<span class="kt">void</span> <span class="nf">Fillup_L_M_Tables</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+
+        <span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="err">가</span><span class="p">);</span>
+        <span class="n">M</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="sc">'U'</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="p">{</span>
+
+                <span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="err">나</span><span class="p">);</span>
+                <span class="n">M</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="sc">'B'</span><span class="p">;</span>
+
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="n">M</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="sc">'R'</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">dist</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">dist</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">dist</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="n">dist</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">dist</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="p">{</span>
+                    <span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">L</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+                    <span class="n">M</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="err">다</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">L</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+                    <span class="p">{</span>
+                        <span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="err">라</span><span class="p">);</span>
+                        <span class="n">M</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="sc">'R'</span><span class="p">;</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span>
+                    <span class="p">{</span>
+                        <span class="n">L</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="err">마</span><span class="p">);</span>
+                        <span class="n">M</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="sc">'L'</span><span class="o">:</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>가. (6점)이 코드의 Li,i)는 L[i][i]를 나타내는데, (가)에 부분에 들어갈 값은 무엇인지 그 이유는 무엇인지 설명하라.</p>
+
+<p>나. (6점)다음 (나)에 부분에 들어갈 값을 기술하라.</p>
+
+<p>다. (8점)이 코드의 문맥을 볼 때 (다)에 부분에 들어갈 문자는 무엇인지 기술하라.</p>
+
+<p>라. (12점)이 코드의 문맥을 볼 때 (라)와 (마)에 부분에 들어갈 내용을 C/C++ 문법에 맞게 정확히 기술하라.</p>
+
+<p>다음 함수 Print_LPS()의 구현을 보자.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">Print_LPS</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">last</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"The length of a LCS is %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">L</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">M</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="n">last</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="k">case</span> <span class="sc">'B'</span><span class="p">:</span>
+            <span class="p">(</span><span class="err">바</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+
+        <span class="k">case</span> <span class="sc">'R'</span><span class="p">:</span>
+            <span class="n">j</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'L'</span><span class="p">:</span>
+            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="sc">'U'</span><span class="p">:</span>
+            <span class="n">lps</span><span class="p">[</span><span class="n">k</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="err">사</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">kk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">kk</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">2</span><span class="p">;</span> <span class="n">kk</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">lps</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">lps</span><span class="p">[</span><span class="n">kk</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="n">lps</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">kk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">kk</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">kk</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">lps</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="n">lps</span><span class="p">[</span><span class="n">kk</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="n">lps</span><span class="p">[</span><span class="mi">2</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="sc">'\0'</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"***The found LPS is %s.WnWn"</span><span class="p">,</span> <span class="n">lps</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>마. (8점)이 코드의 문맥상 (바)에 부분에 들어갈 내용을 C/C++ 언어 문법에 맞게 정확히 기술하라.</p>
+
+<p>바. (8점)이 코드의 문맥상 (사)에 부분에 들어갈 내용을 C/C++ 언어 문법에 맞게 정확히 기술하라.</p>
+
+<p>사. (8점) 다음과 같은 내용의 입력 파일에 대하여.</p>
+
+<p>9</p>
+
+<p>BBABCBCAB</p>
+
+<p>이 프로그램 수행 결과 구한 L 테이블의 내용은 다음과 같다.</p>
+
+<p><img src="/assets/img/2022-09-30-[ALG]-4.3.-Misc..md/5.png" alt="5" /></p>
+
+<p>이때 L[1][8] 값을 구하는데 필요했던 L 테이블의 원소 L[x][y]의 인덱스를 기술하라.</p>
+
+<p>(주의: 답은 (1, 8)-&gt; (2, 4)와 같이 기술하며, 두 개 이상의 원소가 필요하였다면 각 원소의 인덱스를 기술할 것)</p>
+
+<p>아. (8점) (위 문제에 이어서) 이때 L[1][7] 값을 구하는데 필요했던 L 테이블의 원소 L[x][y]의 인덱스를 기술하라. (주의: 답은 (1, 7) -&gt; (2, 4)와 같이 기술하며, 두 개 이상의 원소가 필요하였다면 각 원소의 인덱스를 기술할 것)</p>
+
+<p>자. (15점) 동일한 내용의 입력 파일에 대하여, 이 프로그램 수행 결과 구한 M 테이블의 내용은 아래와 같다.</p>
+
+<p><img src="/assets/img/2022-09-30-[ALG]-4.3.-Misc..md/6.png" alt="6" /></p>
+
+<p>이때 Print_LPS() 함수의 while 문장에서 Ips[] 배열을 구축하는 과정에서 방문한 이 테이블의 인덱스는 다음과 같은데 아래의 빈칸을 메꾸어라.</p>
+
+<p>(0, 8)-&gt; (?, ?) -&gt; (?, ?)-&gt; (?, ?)-&gt; (?, ?) -&gt; (4,4)</p>
+
+
+  </div><a class="u-url" href="/ALG-4.3.-Misc" hidden></a>
+</article>
+<script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
+
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
+      </div>
+    </main><footer>
+  <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">
+  <div class="row m-0">
+    <div class="col-12 col-md-3 col-sm-4 mb-4 mb-sm-0">
+      <p>
+        <a href="https://github.com/underthelights/underthelights.github.io" style="font-weight: 300">Kyuhwan Shim</a>
+        <br>Up-to-date as of <span id="date">loading...</span></p>
+      <i class="fas fa-location-dot mr-1"></i> Seoul is <img style="width: auto; height: 23px;" id="weather_icon">
+      <span id="weather">Loading...</span>
+    </div>
+    <div class="col-12 col-md-9 col-sm-8">
+      <p>
+        <a style="font-weight: 300" href="https://linkedin.com/in/kyuhwan-shim"><i class="fab fa-linkedin" style="margin-right: 10.5px"></i>LinkedIn</a><br>
+        <a style="font-weight: 300" href="https://fb.com/s.kyuhwn"><i class="fab fa-facebook" style="margin-right: 8px"></i>Facebook</a><br>
+        <a style="font-weight: 300" href="https://www.instagram.com/s.kyuhwn"><i class="fab fa-instagram" style="margin-right: 10.5px"></i>Instagram</a><br>
+        <a style="font-weight: 300" href="https://github.com/underthelights"><i class="fab fa-github" style="margin-right: 10.5px"></i>GitHub</a><br>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="/assets/js/weather.js"></script>
+<script src="/assets/js/github_date.js"></script>
+</body>
+
+</html>

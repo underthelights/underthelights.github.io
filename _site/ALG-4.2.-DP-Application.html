@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         TeX: {
+         equationNumbers: {
+             autoNumber: "AMS"
+         }
+         },
+         tex2jax: {
+         inlineMath: [ ['$', '$'] ],
+         displayMath: [ ['$$', '$$'] ],
+         processEscapes: true,
+     }
+     });
+     MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>[ALG] 4.2. DP Application ✱ Kyuhwan Shim</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <link href="/assets/fontawesome/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  <!-- GA -->
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8LB4J4EL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VG8LB4J4EL');
+</script>
+
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/main/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/main/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/main/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/main/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/main/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/main/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/main/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/main/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/main/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/main/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/main/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/main/favicon/favicon-16x16.png">
+  <link rel="manifest" href="">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/main/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Opengraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/main/favicon/og.png%5BALG%5D-4.2.-DP-Application.jpg">
+  <meta property="og:title" content="[ALG] 4.2. DP Application | Kyuhwan Shim">
+  <meta property="og:description" content="Paper overview of  et al., ">
+
+  <!-- Google scholar -->
+  
+  <meta name="citation_title" content="[ALG] 4.2. DP Application">
+  
+  <meta name="citation_publication_date" content="">
+  
+  <meta name="citation_conference_title" content="">
+  
+  <meta name="citation_pdf_url" content="https://underthelights.github.io/assets/pdf/[ALG]-4.2.-DP-Application.pdf">
+  
+</head>
+<body><header class="page-content">
+  <nav class="navbar navbar-expand-md navbar-light py-4">
+    <div class="container-fluid">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/news">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/oconnect">oconnect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/cv">CV</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">fun</a>
+              <div class="dropdown-menu">
+                  <a href="/music" class="dropdown-item">music</a>
+                  <a href="/artwork" class="dropdown-item">artwork</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dropdown-toggle {
+    background-color: transparent;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+  }
+  .dropdown-toggle:hover {
+    font-weight: 500
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ .dropdown-menu {
+    --bs-dropdown-border-radius: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+ }
+ .dropdown-item {
+  font-size: .95rem !important;
+  padding: .3rem .75rem !important;
+ }
+ .dropdown-item:active {
+  background-color: #999 !important
+ }
+</style><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <style>
+  /* General styling for all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Arial', sans-serif;
+    /* Use a modern font */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .post-title {
+    font-size: 2em; /* 폰트 크기 증가 */
+    font-weight: bold; /* 볼드체 */
+    color: #333; /* 색상 변경 */
+    /* background-color: #f8f8f8; 배경색 추가 */
+    padding: 10px; /* 배경색과 함께 패딩 추가 */
+    box-shadow: inset 0 -20px 0 #bbb7e8;
+    max-width: max-content;
+  }
+
+  /* Updated styling for h1 */
+  h1 {
+    font-size: 1.5em;
+    /* Increase font size for main titles */
+    color: #333333;
+    border-bottom: none;
+    /* Remove bottom border */
+    padding-bottom: 0;
+    /* Adjust padding if needed */
+  }
+
+  h2 {
+    font-size: 1.2em;
+    color: #4a4a4a;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    color: #6a6a6a;
+  }
+
+  h4 {
+    font-size: 0.75em;
+    color: #888888;
+  }
+
+  h5 {
+    font-size: 0.5em;
+    color: #a6a6a6;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #bcbcbc;
+  }
+
+  /* Add some additional styling if needed */
+  .post-content {
+    line-height: 1.6;
+    /* Improve readability */
+    color: #333333;
+    /* Dark grey color for text */
+  }
+
+  /* Styling for the ToC to make it scroll with the page */
+  .toc {
+    font-size: 1em;
+    position: fixed;
+    /* Fixed position */
+    right: 0;
+    /* Align to the right side of the screen */
+    top: 50;
+    /* Adjust this value as needed based on your header size */
+    max-height: 100vh;
+    /* Set maximum height to viewport height */
+    overflow-y: auto;
+    /* Allows scrolling within the ToC if it's too long */
+    padding: 20px;
+    /* Add some padding */
+    background-color: white;
+    /* Optional: background color for visibility */
+    z-index: 1000;
+    /* To ensure it stays on top of other elements */
+    width: 250px;
+    /* Adjust the width as needed */
+  }
+</style>
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="toc">
+    <a href="#">&lt;On the Top&gt;</a>
+    <ul><li><a href="#alg-45-응용1-longest-common-subsequence-lcs-1">[ALG] 4.5. [응용1] Longest Common Subsequence (LCS) (1)</a></li><li><a href="#longest-common-subsequences-lcs">Longest Common Subsequences LCS</a><ul><li><a href="#451omnalgorithm">4.5.1. $O(mn)$ Algorithm</a></li><li><a href="#452-c-implementation">4.5.2. C Implementation</a></li></ul></li><li><a href="#alg-46-응용2-the-gapped-alignment-problem-1">[ALG] 4.6. [응용2] The Gapped Alignment Problem (1)</a></li><li><a href="#gapped-alignment-problem">Gapped Alignment Problem</a></li><li><a href="#alg-47-응용3-longest-increasing-subsequence-lis-1">[ALG] 4.7. [응용3] Longest Increasing Subsequence (LIS) (1)</a></li><li><a href="#problem">Problem</a></li><li><a href="#optimal-substructure">Optimal substructure</a></li><li><a href="#minimal-triangulation">Minimal Triangulation</a></li><li><a href="#alg-48-응용4-the-0-1-knapsack-problem-1">[ALG] 4.8. [응용4] The 0-1 Knapsack Problem (1)</a></li><li><a href="#0-a-0-1-knapsack-problem-in-real-life">0. A 0-1 Knapsack Problem in Real Life</a></li><li><a href="#1-how-to-solve-the-0-1-knapsack-problem">1. How to Solve the 0-1 Knapsack Problem</a></li><li><a href="#3-how-to-reconstruct-the-solution">3. How to Reconstruct the Solution</a></li><li><a href="#4-implementation-and-time-complexity">4. Implementation and Time Complexity</a></li><li><a href="#5-0-1-knapsack-ex-1n--6-w--10n6w10">5. 0-1 Knapsack Ex. 1: n = 6, W = 10<em>n</em>=6,<em>W</em>=10</a></li><li><a href="#6-a-variation-of-the-0-1-knapsack-problem">6. A Variation of the 0-1 Knapsack Problem</a></li><li><a href="#7-a-divide-and-conquer-approach">7. A Divide-and-Conquer Approach</a><ul><li><a href="#a-dynamic-programming-approach">A Dynamic Programming Approach</a></li></ul></li><li><a href="#8-subset-sum">8. Subset Sum</a></li></ul>
+
+  </div>
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[ALG] 4.2. DP Application</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-09-29T00:00:00+09:00" itemprop="datePublished">
+        Sep 29, 2022
+      </time></p>
+    <!-- 태그와 카테고리 표시 -->
+    <div class="post-categories">
+      
+      <strong><span>📚 Categories:</span></strong>
+      
+      <a href="blog-categories-notes">Notes</a>
+      
+      
+    </div>
+
+    <div class="post-tags">
+      
+      <strong><span>🏷️ Tags:</span></strong>
+      
+      <a href="blog-tags-algorithm">Algorithm</a>
+      
+      
+    </div>
+
+
+  </header>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="alg-45-응용1-longest-common-subsequence-lcs-1">[ALG] 4.5. [응용1] Longest Common Subsequence (LCS) (1)</h1>
+
+<h1 id="longest-common-subsequences-lcs">Longest Common Subsequences LCS</h1>
+
+<blockquote>
+  <p>💡 공동으로 갖는 common subsequence의 길이가 얼마나 긴가</p>
+</blockquote>
+
+<ul>
+  <li><strong>[T. Cormen et al., Introduction to Algorithms (3rd ed.), The MIT Press, 2009. 16.3]</strong></li>
+  <li>Definitions
+    <ul>
+      <li>Given a sequence $X = &lt;x_1, x_2, …, xm &gt;$ another sequence $Z = &lt;z_1, z_2, …, zk &gt;$ is a <strong>subsequence</strong> of X if there exists a strictly increasing sequence $&lt;i_1, i_2, …, i_k &gt;$ of indices of <em>X</em> such that $\forall j = 1, 2, …, k$, we have $x_{ij} = z_j$
+        <ul>
+          <li>A subsequence of a given sequence is just the given sequence with some elements (possibly none) left out.</li>
+          <li>sequence : 나열한 것 / subsequence : 해당 sequence에서 순서를 유지하며 뽑아낸 형태
+            <ul>
+              <li>Ex. ABCDEFGHI → ABD, AEFGH, AFI, … 등이 있다.
+                <ul>
+                  <li>(단, 앞에서부터가 아니라 순서가 뒤바뀐 IHE, BIDEHF 와 같은 문자열은 부분 문자열이 될 수 없다)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>empty sequence : 0개의 element로 구성된 것</li>
+          <li>Ex: $\ X=&lt;A,B,C,B,D,A,B&gt;, \ Z=&lt;B,C,D,B&gt;(&lt;2,3,5,7&gt;)$
+undefined	- Given two sequences <em>X</em> and <em>Y</em>, we say that a sequence <em>Z</em> is a <strong>common subsequence</strong> of <em>X</em> and <em>Y</em> if <em>Z</em> is a subsequence of both <em>X</em> and <em>Y</em>.</li>
+          <li>
+            <p>Ex:</p>
+
+            <p>$X = &lt;A, B, C, B, D, A, B&gt;, \ Y = &lt;B, D, C, A, B, A&gt;,\ Z_1 = &lt;B, C, A&gt;,\ Z_2 = &lt;B, C, B, A&gt;,\ Z_3 = &lt;B, D, A, B&gt;$</p>
+          </li>
+        </ul>
+      </li>
+      <li>Given a sequence $X = &lt;x_1, x_2, …, x_m &gt;, X_i = &lt;x_1, x_2, …, x_i &gt;$ is the ith <strong>prefix</strong> of <em>X</em>, for $i = 0, 1, …, m$
+        <ul>
+          <li>prefix 접두사 :
+            <ul>
+              <li>sequence가 있을 때 앞에서 네개 뽑은 X4가 prefix of sequence</li>
+            </ul>
+          </li>
+          <li>Ex: $X = &lt;A, B, C, B, D, A, B&gt;, \ X_4 = &lt;A, B, C, B&gt;,\ X_0 =$null sequence</li>
+          <li>empty vs null : 두 용어 모두 같은 맥락으로 활용됨
+undefined- Problem</li>
+        </ul>
+      </li>
+      <li>생물 DNA 염기서열 : 얼마나 둘이 유사한가 비교한다
+        <ul>
+          <li>metric 정의 : 문제에 따라서, 상황에 따라서 어떻게 결정하느냐에 따라서 알고리즘을 만들어 문제를 해결한다.</li>
+          <li>Longest common subsequence를 찾아서, 얼마나 긴가 확인하는 문제</li>
+        </ul>
+      </li>
+      <li>Given two sequences $X = &lt;x_1, x_2, …, x_m &gt;$ and $Y = &lt;y_1, y_2, …, y_n &gt;$
+        <ul>
+          <li>m, n만큼의 두 개 sequence가 주어졌을 때 가장 긴 common sequence를 찾아서 얼마나 긴가를 가지고 판단할 것이다.</li>
+        </ul>
+      </li>
+      <li>
+        <p>find a <strong>longest common subsequence</strong> of <em>X</em> and <em>Y</em>.</p>
+
+        <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/0.png" alt="0" /></p>
+
+        <ul>
+          <li>optimal substructure : 어떻게든지 문제 하나 사이즈를 조금씩 줄여서, optimal solution을 찾는다. 가장 긴 것 - maximization problem와 일맥 상통</li>
+          <li>problem input size : $(m,n)$
+            <ul>
+              <li>m : X sequence의 길이, n : Y Sequence의 길이</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Naïve approach
+    <ul>
+      <li>x의 모든 Subsequence에 대하여 y의 subsequence인지 확인</li>
+      <li>Enumerate all subsequences of X and check each subsequence to see if it is also a subsequence of Y, keeping track of the longest subsequence found.
+        <ul>
+          <li>→ Exponential algorithm!
+            <ul>
+              <li>$\Theta(n \cdot 2^m)$ :  x의 원소개수 m, y 원소개수 n
+                <ul>
+                  <li>$2^m$ : x의 모든 Subsequence 개수</li>
+                  <li>$\Theta(n)$ : n개의 Element check time</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>The LCS problem can be solved efficiently using dynamic programming.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>💡 중요한 내용 !!</p>
+</blockquote>
+
+<ul>
+  <li><strong>Optimal substructure of the LCS</strong>
+    <ul>
+      <li>Let $X = &lt;x_1, x_2, …, x_m &gt;$ and $Y = &lt;y_1, y_2, …, y_n &gt;$ be sequences, and let $Z = &lt;z_1, z_2, …, z_k &gt;$ be any LCS of <em>X</em> and <em>Y</em>.
+        <ol>
+          <li>If $x_m = y_n$, then $z_k = x_m = y_n$, and $Z_{k-1}$ is an LCS of $X_{m-1}, Y_{n-1}$</li>
+          <li>If $x_m \neq y_n$, then an LCS of <em>X</em> and <em>Y</em> is
+            <ol>
+              <li>either an LCS of $X_{m-1}$ and <em>Y</em></li>
+              <li>or an LCS of <em>X</em> and $Y_{n-1}$
+       - → pink the longer sequence!</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>앞의 것을 하나 빼던지, 뒤에서 하나 빼던지, 앞 뒤에서 각각 하나 빼던지</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![1](/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/1.png)
+</code></pre></div></div>
+
+<ul>
+  <li>Let <em>c</em>[<em>i</em>,<em>j</em>] be the length of an LCS of the sequences <em>Xi</em> and <em>Yj</em></li>
+  <li>Optimal substructure for computing $c[i, j]$
+    <ul>
+      <li>base case : 0 (empty sequence)</li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/2.png" alt="2" /></p>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">m</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span>
+    <span class="k">return</span> <span class="mi">0</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="n">X</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">==</span><span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="k">else</span> 
+    <span class="n">retrun</span> <span class="nf">max</span><span class="p">(</span><span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">),</span><span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="451omnalgorithm">4.5.1. $O(mn)$ Algorithm</h2>
+
+<ul>
+  <li>Filling the table
+    <ul>
+      <li>b, c table 계산 : $\Theta(mn)$</li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/3.png" alt="3" /></p>
+  </li>
+  <li>Printing the LCS
+    <ul>
+      <li>$\Theta(m+n)$</li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/4.png" alt="4" /></p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/5.png" alt="5" /></p>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/6.png" alt="6" /></p>
+
+<h2 id="452-c-implementation">4.5.2. C Implementation</h2>
+
+<ul>
+  <li>
+    <p>Courtesy of <a href="http://www.bioalgorithms.info/downloads/code/">link</a></p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cm">/** Copyright (C) 2005 Neil Jones. **/</span>
+  <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>  <span class="kt">char</span> <span class="o">*</span><span class="nf">LCS</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">b</span><span class="p">);</span>
+  <span class="cp">#define NEITHER 0
+</span>  <span class="cp">#define UP 1
+</span>  <span class="cp">#define LEFT 2
+</span>  <span class="cp">#define UP_AND_LEFT 3
+</span>  <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+  <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">LCS</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+  <span class="p">}</span>
+	
+  <span class="kt">char</span> <span class="o">*</span><span class="nf">LCS</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+      <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+      <span class="kt">int</span> <span class="o">**</span><span class="n">S</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="o">**</span><span class="n">R</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">ii</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">jj</span><span class="p">;</span>
+      <span class="kt">int</span> <span class="n">pos</span><span class="p">;</span>
+      <span class="kt">char</span> <span class="o">*</span><span class="n">lcs</span><span class="p">;</span>
+	
+      <span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="p">)</span><span class="n">malloc</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">));</span>
+      <span class="n">R</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">**</span><span class="p">)</span><span class="n">malloc</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">));</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">ii</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">((</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+          <span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">((</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+      <span class="p">}</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">ii</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">UP</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">jj</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">jj</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">jj</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">LEFT</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">ii</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">jj</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">jj</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">jj</span><span class="p">)</span>
+          <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">ii</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="n">jj</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+              <span class="p">{</span>
+                  <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">ii</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">jj</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                  <span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">UP_AND_LEFT</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="k">else</span>
+              <span class="p">{</span>
+	
+                  <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">ii</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">jj</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">0</span><span class="p">;</span>
+                  <span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">NEITHER</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">ii</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">])</span>
+              <span class="p">{</span>
+                  <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">ii</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">jj</span><span class="p">];</span>
+                  <span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">UP</span><span class="p">;</span>
+              <span class="p">}</span>
+	
+              <span class="k">if</span> <span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">])</span>
+              <span class="p">{</span>
+                  <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+                  <span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">=</span> <span class="n">LEFT</span><span class="p">;</span>
+              <span class="p">}</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+	
+      <span class="n">ii</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+      <span class="n">jj</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+      <span class="n">pos</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">];</span>
+      <span class="n">lcs</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">((</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+      <span class="n">lcs</span><span class="p">[</span><span class="n">pos</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="nb">NULL</span><span class="p">;</span>
+	
+      <span class="k">while</span> <span class="p">(</span><span class="n">ii</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">jj</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">==</span> <span class="n">UP_AND_LEFT</span><span class="p">)</span>
+          <span class="p">{</span>
+	
+              <span class="n">ii</span><span class="o">--</span><span class="p">;</span>
+              <span class="n">jj</span><span class="o">--</span><span class="p">;</span>
+	
+              <span class="n">lcs</span><span class="p">[</span><span class="n">pos</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">ii</span><span class="p">];</span>
+          <span class="p">}</span>
+          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">==</span> <span class="n">UP</span><span class="p">)</span>
+          <span class="p">{</span>
+              <span class="n">ii</span><span class="o">--</span><span class="p">;</span>
+          <span class="p">}</span>
+          <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span> <span class="o">==</span> <span class="n">LEFT</span><span class="p">)</span>
+          <span class="p">{</span>
+	
+              <span class="n">jj</span><span class="o">--</span><span class="p">;</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">ii</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">free</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">ii</span><span class="p">]);</span>
+          <span class="n">free</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="n">ii</span><span class="p">]);</span>
+      <span class="p">}</span>
+	
+      <span class="n">free</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+      <span class="n">free</span><span class="p">(</span><span class="n">R</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">lcs</span><span class="p">;</span>
+  <span class="p">}</span>
+	
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="alg-46-응용2-the-gapped-alignment-problem-1">[ALG] 4.6. [응용2] The Gapped Alignment Problem (1)</h1>
+
+<h1 id="gapped-alignment-problem">Gapped Alignment Problem</h1>
+
+<ul>
+  <li>Problem
+    <ul>
+      <li>Given two sequences, find a gapped alignment that maximize the score!</li>
+      <li>Compare two sequences if they are similar (related).</li>
+      <li>Gapped alignment
+        <ul>
+          <li>Example:
+            <ul>
+              <li>실험을 하다보면 불완전하기 때문에 Gap을 넣는 것을 허용하고 align하자.</li>
+              <li>수치적으로 얼마나 유사한지 밝히기 : mismatch가 일어나면 안되니까</li>
+              <li>
+                <p>Gap에 대해서는 penalty를 크게 준다</p>
+
+                <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/7.png" alt="7" /></p>
+              </li>
+            </ul>
+          </li>
+          <li>A possible alignment scoring scheme
+            <ul>
+              <li>Ex: match score = 2, mismatch penalty = -1, gap penalty = -2</li>
+              <li>이러한 점수 기준으 들어갔을 때, 점수를 최대화해주는 Gap Alignment를 찾아라
+                <ul>
+                  <li>Ex. 각각 Gap을 집어넣으면 1점, 7점인데 이러한 점수를 최대화해주는 Gap 정렬방법 찾기</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+
+        <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/8.png" alt="8" /></p>
+      </li>
+      <li>
+        <p>case : 위치를 일치시키고 / A에다 Gap을 집어넣어 정렬/ B에다 Gap을 집어넣어 정렬</p>
+
+        <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/9.png" alt="9" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>경우에 따라 문제 사이즈 줄이기
+    <ul>
+      <li>$A = a_1 a_2 a_3 … a_m$, $B = b_1 b_2 b_3 … b_m$</li>
+      <li>recursive한 구조 구축 : 제일 끝 부분의 character가 $a_i b_j$</li>
+      <li>두 sequence의 가장 끈 부분을 어떻게 처리할 것인가</li>
+    </ul>
+  </li>
+  <li>Optimal substructure
+    <ul>
+      <li>
+
+        <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/10.png" alt="10" /></p>
+      </li>
+      <li>$S(i, j)$ : maximize했을 때의 score</li>
+      <li>basis :
+        <ul>
+          <li>$i=0$ → b의 길이에다가 -2배</li>
+          <li>$j=0 $ → a의 길이에다가 -2배</li>
+        </ul>
+      </li>
+      <li>a쪽에다가 gap을 집어넣을 수밖에 없다.</li>
+      <li>$S(i,j-1)-2 $
+        <ul>
+          <li>Gap을 넣어 - 이점 받고 b i-1로 maximize하자</li>
+        </ul>
+      </li>
+      <li>$S(i-1,j)-2$
+        <ul>
+          <li>Gap을 넣어 - 이점 받고 a i-1로 maximize하자</li>
+        </ul>
+      </li>
+      <li>$s(a_i, b_j) $
+        <ul>
+          <li>a_i, b_j 넣었을 때 나오는 score</li>
+          <li>같으면 2점, mismatch하면 -1점, gap penalty -2점</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>DP
+    <ul>
+      <li>recursive top down이면 답을 못보고 문제 작은 것부터 차근차근 풀어내면 얻어낼 수 있음</li>
+      <li>table 구성, 초기화, table fill 을 통해 큰 문제의 정답 찾기,
+        <ul>
+          <li>어디에다가 Gap을 넣어 정보를 정렬할 것인지 : 점수 table이 필요하고, maximum 구했을 때 max(S, S,S)에서 정보를 취했는지 저장하고 어디에 몇번째에 gap을 저장했는지 출력하기</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="alg-47-응용3-longest-increasing-subsequence-lis-1">[ALG] 4.7. [응용3] Longest Increasing Subsequence (LIS) (1)</h1>
+
+<h1 id="problem">Problem</h1>
+
+<ul>
+  <li>Given a sequence $A=(a[0], a[1],…,a[n-1])$, find the length of the longest subsequence such that all elements of the subsequence are sorted increasing order.
+    <ul>
+      <li>순서를 유지한 subsequence : 값이 증가하는 속성을 가진</li>
+    </ul>
+  </li>
+  <li>Example
+    <ul>
+      <li>$(10, 22, 9, 33, 21, 50, 41, 60, 80)→(10, 22, 33, 50, 60, 80)$
+        <ul>
+          <li>(22, 9, 50, 41)은 increasing subsequence가 아님</li>
+          <li>80으로 끝나는 LIS</li>
+          <li>→ 직전으로 끝나는게 60이었고, 다시 60으로 끝나는 LIS</li>
+          <li>→ ..</li>
+        </ul>
+      </li>
+      <li>$(0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15)\→(0, 2, 6, 9, 11, 15), \(0, 4, 6, 9, 11, 15) …$</li>
+    </ul>
+  </li>
+  <li>Algorithm
+    <ul>
+      <li>Let $d[i]$ be the length of the LIS that ends in the element at index <em>i</em>. Then, the answer to the LIS problem is the maximum value of $d[i], i=0,1,…,n-1$
+        <ul>
+          <li>(a[1], a[2] … a[i]) 까지만 생각했을 때 a[i]로 끝나는 LIS 를 생각해보자</li>
+        </ul>
+      </li>
+      <li>increasing subsequence중 가장 길이가 긴 것을 찾아라</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="optimal-substructure">Optimal substructure</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$$
+d[i] = \max(1, \max_{j=0,...,n-1/ a[j]&lt;a[i]}{(d[j]+1)})
+$$
+
+
+$i=0,1,..., n-1$
+
+- 가장 큰 것 : 그 길이가 가장 긴 것이 좋음
+- d[i] : 5로 끝나는 longest increasing subsequence의 길이로 정의 → 각각의 위치에서 해당하는 d[i]의 길이를 정의한 다음 maximum을 취한다. 모든 d[i]를 구해 maximum을 구하는데 그 lis 길이 구하기
+- $(0, 8, 4, 12, 2, 10, 6, 14, 1, 9)$
+	- a[i]로 끝나는 lis의 바로 전에 오는 애가 되려면 1은 9보다 값이 작아야 함.
+	- 나보다 앞에있는 애들 중에 나보다 작은 애들만 고려해야 함 : 9로 끝나는 LIS가 있을 때 바로 앞에 있는 애는
+	- 거기에 있는 애들 중에 나보다 값이 작은 애들이 그 앞에 올 대상이 되어야 함
+		- 9보다 작은 0, 8, 4, 2, 6, 1
+		- ~~~ 4, 9 / ~~~~ 0, 9 / ~~~ 1, 9
+		- 복잡해 보이지만 경우의 수를 찾다보면 자연스럽게 나오는 과정
+	- recursive하게 1로 끝나는 LIS를 계산한 다음, 1을 더해 위치를 옮기면 9로 끝나는 위치가 됨. - base step : 1
+- d[i]를 i=0~n-1에서 계산하는데 max(d[j]+1)을 계산하기 위한 for loop - table 구성
+- 2dim table을 많이 봤지만 이 문제에서는 1dim table로 정의
+- 1 dim table 원소 n개 : d[0] - d[1] - … d[n-1] - 알고리즘의 시간복잡도 추정
+- 각각의 d[i]에 대해서 값을 계산할 것인데, table을 채울 time complexity는 input size n
+- $O(n^2)$
+- 나보다 작은 아이들가지고 훑기 : a[i]보다 작은 애들을 가지고 훑음. 그럼 해당 element의 비용은 나보다 앞에 잇는 애들이고 모든 element에 대해서 계산하는 것이므로 - code
+
+```c
+int LIS(int *a, int N)
+{
+
+    int *best, *prev, i, j, max = 0;
+
+    best = (int *)malloc(sizeof(int) * N);
+    prev = (int *)malloc(sizeof(int) * N);
+    for (i = 0; i &lt; N; i++)
+        best[i] = 1, prev[i] = i;
+
+    for (i = 1; i &lt; N; i++)
+        for (j = 0; j &lt; i; j++)
+            if (a[i] &gt; a[j] &amp;&amp; best[i] &lt; best[j] + 1)
+                best[i] = best[j] + 1, prev[i] = j;
+    for (i = 0; i &lt; N; i++)
+        if (max &lt; best[i])
+            max = best[i];
+
+		// Print the LIS using prev[] here. 
+		free( best ); 
+		free( prev );
+		return max;
+}
+```
+</code></pre></div></div>
+
+<ul>
+  <li>best array
+    <ul>
+      <li>= d table</li>
+    </ul>
+  </li>
+  <li>prev array
+    <ul>
+      <li>= e table : 같은 size</li>
+      <li>찾아가는 table</li>
+      <li>LIS의 길이가 얼마인가 출력</li>
+    </ul>
+  </li>
+  <li>주어진 input sequence가 있을 때, 길이가 같은데 서로 다른게 있을 수 있음
+    <ul>
+      <li>같은 길이인데 서로 다른 increasing sequence</li>
+      <li>→ unique하진 않더라도, 분명히 최소 하나는 존재한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>LIS의 직전의 element를 찾아가면 해당 나머지 subsequence에서 optimal substructure를 찾아라. 지금까지 한 거랑은 약간 달라서 확 와닿지 않겠지만 반복적으로 이해해보자</p>
+
+<h1 id="minimal-triangulation">Minimal Triangulation</h1>
+
+<ul>
+  <li><strong>[A. Aho, J. Hopcroft, and J. Ullman, Data Structures and Algorithms, Addison-Wesley, 1983. 10.2]</strong></li>
+  <li>Problem
+    <ul>
+      <li>Given a set of <em>n</em> vertices for <strong>convex</strong> polygon, find a triangulation such that no two chords cross each other, and the total length of the chords selected is a minimum.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Counting all possible selections of chords in an inefficient way results in an exponential algorithm.</p>
+
+    <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/11.png" alt="11" /></p>
+
+    <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/12.png" alt="12" /></p>
+  </li>
+</ul>
+
+<h1 id="alg-48-응용4-the-0-1-knapsack-problem-1">[ALG] 4.8. [응용4] The 0-1 Knapsack Problem (1)</h1>
+
+<ul>
+  <li>Problem
+    <ul>
+      <li>Given two sets of positive integers ${w_1, w_2, …, w_n}$ and ${p_1, p_2, …, p_n}$ of size <em>n</em> and a positive integer <em>W</em>, find a subset <em>A</em> of ${1,2,…,n}$ that maximizes $\Sigma_{i \in A} p_i$ subject to $\Sigma_{i \in A} w_i \leq W$
+        <ul>
+          <li>이러한 index 집합의 부분집합을 선택하라, 이 중에 몇 개를 뽑아라</li>
+          <li>$\Sigma_{i \in A} p_i$ 을 최대화하면서,  $\Sigma_{i \in A} w_i \leq W$의 조건 만족
+            <ul>
+              <li>훔친 물건들의 무게를 가방이 허용해야 하고, 조건 하에 물건을 훔쳐서 벌 수 있는 물건들의 가격들을 maximize</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>${w_1, w_2, …, w_n}$ - 0-1 : binary - 훔치지 않을 것인지, 훔칠 것인지</li>
+      <li>${p_1, p_2, …, p_n}$ - 선택할 것인지, 말 것인지</li>
+      <li>fractional : 물건을 훔칠 것인지 안 훔칠 것인지</li>
+    </ul>
+  </li>
+  <li></li>
+</ul>
+
+<p>문제가 이해가 되지 않는다면 이해한 후 다시 들어볼 것을 추천.</p>
+
+<ul>
+  <li>Example
+    <ul>
+      <li>${w_1, w_2, …, w_5} = {6,5,10,3,4}$
+        <ul>
+          <li>1, 2, 5 weight의 합은 15</li>
+        </ul>
+      </li>
+      <li>${p_1, p_2, …, p_5} = {9,7,11,6,8}, W=15$</li>
+      <li>$\rightarrow {1,2,5}$
+        <ul>
+          <li>각각 1번, 2번, .. , 5번 부분집합을 선택하면 1,2,5 뽑힌것의 w합은</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>An intuitive interpretation
+    <ul>
+      <li>There are <em>n</em> items in a store. 가 게에 N개의 물건이 있는데</li>
+      <li>The <em>i</em> th item weighs <em>wi</em> kilograms and is worth <em>pi</em> wons, where <em>wi</em> and <em>pi</em> are positive integers.
+        <ul>
+          <li>i번째 물건은 Wi kg이고 Pi원이다.</li>
+        </ul>
+      </li>
+      <li>A thief has a knapsack that can carry at most <em>W</em> kilograms, where <em>W</em> is a positive integer.
+        <ul>
+          <li>도둑이 W까지만 담을 수 있는 배낭을 가지고 왔다.</li>
+        </ul>
+      </li>
+      <li>What items should the thief take to maximize his “profit”?
+        <ul>
+          <li>최대한 이윤을 얻을 수 있게 물건을 훔치는 방법</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="0-a-0-1-knapsack-problem-in-real-life">0. A 0-1 Knapsack Problem in Real Life</h1>
+
+<p><a href="http://standardwisdom.com/softwarejournal/2010/03/bang-for-the-buck-knapsacks-in-real-life/">ref</a></p>
+
+<ul>
+  <li>Problem
+    <ul>
+      <li>
+        <p>Given two sets of positive integers ${w_1, w_2, …, w_n}$ and ${p_1, p_2, …, p_n}$ of size <em>n</em> and a positive integer <em>W</em>, find a subset <em>A</em> of ${1,2,…,n}$ that maximizes $\Sigma_{i \in A} p_i$ subject to $\Sigma_{i \in A} w_i \leq W$</p>
+
+        <p>각각의 다른 value, weight를 갖는 item 여러 개기 있다. knapsack은 W kg까지 수용 가능할때, knapsack에 담을 최대 value는 얼마인가</p>
+      </li>
+      <li>You have a marketing budget of 5 million dollars. (500만 불이라는 홍보비)</li>
+      <li>You have the following marketing options and their paybacks in new potential customers:</li>
+    </ul>
+  </li>
+  <li>Which marketing campaigns would you choose to <strong>maximize the total expected reach</strong> under the condition that, for each of these marketing campaigns, you either select it or you don’t?
+    <ul>
+      <li>많은 사람들에게 노출</li>
+      <li>내가 지불한 비용의 합이 500만보다 작거나 같게 : 1,2,3, …, N번</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/13.png" alt="13" /></p>
+
+<ul>
+  <li>cost (dollar) - expected reach (people)
+    <ul>
+      <li>노출되는 사람들의 수</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="1-how-to-solve-the-0-1-knapsack-problem">1. How to Solve the 0-1 Knapsack Problem</h1>
+
+<ul>
+  <li>Naïve approach
+    <ul>
+      <li>There are $2^n$ subsets of ${1, 2, …, n}!$</li>
+      <li>아이템중에 선택할 수 있는 모든 경우의 수는 2^n : 각 경우에 대해서 profit들의 합이 제일 큰 것 선택</li>
+      <li>모든 경우를 따져보는 경우 - 순서대로 넣을지 말지를 결정하기 때문에</li>
+    </ul>
+  </li>
+  <li>Dynamic programming approach
+    <ul>
+      <li>Let $P(i,w)$ be the <strong>maximized profit</strong> obtained when choosing items *<em>only from the first ii</em> items under the restriction that <strong>the total weight cannot exceed w</strong><em><strong>w</strong></em>.
+        <ul>
+          <li>parameter 2개 :
+            <ul>
+              <li>i : 1번부터 2번, 3번, … i번까지만 앞의 i개 item중에 선택</li>
+              <li>w : 현재 남은 가방의 허용하는 무게 - 나한테 남은 가방의 용량이 w만큼 남았다.</li>
+            </ul>
+          </li>
+          <li>1번부터 i번까지 선택한 것들 중 weight 합이 W보다 같거나 작게 하는 조건에서 최대 profit의 값</li>
+        </ul>
+      </li>
+      <li>If we let <em>A</em>∗ be an optimal subset of ${1, 2, …, n}$
+        <ol>
+          <li>$n \in A* : P(n,W) = p_n + P(n-1, W-w_n)$
+            <ol>
+              <li>dynamic programming 내용 집어넣기 : 인자 두개를 집어넣어서 문제 사이즈를 줄여야 함</li>
+              <li>이 값을 계산해야하는데, 값을 선택했을 때 profit들의 합을 maximize
+                <ul>
+                  <li>선택 각각가장 미지막 i번 의 무게
+      - 분명히 값을 maximize하는 최적의 선택이 있는데, 가장 마지막의 n번 Item을 선택하던지 안하던지
+      - $P(n,W)$ : n번 물체를 선택했다면</li>
+                  <li>$p_n $ : n번 item의 Profit이 더해지고</li>
+                  <li>$P(n-1, W-w_n)$ :
+                    <ul>
+                      <li>나머지 상황에서 maximize : 고려할 Item은 n-1개, 최대 W까지 담을 수 있는데 wn을 뺀 남은 용량</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          <li>$n \notin A* : P(n,W) = P(n-1, W)$
+            <ol>
+              <li>n번 물체는 선택하면 안 되니까 P(n-1,W)</li>
+              <li>recursion : 같은 형태로 표현하는데 문제 사이즈가 작아짐
+                <ol>
+                  <li>n번 item을 선택하든지, 말든지 + 한 물체에 대해서 나머지 item을 고려</li>
+                  <li>(작아진 문제 사이즈) recursive formulation</li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>Optimal substructure
+        <ul>
+          <li>$P(i,w)=$
+            <ul>
+              <li>임의의 i : 0부터 n까지 간다
+                <ul>
+                  <li>0 : 내가 선택할 수 있는 item이 하나도 없을 때</li>
+                  <li>i : 내가 선택할 수 있는 item이 1번부터 i번까지 앞의 i개
+                    <ul>
+                      <li>i=3 →1,2,3중에 선택할 수 있다.</li>
+                      <li>i=0 → 선택할 아이템이 없다</li>
+                    </ul>
+                  </li>
+                  <li>w: 남은 용량 - 0부터 대문자 W까지, 대문자 W는 아직 아무것도 안들어갔을 때</li>
+                </ul>
+              </li>
+              <li>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>0 if $i=0</td>
+                      <td> </td>
+                      <td>w = 0$</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <ul>
+                  <li>선택할 아이템이 없다</li>
+                  <li>or 가방에 담을 수 없다 (용량이 0)</li>
+                </ul>
+              </li>
+              <li>$P(i−1,w)$
+                <ul>
+                  <li>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>if $i&gt;0</td>
+                          <td> </td>
+                          <td>w_i &gt;w$</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                  <li>가장 마지막 물건의 무게인 w_i가 w보다 무거운 경우 자격 미달 (담을 수 없음)</li>
+                  <li>i개 물체까지 선택하는 것에 대해서 마지막 것을 선택할것인지
+                    <ul>
+                      <li>남아있는 가방 무게에 대해서 : I번째 물체는 선택할 요건이 안된다</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>$\max {(P(i-1,w), p_i+P(i-1,w-w_i))}$
+                <ul>
+                  <li>I&gt;0 : 1,2,…i번 item 중에 선택
+                    <ul>
+                      <li>i번째 item을 담지 않을 경우 i-1개중에 잘 선택한 ,</li>
+                      <li>p_i를 얻고 나머지 i-1개에 대해서 맨 마지막 item을 제외한 무게</li>
+                    </ul>
+                  </li>
+                  <li>담을 수 있는데, 안 담을건지 vs 담을 것인지에 대한 차이
+                    <ul>
+                      <li>요건은 되는데 i번째 물품을 선택하지 않는게 좋다</li>
+                      <li>i번 Item을 선택하는 게 이윤 극대화에 더 좋다.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>$i&gt;0</td>
+                          <td> </td>
+                          <td>w_i \geq w$</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Example
+    <ul>
+      <li>i : 0~4</li>
+      <li>w : 0~W(6)</li>
+      <li>${w_1, w_2, …, w_4} = {4,3,2,3}$</li>
+      <li>${p_1, p_2, …, p_4} = {3,2,4,4}, W=6$</li>
+      <li>어떤 순으로 방문해서 채울 것인가
+        <ul>
+          <li>값을 계산하는데 필요한 게 얼마나 많은지</li>
+          <li>i가 하나 빠지고, 하나를 계산하기 위해서는 위에 것이 계산되면 됨
+            <ul>
+              <li>i-1의 식이 핵심적으로 작용하니까</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/14.png" alt="14" /></p>
+
+<ul>
+  <li>0부터 N까지 : 첫 번째 행과 열은 다 0으로 setting하고 좌에서 우로 가면서 setting</li>
+  <li>Ex.
+    <ul>
+      <li>$P(2,4) = \max{(P(1,4), p_2 + P(1, 4-w_2))} = \max{(P(1,4), 2+P(1,1))}=3$
+        <ul>
+          <li>2 : 1,2중에 선택함, 2번을 담을 자격이 되는지, 안 되는지</li>
+          <li>w2=3이니까 가방 용량에는 4니까 담을 수 있음 → (iii)</li>
+          <li>P(1,4) : 2번 물체를 담지 않으면 값이 더 커질 것이다
+            <ul>
+              <li>P(2,4) 위의 줄 : 3</li>
+            </ul>
+          </li>
+          <li>p2+ : 2번을 담겠다 + 2번을 담을 경우 1번을 선택하는 상황에서 w2를 제외한 것 = P(1,1)
+            <ul>
+              <li>P(1,1) = 3</li>
+              <li>P_2 = 2</li>
+            </ul>
+          </li>
+          <li>2번을 담지 않겠다.</li>
+        </ul>
+      </li>
+      <li>$P(4,2) = P(3,2) = 4$
+        <ul>
+          <li>1,2,3,4중에 선택하는 것인데 4번은 선택할지말지 optimal substructure 중 선택</li>
+          <li>남아있는 용량 2 : 4번은 고려 대상도 아님 → 4번은 빼버리고 1,2,3중에 선택하자</li>
+        </ul>
+      </li>
+      <li>$P(3,5) = \max{(P(2,5), p_3 + P(2,5-w_3))} = 6$
+        <ul>
+          <li>3번 Item의 Weight가 2이니까 담을 수는 있는데 진짜 담을 것인지, 안 담을건지</li>
+          <li>p3 =4, P(2, 5-w3) = P(2,3) = 2이므로 6</li>
+          <li>두 개중에 뒤에 것이 크다 : 3번을 선택할 것이다라는 의미</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="3-how-to-reconstruct-the-solution">3. How to Reconstruct the Solution</h1>
+
+<ul>
+  <li>${w_1, w_2, …, w_4} = {4,3,2,3}$</li>
+  <li>${p_1, p_2, …, p_4} = {3,2,4,4}, W=6$</li>
+</ul>
+
+<p>i번째 item을 선택할 자격도 안됨 : Weight가 더 큰 경우</p>
+
+<p>i번째 item을 선택할 자격은 되지만: 비교</p>
+
+<ul>
+  <li>$P(4,6) = \max{(P(3,6), p_4 + P(3, 6-w_4))} = 8$
+    <ul>
+      <li>4번의 weight가 3이기 때문에 선택할 자격은 됨 → 4번 선택</li>
+      <li>이러한 계산을 통해서 8이 나옴</li>
+    </ul>
+  </li>
+  <li>$P(3,3) = \max{(P(2,3), p_3 + P(2, 3-w_3))} = 4$
+    <ul>
+      <li>3번의 item은 Weight=2라서 선택할수 있음</li>
+      <li>P(2,3-2) = P(2,1) = P(1,1) = P(0,1) = 0 → i는 한 칸씩 올라가면서 선택했는지 아닌지에 대한 번호를 출력함</li>
+    </ul>
+  </li>
+  <li>$P(2,1) = P(1,1) = 0$
+    <ul>
+      <li>2 X</li>
+    </ul>
+  </li>
+  <li>$P(1,1) = P(0,1) = 0$
+    <ul>
+      <li>1 X</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/15.png" alt="15" /></p>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/16.png" alt="16" /></p>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/17.png" alt="17" /></p>
+
+<h1 id="4-implementation-and-time-complexity">4. Implementation and Time Complexity</h1>
+
+<ul>
+  <li>
+    <p>$O(nW)$ Time</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="nf">zero_one_knapsack</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">W</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">ww</span><span class="p">,</span> <span class="n">tmp</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">ww</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ww</span> <span class="o">&lt;=</span> <span class="n">W</span><span class="p">;</span> <span class="n">ww</span><span class="o">++</span><span class="p">)</span> <span class="n">P</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">ww</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">ww</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">ww</span> <span class="o">&lt;=</span> <span class="n">W</span><span class="p">;</span> <span class="n">ww</span><span class="o">++</span><span class="p">)</span> <span class="c1">//bottleneck - W번 수행</span>
+          <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">ww</span><span class="p">)</span>
+              <span class="p">{</span>
+                  <span class="k">if</span> <span class="p">((</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">ww</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+   <span class="o">&gt;</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">ww</span><span class="p">])</span>
+                      <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ww</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+                  <span class="k">else</span>
+                      <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ww</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">ww</span><span class="p">];</span>
+              <span class="p">}</span>
+              <span class="k">else</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ww</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">ww</span><span class="p">];</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">W</span><span class="p">];</span>
+  <span class="p">}</span>
+	
+	
+</code></pre></div>    </div>
+
+    <ul>
+      <li>어떤 값이 상수인지 아닌지의 판단 근거는 N이 커지건 작아지건 고정되는게 상수</li>
+      <li>지금 time complexity가 nW가 됨은 명확한데 이는 linear time인가?
+        <ul>
+          <li>table 하나당 $\Theta (1)$씩 계산</li>
+          <li>$(n+1) (w+1)$ table : $\Theta(nw)$</li>
+          <li>최종 solution은 table 맨 밑 행부터 하나씩 탐색 : $\Theta (n)$</li>
+          <li>→ Theta(nw)</li>
+          <li></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="5-0-1-knapsack-ex-1n--6-w--10n6w10">5. 0-1 Knapsack Ex. 1: n = 6, W = 10<em>n</em>=6,<em>W</em>=10</h1>
+
+<p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/18.png" alt="18" /></p>
+
+<ul>
+  <li>쫓아가는 방법 생각해보기</li>
+  <li>Selected items: i = 2, 3, 4, 6</li>
+  <li>Obtained profit: 19</li>
+  <li>Is the time-complexity $O(nW)$ an efficient one?
+    <ul>
+      <li>efficient : polynomial 시간에 bound 될 때 효율적.
+        <ul>
+          <li>inefficient : exponential, factorial, // n^4, n^3은 비효율적 practical하게</li>
+        </ul>
+      </li>
+      <li>This is not a linear-time algorithm!
+        <ul>
+          <li>variable :
+            <ul>
+              <li>n : 도둑이 물건을 훔칠 때 훔칠 수 있는 물건 개수</li>
+              <li>W: 도둑의 가방이 허용하는 가방의 총 용량</li>
+            </ul>
+          </li>
+          <li>→ N에 대해서 상수라면,w를 제거하면 이 알고리즘은 linear time - polynomial이므로 효율적
+            <ul>
+              <li>n의 크기가 얼마든지 커져도 w가 불변?</li>
+              <li>n과 w는 독립적 : w가 n에 대해서 bound가 되어야 하는데, 여기서는 독립적이라고 볼 수 있다. N도 w도 문제 상황에 따라 지정된다.</li>
+            </ul>
+          </li>
+          <li>A problem is that <em>W</em> is not bounded with respect to <em>n</em>.
+            <ul>
+              <li>Ex. What if <em>n</em>=20 and <em>W</em>=20!? → $O(n∗n!)$
+                <ul>
+                  <li>factorial time algorithm : 더 비효율적으로 만들 수 있음.</li>
+                </ul>
+              </li>
+              <li>When <em>W</em> is extremely large in comparison with <em>n</em>, this algorithm is worse than the brute-force algorithm that simply considers all subsets.
+                <ul>
+                  <li>n에 대해서도 linear, w에 대해서도 linear. n에 대해서 Polynomial하지 않다.</li>
+                </ul>
+              </li>
+              <li>This algorithm can be improved so that the worst-case number of entries computed is $O(2^n)$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>No one has ever found an algorithm for the 0-1 Knapsack problem whose worst-case time complexity is better than exponential, yet no one has proven that such an algorithm is not possible!
+        <ul>
+          <li>polynomial time alg 는 얻지도 못했고, 증명도 못함</li>
+          <li>문제 size n에 대해서 증명도 찾지도 못함 — 아마 Polynomial solution이 없을 것이다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>np complete, np hard, …
+    <ul>
+      <li>아무도 증명하지 못한 문제</li>
+      <li>n의 몇승이라는 poly sol도 못 찾았고,</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="6-a-variation-of-the-0-1-knapsack-problem">6. A Variation of the 0-1 Knapsack Problem</h1>
+
+<ul>
+  <li>Problem
+    <ul>
+      <li>Decision Problem</li>
+      <li>Given <em>n</em> items of length $l_1, l_2, …, l_n$, is there a subset of these items with total length exactly <em>L</em>?
+undefined- Example</li>
+      <li>${ 1, 2, 7, 14, 49, 98, 343, 686, 2409, 2793, 16808, 17206, 117705, 117993 }, \ L = 138457{1,2,7,14,49,98,343,686,2409,2793,16808,17206,117705,117993},L=138457 → {1, 2, 7, 98, 343, 686, 2409, 17206, 117705}{1,2,7,98,343,686,2409,17206,117705}$</li>
+    </ul>
+  </li>
+  <li>Dynamic programming approach
+    <ul>
+      <li>Let $P(i,w)$ be the <strong>maximized profit</strong> obtained when choosing items *<em>only from the first ii</em> items under the restriction that <strong>the total weight cannot exceed w</strong><em><strong>w</strong></em>.
+undefined	- If we let <em>A</em>∗ be an optimal subset of ${1, 2, …, n}$
+        <ol>
+          <li>$n \in A* : P(n,W) = p_n + P(n-1, W-w_n)$</li>
+          <li>$n \notin A* : P(n,W) = P(n-1, W)$
+            <ul>
+              <li>$\rightarrow fill (i, j)$</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="7-a-divide-and-conquer-approach">7. A Divide-and-Conquer Approach</h1>
+
+<ul>
+  <li>
+    <p>Let <code class="language-plaintext highlighter-rouge">fill(i,j)</code> return TRUE ⟺ ∃ subset of the first <em>i</em> items that has total length <em>j</em>.</p>
+
+    <p>When <code class="language-plaintext highlighter-rouge">fill(i,j)</code> returns TRUE,</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  1. If the ith item is used, `fill(i - 1, j -` _`li`_`)` must return TRUE.
+  2. If the ith item is not used, `fill(i - 1, j)` must return TRUE.
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>To solve <code class="language-plaintext highlighter-rouge">fill(int n, int L)</code>,</p>
+    <ul>
+      <li>$T(n)≥c $if $n=0$</li>
+      <li>$T(n) \geq 2T(n-1) +d$ if $n&gt;0$</li>
+      <li>$\rightarrow T(n) = \Theta(2^n)$</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">fill</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// l[i]: global variable </span>
+<span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="n">FALSE</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">fill</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+  <span class="k">return</span> <span class="n">TRUE</span><span class="p">;</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">j</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">fill</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="a-dynamic-programming-approach">A Dynamic Programming Approach</h2>
+
+<ul>
+  <li>The optimal substructure :
+    <ul>
+      <li>F(i,j)=<em>F</em>(<em>i</em>,<em>j</em>)= <code class="language-plaintext highlighter-rouge">FALSE</code> if <em>i</em>=0,<em>j</em>!=0</li>
+      <li>F(i,j)=<em>F</em>(<em>i</em>,<em>j</em>)= <code class="language-plaintext highlighter-rouge">TRUE</code> if <em>i</em>=0,<em>j</em>=0</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$F(i,j)= F(i-1,j)</td>
+              <td> </td>
+              <td>((l_i \geq j)</td>
+              <td> </td>
+              <td>F(i-1, j-l_i))$ if <em>i</em>&gt;0</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>O(nL) time implementation</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="p">...</span>
+  <span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">ll</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">;</span> <span class="n">ll</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">ll</span><span class="p">]</span> <span class="o">=</span><span class="n">FALSE</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ll</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ll</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">;</span> <span class="n">ll</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ll</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">ll</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">ll</span> <span class="err">–</span> <span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ll</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">ll</span><span class="p">]</span> <span class="o">||</span> <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">ll</span><span class="o">-</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">L</span><span class="p">]);</span>
+	
+	
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Example</p>
+
+    <p><img src="/assets/img/2022-09-29-[ALG]-4.2.-DP-Application.md/19.png" alt="19" /></p>
+  </li>
+</ul>
+
+<h1 id="8-subset-sum">8. Subset Sum</h1>
+
+<p>n에 대해서 polynomial sol도 찾지 못함</p>
+
+<ul>
+  <li>Problem
+    <ul>
+      <li>Given a set of positive integers ${w_1, w_2, …, w_n}$ of size <em>n</em> and a postivie integer <em>W</em>, Find a subset <em>A</em> of ${1,2,…,n}$ that maximizes $\Sigma_{i\in A}{w_i}$ subject to $\Sigma_{i\in A}{w_i} \leq W$</li>
+      <li>양의 정수 n개, 어떤 양의 정수 W가 주어졌을 때 몇 개를 뽑을 것이다. a라는 집합이 뽑은 애들의 index 집합이다. 뽑은 애들의 합을 maximize하라.</li>
+    </ul>
+  </li>
+  <li>Example
+    <ul>
+      <li>${w_1, …, w_9} = {20,30,14,70,40,50,15,25,80,60,10,95}, W=99 \\rightarrow {20,14,40,25}$</li>
+    </ul>
+  </li>
+  <li>Application
+    <ul>
+      <li>There are <em>n</em> jobs, each of which takes <em>wi</em> time.</li>
+      <li>Now we have a CPU with <em>W</em> free cycles, and want to choose the set of jobs that minimizes the number of idle cycles.
+        <ul>
+          <li>w cycle동안에 내가 scheduling해 주어 CPU를 잘 활용해야 한다.</li>
+          <li>여러 user들이 들어왔을 때, w1 cycle만큼 소요되고, 2번 user에서 들어오면 w2만큼의 cycle이 필요하고 … n번 user에서 job을 scheduling하면 wn cycle이 필요함</li>
+          <li>system을 가장 최적으로 활용하기 위해, w1,, wn 중 몇 개를 뽑아서 scheduling 진행할 것</li>
+          <li>뽑은 애들의 합이 W보다 작으면서 maximize : 몇번, 몇번, 몇번 해서 끝에 무수리가 남을 것인데 이 곳에서는 CPU가 idle하는 cycle 발생 : minimize가 목표</li>
+        </ul>
+      </li>
+      <li>→ CPU Cycle이라는 귀한 resource를 낭비하지 않도록 minimize하자</li>
+      <li>논외) exact algorithm는 아무도 풀지 못했다. → approximation algorithm, heuristic algorithm</li>
+    </ul>
+  </li>
+  <li>Relation to the 0-1 Knapsack problem
+    <ul>
+      <li>Given two sets of positive integers ${w_1, w_2, …, w_n}$ and ${p_1, p_2, …, p_n}$ of size <em>n</em> and a positive integer <em>W</em>, find a subset <em>A</em> of ${1,2,…,n}$ that maximizes $\Sigma_{i \in A} p_i$ subject to $\Sigma_{i \in A} w_i \geq W$</li>
+      <li>⟺
+        <ul>
+          <li>Given a set of positive integers ${w_1, w_2, …, w_n}$ of size <em>n</em> and a postivie integer <em>W</em>, Find a subset <em>A</em> of ${1,2,…,n}$ that maximizes $\Sigma_{i\in A}{w_i}$ subject to $\Sigma_{i\in A}{w_i} \geq W$</li>
+        </ul>
+      </li>
+      <li>0-1 knapsack을 polynomial time에 풀 수 있으면, subset sum도 풀 수 있다</li>
+    </ul>
+  </li>
+  <li>참고
+    <ul>
+      <li>If it is possible to solve the <strong>0-1 knapsack</strong> problem in <strong>polynomial time</strong>, the <strong>subset sum</strong> problem can be solved in <strong>polynomial time</strong> too.</li>
+      <li>Somebody has already proven that the subset sum problem is very hard.</li>
+      <li>In other words, the subset sum problem is <strong>NP</strong>complete. → Hence, the 0-1 knapsack problem is also a very hard problem. In other words, the 0-1 knapsack problem is also <strong>NP</strong>complete.
+undefined</li>
+    </ul>
+  </li>
+</ul>
+
+  </div><a class="u-url" href="/ALG-4.2.-DP-Application" hidden></a>
+</article>
+<script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
+
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
+      </div>
+    </main><footer>
+  <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">
+  <div class="row m-0">
+    <div class="col-12 col-md-3 col-sm-4 mb-4 mb-sm-0">
+      <p>
+        <a href="https://github.com/underthelights/underthelights.github.io" style="font-weight: 300">Kyuhwan Shim</a>
+        <br>Up-to-date as of <span id="date">loading...</span></p>
+      <i class="fas fa-location-dot mr-1"></i> Seoul is <img style="width: auto; height: 23px;" id="weather_icon">
+      <span id="weather">Loading...</span>
+    </div>
+    <div class="col-12 col-md-9 col-sm-8">
+      <p>
+        <a style="font-weight: 300" href="https://linkedin.com/in/kyuhwan-shim"><i class="fab fa-linkedin" style="margin-right: 10.5px"></i>LinkedIn</a><br>
+        <a style="font-weight: 300" href="https://fb.com/s.kyuhwn"><i class="fab fa-facebook" style="margin-right: 8px"></i>Facebook</a><br>
+        <a style="font-weight: 300" href="https://www.instagram.com/s.kyuhwn"><i class="fab fa-instagram" style="margin-right: 10.5px"></i>Instagram</a><br>
+        <a style="font-weight: 300" href="https://github.com/underthelights"><i class="fab fa-github" style="margin-right: 10.5px"></i>GitHub</a><br>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="/assets/js/weather.js"></script>
+<script src="/assets/js/github_date.js"></script>
+</body>
+
+</html>

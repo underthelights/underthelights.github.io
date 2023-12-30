@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         TeX: {
+         equationNumbers: {
+             autoNumber: "AMS"
+         }
+         },
+         tex2jax: {
+         inlineMath: [ ['$', '$'] ],
+         displayMath: [ ['$$', '$$'] ],
+         processEscapes: true,
+     }
+     });
+     MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>[ALG] 2.1. Heap-based Priority Queues and Heap Sort (1) ✱ Kyuhwan Shim</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <link href="/assets/fontawesome/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  <!-- GA -->
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8LB4J4EL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VG8LB4J4EL');
+</script>
+
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/main/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/main/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/main/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/main/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/main/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/main/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/main/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/main/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/main/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/main/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/main/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/main/favicon/favicon-16x16.png">
+  <link rel="manifest" href="">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/main/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Opengraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/main/favicon/og.png%5BALG%5D-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).jpg">
+  <meta property="og:title" content="[ALG] 2.1. Heap-based Priority Queues and Heap Sort (1) | Kyuhwan Shim">
+  <meta property="og:description" content="Paper overview of  et al., ">
+
+  <!-- Google scholar -->
+  
+  <meta name="citation_title" content="[ALG] 2.1. Heap-based Priority Queues and Heap Sort (1)">
+  
+  <meta name="citation_publication_date" content="">
+  
+  <meta name="citation_conference_title" content="">
+  
+  <meta name="citation_pdf_url" content="https://underthelights.github.io/assets/pdf/[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).pdf">
+  
+</head>
+<body><header class="page-content">
+  <nav class="navbar navbar-expand-md navbar-light py-4">
+    <div class="container-fluid">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/news">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/oconnect">oconnect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/cv">CV</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">fun</a>
+              <div class="dropdown-menu">
+                  <a href="/music" class="dropdown-item">music</a>
+                  <a href="/artwork" class="dropdown-item">artwork</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dropdown-toggle {
+    background-color: transparent;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+  }
+  .dropdown-toggle:hover {
+    font-weight: 500
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ .dropdown-menu {
+    --bs-dropdown-border-radius: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+ }
+ .dropdown-item {
+  font-size: .95rem !important;
+  padding: .3rem .75rem !important;
+ }
+ .dropdown-item:active {
+  background-color: #999 !important
+ }
+</style><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <style>
+  /* General styling for all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Arial', sans-serif;
+    /* Use a modern font */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .post-title {
+    font-size: 2em; /* 폰트 크기 증가 */
+    font-weight: bold; /* 볼드체 */
+    color: #333; /* 색상 변경 */
+    /* background-color: #f8f8f8; 배경색 추가 */
+    padding: 10px; /* 배경색과 함께 패딩 추가 */
+    box-shadow: inset 0 -20px 0 #bbb7e8;
+    max-width: max-content;
+  }
+
+  /* Updated styling for h1 */
+  h1 {
+    font-size: 1.5em;
+    /* Increase font size for main titles */
+    color: #333333;
+    border-bottom: none;
+    /* Remove bottom border */
+    padding-bottom: 0;
+    /* Adjust padding if needed */
+  }
+
+  h2 {
+    font-size: 1.2em;
+    color: #4a4a4a;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    color: #6a6a6a;
+  }
+
+  h4 {
+    font-size: 0.75em;
+    color: #888888;
+  }
+
+  h5 {
+    font-size: 0.5em;
+    color: #a6a6a6;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #bcbcbc;
+  }
+
+  /* Add some additional styling if needed */
+  .post-content {
+    line-height: 1.6;
+    /* Improve readability */
+    color: #333333;
+    /* Dark grey color for text */
+  }
+
+  /* Styling for the ToC to make it scroll with the page */
+  .toc {
+    font-size: 1em;
+    position: fixed;
+    /* Fixed position */
+    right: 0;
+    /* Align to the right side of the screen */
+    top: 50;
+    /* Adjust this value as needed based on your header size */
+    max-height: 100vh;
+    /* Set maximum height to viewport height */
+    overflow-y: auto;
+    /* Allows scrolling within the ToC if it's too long */
+    padding: 20px;
+    /* Add some padding */
+    background-color: white;
+    /* Optional: background color for visibility */
+    z-index: 1000;
+    /* To ensure it stays on top of other elements */
+    width: 250px;
+    /* Adjust the width as needed */
+  }
+</style>
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="toc">
+    <a href="#">&lt;On the Top&gt;</a>
+    <ul><li><a href="#a-variety-of-priority-queue-implementations">A Variety of Priority Queue Implementations</a></li><li><a href="#job-scheduling-example-priority-queue">[Job Scheduling Example: Priority Queue]</a><ul><li><a href="#requirement-1">Requirement 1</a></li><li><a href="#requirement-2">Requirement 2</a></li></ul></li><li><a href="#alg-22-pq1-maxmin-heap-1">[ALG] 2.2. PQ1: Max(Min) Heap (1)</a></li></ul>
+
+  </div>
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[ALG] 2.1. Heap-based Priority Queues and Heap Sort (1)</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-09-12T00:00:00+09:00" itemprop="datePublished">
+        Sep 12, 2022
+      </time></p>
+    <!-- 태그와 카테고리 표시 -->
+    <div class="post-categories">
+      
+      <strong><span>📚 Categories:</span></strong>
+      
+      <a href="blog-categories-notes">Notes</a>
+      
+      
+    </div>
+
+    <div class="post-tags">
+      
+      <strong><span>🏷️ Tags:</span></strong>
+      
+      <a href="blog-tags-algorithm">Algorithm</a>
+      
+      
+    </div>
+
+
+  </header>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul>
+  <li>Heap이라는 개념 - 매우 전공에서 중요한 자료구조. 실제로 컴퓨터 system에서 메모리르 다루는 데 쓰이는 핵심적인 구조중 하나</li>
+  <li>Insert, delete : 원소를 집어넣고 빼고 - queue</li>
+  <li>Push, Pop : 데이터를 집어넣었다가 빼고 - stack</li>
+  <li>data를 넣었다가 뺐다가 이런것을 반복하는 것들. 구현이 적합한 stack
+    <ul>
+      <li>→ queue, stack은 굉장히 특정 형태를 갖는 방식으로 데이터를 넣고 빼는 작업</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="a-variety-of-priority-queue-implementations">A Variety of Priority Queue Implementations</h1>
+
+<ul>
+  <li>[Priority Queue 1: Max(Min) Heap]</li>
+  <li>[Priority Queue 2: Min-Max Heap]</li>
+  <li>[Priority Queue 3: Heap and Hashing]</li>
+  <li>[Priority Queue 4: Deap]</li>
+  <li>[Priority Queue 5: Leftist Tree]</li>
+  <li>[Priority Queue 6: Binomial Heap]</li>
+  <li>[Priority Queue 7: Fibonacci Heap]</li>
+  <li>
+
+    <p><img src="/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/0.png" alt="0" /></p>
+  </li>
+</ul>
+
+<h1 id="job-scheduling-example-priority-queue">[Job Scheduling Example: Priority Queue]</h1>
+
+<ul>
+  <li>Consider the following sequence of requests in an operating system:</li>
+  <li>multiprocessing을 할 때 여러 process가 도는데,
+    <ul>
+      <li>예를 들어 바이러스가 침입했고 이를 막기 위한 process가 제일 먼저</li>
+      <li>제한된 rsrc를 시간 쪼개가며 쓴다. cpu 입장에서는 다음에 시간을 나누어 process를 돌릴 놈을 나와라 하여 처리해 주고 그 다음 줄 서있는 놈들 중 process 번호, owner , priority일 때 여러 policy로 OS를 만들 수 있다.</li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/1.png" alt="1" /></p>
+  </li>
+  <li>data 저장소에 처리해달라는 것이 들어가 있고, data 저장소에 들어갔다 나왔다가 계속반복되고 있다. 가장 먼저 들어온 애를 가장 먼저 처리해 주고, OS마다 인터넷에서 동영상 보는 process보다는 운영체제들이 바이러스 및 네트워크 처리 등 priority 높은 process들이 있다.</li>
+  <li>data저장소에 element가 있는데 priorty를 가지고 우선순위가 높은 놈 나와, 하는 것이 priority-based
+    <ul>
+      <li>각각의 원소들이 들어갈 때 계속 들어가고 뺄 때는 priority에 따라 나오게 함.</li>
+      <li>데이터 저장 :나올 때 우선순위 설정</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="requirement-1">Requirement 1</h2>
+
+<ul>
+  <li>CPU executes the process with the highest priority first.</li>
+  <li>Use a heap structure – a simple max heap :)</li>
+  <li>
+
+    <p><img src="/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/2.png" alt="2" /></p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_process</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">proc_id</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">owner</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">priority</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">Process</span><span class="p">;</span>
+	
+<span class="k">static</span> <span class="n">Process</span> <span class="o">*</span><span class="n">_proc_heap</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">_proc_heap_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">_proc_heap_ptr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	
+<span class="kt">int</span> <span class="nf">PH_create</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">PH_full</span><span class="p">();</span>
+<span class="kt">int</span> <span class="nf">PH_empty</span><span class="p">();</span>
+<span class="kt">int</span> <span class="nf">PH_insert</span><span class="p">(</span><span class="n">Process</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">PH_delete</span><span class="p">(</span><span class="n">Process</span> <span class="o">*</span><span class="n">item</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="requirement-2">Requirement 2</h2>
+
+<ul>
+  <li>
+    <p>The priority of processes can be modified after they are placed in the priority queue.</p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="nf">H_change_priority</span><span class="p">(</span><span class="kt">int</span> <span class="n">proc_id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new_priority</span><span class="p">);</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>This function requires locating a particular process in the heap, but the basic heap operations provide no efficient way to do it.</li>
+      <li>Employ an auxiliary data structure such as a hash table that keeps track of the location of each process in the heap structure.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Once the two requirements are satisfied, the operating system can process the following basic commands efficiently</p>
+
+    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  INSERT  &lt;proc_id&gt;  &lt;owner&gt;  &lt;priority&gt;
+  DELETE
+  CHANGEPR &lt;proc_id&gt; &lt;new_priority&gt; PRINTHEAP
+  END
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h1 id="alg-22-pq1-maxmin-heap-1">[ALG] 2.2. PQ1: Max(Min) Heap (1)</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_ref_. [Horowitz 5.6.2] [Neapolitan 7.6]
+
+
+# PQ1: Max(Min) Heap
+
+- Problem
+	- The following operations must be performed as mixed in data processing:
+		- Store a record with a key in an arbitrary order.
+		- Fetch the record with the current largest key.
+- A solution
+	- &lt;u&gt;Design a&lt;/u&gt; &lt;u&gt;**data structure**&lt;/u&gt; that offers an efficient implementation of the following operations:
+- &lt;u&gt;**Insert an element with an arbitrary key.**&lt;/u&gt;
+- &lt;u&gt;**Delete an element with the largest key.**&lt;/u&gt;
+
+	![3](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/3.png)
+
+	- key = priority 의미
+		- 두 가지 operation을 효율적으로 구현하는 자료구조를 설계하여 구현하라
+		- insert, delete 등 용어는 알아서 생각하면 될 것.
+- 배열 array 가지고 구혆할 수 있는 방법
+	- 0, 1, 2, 3. .. 끝에다 계속 집어넣으면 됨
+	- 제일 끝에 있는 애를 보내주면 끝이 된다.
+	- insert하고 delete의 연산이 있는데, data가 현재 배열 data 저장소에 n개 원소가 있을 때 insert, delete의 비용은
+		- insert $O(1)$
+		- sequential search → delete $O(n)$
+- system 들어가는 것은 느려도 상관 없는데 나올 때는 빨리 나와야 한다고 하면 array가 더 좋을수도 있음
+	- 일반적으로 heap이 성능이 좋기는 함
+
+	![4](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/4.png)
+
+
+	|        | array | array | heap     |
+	| ------ | ----- | ----- | -------- |
+	| insert | O(1)  | O(n)  | o(log n) |
+	| delete | O(n)  | O(1)  | O(log n) |
+</code></pre></div></div>
+
+<p>undefined
+	# An Array Implementation</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Ref. [Sedgewick 9.2]
+
+	```c
+	void PQinit();
+	int PQempty();
+	void PQinsert(int);
+	int PQdelmin();
+	void PQdec(int);
+	
+	#include &lt;stdlib.h&gt;
+	static int *pq;
+	static int N;
+	#define MAX_N 10000;
+	
+	void PQinit()
+	{
+	    pq = malloc(MAX_N * sizeof(int));
+	    N = 0;
+	}
+	int PQempty()
+	{
+	    return N == 0;
+	}
+	void PQinsert(int v)
+	{
+	    pq[N++] = v;
+	}
+	
+	int PQdelmin()
+	{
+	    int j, min = 0;
+	    for (j = 1; j &lt; N; j++)
+	        if (less(pq[min], pq[j]))
+	            min = j;
+	    exch(pq[min], pq[N - 1]);
+	    return pq[--N];
+	}
+	
+	int less(int i, int j)
+	{
+	    return **... * *;
+	}
+	
+	void exch(int i, int j)
+	{
+	    ...
+	}
+	
+	void PQdec(int k)
+	{
+	    ...
+	}
+	```
+
+- What will be the worst-case time complexity of each operation?
+
+# Max(Min) Heap: Definitions
+
+
+![5](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/5.png)
+
+- tree
+	- rooted tree
+		- 일반적인 tree에서 vertex를 하나 잡아 올려 root
+		- binary - 최대 두 개 까지의 child를 가지는 tree
+		- full binary tree : 모두 두개 child를 갖는 tree
+		- complete binary tree : 제일 끝의 leaf 몇 개만 날아간 bt
+			- pointerless representation
+			- 왼쪽 child는 parent의 두 배, 오른쪽 child는 parent의 두 배 +1
+	- a kind of graph
+		- connected + acyclic
+		- vertex, edge
+
+## Definition 1
+
+- [Horowitz 5.6.2] [Neapolitan 7.6]
+- A max(min) heap is a complete binary tree where the key value in each internal node is no smaller(larger) than the key values in its children.
+
+## Definition 2
+
+- A binary tree has the max(min) heap property if and only if
+	- The number of nodes of the tree is either 0 or 1, or
+	node 0개거나 1개면 max heap
+	- For the tree that has at least two nodes, the key in the root is no smaller(larger) than that in each child and the subtree rooted at the child has the max(min) heap property.
+	
+	root node는 자신의 child보다 같거나 작지 않다 (같거나 크다)
+	그리고 각각의 child를 root으로 하는 subtree.
+	- 나랑 같이 생겼는데 size만 작은 것의 성질 : recursion 성질을 잘 생각해보면 밑으로 내려가면 결국 어떤 node든 건에 parent는 child보다 크다.
+- A &lt;u&gt;max(min) heap&lt;/u&gt; is a complete binary tree that has the &lt;u&gt;max(min) heap property.&lt;/u&gt;
+	- max heap : complete BT - max heap property를 갖는
+
+![6](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/6.png)
+
+
+### Brainstorming on Max Heap Operations
+
+- Max Heap Example
+	- 성질을 잘 이해할 것 : 자기 자신보다 같거나 크니까 36이 아니라 101이어도괜찮음
+- Deletion Example 1
+	- data 저장된 것들 중 priority/key 제일 큰 것 나감. - 103
+	- 계속해서 complete BT 유지하려고 하는데 대장 103이 나가버림.
+	- 원래 있던 것보다 원소 개수가 하나 더 줄은, heap을 유지하는 방법은 어떻게 되는가?
+
+		→ 자식보다 같거나 크다는 성질 : 101을, 99를 올리느냐 고민하며 101이 올라가며 빈 곳을 다른 node들이 채워 줌.
+
+
+		max heap property가 깨지기 때문에 아님. 무조건 하나씩 위로 올리는 것은 아님을 확인할 수 있음. 9를 올리면 맨 끝 13은 해결할 수 없음
+
+
+	![7](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/7.png)
+
+- Deletion Example 2
+	- 13을 왕 시키면 항상은 문제 생기지 않음
+		- 우연히 밑의 원소가 13일 때는 문제가 안생기겠지만.
+	- child에서 101, 99중에 이 동네 왕 한번 해 볼까 하고 살펴보는 그 상황ㅇ으로 바뀌게 됨. 13이 왕 해볼까 하는 상황에서 101을 올려보는 상황이고 왼쪽 아래로 내려감.
+	- 많은 tree의 문제들이 recursion 자체를 서서 활용가능함
+	- delete alg의 최대 비용, 시간 비용 - 최대 몇 칸까지 내려가는가 (3칸) - log적으로 보여얗 ㅏㅁ
+	- complete bt는 됨.
+	- 경로에 있는 애들은 ‘내가 내 child보다 크다’라는 heap 조건을 잘 지켰음
+	- 두 child보다 큰 13 &gt; 9, 6의 형태 - 두 child보다 같거나 크다는 성질을 유지하며 내려옴./
+- Insertion Example
+	- 50을 집어넣어라. 그러면 complete bt 만들어야 하나ㅣ node를 하나 만들고 100을 집어넣는다.
+	- root까지의 path 경로에 있는 관계만 따지면 됨 :
+		- left family에서 100이 있건 없건 아무 상관없음 (heap의 정리에 의해서)
+		- 형제 관계 중에서도 상관없고, 중요한 건 부모와 나의 관계일 뿐
+		- 경로를 쫓아 올라가며 부모를 보고 부모보다 크면 자신잉 부모가 됨. (부모보다 작으면 그 시점에서 멈춤. 같은 논리로, 경로를 max heap 성질을 유지하면서 왔고 + 나머지는 유지가 되어 있고 → 알고리즘의 합리성 검증
+		- 최악의 경우 log(n) time
+
+	![8](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/8.png)
+
+- $C = \log_2 n$
+- Deletion from a Max Heap
+- ref. [Horowitz 5.6.2]
+
+	```c
+	#define MAX_ELEMENTS 200
+	#define HEAP_FULL(n) (n == MAX_ELEMENTS - 1) #define HEAP_EMPTY(n)(!n)
+	typedef struct
+	{
+	    int key;
+	    /* other fields */
+	} element;
+	element heap[MAX_ELEMENTS];
+	int n = 0;
+	```
+
+
+	![9](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/9.png)
+
+
+	$2^c \leq n &lt; 2^{c+1} \rightarrow c \leq log_2 n &lt;c+1$
+
+
+	```c
+	//최대 히프에 삽입
+	void insert_max_heap(element item, int *n)
+	{
+	    int i;
+	    if (HEAP_FULL(*n))
+	    {
+	        fprintf(stderr, "the heap is FULL\n");
+	        exit(1);
+	    }
+	    i = ++(*n);
+	    while ((i != 1) &amp;&amp; (item.key &gt; heap[i / 2].key))
+	    {
+	        heap[i] = heap[i / 2];
+	        i /= 2;
+	    }
+	    heap[i] = item;
+	}
+	
+	```
+
+
+	![10](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/10.png)
+
+
+	$C \sim log_2n $
+
+
+	```c
+	element delete_max_heap(int *n)
+	{
+	    int parent, child;
+	    element item, temp;
+	    if (HEAP_EMPTY(*n))
+	    {
+	        fprintf(stderr, "The heap is empty\n");
+	        exit(EXIT_FAILURE);
+	    }
+	
+	    item = heap[1];
+	
+	    temp = heap[(*n)--];
+	    parent = 1;
+	    child = 2;
+	    while (child &lt;= *n)
+	    {
+	
+	        if ((child &lt; *n) &amp;&amp; (heap[child].key &gt; heap[child + 1].key))
+	            child++;
+	        if (temp.key &lt;= heap[child].key)
+	            break;
+	
+	        heap[parent] = heap[child];
+	        parent = child;
+	        child *= 2;
+	    }
+	    heap[parent] = temp;
+	    return item;
+	}
+	```
+
+
+	![11](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/11.png)
+
+
+	![12](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/12.png)
+
+
+	$O(\log n)$
+
+- child가 있을 때까진 내려가야 한다.
+	- child가 2개면 left , right 중 큰 거 선택해서 줄줄줄 while 문에서 돈다.
+- 중간고사에서 빈칸 매꾸기 문제 가능
+
+	child 2개 : 
+
+
+# Another Heap Implementation (Min Heap)
+
+- _ref_. [Sedgewick 9.3]
+
+	```c
+	void PQinit(int);
+	int PQempty();
+	void PQinsert(int);
+	int PQdelmin();
+	static int *pq;
+	static int N;
+	void PQinit(int maxN)
+	{
+	    pq = malloc(maxN * sizeof(int));
+	    N = 0;
+	}
+	
+	int PQempty()
+	{
+	    return N == 0;
+	}
+	
+	void PQinsert(int v)
+	{
+	    pq[++N] = v;
+	    fixUp(pq, N);
+	}
+	
+	Item PQdelmin()
+	{
+	    exch(pq[1], pq[N]);
+	    fixDown(pq, 1, N - 1);
+	    return pq[N--];
+	}
+	
+	fixUp(int a[], int k)
+	{
+	    while (k &gt; 1 &amp;&amp; a[k / 2] &gt; a[k])
+	    {
+	        exch(a[k], a[k / 2]);
+	        k = k / 2;
+	    }
+	}
+	
+	fixDown(int a[], int k, int N)
+	{
+	    int j;
+	    while (2 * k &lt;= N)
+	    {
+	        j = 2 * k;
+	        if (j &lt; N &amp;&amp; a[j] &gt; a[j + 1])
+	            j++;
+	        if (a[k] &lt;= a[j])
+	            break;
+	        exch(a[k], a[j]);
+	        k = j;
+	    }
+	}
+	```
+
+- What will be the worst-case time complexity of each operation?
+
+&gt; 💡 sort by comparisoin algorithm. 원소 n개 있을 때 n log n 속도 보다 빠르게 불가능하다.
+
+
+## Comparisons of Priority Queue Implementations
+
+
+![13](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/13.png)
+
+
+# Heap Sort
+
+
+Horowitz 7.7., Neapolitan 7.6
+
+- Method
+	1. Convert an input array of n unordered items into a max heap.
+	2. Extract the items from the heap one at a time to build an ordered array.
+- Sort by comparison : comparison을 통해 정렬하는 방법은 input size n에 대해서 cost는 아무리 좋은 알고리즘을 만들더라도 $O(n \log n)$보다 더 빠르게 할 수는 없다 (optimal이다)
+	- 불가능하다고 증명된 바 있음
+
+	&gt; 💡 원소의 개수 n에 대해서 정렬이 안된 임의의 배열에 대해서 min, max heap은 ilnear time에 적용할 수 있다. 그리고 그 둘은 유용한 자료구조
+
+- max heap : 크기가 같거나 큰 순서대로 데이터를 정렬하는 것이 목표인데, max heap 상태에서는 정렬은 정확하게는 안 되어있는 어정쩡한 상태. 대충 정렬은 된 듯한데 중간에 삐쭉한, 정확하게 맞지는 않은 상태.
+- unordered data를 크기 순서대로 정리하려고 함. 한 단계 중간단계를 거쳐서 max heap 으로 변경한 다음 ordered 단계로 변환
+
+![14](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/14.png)
+
+- 1번 단계의 시간 복잡도 - n이 걸리고 2번에서 n이 걸려서 N log n 타임의 데이터를 정렬한다.
+- 주어진 정수들을 비감소 순서(non-decreasing order)대로 정렬하라.
+	- nondecreasing ≠ increasing (단조증가 등의 차이)
+
+	```c
+	typedef struct
+	{
+	    int key;
+	    /* other fields */
+	} element;
+	Element list[MAX_SIZE];
+	```
+
+
+	```c
+	void heapsort(element list[], int n)
+	{
+	    /*perform heapsort on the array*/ int i, j;
+	    element temp;
+	
+	    // (1) Make a (max) heap
+	    for (i = (n) / 2; i &gt; 0; i--)
+	        adjust(list, i, n);
+	
+	    // (2) Extract items one by one
+	    for (i = n - 1; i &gt; 0; i--)
+	    {
+	        SWAP(list[1], list[i + 1], temp);
+	        adjust(list, 1, i);
+	    }
+	}
+	```
+
+	- (1) Make a (max) heap : $O(n)$
+	- (2) Extract Items : $O(n \log n)$
+
+→ n log n
+
+
+upper bound eㅚ면서 operation들이 없어지고 다 하면 각각은 tight upper bound
+
+
+제일 큰 거 나와 해서 집어넣어주고 n-2개 대해서 똑같은거 반복하니까 
+
+
+log n-1
+
+
+처음에 n개 있었는데 나머지 n-1개에 대해서 어떤 node가 leaf에 들어갈 수 있는지 없는지 확인
+
+
+$2^c \leq n &lt; 2^{c+1} \rightarrow c \leq \log_2 n &lt;c+1$
+
+
+## Make a Max Heap
+
+1. $O(n\log n) \rightarrow O(n\log n)$
+	- Make a (max) heap.
+
+		![15](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/15.png)
+
+
+		![16](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/16.png)
+
+
+		![17](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/17.png)
+
+
+		![18](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/18.png)
+
+
+		![19](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/19.png)
+
+
+## The `adjust()` function
+
+
+&gt; 💡 과거 알고리즘 만든 사람의 논리를 분석해서 적용해보자. 그러면 computatinoal thinking 상황에서 자연스럽게 파악하며 성장할 수 있다!
+
+- cost : 각각에 대해서 핵심이 되는 operation
+	- root에서 시작해서 두 child중에 큰 것 (list[child].key &lt;
+- 어떻게 생각했을까 추적해보면 : ‘혹시 정의에 의해서 :
+	- 정의 : root node는 두 child보다 같거나 크고, 각각의 child를 root로 하는 subtree가 max heap이면 recursive한 max heap이 구성된다
+	- 두 child를 root로 하는 tree
+- code
+
+	```c
+	void adjust(element list[], int root, int n)
+	{
+	    int child, rootkey;
+	    element temp;
+	    temp = list[root];
+	    rootkey = list[root].key;
+	    child = 2 * root;
+	    while (child &lt;= n)
+	    {
+	        if ((child &lt; n) &amp;&amp; (list[child].key &lt; list[child + 1].key))
+	            child++;
+	        if (rootkey &gt;= list[child].key)
+	            break;
+	        else
+	        {
+	            list[child / 2] = list[child];
+	            child *= 2;
+	        }
+	    }
+	    list[child / 2] = temp;
+	}
+	```
+
+
+	![20](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/20.png)
+
+	- Executed d times, where d is the depth of the tree with root i → $O(d)$
+
+# Cost of Make-Heap
+
+
+![21](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/21.png)
+
+- Executed d_d_ times, where d_d_ is the depth of the tree with root i_i_
+	- So $O(d)$ time
+- `Output`: a binary tree T adjusted so that the entire binary tree satisfies the heap property
+- `Input`: a binary tree T whose left and right subtrees satisfy the heap property but whose root may not
+
+## Proof of correctness of Heap Construction Algorithm
+
+
+```c
+//make a max heap
+for(i =n/2;i&gt;0;i--)
+	adjust(list,i,n);
+```
+
+- $i = \frac n 2 , \frac n 2 -1, \frac n 2 -2, ... 2, 1$
+- Loop Invariant
+	- just before each iteration for the for-loop starts, each node numbered i+1, i+2, … n is the root of a max heap
+- Proof of correctness by mathematical Induction
+	- base step (base case, basis)
+		- when $i = \frac n 2 $ (why?)
+	- induction step (inductive step)
+		- assume that the loop invariant holds for $i=k(k&lt;\frac n 2)$
+		- then it also holds for $i = k-1$
+			- $k+1, k+2, ... n \rightarrow k, k+1, k+2, ... n$
+			- fact 1 : each child node of node k is a max-heap
+			- fact 2 : the `adjust()` function makes the node k a root of max-heap
+			- fact 3 : it also preserves the property that the nodes k+1, .. n are roots of max-heaps
+- notes
+	- when the for-loop terminates, the node 1 is the root of a max-heap
+
+## Extract items one by one.
+
+- 꼼꼼히 따져보면서 성적 및 시험에서 그동안 기출 문제를 올릴 예정인데, 이를 강조하는 이유가 나타날 듯
+- 제일 큰 놈 나왈 해서 leaf에다 집어넣고,
+	- 비용이 n log n : 매번 해 주는 비용을 생각해보면
+	- 매번 제일 큰 것 나와 해서 줄줄줄 update를 반복하다보면 제일큰 것 순서대로 쌓이게 될 것.
+
+![22](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/22.png)
+
+- Time Complexity Analysis
+	- $2^k \leq 2n2k≤2n, −k&lt;−\log2n$
+		- $k &lt; -\log_2 n$
+	- then $2k−k−1&lt;2n−\log2n−1$
+
+		$2^k -k -1 &lt; 2n - log_2n -1$
+
+	- so $C_{MH} = O(n)$
+- $I = -k+ \frac {1 \cdot (2^k-1)}{2-1} = 2^k -k -1I=−k+2−11⋅(2k−1)=2k−k−1$
+
+	$∴ C_{MH} \leq 2^k -k -1$
+
+- $2I= (k-1)2^1 + (k-2)2^2 + (k-3)2^3 + ...+1 \cdot 2^{k-1}$
+	- $\rightarrow 2I-1I= -(k-1) + 2^1+ 2^2 + ... + 2^{k-2}$
+- $I= (k-1)2^0 + (k-2)2^1 + (k-3)2^2 + ...+1 \cdot 2^{k-2}$
+- $C_{MH} \leq (k-1)2^0 + (k-2)2^1 + (k-3)2^2 + ...+1 \cdot 2^{k-2}$
+
+![23](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/23.png)
+
+
+$2^{k-1} \leq n &lt; 2^k$ → $k-1 \leq \log_2 n &lt; k$
+
+
+## Complexity of Item Extractions
+
+
+![24](/assets/img/2022-09-12-[ALG]-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1).md/24.png)
+
+
+```c
+for (int i = n / 2; i &gt; 0; i--)
+    adjust(list, i, n);
+for (int i = n - 1; i &gt; 0; i--)
+{
+    SWAP(list[1], list[i + 1], temp);
+    adjust(list, 1, i);
+}
+```
+
+- Heap Sort : $C_{MH} +C_{IE} = O(n)+ O(n \log n) = O(n \log n)$
+- $C_{IE}
+\\=⌊\log (n-1)⌋+⌊\log (n-2)⌋+⌊\log (n-3)⌋...+⌊\log2⌋+⌊\log 1⌋\\ \leq \log2 + \log3 + ...+\log {(n-1)} = \log (n-1)!\\=O((n-1)\log (n-1)) = O(n \log n)\\&lt; \sum_{i=2}^n \log_2 n
+\\= O(n \log n)
+\\≤log2+log3+...+log(n−1)\\&lt;∑i=2n \log 2n\\ =O(n \log n)$
+- for a given $n$, the cost (depth) is $c = ⌊\log_2n⌋$
+- $O(\log n!) = O(n \log n)$
+	- proof
+
+## Heap Sort in C Implementation
+
+- 상황에 맞게 판단하여 적용
+	- constant time , log n하고는 엄청난 차이가 존재하는 시간 복잡도
+	- 2^20이 백만인데 그에 비례하는 시간,
+
+# Priority Queue 2 : Min-Max Heap
+
+- Problem
+	- The following operations must be performed as mixed in data processing:
+		- Store a record with a key in an arbitrary order.
+		- Fetch the record with the current largest key.
+		- Fetch the record with the current smallest key.
+- A solution
+	- Design a data structure that offers the efficient implementation of the following operations (Double-Ended Priority Queue):
+		- Insert an element with an arbitrary key.
+		- Delete an element with the largest key.
+		- Delete an element with the smallest key.
+		- → 어떻게 풀 것인지
+
+O(log n) → 
+
+- ref._ref_. [Horowitz 9.1]
+
+---
+
+
+{교육과정 외}
+
+
+Priority Queue 3: Heap and Hashing
+
+
+Priority Queue 4: Deap
+
+
+Priority Queue 5: Leftist Tree
+
+
+Priority Queue 6: Binomial Heap
+
+
+Priority Queue 7: Fibonacci Heap
+</code></pre></div></div>
+
+
+  </div><a class="u-url" href="/ALG-2.1.-Heap-based-Priority-Queues-and-Heap-Sort-(1)" hidden></a>
+</article>
+<script>
+  function getTOCNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var tocNodes = nodes.filter(function (elem) {
+      return elem.tagName == "A";
+    });
+    return tocNodes;
+  }
+  function getHeaderNodes(master) {
+    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
+    var headerNodes = nodes.filter(function (elem) {
+      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
+    });
+    return headerNodes;
+  }
+
+  var title = document.getElementsByClassName("post-title")[0];
+  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
+
+  var article = document.getElementsByClassName("post-article")[0];
+  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
+
+  var toc = document.getElementsByClassName("toc")[0];
+
+  var headerNodes = getHeaderNodes(article);
+  var tocNodes = getTOCNodes(toc);
+
+  var before = undefined;
+
+  document.addEventListener('scroll', function (e) {
+    if (window.scrollY >= articleY - 60) {
+      toc.style.cssText = "position: fixed; top: 60px;";
+    }
+    else {
+      toc.style.cssText = "";
+    }
+
+    var current = headerNodes.filter(function (header) {
+      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
+      return window.scrollY >= headerY - 60;
+    });
+
+    if (current.length > 0) {
+      current = current[current.length - 1];
+
+      var currentA = tocNodes.filter(function (tocNode) {
+        return tocNode.innerHTML == current.innerHTML;
+      })
+
+      currentA = currentA[0];
+      if (currentA) {
+        if (before == undefined) before = currentA;
+
+        if (before != currentA) {
+          before.classList.remove("toc-active");
+          before = currentA;
+        }
+
+        currentA.classList.add("toc-active");
+      }
+      else {
+        if (before)
+          before.classList.remove("toc-active");
+      }
+    }
+    else {
+      if (before)
+        before.classList.remove("toc-active");
+    }
+
+  }, false);
+</script>
+      </div>
+    </main><footer>
+  <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">
+  <div class="row m-0">
+    <div class="col-12 col-md-3 col-sm-4 mb-4 mb-sm-0">
+      <p>
+        <a href="https://github.com/underthelights/underthelights.github.io" style="font-weight: 300">Kyuhwan Shim</a>
+        <br>Up-to-date as of <span id="date">loading...</span></p>
+      <i class="fas fa-location-dot mr-1"></i> Seoul is <img style="width: auto; height: 23px;" id="weather_icon">
+      <span id="weather">Loading...</span>
+    </div>
+    <div class="col-12 col-md-9 col-sm-8">
+      <p>
+        <a style="font-weight: 300" href="https://linkedin.com/in/kyuhwan-shim"><i class="fab fa-linkedin" style="margin-right: 10.5px"></i>LinkedIn</a><br>
+        <a style="font-weight: 300" href="https://fb.com/s.kyuhwn"><i class="fab fa-facebook" style="margin-right: 8px"></i>Facebook</a><br>
+        <a style="font-weight: 300" href="https://www.instagram.com/s.kyuhwn"><i class="fab fa-instagram" style="margin-right: 10.5px"></i>Instagram</a><br>
+        <a style="font-weight: 300" href="https://github.com/underthelights"><i class="fab fa-github" style="margin-right: 10.5px"></i>GitHub</a><br>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="/assets/js/weather.js"></script>
+<script src="/assets/js/github_date.js"></script>
+</body>
+
+</html>
