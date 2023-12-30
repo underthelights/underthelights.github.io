@@ -21,15 +21,17 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 
   <!-- GA -->
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GTM-KV9ZGJ6V"></script>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8LB4J4EL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'GTM-KV9ZGJ6V');
+  gtag('config', 'G-VG8LB4J4EL');
 </script>
+
 
   <!-- favicon -->
   <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
@@ -53,7 +55,7 @@
 
   <!-- Opengraph -->
   <meta property="og:type" content="website">
-  <meta property="og:image" content="/assets/images/main/favicon/ms-icon-310x310.png">
+  <meta property="og:image" content="/assets/images/main/favicon/og.png">
   <meta property="og:title" content="News | Kyuhwan Shim">
   <meta property="og:description" content="Recent news of Kyuhwan Shim">
 
@@ -129,26 +131,240 @@
       <div class="wrapper">
         
 
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* 공통 스타일 */
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .news-item {
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        
+        /* 리스트 뷰 스타일 */
+        .list-view .news-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            height: 120px; /* 고정된 높이 */
+        }
+
+        .list-view .news-thumbnail {
+            display: none; /* 리스트 뷰에서는 썸네일 숨김 */
+        }
+
+
+        .news-title, .news-date, .news-description {
+            margin: 0;
+        }
+
+        .news-title {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: grey;
+        }
+
+        .news-description {
+            font-size: 0.95rem;
+        }
+
+        /* 액자 뷰 스타일 */
+        .frame-view {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .frame-view .news-item {
+            width: calc(33.333% - 20px); /* three items per row */
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .news-thumbnail {
+            width: 100%; /* responsive */
+            height: 150px; /* fixed height */
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 10px;
+        }
+
+        /* 팝업 스타일 */
+        .popup-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .popup-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            padding: 20px;
+            background: white;
+            z-index: 1001;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .popup-close {
+            float: right;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
 <div class="container py-4">
     <p style="font-weight: 500 !important; text-transform: uppercase;">News</p>
-    <div class="row mt-4">
+    <button id="toggleView">Switch to Frame View</button>
+    <ul class="news-list list-view">
         
-        <div class="col-12 col-sm-6">
-            <p class="mb-0" style="font-size: 1rem; font-weight: 400 !important;">Spring & Summer internship at Nota Inc</p>
-            <p class="mb-1" style="font-size: .85rem; font-weight: 200 !important;">02 March 2023</p>
-            <p style="font-size: .95rem; font-weight: 300 !important;">Pleased to be working as a Machine Learning Engineer Intern at ITS Team of <a href='https://nota.ai'>Nota Inc.</a></p>
-            <hr>
-        </div>
+        <li class="news-item" data-title="LG Aimers Finalist @ LG AI Research" data-date="31/03/2023" data-description="Finalist in Phase 3 Online Hackathon for Smart Factory Product Quality Status Classification AI Online Hackathon with LG Aimers." data-detail="" data-thumbnail="">
+            <div class="news-thumbnail" style="background-image: url('');"></div>
+            <div class="news-content">
+                <p class="news-title">LG Aimers Finalist @ LG AI Research</p>
+                <p class="news-date">Mar 31, 2023</p>
+                <p class="news-description">Finalist in Phase 3 Online Hackathon for Smart Factory Product Quality Status Classification AI Online Hackathon with LG Aimers.</p>
+            </div>
+        </li>
         
-        <div class="col-12 col-sm-6">
-            <p class="mb-0" style="font-size: 1rem; font-weight: 400 !important;">Winner </p>
-            <p class="mb-1" style="font-size: .85rem; font-weight: 200 !important;">13 January 2023</p>
-            <p style="font-size: .95rem; font-weight: 300 !important;">Gangseo</p>
-            <hr>
-        </div>
+        <li class="news-item" data-title="Winner of BIGCONTEST Data Analytics Innovation League 2022" data-date="23/12/2022" data-description="Received the Grand Prize (Runner-Up) for the project on Carbon Footprint Calculator & Eco-friendly JEJU travel route Recommender System, showing a deep commitment to environmental sustainability and data-driven solutions." data-detail="" data-thumbnail="">
+            <div class="news-thumbnail" style="background-image: url('');"></div>
+            <div class="news-content">
+                <p class="news-title">Winner of BIGCONTEST Data Analytics Innovation League 2022</p>
+                <p class="news-date">Dec 23, 2022</p>
+                <p class="news-description">Received the Grand Prize (Runner-Up) for the project on Carbon Footprint Calculator & Eco-friendly JEJU travel route Recommender System, showing a deep commitment to environmental sustainability and data-driven solutions.</p>
+            </div>
+        </li>
         
+        <li class="news-item" data-title="Grand Prize in Gangseo-gu Data Competition" data-date="13/05/2023" data-description="Awarded the Grand Prize for developing a Risk Rating Model for Small Business Owners in Gangseo-gu using the Credit Rating Model. This project was awarded by the Mayor of Gangseo-gu Office." data-detail="" data-thumbnail="">
+            <div class="news-thumbnail" style="background-image: url('');"></div>
+            <div class="news-content">
+                <p class="news-title">Grand Prize in Gangseo-gu Data Competition</p>
+                <p class="news-date">May 13, 2023</p>
+                <p class="news-description">Awarded the Grand Prize for developing a Risk Rating Model for Small Business Owners in Gangseo-gu using the Credit Rating Model. This project was awarded by the Mayor of Gangseo-gu Office.</p>
+            </div>
+        </li>
+        
+        <li class="news-item" data-title="Senior Designer at OCONNECT" data-date="02/06/2020~31/08/2023" data-description="Contributed to a student startup focusing on creating an Easy-Insert Socket OneStep. Achieved recognition in R&D PRJ at Didimdol R&D start-up growth technology in 2022 and won the James Dyson Award '22 KR Ulsan Collegiate Startup Competition." data-detail="" data-thumbnail="">
+            <div class="news-thumbnail" style="background-image: url('');"></div>
+            <div class="news-content">
+                <p class="news-title">Senior Designer at OCONNECT</p>
+                <p class="news-date">Jun 2, 2020</p>
+                <p class="news-description">Contributed to a student startup focusing on creating an Easy-Insert Socket OneStep. Achieved recognition in R&D PRJ at Didimdol R&D start-up growth technology in 2022 and won the James Dyson Award '22 KR Ulsan Collegiate Startup Competition.</p>
+            </div>
+        </li>
+        
+        <li class="news-item" data-title="ML Engineer at Nota Inc." data-date="02/03/2023~31/08/2023" data-description="Pleased to be working as a Machine Learning Engineer Intern at ITS Team of <a href='https://nota.ai'>Nota Inc.</a>" data-detail="" data-thumbnail="">
+            <div class="news-thumbnail" style="background-image: url('');"></div>
+            <div class="news-content">
+                <p class="news-title">ML Engineer at Nota Inc.</p>
+                <p class="news-date">Mar 2, 2023</p>
+                <p class="news-description">Pleased to be working as a Machine Learning Engineer Intern at ITS Team of <a href='https://nota.ai'>Nota Inc.</a></p>
+            </div>
+        </li>
+        
+        <li class="news-item" data-title="Top 16% @ Samsung AI Challenge" data-date="02/03/2023~31/08/2023" data-description="Camera-Invariant Domain Adaptation Challenge" data-detail="" data-thumbnail="">
+            <div class="news-thumbnail" style="background-image: url('');"></div>
+            <div class="news-content">
+                <p class="news-title">Top 16% @ Samsung AI Challenge</p>
+                <p class="news-date">Mar 2, 2023</p>
+                <p class="news-description">Camera-Invariant Domain Adaptation Challenge</p>
+            </div>
+        </li>
+        
+        <li class="news-item" data-title="Undergraduate Researcher @ BI Lab, Seoul Nat'l U." data-date="02/03/2023~31/08/2023" data-description="Research Assistant" data-detail="" data-thumbnail="">
+            <div class="news-thumbnail" style="background-image: url('');"></div>
+            <div class="news-content">
+                <p class="news-title">Undergraduate Researcher @ BI Lab, Seoul Nat'l U.</p>
+                <p class="news-date">Mar 2, 2023</p>
+                <p class="news-description">Research Assistant</p>
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+<div class="popup-background">
+    <div class="popup-content">
+        <span class="popup-close">X</span>
+        <h2 id="popup-title"></h2>
+        <p id="popup-date"></p>
+        <img id="popup-thumbnail" style="max-width: 100%;" />
+        <p id="popup-description"></p>
+        <div id="popup-detail"></div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var toggleBtn = document.getElementById('toggleView');
+    var newsList = document.querySelector('.news-list');
+    var popupBackground = document.querySelector('.popup-background');
+    var popupContent = document.querySelector('.popup-content');
+
+    // 뷰 전환 버튼
+    toggleBtn.addEventListener('click', function() {
+        if (newsList.classList.contains('frame-view')) {
+            newsList.classList.remove('frame-view');
+            newsList.classList.add('list-view');
+            toggleBtn.textContent = 'Switch to Frame View';
+        } else {
+            newsList.classList.remove('list-view');
+            newsList.classList.add('frame-view');
+            toggleBtn.textContent = 'Switch to List View';
+        }
+    });
+
+    // 뉴스 아이템 클릭 이벤트
+    newsList.addEventListener('click', function(e) {
+        if (e.target.closest('.news-item')) {
+            var item = e.target.closest('.news-item');
+            document.getElementById('popup-title').textContent = item.getAttribute('data-title');
+            document.getElementById('popup-date').textContent = item.getAttribute('data-date');
+            document.getElementById('popup-description').textContent = item.getAttribute('data-description');
+            document.getElementById('popup-detail').innerHTML = item.getAttribute('data-detail');
+            document.getElementById('popup-thumbnail').src = item.getAttribute('data-thumbnail');
+            popupBackground.style.display = 'block';
+        }
+    });
+
+    // 팝업 닫기
+    document.querySelector('.popup-close').addEventListener('click', function() {
+        popupBackground.style.display = 'none';
+    });
+
+    // ESC 키로 팝업 닫기
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            popupBackground.style.display = 'none';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
       </div>
     </main><footer>
   <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">

@@ -1,9 +1,45 @@
 list: # format date as dd/mm/yyyy
-  - title: "Spring & Summer internship at Nota Inc"
-    date: "02/03/2023~31/08/2023" # Oct 21, 2021
+  - title: "Undergraduate Researcher @ BI Lab, Seoul Nat'l U."
+    date: "02/03/2023~31/08/2023" # Mar 02 ~ Aug 31, 2023
+    description: "Research Assistant"
+    # detail:
+    # thumbnail:
+  
+  - title: "Top 16% @ Samsung AI Challenge"
+    date: "02/03/2023~31/08/2023" # Mar 02 ~ Aug 31, 2023
+    description: "Camera-Invariant Domain Adaptation Challenge"
+  
+  - title: "ML Engineer at Nota Inc."
+    date: "02/03/2023~31/08/2023" # Mar 02 ~ Aug 31, 2023
     description: "Pleased to be working as a Machine Learning Engineer Intern at ITS Team of <a href='https://nota.ai'>Nota Inc.</a>"
   
   #강서구 데이터 공모전
-  - title: "Winner "
-    date: "13/01/2023" # Oct 21, 2021
-    description: "Gangseo"
+  - title: "Grand Prize in Gangseo-gu Data Competition"
+    date: "13/05/2023" # May 13, 2023
+    description: "Awarded the Grand Prize for developing a Risk Rating Model for Small Business Owners in Gangseo-gu using the Credit Rating Model. This project was awarded by the Mayor of Gangseo-gu Office."
+
+  # [LG Aimers]
+  - title: LG Aimers Finalist @ LG AI Research 
+    date: "31/03/2023"
+    description: Finalist in Phase 3 Online Hackathon for Smart Factory Product Quality Status Classification AI Online Hackathon with LG Aimers.
+    
+  # [Bigcontest]
+  - title: "Winner of BIGCONTEST Data Analytics Innovation League 2022"
+    date: "23/12/2022"
+    description: Received the Grand Prize (Runner-Up) for the project on Carbon Footprint Calculator & Eco-friendly JEJU travel route Recommender System, showing a deep commitment to environmental sustainability and data-driven solutions.
+
+  # [OCNT]
+  - title: Senior Designer at OCONNECT
+    date: "02/06/2020~31/08/2023"
+    description: Contributed to a student startup focusing on creating an Easy-Insert Socket OneStep. Achieved recognition in R&D PRJ at Didimdol R&D start-up growth technology in 2022 and won the James Dyson Award '22 KR Ulsan Collegiate Startup Competition.
+  
+
+
+
+
+  # # [양식]
+  # - title: 
+  #   date: 
+  #   description: 
+
+  
