@@ -31,3 +31,4 @@ collections:
     output: true
 
 theme: minima
+markdown: kramdown

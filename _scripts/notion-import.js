@@ -85,6 +85,7 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 layout: post
 date: ${date}
 title: "${title}"${fmtags}${fmcats}
+use_math: true
 ---
 
 `;
