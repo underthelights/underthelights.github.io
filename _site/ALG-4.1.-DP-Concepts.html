@@ -261,7 +261,7 @@
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="toc">
     <a href="#">&lt;On the Top&gt;</a>
-    <ul><li><a href="#421-top-down-approach">4.2.1. Top Down Approach</a></li><li><a href="#422-bottom-up-approach">4.2.2. Bottom Up Approach</a></li><li><a href="#423-examples">4.2.3. Examples</a><ul><li><a href="#4231-ex1-world-series-odds">4.2.3.1. [ex1] World Series Odds</a></li><li><a href="#4232-worse-a-divide-and-conquer-approach">4.2.3.2. [Worse] A Divide-and-Conquer Approach</a></li><li><a href="#4323-better-a-dynamic-programming-approach">4.3.2.3. [Better] A Dynamic Programming Approach</a></li></ul></li><li><a href="#441-optimal-substructurewiki">4.4.1. Optimal Substructure <a href="https://en.wikipedia.org/wiki/Optimal_substructure">(wiki)</a></a></li><li><a href="#442-overlapping-subproblemswiki">4.4.2. Overlapping Subproblems <a href="https://en.wikipedia.org/wiki/Overlapping_subproblems">(wiki)</a></a></li><li><a href="#443-the-checkerboard-problem">4.4.3. The Checkerboard Problem</a></li></ul>
+    <ul><li><a href="#alg-42-approaches-for-recursive-formulation-1">[ALG] 4.2. Approaches for Recursive Formulation (1)</a><ul><li><a href="#421-top-down-approach">4.2.1. Top Down Approach</a></li><li><a href="#422-bottom-up-approach">4.2.2. Bottom Up Approach</a></li><li><a href="#423-examples">4.2.3. Examples</a><ul><li><a href="#4231-ex1-world-series-odds">4.2.3.1. [ex1] World Series Odds</a></li><li><a href="#4232-worse-a-divide-and-conquer-approach">4.2.3.2. [Worse] A Divide-and-Conquer Approach</a></li><li><a href="#4323-better-a-dynamic-programming-approach">4.3.2.3. [Better] A Dynamic Programming Approach</a></li></ul></li></ul></li><li><a href="#alg-43-concepts-of-dynamic-programming-1">[ALG] 4.3. Concepts of Dynamic Programming (1)</a></li><li><a href="#dynamic-programming">Dynamic Programming</a></li><li><a href="#application-of-dp">Application of DP</a></li><li><a href="#431-the-manhattan-tourist-problem">4.3.1. The Manhattan Tourist Problem</a></li><li><a href="#432-chained-matrix-multiplication">4.3.2. Chained Matrix Multiplication</a></li><li><a href="#433-dynamic-programming-approach">4.3.3. Dynamic programming approach</a></li><li><a href="#alg-44-principles-of-dynamic-programming-1">[ALG] 4.4. Principles of Dynamic Programming (1)</a></li><li><a href="#44-principles-of-dynamic-programming">4.4. Principles of Dynamic Programming</a><ul><li><a href="#441-optimal-substructurewiki">4.4.1. Optimal Substructure <a href="https://en.wikipedia.org/wiki/Optimal_substructure">(wiki)</a></a></li><li><a href="#442-overlapping-subproblemswiki">4.4.2. Overlapping Subproblems <a href="https://en.wikipedia.org/wiki/Overlapping_subproblems">(wiki)</a></a></li><li><a href="#443-the-checkerboard-problem">4.4.3. The Checkerboard Problem</a></li></ul></li></ul>
 
   </div>
 
@@ -338,6 +338,8 @@
 
 <p>→ 문제 몇개 풀어보고, 이 고상한 말들이 별 것 아닌 자연스러운 원리임을 체득하자!</p>
 
+<h1 id="alg-42-approaches-for-recursive-formulation-1">[ALG] 4.2. Approaches for Recursive Formulation (1)</h1>
+
 <p>Two Approaches for Recursive Formulation</p>
 
 <ul>
@@ -351,21 +353,45 @@
   <li>$T(i,j) = T(i-1,j) + T(i, j-1) + C \cdot (2i + j), i,j \geq 1$</li>
   <li>$T(i,0) = T(0,j) = 1$ for $i,j≥0$</li>
   <li>recursive하게 똑같이 문제 두개를 푼다 : 빨간 것 하나, 녹색 하나. 그리고 그 결과를 combine하여 원래 문제를 푼다. 문제가 겹치는게 보인다.
-undefined- Easily becomes exponential!
-undefined
-recursive function call : 내려갔다 올라갔다 depth first search하다가 하염없이 돌아오는 것을 의미한다.</li>
+    <ul>
+      <li>divide and conquer : 상당히 많이 overlap됨을 확인할 수 있다.</li>
+      <li>undefined- Easily becomes exponential!</li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/0.png" alt="0" /></p>
+  </li>
 </ul>
+
+<p>recursive function call : 내려갔다 올라갔다 depth first search하다가 하염없이 돌아오는 것을 의미한다.</p>
 
 <h2 id="422-bottom-up-approach">4.2.2. Bottom Up Approach</h2>
 
 <ul>
   <li>$T(i,j) = T(i-1,j) + T(i, j-1) + C \cdot (2i + j), i,j≥1$</li>
   <li>$T(i,0) = T(0,j) = 1$ for $i,j \geq 0$</li>
-  <li>Often much more efficient!
-undefined- 그러나 bottom up은 Top Down과 대비하여 쭉 쭉 쭉 한 줄로 내려가며 잘 풀리게 된다.
-undefined- Bottom up vs. Top down 공통: 둘다 어떤 문제가 재귀적인, recursive한 형태로 문제가 풀리게 된다.
-undefined- 몇 개 안 되는 것을 풀면 되는데, 똑같은것을 반복적으로 보나?
-undefined- 아무리 부정하려고 하더라도 인정할 수밖에 없는 원리.</li>
+  <li>
+    <p>Often much more efficient!</p>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/1.png" alt="1" /></p>
+  </li>
+  <li>그러나 bottom up은 Top Down과 대비하여 쭉 쭉 쭉 한 줄로 내려가며 잘 풀리게 된다.
+    <ul>
+      <li>bottom up으로 올라오면서, 그리고 모든 경우에 divide n conquer에 비효율적이고 dp가 효율적인건 아니다.</li>
+    </ul>
+  </li>
+  <li>Bottom up vs. Top down 공통: 둘다 어떤 문제가 재귀적인, recursive한 형태로 문제가 풀리게 된다.
+    <ul>
+      <li>작게 똑같이 풀어서 합치자 : recursion 한 solution이 나타나게 된다</li>
+      <li>solution을 만드는데 재귀적으로 나타난다.</li>
+    </ul>
+  </li>
+  <li>몇 개 안 되는 것을 풀면 되는데, 똑같은것을 반복적으로 보나?
+    <ul>
+      <li>이를 계산하는 프로그램: 이를 풀기 위해서 필요한 것은 왼쪽 하부, 오른쪽 하부</li>
+      <li>거꾸로 생각해보면 : 왼쪽 아래 + 오른쪽 아래 활용해서 그 위 가운데 노드를 구할 수 있다. (아래에서 위로)</li>
+    </ul>
+  </li>
+  <li>아무리 부정하려고 하더라도 인정할 수밖에 없는 원리.</li>
 </ul>
 
 <h2 id="423-examples">4.2.3. Examples</h2>
@@ -374,44 +400,151 @@ undefined- 아무리 부정하려고 하더라도 인정할 수밖에 없는 원
 
 <ul>
   <li>Problem
-undefined
-<img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/0.png" alt="0" /></li>
+    <ul>
+      <li>Dodgers and Yankees are playing the World Series in which either team needs to win <em>n</em> games first.</li>
+      <li>Suppose that each team has a $50%$ % chance of winning any game.</li>
+      <li>Let <em>P</em>(<em>i</em>,<em>j</em>) be the probability that if Dodgers needs <em>i</em> games to win, and Yankees needs <em>j</em> games, Dodgers will eventually win the Series.
+        <ul>
+          <li>i번을 더 이겨야 다저스는 우승할 수 있구 양키스는 세번 이기는데 이 때 다져스기 우승할 확률은
+  ?</li>
+        </ul>
+      </li>
+      <li>Ex: $P(2, 3) = \frac {11}{16}$야
+        <ul>
+          <li>키스는 두번, 다저스는 3번</li>
+        </ul>
+      </li>
+      <li>
+        <p>Compute $P(i,j) 0≤i,j≤n ∀n$</p>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/2.png" alt="2" /></p>
+
+        <ul>
+          <li>임의의 n에 대해서 확률을 계산하라 : 그림을 보고, recursion 구조가 떠오르는가?
+            <ul>
+              <li>문제 사이즈 $( i,j) = (i-1,j) + (i, j-1)$</li>
+              <li>0.5, 0.5 : dodgers이거나 yankees인데 dodgers가 이기면 $(i-1,j)$</li>
+              <li>조건부 확률 : $P(i,j) = 0.5 P(i-1,j) + 0.5P(i, j-1)$ rl기본적인수식</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
+
+<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/3.png" alt="3" /></p>
 
 <h3 id="4232-worse-a-divide-and-conquer-approach">4.2.3.2. [Worse] A Divide-and-Conquer Approach</h3>
 
 <ul>
   <li>Recursive formulation
-undefined- overlap subproblem : overlapping하지 않으면서 size가 줄었던 dnc와 달리 overlapping된다. 굉장히 안 좋은 상황. 그래서 이를 recursive fn call 함수를 짜서 $P(100,100), P(50,50)$짜보라
-undefined- If we solve this recurrence relation in the divide-and-conquer way,
-undefined- What is the problem of this approach?</li>
+    <ul>
+      <li>$P(i,j) =1 if i=0,j&gt;0$</li>
+      <li>$P(i,j) =0 if i=0,j=0$</li>
+      <li>
+        <p>$P(i,j)= \frac{P(i-1,j)+P(i,j-1)}{2}=2P(i−1,j)+P(i,j−1)$</p>
+
+        <p>if $i&gt;0, j&gt;0$</p>
+      </li>
+    </ul>
+  </li>
+  <li>overlap subproblem : overlapping하지 않으면서 size가 줄었던 dnc와 달리 overlapping된다. 굉장히 안 좋은 상황. 그래서 이를 recursive fn call 함수를 짜서 $P(100,100), P(50,50)$짜보라
+    <ul>
+      <li>→ 사실 돌려지지도 않는다. 시간이 너무 걸려 컴퓨터가 죽어버린다.</li>
+    </ul>
+  </li>
+  <li>If we solve this recurrence relation in the divide-and-conquer way,
+    <ul>
+      <li>Let <em>T</em>(<em>n</em>) be the maximum time taken by a call to <em>P</em>(<em>i</em>),where <em>i</em>+<em>j</em> =<em>n</em>.</li>
+      <li>Then we can prove that <em>T</em>(<em>n</em>) is exponential!</li>
+      <li>$T(1)=1, T(n) = 2T(n-1) + c \rightarrow O(2^n)$</li>
+    </ul>
+  </li>
+  <li>What is the problem of this approach?</li>
 </ul>
 
-<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/1.png" alt="1" /></p>
+<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/4.png" alt="4" /></p>
 
 <h3 id="4323-better-a-dynamic-programming-approach">4.3.2.3. [Better] A Dynamic Programming Approach</h3>
 
 <ul>
   <li>핵심 개념 Table
-undefined- $T(4,4) $: table setup 후 이를 채워나가서 (fill)
-undefined- 한칸 여펴 왼쪽에 있는 애와, 한칸 아래 밑쪽에 잇는 애를 통해 계싼할 수 있다.</li>
+    <ul>
+      <li>1D, 2D, 3D</li>
+    </ul>
+  </li>
+  <li>$T(4,4) $: table setup 후 이를 채워나가서 (fill)
+    <ul>
+      <li>단ㄷ순하게 생각하면 2 중 for loop 활용하여 진행한다.</li>
+      <li>0,0은 양쪽 다 우승한 것이기에 고려할 필요 없다.</li>
+    </ul>
+  </li>
+  <li>한칸 여펴 왼쪽에 있는 애와, 한칸 아래 밑쪽에 잇는 애를 통해 계싼할 수 있다.</li>
   <li>$P(i,j) = 1 $ if $i=0, j&gt;0$</li>
   <li>$P(i,j) = 0$ if $i&gt;0, j=0$</li>
   <li>$P(i,j) = \frac{P(i-1,j) + P(i, j-1)}{2}$ if $i&gt;0, j&gt;0$</li>
-  <li>
-    <p>fill 하는 방식
-undefined- $T(n,n) = O(n^2)$d임을 바로 확인해야한다.
-undefined- Instead of computing the same repeatedly, fill in a table as suggested below:
-undefined- Time Complexity
-undefinedundefined
-<img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/2.png" alt="2" /></p>
+  <li>fill 하는 방식
+    <ul>
+      <li>좌→우 (밑에서 위로): 가능</li>
+      <li>밑→위 (좌에서 위로) : 가능</li>
+      <li>기존의 플로우는 대각선 우상향이기때문에 가능!</li>
+      <li>기교를 부리고 싶으면 ㄹor loop을 복잡하게 해서 구현할 순 있다.
+        <ul>
+          <li>그러나 단순하면서 잘 작동하는것이 더 중요하다.</li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>DP 문제를 푸는데 이러한 recursive structure가 존재하고, 이를 divide and conquer 로 top down으로 풀어야 한다면 overlapping subproblem의 문제가발생한다.
-undefined- 각각의 subproblem
-undefined
-    <h1 id="dynamic-programming">Dynamic Programming</h1>
+  <li>$T(n,n) = O(n^2)$d임을 바로 확인해야한다.
+    <ul>
+      <li>table 원소가 가로 n, 세로 n일 때</li>
+      <li>n+1, n+1개가 있고</li>
+      <li>상수시간이므로 시간 복잡도는 n자승이 된다. → 시간복잡도는</li>
+    </ul>
+  </li>
+  <li>Instead of computing the same repeatedly, fill in a table as suggested below:
+    <ul>
+      <li>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/5.png" alt="5" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Time Complexity
+    <ul>
+      <li>For input size $(m, n)$, computing $P(m, n)$ takes $O(mn)$-time.</li>
+      <li>
+        <p>By far better than the Divide-and-Conquer approach.</p>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/6.png" alt="6" /></p>
+      </li>
+    </ul>
   </li>
 </ul>
+
+<p>undefined
+<img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/7.png" alt="7" /></p>
+
+<ul>
+  <li>DP 문제를 푸는데 이러한 recursive structure가 존재하고, 이를 divide and conquer 로 top down으로 풀어야 한다면 overlapping subproblem의 문제가발생한다.
+    <ul>
+      <li>상당한 양의 문제가 있다 : divide and conquer로 가지 말고 dp로 가는건 어떨까?</li>
+      <li>어떤 문제를 subproblem을 통해 recursive하게 풀려 하는데 문제가 어떻게 풀리더라: dnc가 아니라 bottom up 방식으로 풀도록 생각하고</li>
+      <li>table을 1차-3ㅏ차원으로 구성하고, 초기화하고, 일반화된 공식으로부터 fill 하느 방식을 알아 원소를 채워 나간다</li>
+    </ul>
+  </li>
+  <li>각각의 subproblem
+    <ul>
+      <li>문제를 각각 한 번씩만 푼다 : bottom up 방식으로 table을 채워나가서 목적을 달성하는 것 : DP의 시작과 끝이다</li>
+      <li>overlapping substructure 등 복잡한 거 생각할 필요 없이, 이것이 전부!</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="alg-43-concepts-of-dynamic-programming-1">[ALG] 4.3. Concepts of Dynamic Programming (1)</h1>
+
+<h1 id="dynamic-programming">Dynamic Programming</h1>
 
 <blockquote>
   <p>Top-down → Bottom-up</p>
@@ -419,124 +552,634 @@ undefined
 
 <ul>
   <li>When the <strong>divide-and-conquer</strong> approach produces an <strong>exponential algorithm</strong> where <strong>the same sub-problems are solved iteratively</strong>,
-undefined- master theorem과도 연계
-undefined- Three elements to consider in designing a dynamic programming algorithm
-undefined- [Neapolitan] DP Procedure
-undefined
-    <h1 id="application-of-dp">Application of DP</h1>
+    <ul>
+      <li>Take the recursive relation from the divide-and-conquer algorithm, and</li>
+      <li>replace <strong>the recursive calls with table lookups</strong> by recording a value in a table entry instead of returning it.</li>
+    </ul>
+  </li>
+  <li>master theorem과도 연계
+    <ul>
+      <li>overlapping 나쁜거 (a&gt;c)</li>
+    </ul>
+  </li>
+  <li>Three elements to consider in designing a dynamic programming algorithm
+    <ul>
+      <li>Recursive relation
+        <ul>
+          <li>Optimal substructure</li>
+        </ul>
+      </li>
+      <li>Table setup</li>
+      <li>Table fill order</li>
+      <li>$B(i,j)=B(i-1,j-1) + B(i-1,j)$ if $0&lt;j&lt;i$</li>
+      <li>$B(i,j)=1$ if $j=0$ or $j=i$</li>
+    </ul>
+  </li>
+  <li>[Neapolitan] DP Procedure
+    <ul>
+      <li>input case에 대해 solution을 계산하는 recursive property 세우기</li>
+      <li>작은 input case부터 먼저 해결하는 bottom up을 통한 전체 Input에 대해 Solution 구축</li>
+    </ul>
   </li>
 </ul>
+
+<h1 id="application-of-dp">Application of DP</h1>
 
 <h1 id="431-the-manhattan-tourist-problem">4.3.1. The Manhattan Tourist Problem</h1>
 
 <ul>
-  <li>Courtesy of [Jones &amp; Pevzner 6.3]
-undefined- Problem:
-undefined
-    <blockquote>
-      <p>🏝️ 어떻게 하면 많은 관광지를을 최대로 방문할 수 있겠는가?</p>
-    </blockquote>
+  <li>
+    <p>Courtesy of [Jones &amp; Pevzner 6.3]</p>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/8.png" alt="8" /></p>
   </li>
-  <li>(1) A <u>brute force</u> approach
-undefined- (2) A greedy approach
-undefined- <u>A formal description of this problem</u>
-undefined- 원래 문제에 대해서 두 개의 subproblem 으로 푸는 것
-undefined- 경로는 달라도 길이는 같은 longest path는 존재할 수 있다.
-undefined- 생각의 흐름
-undefined- solution : DP (bottom up)
-undefined- divide and conquer의 overlapping subproblem으로 상당히 매칭
-undefined- An example grid of size (4,4)
-undefined- shortest path가 아닌 longest path 문제
-undefined- A possible selection determined by a greedy approach</li>
+  <li>
+    <p>Problem:</p>
+    <ul>
+      <li>Given two street corners in the borough of Manhattan in New York City, find the path between them with the maximum number of attractions, that is, a path of maximum overall weight.</li>
+      <li>Assume that a tourist may <u>**move either to east or to south only**</u></li>
+    </ul>
+  </li>
 </ul>
 
-<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/3.png" alt="3" /></p>
+<blockquote>
+  <p>🏝️ 어떻게 하면 많은 관광지를을 최대로 방문할 수 있겠는가?</p>
+</blockquote>
 
 <ul>
+  <li>(1) A <u>brute force</u> approach
+    <ul>
+      <li>모든 경로 다 따져보기 : 몇개 나올까? 각각 n, m칸이라고 할때(세로, 가로)
+        <ul>
+          <li>이를 따져보면 : $2^n, 2^m, n!, m!$이 나온다 → 모든 경우를 따지면 exponential, factorial time이 나오기에 풀 수 없다.</li>
+        </ul>
+      </li>
+      <li>Search among all paths in the grid for the longest path!</li>
+      <li>n이 조금 커도 알 수 있다.</li>
+    </ul>
+  </li>
+  <li>(2) A greedy approach
+    <ul>
+      <li>다음 강의 주제</li>
+    </ul>
+  </li>
+  <li><u>A formal description of this problem</u>
+    <ul>
+      <li>Given a weighted graph (grid) <em>G</em> of size (<em>n</em>,<em>m</em>) with two distinguished vertices, a source (0,0) and a sink (<em>n</em>,<em>m</em>), <u>**find a longest path between them**</u> in its weighted graph. (0,0)
+        <ul>
+          <li>find ‘a’ : 하나만 찾기</li>
+        </ul>
+      </li>
+      <li>graph : vertex-vertex 간 관계를 나타내주는 edge로 edge는 directional/nondirectional일 수 있다
+        <ul>
+          <li>undirected / directed edge : arc
+            <ul>
+              <li>directed graph : digraph</li>
+              <li>edge에 방향성이 있는가 없는가는 vertex 관계를 나타낸다.</li>
+              <li>directed : ex. a는 b를 좋아하고, b는 c를 좋아하고,, : 방향성 존재</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>weighted : 각 edge에 값이 잇는경우</li>
+      <li>→ weighted digraph</li>
+    </ul>
+  </li>
   <li>
-    <p><u>**Basic idea**</u>
-undefined
-<img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/4.png" alt="4" /></p>
+    <p>원래 문제에 대해서 두 개의 subproblem 으로 푸는 것</p>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/9.png" alt="9" /></p>
   </li>
-  <li>Optimal substructure : $S_{n,m} =?$
-undefined
-    <blockquote>
-      <p>💡 Induction, Base step에 관한 것들도 정확하게 기술해주어야 함.</p>
-    </blockquote>
+  <li>경로는 달라도 길이는 같은 longest path는 존재할 수 있다.
+    <ul>
+      <li>둘중에 하나로 출발하거나 도착함
+        <ul>
+          <li>1) 아래로 출발하거나</li>
+          <li>2) 오른쪽으로 출발하거나</li>
+        </ul>
+      </li>
+      <li>알고리즘을 어떻게 생각해냈을까에 대하여 접근해보자!</li>
+      <li>둘 중에 하나인데, 오른쪽에서 오는 것이 최종 longest path라면
+        <ul>
+          <li>(4,4) 까지 이르는 방법에는 (4,3) - (3,4)이므로 각각에 대한 ㅣongest path를 구해보면 된다</li>
+          <li>→ divide and conquer로 풀이</li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>Table setup and fill
-undefined- Pseudocode
-undefined- Given a (<em>n</em>,<em>m</em>) grid, what is the time complexity T(n, m)?
-undefined- So far, we have found the <strong>cost of the longest path</strong> from source to each vertex in the grid.</li>
-  <li>길이가 34인 longest path는 어떻게 출력할 수 있을까?
-undefined- Time complexity
-undefined- Then, how can you print out the <strong>actual optimal path</strong> from source to sink?
-undefined
-    <h1 id="432-chained-matrix-multiplication">4.3.2. Chained Matrix Multiplication</h1>
+  <li>생각의 흐름
+    <ul>
+      <li>divide and conquer를 썼을 때, overlapping subproblem을 활용햇기에 worse 됨</li>
+      <li>recursive top-down 이면 똑같은 식으로 (4,2) 혹은 (3,3)의 형태의 longest path를 찾아야 한다</li>
+      <li>→ 심각해지는 overlapping problem</li>
+    </ul>
+  </li>
+  <li>solution : DP (bottom up)
+    <ul>
+      <li>0,0 에서 4,3 에 이르기까지의 문제를 한 번씩만 풀고 밑에서부터 위로 올라가자.</li>
+    </ul>
+  </li>
+  <li>divide and conquer의 overlapping subproblem으로 상당히 매칭
+    <ul>
+      <li>top down: overlapping subproblem → 상당히 많이 겹치는 포인트</li>
+      <li>bottom up : 서로 서로를 계싼하며 결괏값 산출</li>
+    </ul>
+  </li>
+  <li>An example grid of size (4,4)
+    <ul>
+      <li>
+        <p>GRID : 특수한 형태의 격자처럼 생긴 graph</p>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/10.png" alt="10" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>shortest path가 아닌 longest path 문제
+    <ul>
+      <li>DP 문제와 어떤 관계가 있을까?</li>
+      <li>recursive solution이 보이는가?</li>
+    </ul>
+  </li>
+  <li>A possible selection determined by a greedy approach</li>
+</ul>
+
+<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/11.png" alt="11" /></p>
+
+<ul>
+  <li><u>**Basic idea**</u>
+    <ul>
+      <li>How can you use the solutions of smaller problems to build a solution of a problem?
+        <ul>
+          <li>
+
+            <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/12.png" alt="12" /></p>
+          </li>
+        </ul>
+      </li>
+      <li>$s_{i,j} = \max{s_{i-1,j}+ w_{i,j} , }$</li>
+      <li>directed edge = arc</li>
+      <li>위에서 i,j로 내려올 때의 weight,</li>
+      <li>왼쪽에서 i,j로 올 때의 weight</li>
+      <li>A given optimization problem can be constructed efficiently from optimal solutions of its subproblems.
+        <ul>
+          <li>최적화 문제
+            <ul>
+              <li>리턴값을 최대로 해 주는 solution을 찾아라,</li>
+              <li>solution을 극대화해주는/극소화해주는 solution을 찾아라</li>
+            </ul>
+          </li>
+          <li>최적화가 아니나 DP를 활용
+            <ul>
+              <li>다저스 문제 : 최적화 문제가 아니지만 DP를 사용함</li>
+            </ul>
+          </li>
+          <li>최적의 solution을 얻기 위해 문제를 풀어감</li>
+          <li>→ optimal substructure</li>
+        </ul>
+      </li>
+    </ul>
   </li>
 </ul>
+
+<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/13.png" alt="13" /></p>
+
+<ul>
+  <li>Optimal substructure : $S_{n,m} =?$
+    <ol>
+      <li>$i,j \geq 1$
+        <ul>
+          <li>$S_{i,j} = \max(S_{i-1,j}+W({(i-1,j)},{(i,j)}), S_{i,j-1}+W({(i,j-1)},{(i,j)}))$</li>
+        </ul>
+      </li>
+      <li>$i=0, j=1,2,…,n$
+        <ul>
+          <li>$S_{0,j} = S_{0,j-1}+W({(0,j-1)},{(0,j)})$</li>
+        </ul>
+      </li>
+      <li>$j=0, i=1,2,…,m$
+        <ul>
+          <li>$S_{i,0} = S_{i-1,0}+W({(i-1,0)},{(i,0)})$</li>
+        </ul>
+      </li>
+      <li>$i=j=0$
+        <ul>
+          <li>$S_{0,0} = 0$</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<blockquote>
+  <p>💡 Induction, Base step에 관한 것들도 정확하게 기술해주어야 함.</p>
+</blockquote>
+
+<ul>
+  <li>Table setup and fill
+    <ul>
+      <li>맨 위, 맨 옆 line에서는 unique한 path cost가 나옴</li>
+      <li>divide and conquer = top down → 큰 문제부터 작은 문제로 (merge sort : 큰 것을 반으로 반으로 쪼개가며 merge) ↔ DP</li>
+      <li>정보의 흐름 : 내 값을 계산하기 위해서 j 인덱스가 작은 것, i 인덱스가 작은 것을 계산해두면 됨</li>
+      <li>각각의 Node가 subproblem을 나타낸다.</li>
+      <li>어떻게 각각의 원소를 채울 것인가: 한 원소 값을 계산하기 위해서는 나보다 왼쪽에 있는 애와 위쪽에 잇는 애의 값을 알고 있어야 함.</li>
+      <li>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/14.png" alt="14" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Pseudocode
+    <ul>
+      <li>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/15.png" alt="15" /></p>
+
+        <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">MANHATTANTOURIST</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+		
+		
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Given a (<em>n</em>,<em>m</em>) grid, what is the time complexity T(n, m)?
+undefined- So far, we have found the <strong>cost of the longest path</strong> from source to each vertex in the grid.</li>
+  <li>길이가 34인 longest path는 어떻게 출력할 수 있을까?
+    <ul>
+      <li>조금만 더 노력하면 longest path 길이 + 대각선 까지의 거리를 출력할 수 있는 정보를 추출해낼수 있음</li>
+      <li>알고리즘에서 정보를 더 끄집어 낼 수 있는 부분 :
+        <ul>
+          <li>$S_{i,j} = \max(S_{i-1,j}+W({(i-1,j)},{(i,j)}), S_{i,j-1}+W({(i,j-1)},{(i,j)}))$
+            <ul>
+              <li>둘 중에 큰 것을 선택하는 statement</li>
+              <li>왼쩍 것이 더 크다면 → 위에서부터 내려온 것</li>
+              <li>오른쪽 것이 더 크다면 → 왼쪽에서 내려온 것</li>
+            </ul>
+          </li>
+          <li>optimal substructure와 연관
+            <ul>
+              <li>나의 optimal solution은 나보다 작은 subproblem들의 optimal solution을 통해 출력</li>
+              <li>거기서로부터 수식이 나타난다:이를 program화하여 각 table 원소를 계산할 때 선택됨에 따라서 각 또 다른 table 하나를 기록해두면 +1, -1 등을 줄줄 쫓아가면 됨</li>
+            </ul>
+          </li>
+          <li>recursion : 굉장히 compact하게 표현해주는 좋은 방식
+            <ul>
+              <li>물론 overlapping subproblem의 경우 개념을 compact하게 햐해주지만 조심하면서 써야지 안 복잡해짐</li>
+            </ul>
+          </li>
+          <li>최종 것까지 가는 길 : (-1→ 1) + (이전 노드까지의 최단거리)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Time complexity
+    <ul>
+      <li>Input size (m,n)</li>
+      <li>Time Complexity : O(mn)
+        <ul>
+          <li>각 노드마다 계산하는데 걸리는 상수시간</li>
+          <li>node의 복잡도가 시간 복잡도</li>
+        </ul>
+      </li>
+      <li>Space Complexity : O(mn)
+        <ul>
+          <li>50.50으로 divide and conquer하면, 과연 실행의 끝을 볼 수 있을가 모르겠다!</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Then, how can you print out the <strong>actual optimal path</strong> from source to sink?
+undefined
+      <img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/16.png" alt="16" /></li>
+</ul>
+
+<h1 id="432-chained-matrix-multiplication">4.3.2. Chained Matrix Multiplication</h1>
 
 <p>[Neapolitan 3.4] dp의 대표적인 문제</p>
 
 <ul>
-  <li>
-    <p>In general, to multiply an <em>a</em> x <em>b</em> matrix with a <em>b</em> x <em>c</em> matrix using the standard method, it is necessary to do <em>abc</em> elementary multiplications.
-undefined
-<img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/5.png" alt="5" /></p>
+  <li>In general, to multiply an <em>a</em> x <em>b</em> matrix with a <em>b</em> x <em>c</em> matrix using the standard method, it is necessary to do <em>abc</em> elementary multiplications.
+    <ul>
+      <li>a<em>b, b</em>c 행렬을 곱하면 a<em>c 행렬이 나오는데 가장 단순하게 연산하면 a</em>b*c만큼의 곱셈이 수행</li>
+      <li>matrix multplication
+        <ul>
+          <li>$A_1 \times A_2 \times … \times A_n$
+            <ul>
+              <li>1번, 2번 곱셈, … n-1번 곱 : 누구를 제일 마지막에 연산할것인가?</li>
+              <li>최소비용으로 곱한 다음 곱하는 데 활용된 비용을 더하면 결과 비용
+                <ul>
+                  <li>3번 이전 + 3번 이후</li>
+                </ul>
+              </li>
+              <li>이 중에 제일 작은 것을 선택한다.</li>
+              <li>matrix multiplication에는 결합법칙 성립 : 어떤 것을 먼저 곱해도 상관 없으나 비용이 달라짐</li>
+            </ul>
+          </li>
+          <li>$A_i = d_{i-1} \times d_i$</li>
+        </ul>
+      </li>
+    </ul>
   </li>
-  <li>Problem
-undefined- Examples:  $A_1 (20 \times 2) \cdot A_2 (2 \times 30) \cdot A_3 (30 \times 12) \cdot A_4 (12 \times 8)$해
-undefined- Divide and Conquer, Dynamic Programmping
-undefined- Divide and Conquer → Top-down</li>
-  <li>Dynamic Programming → Bottom-up</li>
-  <li>Recursive : 나랑 같이 생겼는데, 나보다 사이즉 작은 문제를 해결한다.
-undefined- directed graph라고 봤을 때, 최소 횟수로 건너가는 문제
-undefined
-    <h1 id="433-dynamic-programming-approach">4.3.3. Dynamic programming approach</h1>
-  </li>
-  <li>
-    <p>Definition
-undefined- Optimal subtructure
-undefined
-<img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/6.png" alt="6" /></p>
-  </li>
-  <li>Example: $M(2, 7)$
-undefined- M(2,7)
-undefined- Table fill order
-undefined- Time complexity
-undefined- Chained matrix multiplication problem
-undefined- Printing optimal order
-undefined
-→ $O(n)$ time</li>
 </ul>
 
-<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/7.png" alt="7" /></p>
+<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/17.png" alt="17" /></p>
+
+<ul>
+  <li>Problem
+    <ul>
+      <li>Determine the minimum number of elementary multiplications, needed to multiply $n$ matrices where $A_i \in R^{d_{i-1} \times d_i}$</li>
+      <li>optimal substructure를 통해 최적의 solution을 도출</li>
+    </ul>
+  </li>
+  <li>Examples:  $A_1 (20 \times 2) \cdot A_2 (2 \times 30) \cdot A_3 (30 \times 12) \cdot A_4 (12 \times 8)$해
+    <ul>
+      <li>행렬의 곱셈에서는 결합법칙이 성립한다
+        <ul>
+          <li>$(a+b)+c = a+(b+c) $: a+b+c</li>
+          <li>binary operation (이진 연산 : 두 피연산자에 대해 연산하면 한 연ㅅ나)</li>
+          <li>빼기는 결합법칙 성립 x → 어떤 빼기를 먼저 하느냐에 따라 결과 달라짐</li>
+          <li>행렬의 곱셈의 교환법칙 성립 X, 결합법칙은 성립 O</li>
+        </ul>
+      </li>
+      <li>제일 먼저 곱하는 게 몇 번이냐고 생각할 수 있고,</li>
+      <li>최소 횟수를 구하는 것이니 minimization problem : 최소 횟수의 곱셈 → 최적화 문제로 대입</li>
+      <li>어떤 친구를 제일 먼저 곱할 것인가 생각할 수 있다.</li>
+      <li>곱셈을 곱하는 순서 : 곱셈을 순서대로 나열한 것과 동일
+        <ul>
+          <li>최적의 해 : 곱셈의 개수가 작은 것으로 선택할 것이다.</li>
+        </ul>
+      </li>
+      <li>$A_1: 20 \times 2, A_2: 2 \times 30$</li>
+      <li>$A_1(A_2(A_3 A_4)) : 30 \times 12 \times 8 + 2 \times 30 \times 8 + 20 \times 2 \times 8 = 3,680$ multiplications
+        <ul>
+          <li>3, 2, 1</li>
+        </ul>
+      </li>
+      <li>$(A_1 A_2)(A_3 A_4) : = 8,880$ multiplications</li>
+      <li>$A_1((A_2 A_3 )A_4) : = 1,232$ <u>multiplications</u>
+        <ul>
+          <li>2, 3, 1</li>
+        </ul>
+      </li>
+      <li>$((A_1 A_2)A_3 )A_4 := 10,320$ multiplications</li>
+      <li>$(A_1(A_2 A_3 ))A_4 := 3,120$ multiplications</li>
+      <li>The order of multiplication is very important!
+        <ul>
+          <li>$(a \times b) \times c = a \times (b \times c)$</li>
+        </ul>
+      </li>
+      <li>$O((n-1)!)=O(n!)$ : 프로그램 열심히 설계하는 데에는 얼마 안 걸릴지 모르지만 n factorial만큼 기다려야 결과가 나온다
+        <ul>
+          <li>곱셈을 할 수 있는게 $(n-1)!$의 경우의 수인데 이들을 어떻게 분류해서 exponential보다 무시무시한 factorial을 polynomial time으로 변환하여 어떻게 잘 분리해 판단할것인가?</li>
+          <li>분류 방법 : Ex. $A_1 \cdot A_2 \cdot A_3 \cdot A_4 \cdot A_5 \cdot A_6 \cdot A_7$
+            <ul>
+              <li>(1) 어떤 애를 가장 먼저 나눌 것인가
+                <ul>
+                  <li></li>
+                </ul>
+              </li>
+              <li>(2) 어떤 애를 가장 나중에 나누어 곱할 것인가
+                <ul>
+                  <li>최소 곱셈을 하고자 하는데, 만일 제일 마지막에 곱하는 것이라면 앞의 것을 다 곱하고 뒤의 것을 나중에 곱해야 하는데 우리의 목적이 최소 곱셉을 원하는 것이므로 각각의 partition에 대해서 최소 횟수로 곱하게 됨
+                    <ul>
+                      <li>→ 자연스로운 recursive 사고방식</li>
+                    </ul>
+                  </li>
+                  <li>$(A_1 \cdot A_2 \cdot A_3) \cdot (A_4 \cdot A_5 \cdot A_6 \cdot A_7) = A_{13} \cdot A_{37}$</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/18.png" alt="18" /></p>
+  </li>
+  <li>Divide and Conquer, Dynamic Programmping
+    <ul>
+      <li>problem → <u>**recursive structure**</u> → optimal substructure → dynamic programming</li>
+      <li>~를 최대로 해 주는 최적화 문제에 많이 쓰이는 DP</li>
+      <li>최적의 구조 이런 것들이 있을 경우, 경우에 따라서는 divide and conquer가 유리할 수 있다</li>
+      <li>exponential alg이 나오기 때문에 dp를 한 번 써보자.</li>
+    </ul>
+  </li>
+  <li>Divide and Conquer → Top-down</li>
+  <li>Dynamic Programming → Bottom-up</li>
+  <li>Recursive : 나랑 같이 생겼는데, 나보다 사이즉 작은 문제를 해결한다.
+    <ul>
+      <li>작은 문제부터 풀 것인가 (Bottom Up), 큰 문제부터 내려올 것인가 (Top Down)</li>
+    </ul>
+  </li>
+  <li>directed graph라고 봤을 때, 최소 횟수로 건너가는 문제
+    <ul>
+      <li>n에서 1까지의 shortest path 찾는 문제</li>
+      <li>분명 shortest path는 존재하는데, 6→ 5,3,2</li>
+      <li>$P_n = \min{ P_{n-1}, P_{\frac n 2}, P_{\frac n 3}}+1$
+        <ul>
+          <li>if $n\%2 ==0$ → $P_{\frac n 2}$</li>
+          <li>if $n\%3 ==0$ → $P_{\frac n 3}$</li>
+        </ul>
+      </li>
+      <li>나보다 사이즈 작은 것들의 최적의 solution을 찾느다 : optimal substructure</li>
+      <li>문제 사이자 즉은 거부터 값을 계산해본다. 이러한 P_n의 식을 통해서 계산
+        <ul>
+          <li>n을 k로 대치하여 생각</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/19.png" alt="19" /></p>
+  </li>
+</ul>
+
+<h1 id="433-dynamic-programming-approach">4.3.3. Dynamic programming approach</h1>
+
+<ul>
+  <li>Definition
+    <ul>
+      <li>$M(i, j)$
+        <ul>
+          <li>the minimum number of multiplications needed to multiply $A_i$ through $A_j (i \leq j )$</li>
+          <li>랑 같이 행렬 i부터 j까지 최소 횟수를 곱할 때, 그 때 필요한 곱셈의 홋수를 M(i,j)로 정의</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Optimal subtructure
+    <ul>
+      <li>지금까지 본 것이랑 조금 다른 형태의 substructure가 나오더라</li>
+      <li>최적화 문제의 경우 dp 느낑인데 그렇지 않을수도 있더라 : 경우의 수를 따지고 recursive한 개념이 들어가는 경우
+        <ul>
+          <li>i, j가 같으면 곱셈이 필요 없다.</li>
+          <li>i&lt;j이면
+            <ul>
+              <li>i에서 k까지 최소횟수 → $M(i,k) = d_{i-1} \cdot d_k $</li>
+              <li>k에서 j까지 최소횟수 → $M(k+1, j) = d_k \cdot d_j$</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>→ $M(1,n) = ?$</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/20.png" alt="20" /></p>
+
+<ul>
+  <li>Example: $M(2, 7)$
+    <ul>
+      <li>
+        <p>$M(2,7) = \min_{2\leq k \leq 6}{{ M(2,k) + M(k+1,7)+d_1 d_k d_7}}$</p>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/21.png" alt="21" /></p>
+      </li>
+      <li>dp : 작은 문제부터 풀어감</li>
+      <li>table을 만들어서 동일한 subproblem을 딱 한 번만 푸는 것: table을 어떻게 만들 것인가?</li>
+      <li>우리가 필요한 것 : 세로 i, 가로 j → 필요한 subproblem을 다 모아두면, M(i,j)이다. $M(i,j) i\leq j$
+        <ul>
+          <li>대각선 우하향으로 내려갈수록 작은 문제이다</li>
+          <li>table을 어떻게 훑으며 작은 문제에서 큰 문제로 변환할 것인가?</li>
+          <li>optimal substructure의 구조가 어떻게 table을 쫓아갈 것인가 고민해보는 문제</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>M(2,7)
+    <ul>
+      <li>가로로 시작하면 안 됨 : 가로의 M(2,2,) M(2,3) .. 은 다 되지만 세로의 것들은 한번에 못 채우기 때문</li>
+      <li>세로로 시작하면 될까? : 세로로 순서대로 이 식을 활용해 계싼할 것인데 왼쪽의 것들과 밑의 쪽의 것들이 계산될 것 같다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Table fill order</p>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/22.png" alt="22" /></p>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+          <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">g</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">g</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">g</span><span class="o">++</span><span class="p">){</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">g</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                          <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">g</span><span class="p">;</span>
+                          <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">BIG_NUM</span><span class="p">;</span>
+                          <span class="k">for</span> <span class="p">(</span><span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">){</span>
+          		        <span class="k">if</span> <span class="p">((</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">M</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span>
+                             <span class="n">d</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="p">{</span>
+              				        <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+                      				<span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+                          <span class="p">}</span>
+              <span class="p">}</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Time complexity
+    <ul>
+      <li>$n + (n-1) \cdot 1 + (n-2) \cdot 2 + … + (n-(n-1))\cdot (n-1)n+(n−1)⋅1+(n−2)⋅2+…+(n−(n−1))⋅(n−1)\= n + \Sigma_{g=1}^{n-1}{(n-g)g} \= O(n^3)$
+undefined- Chained matrix multiplication problem</li>
+      <li>$O(n^3)$ by Godbole (1973)</li>
+      <li>$O(n^2)$ by Yao (1972)</li>
+      <li>$O(n \log n)$ by Hu and Shing (1982, 1984)</li>
+    </ul>
+  </li>
+  <li>Printing optimal order
+    <ul>
+      <li>$M(2,7) = \min_{2\leq k \leq 6}{{ M(2,k) + M(k+1,7)+d_1 d_k d_7}}$</li>
+    </ul>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">void</span> <span class="nf">order</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span>
+          <span class="n">printf</span><span class="p">(</span><span class="err">“</span><span class="n">A_</span> <span class="o">%</span> <span class="n">d</span><span class="err">”</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+      <span class="k">else</span>
+      <span class="p">{</span>
+          <span class="n">k</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">"("</span><span class="p">);</span>
+          <span class="n">order</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+          <span class="n">order</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">")"</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/23.png" alt="23" /></p>
+  </li>
+</ul>
+
+<p>→ $O(n)$ time</p>
+
+<p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/24.png" alt="24" /></p>
+
+<h1 id="alg-44-principles-of-dynamic-programming-1">[ALG] 4.4. Principles of Dynamic Programming (1)</h1>
 
 <h1 id="44-principles-of-dynamic-programming">4.4. Principles of Dynamic Programming</h1>
 
 <ul>
   <li>$C_{ij}$ = the cost of the shortest path from (0,0) to (<em>i</em>,<em>j</em>)
-undefined- Recursive formulation</li>
+    <ul>
+      <li>각 directed edge에서 shortest path를 찾아라</li>
+      <li>
+        <p>Then $C_{ij} = min {C_{i-1,j} + w_{i-1, j} ^{s},C_{i-1,j-1} + w_{i-1, j-1} ^{se},C_{i,j-1} + w_{i, j-1} ^{e} }$rkr</p>
+
+        <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/25.png" alt="25" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Recursive formulation</li>
   <li>Optimal substructure
-undefined- Overlapping subproblems
-undefined- Bottom-up approach
-undefined- Table Fill-up
-undefined
-    <h2 id="441-optimal-substructurewiki">4.4.1. Optimal Substructure <a href="https://en.wikipedia.org/wiki/Optimal_substructure">(wiki)</a></h2>
+    <ul>
+      <li>나의 최적의 해를 구하기 위해서 나보다 크기가 작은 subproblem들의 optimal solution을 통해서 최적의 해를 구하는 과정을 가능케해주는 구조</li>
+    </ul>
+  </li>
+  <li>Overlapping subproblems
+    <ul>
+      <li>굉장히 안 좋은 형태로 풀이될수 있음(무한 loop)</li>
+      <li>subproblem의 개수는 각 node만큼 있으니가</li>
+    </ul>
+  </li>
+  <li>Bottom-up approach
+    <ul>
+      <li>작은 문제부터 풀자</li>
+    </ul>
+  </li>
+  <li>Table Fill-up
+    <ul>
+      <li>각 node에 대한 최단 거리를 table에 계산해두고 기록되어 있는 것들에 대해 채워가며 수행하자</li>
+    </ul>
   </li>
 </ul>
+
+<h2 id="441-optimal-substructurewiki">4.4.1. Optimal Substructure <a href="https://en.wikipedia.org/wiki/Optimal_substructure">(wiki)</a></h2>
 
 <p>쭉 읽고 아는척 해봐자 !! (dynamic programming)</p>
 
 <ul>
   <li>문제에 대해서 DP를 적용하기 위해서는 optimal substructure를 찾아내야 한다
-undefined- Dynamic programming algorithms are often <strong>used for optimization</strong>.
-undefined- A problem is said to have <strong>optimal substructure</strong>
-undefined- Consequently, the first step towards devising a dynamic programming solution is to check whether the problem exhibits such optimal substructure.
-undefined
-    <h2 id="442-overlapping-subproblemswiki">4.4.2. Overlapping Subproblems <a href="https://en.wikipedia.org/wiki/Overlapping_subproblems">(wiki)</a></h2>
+    <ul>
+      <li>나의 optimal solution을 찾는 구조 : recursion이 들어가 있음</li>
+      <li>recursion을 divide and conquer로 top-down으로 하던가, bottom-up으로 올라가던가</li>
+    </ul>
+  </li>
+  <li>Dynamic programming algorithms are often <strong>used for optimization</strong>.
+    <ul>
+      <li>~를 최대로 해 주는 optimal problem을 푸는 데에 주로 쓰인다</li>
+    </ul>
+  </li>
+  <li>A problem is said to have <strong>optimal substructure</strong>
+    <ul>
+      <li>if a solution to a given optimization problem can be constructed efficiently from optimal solutions of its subproblems.</li>
+    </ul>
+  </li>
+  <li>Consequently, the first step towards devising a dynamic programming solution is to check whether the problem exhibits such optimal substructure.
+    <ul>
+      <li>Such optimal substructures are <strong>usually described by means of recursion</strong>.</li>
+      <li>$C_{ij} = min {C_{i-1,j} + w_{i-1, j} ^{s},C_{i-1,j-1} + w_{i-1, j-1} ^{se},C_{i,j-1} + w_{i, j-1} ^{e} }$</li>
+    </ul>
   </li>
 </ul>
+
+<h2 id="442-overlapping-subproblemswiki">4.4.2. Overlapping Subproblems <a href="https://en.wikipedia.org/wiki/Overlapping_subproblems">(wiki)</a></h2>
 
 <blockquote>
   <p>💡 큰 문제를 푸는데, recursive하게 작은 문제를 계속해서 top down식으로 풀 때 같은 식으로 반복적으로 나오는 경우 : overlapping problem 문제가 심각할 때</p>
@@ -545,10 +1188,41 @@ undefined
 <ul>
   <li>To solve a problem, we often need to <strong>solve different parts of the problem (subproblems), then combine the solutions of the subproblems to reach an overall solution</strong>.</li>
   <li>A problem is said to have <u>**overlapping subproblems**</u> if
-undefined- The dynamic programming approach seeks to <strong>solve each subproblem only once</strong>, thus reducing the number of computations:
-undefined- This approach is <strong>especially useful when the number of repeating subproblems grows exponentially</strong> as a function of the size of the input.</li>
+    <ul>
+      <li>the problem can be broken down into subproblems which are reused several times or</li>
+      <li>a recursive algorithm for the problem solves the same subproblem over and over rather than always generating new subproblems.</li>
+      <li>한 번만 풀고 이를 table에 집어넣어 점차 size를 키워 문제 원래 것을 푸는 방식</li>
+      <li>$C_{ij} = min {C_{i-1,j} + w_{i-1, j} ^{s},C_{i-1,j-1} + w_{i-1, j-1} ^{se},C_{i,j-1} + w_{i, j-1} ^{e} }$</li>
+    </ul>
+  </li>
+  <li>The dynamic programming approach seeks to <strong>solve each subproblem only once</strong>, thus reducing the number of computations:
+    <ul>
+      <li>(i) once the solution to a given subproblem has been computed, it is stored or “<strong>memoized</strong>”:</li>
+      <li>(ii) the next time the same solution is needed, it is simply <strong>looked up</strong>.</li>
+    </ul>
+  </li>
+  <li>This approach is <strong>especially useful when the number of repeating subproblems grows exponentially</strong> as a function of the size of the input.</li>
   <li><strong>If a problem can be solved by combining optimal solutions to non-overlapping sub-problems</strong>, the strategy is called “divide-and- conquer” instead. This is why merge sort and quick sort are not classified as dynamic programming problems.
-undefined- $C_{ij} = min {C_{i-1,j} + w_{i-1, j} ^{s},C_{i-1,j-1} + w_{i-1, j-1} ^{se},C_{i,j-1} + w_{i, j-1} ^{e} }$</li>
+    <ul>
+      <li>overlapping subproblem이 거의 발생하지 않음 : merge sort, selection
+        <ul>
+          <li>merge sort : 큰 문제를 반으로 반으로 나누고 해당 subproblem들이 overlap되지 않음</li>
+          <li>selection : 큰 부분들에 대해서 부분을 선택하고 한 부분은 다른 것과 겹치지 않음</li>
+          <li>quick sort : pivot을 제외한 나머지 부분들은 overlap하지 않음
+            <ul>
+              <li>굳이 DP로도 갈 필요 없이 divide and conquer로 쉬이 풀리게 됨</li>
+              <li>이분법적 사고 지양 :
+                <ul>
+                  <li><u>위에서 아래로 내려가는데 subproblem이 반복적으로 나타나는 경우 exponentially 한 시간 복잡도가 걸릴 수 있기에 이럴 때는 dp를 써라</u></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$C_{ij} = min {C_{i-1,j} + w_{i-1, j} ^{s},C_{i-1,j-1} + w_{i-1, j-1} ^{se},C_{i,j-1} + w_{i, j-1} ^{e} }$</li>
 </ul>
 
 <h2 id="443-the-checkerboard-problem">4.4.3. The Checkerboard Problem</h2>
@@ -558,12 +1232,211 @@ undefined- $C_{ij} = min {C_{i-1,j} + w_{i-1, j} ^{s},C_{i-1,j-1} + w_{i-1, j-1}
 <ul>
   <li>체스판</li>
   <li>Restrictions
-undefined- Cost table $c [i] [j]$
-undefined- Problem
-undefined- Ex. 1 까지의 최소비용 [4][4]
-undefined- Optimal substructure
-undefinedundefined</li>
+    <ul>
+      <li>A checker can start at any square on the first row (i= 1).</li>
+      <li>It can move only diagonally left forward, diagonally right forward, or straight forward.
+        <ul>
+          <li>내려가는 방법 제한 : 남서쪽으로만 내려가던가, 남쪽으로 내려가던가, 남동쪽으로 내려가던가</li>
+        </ul>
+      </li>
+      <li>It must pay the cost <em>c</em>[i] when visiting the (i, j)-position.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Cost table $c [i] [j]$</p>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/26.png" alt="26" /></p>
+  </li>
+  <li>Problem
+    <ul>
+      <li>Given a checkerboard with $n \times n$ squares, and a cost function <code class="language-plaintext highlighter-rouge">c[i][j]</code>, <strong>find the minimum-cost path from the first row to the last row</strong>.</li>
+      <li>내가 어떤 지점을 방문했을 때에는 화살표가 지나간 cost를 summation한 것
+        <ul>
+          <li>가장 길이가 짧은 적은 비용의 path 찾는것이 목표</li>
+        </ul>
+      </li>
+      <li>recursive 구조, optimal substructure을 찾아보자
+        <ul>
+          <li>가장 작게 해주는 minimization problem</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Ex. 1 까지의 최소비용 [4][4]
+    <ul>
+      <li>최소 비용의 path는 셋 중 하나 : 남쪽으로 오거나, 남서쪽에서 오거나, 남동쪽에서 오거나</li>
+      <li>내가 최소 비용을 찾고자 하는 것이니 각각에 이르기까지의 최소 비용 path의 총 비용의 계산
+        <ul>
+          <li>각각 상황에 대한 총 비용을 안다면, ㅐptimal substructure로 어떻게 나타낼까?</li>
+          <li>minimum cost path에 대한 총 비용은 올 수 있는건 세 가지 경로인데 가장 작은 것에다가 이를 선택해서</li>
+          <li>나를 방문할 때 1을 더하면 되더라</li>
+        </ul>
+      </li>
+      <li></li>
+    </ul>
+  </li>
+  <li>Optimal substructure
+    <ul>
+      <li>$q(i,j) = \min { q(i-1, j-1), q(i-1,j), q(i-1, j+1)} + c(i,j)$
+        <ul>
+          <li>$c(i,j)$ :</li>
+          <li>table size는 어떻게 할 것인가 : 각 subproblem마다 원소에 대응되게 table을 잡으면 됨</li>
+          <li>총 비용에 해당하는 q(i,j) : (i,j) 까지 위치 까지의 총 비용 계산
+            <ul>
+              <li>min (남쪽으로 내려오는, 남동쪽, 남서쪽)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>$q(i,j) = c(i,j)$
+        <ul>
+          <li>i=1일 때 : 자기 자신 - 맨 윗줄
+            <ul>
+              <li>그 지점까지 오는 최소 비용은 자기 자신 cost만 지불하면 됨</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>dummy
+        <ul>
+          <li>수학적으로 무한대 값을 설정해 둠</li>
+          <li>이런식으로 설정하고 programming하면 각 끝에 값들에 선택되지 않음</li>
+          <li>사실 수학적으로 쓸 때 필요는 없지만, dummy값을 넣어주는 게 편리
+            <ul>
+              <li>boundary 체크해도 상관은 없지만 각 왼쪽, 오른쪽 끝에서 boundary로부터 오는 값들을 계산하기 곤란함</li>
+            </ul>
+          </li>
+          <li>각 cost table 위치마다 subproblem이 하나 생성됨</li>
+        </ul>
+      </li>
+      <li>table setup &amp; table fill
+        <ul>
+          <li>어떤식으로 loop을 돌면서 할까</li>
+        </ul>
+      </li>
+      <li>(if) 수직으로 for loop를 돌겠다고 하면
+        <ul>
+          <li>남동, 남서로 내려오는 것들에 대해서는 고려하지 못하므로 안됨</li>
+        </ul>
+      </li>
+      <li>(if) 수평으로 for loop를 돌겠다고 하면
+        <ul>
+          <li>특정 원소를 계산하고자 할 때, 나에게 필요한 정보가 미리 준비되어 있음</li>
+          <li>q table이 계산되더라</li>
+        </ul>
+      </li>
+      <li>q table이 계산된 후 할일 : 아무데서나 시작해도 상관없으니 위에서 내려와서 최소비용으로 가게하자
+        <ul>
+          <li>아무데서나 시작해서 가는 minimum cost path</li>
+          <li>→ 8</li>
+        </ul>
+      </li>
+      <li>q table을 계싼함과 동시에 p table 계산
+        <ul>
+          <li>어느 방향에서 왔는지
+            <ul>
+              <li>가장 작은 것을 선택하는 경우</li>
+            </ul>
+          </li>
+          <li>-1 : 북서에서 내려온거다 / 0 : 북에서 내려온거다 / 1 : 북동에서 내려온거다</li>
+        </ul>
+      </li>
+      <li>optimal substructure를 찾은 다음 table을 setup하고 base step 정보를 가지고 initialize하고 table을 적당한 순서로 정리한 다음 적정한 최단 optimal path를 찾는다.</li>
+      <li>이후 table fill을 할 때 table을 하나 잡아서 어떤 node를 선택해서 내려왔음을 표기함 (p table)</li>
+      <li>→ shortest path를 알게 된다.</li>
+    </ul>
+
+    <p><img src="/assets/img/2022-09-28-[ALG]-4.1.-DP---Concepts.md/27.png" alt="27" /></p>
+
+    <ul>
+      <li>나보다 사이즈가 작은 최적의 솔루션들로 표현하는 것</li>
+      <li>code
+        <ul>
+          <li>c/c++는 recursion이 좋은 tool이지만 보편적으로 굉장히 개념을 compact하게 잘 표현해준다.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span>  <span class="cp">#define N 5
+</span>  <span class="cp">#define INFTY 100000
+</span>  <span class="kt">int</span> <span class="n">c</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">N</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">};</span>
+  <span class="kt">int</span> <span class="n">p</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">N</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">N</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+	
+  <span class="kt">int</span> <span class="nf">min3</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="p">...</span>
+  <span class="p">}</span>
+	
+  <span class="kt">void</span> <span class="nf">ComputeCBCosts</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">min</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+          <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">INFTY</span><span class="p">;</span>
+          <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">INFTY</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+          <span class="p">{</span>
+              <span class="n">min</span> <span class="o">=</span> <span class="n">min3</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span>
+         <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+          <span class="p">{</span>
+              <span class="n">min</span> <span class="o">=</span> <span class="n">min3</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span>
+                      <span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
+              <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">min</span> <span class="o">==</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+                  <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+              <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">min</span> <span class="o">==</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+                  <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+              <span class="k">else</span>
+                  <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+	
+  <span class="kt">void</span> <span class="n">PrintShortestPath</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">imin</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">" (%d, %d) &lt;-"</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">imin</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s">" (%d, %d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">imin</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">imin</span><span class="p">]);</span>
+      <span class="k">else</span>
+          <span class="n">PrintShortestPath</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">imin</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">imin</span><span class="p">]);</span>
+  <span class="p">}</span>
+	
+  <span class="kt">void</span> <span class="n">ComputeCBShortestPath</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">imin</span><span class="p">,</span> <span class="n">min</span><span class="p">;</span>
+      <span class="n">ComputeCBCosts</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+      <span class="n">imin</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">min</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">)</span>
+          <span class="p">{</span>
+              <span class="n">imin</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+              <span class="n">min</span> <span class="o">=</span> <span class="n">q</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+          <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">"*** The cost of the shortest path is %d.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">q</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">imin</span><span class="p">]);</span>
+      <span class="n">PrintShortestPath</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">imin</span><span class="p">);</span>
+  <span class="p">}</span>
+	
+  <span class="kt">void</span> <span class="n">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+      <span class="n">n</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+      <span class="n">ComputeCBShortestPath</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
 </ul>
+
 
   </div><a class="u-url" href="/ALG-4.1.-DP-Concepts" hidden></a>
 </article>
