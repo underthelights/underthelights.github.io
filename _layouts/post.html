@@ -1,35 +1,42 @@
 ---
 layout: default
 permalink:
----
+---    
 <style>
-  /* General styling for all headings */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: 'Arial', sans-serif;
-    /* Use a modern font */
-    margin-top: 20px;
-    margin-bottom: 10px;
+    
+      font-family: 'Arial', sans-serif;
+      /* Use a modern font */
+      margin-top: 20px;
+      margin-bottom: 10px;
   }
+  /* 포스트 헤더에 적용되는 여백 제거 */
+  .post-header, h1, h2, h3, h4, h5, h6 {
+      margin-left: 0 !important; 
+      padding-left: 0 !important;
+  }
+
+
   .post-title {
-    font-size: 2em; /* 폰트 크기 증가 */
-    font-weight: bold; /* 볼드체 */
-    color: #333; /* 색상 변경 */
-    /* background-color: #f8f8f8; 배경색 추가 */
-    padding: 10px; /* 배경색과 함께 패딩 추가 */
-    box-shadow: inset 0 -20px 0 #bbb7e8;
-    max-width: max-content;
-  }
+      font-size: 2em; /* 폰트 크기 증가 */
+      font-weight: bold; /* 볼드체 */
+      color: #333; /* 색상 변경 */
+      box-shadow: inset 0 -20px 0 #bbb7e8;
+      max-width: max-content;
+    }
 
   /* Updated styling for h1 */
   h1 {
     font-size: 1.5em;
     /* Increase font size for main titles */
-    color: #333333;
+    box-shadow: inset 0 -10px 0 #bbb7e8;
+    max-width: max-content; 
+    font-weight: bold; /* 볼드체 */
     border-bottom: none;
     /* Remove bottom border */
     padding-bottom: 0;
@@ -38,12 +45,18 @@ permalink:
 
   h2 {
     font-size: 1.2em;
-    color: #4a4a4a;
+    margin-left: none;
+    font-weight: bold; /* 볼드체 */
+    max-width: max-content; 
+    background-color: #cdcbe9;
   }
 
   h3 {
     font-size: 1.1em;
-    color: #6a6a6a;
+    max-width: max-content; 
+    
+    max-width: max-content; 
+    background-color: #bbb7e8;
   }
 
   h4 {
@@ -63,43 +76,59 @@ permalink:
 
   /* Add some additional styling if needed */
   .post-content {
-    line-height: 1.6;
-    /* Improve readability */
-    color: #333333;
-    /* Dark grey color for text */
+    margin-left: 20px; /* 왼쪽 여백 추가 */
+    margin-right: 220px; /* 오른쪽에 TOC 너비 + 여백 만큼 추가 */
+    line-height: 1.6;/* Improve readability */
+    color: #333;/* Dark grey color for text */
+  }
+  /* Category Chart Style */
+  .category-chart {
+    font-family: 'Arial', sans-serif;
+    /* width: 100%; */
+    /* height: 100px; Adjust as needed */
   }
 
-  /* Styling for the ToC to make it scroll with the page */
-  .toc {
-    font-size: 1em;
-    position: fixed;
-    /* Fixed position */
-    right: 0;
-    /* Align to the right side of the screen */
-    top: 50;
-    /* Adjust this value as needed based on your header size */
-    max-height: 100vh;
-    /* Set maximum height to viewport height */
-    overflow-y: auto;
-    /* Allows scrolling within the ToC if it's too long */
-    padding: 20px;
-    /* Add some padding */
-    background-color: white;
-    /* Optional: background color for visibility */
-    z-index: 1000;
-    /* To ensure it stays on top of other elements */
-    width: 250px;
-    /* Adjust the width as needed */
+  .category-list li {
+    display: inline-block;
+    margin-right: 20px;
   }
+  /* 이미지 스타일 */
+  img {
+    display: block; /* 이미지를 블록 레벨로 설정 */
+    width: 50%; /* 또는 원하는 너비 */
+    height: auto; /* 비율 유지 */
+    margin-bottom: 5px; /* 이미지와 캡션 사이의 간격 */
+    text-align: center;
+  }
+
+  /* 이미지 캡션 스타일링 */
+  .em {
+    color: #757575;
+    font-size: 0.8em;
+    
+    /* margin-top: 5px; */
+    display: block; /* 캡션을 블록 요소로 설정, 이미지 아래로 강제 배치 */
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  /* Blockquote 스타일 */
+  blockquote {
+      margin-left: 20px;
+      border-left: 1.5px solid #ccc; /* 좌측 선 */
+      border-top: 1.5px solid #ccc; /* 좌측 선 */
+      border-right: 1.5px solid #ccc; /* 좌측 선 */
+      border-bottom: 1.5px solid #ccc; /* 좌측 선 */
+
+      padding-left: 15px;
+      color: #666; /* 글자 색상 */
+  }
+
+
+
 </style>
 
-
-
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="toc">
-    <a href="#">&lt;On the Top&gt;</a>
-    {% include toc.html html=content %}
-  </div>
+  {% include toc.html html=content %}
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
@@ -157,75 +186,4 @@ permalink:
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
-<script>
-  function getTOCNodes(master) {
-    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-    var tocNodes = nodes.filter(function (elem) {
-      return elem.tagName == "A";
-    });
-    return tocNodes;
-  }
-  function getHeaderNodes(master) {
-    var nodes = Array.prototype.slice.call(master.getElementsByTagName("*"), 0);
-    var headerNodes = nodes.filter(function (elem) {
-      return elem.tagName == "H1" || elem.tagName == "H2" || elem.tagName == "H3" || elem.tagName == "H4" || elem.tagName == "H5" || elem.tagName == "H6";
-    });
-    return headerNodes;
-  }
 
-  var title = document.getElementsByClassName("post-title")[0];
-  var titleY = window.pageYOffset + title.getBoundingClientRect().top;
-
-  var article = document.getElementsByClassName("post-article")[0];
-  var articleY = window.pageYOffset + article.getBoundingClientRect().top;
-
-  var toc = document.getElementsByClassName("toc")[0];
-
-  var headerNodes = getHeaderNodes(article);
-  var tocNodes = getTOCNodes(toc);
-
-  var before = undefined;
-
-  document.addEventListener('scroll', function (e) {
-    if (window.scrollY >= articleY - 60) {
-      toc.style.cssText = "position: fixed; top: 60px;";
-    }
-    else {
-      toc.style.cssText = "";
-    }
-
-    var current = headerNodes.filter(function (header) {
-      var headerY = window.pageYOffset + header.getBoundingClientRect().top;
-      return window.scrollY >= headerY - 60;
-    });
-
-    if (current.length > 0) {
-      current = current[current.length - 1];
-
-      var currentA = tocNodes.filter(function (tocNode) {
-        return tocNode.innerHTML == current.innerHTML;
-      })
-
-      currentA = currentA[0];
-      if (currentA) {
-        if (before == undefined) before = currentA;
-
-        if (before != currentA) {
-          before.classList.remove("toc-active");
-          before = currentA;
-        }
-
-        currentA.classList.add("toc-active");
-      }
-      else {
-        if (before)
-          before.classList.remove("toc-active");
-      }
-    }
-    else {
-      if (before)
-        before.classList.remove("toc-active");
-    }
-
-  }, false);
-</script>
