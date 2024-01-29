@@ -1,9 +1,12 @@
-## I am
+##  Kyuhwan Shim 🤗 
+- Undergraduate Research Intern @ the [BI Lab](https://bi.snu.ac.kr), [Seoul Nat'l University](https://cse.snu.ac.kr)
+- Senior Undergraduate majoring Computer Science 💻 @ [Sogang University](https://cs.sogang.ac.kr)
+- Previously,
+  - ML Engineer Intern @ [Nota Inc.](https://nota.ai), Seoul, Korea (23.03 ~ 23.08)
+  - Designer @ [OCONNECT](https://oconnect.kr), Ulsan, Korea (20.06 ~ 23.06)
+- Links
+  - [E-mail](mailto:kyuhwan.shim@sogang.ac.kr) / [Curriculum Vitae](https://underthelights.github.io/cv.pdf)/ [📄 GitBlog](https://underthelights.github.io)  
 
-- Computer Science @ BS undergrad at Sogang University
-- Previously ML Engineer 💻 Intern at **Nota Inc.**
-
-## Test & Deploy
 
 ### Run locally
 <!-- 0. Make sure you have Jekyll environment ready - if you haven't, run `gem install bundler` -->
