@@ -79,6 +79,9 @@
             <a class="nav-link " aria-current="page" href="/news">News</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link  active " aria-current="page" href="/publication">publication</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link " aria-current="page" href="/project">Project</a>
           </li>
           <li class="nav-item">
@@ -142,53 +145,39 @@
         display: none !important;
     }
   
-  #tag-Detection:checked ~ .tag-label#label-Detection,
-  
-  #tag-Segmentation:checked ~ .tag-label#label-Segmentation,
+  #tag-Vision-Language Model:checked ~ .tag-label#label-Vision-Language Model,
   
   #tag-all:checked ~ .tag-label#label-all {
     text-decoration: underline;
     font-weight: 500;
   }
 
-
   
-  #tag-all:checked ~ #publications > #Detection > .item:not(.item), #publications > .div:not(.div) {
+  #tag-all:checked ~ #publications > #Vision-Language Model > .item:not(.item), #publications > .div:not(.div) {
     display: none !important;
   }
-  #tag-Detection:checked ~ #publications > .div:not(.Detection) {
-    display: none !important;
-  }
-  
-  #tag-all:checked ~ #publications > #Segmentation > .item:not(.item), #publications > .div:not(.div) {
-    display: none !important;
-  }
-  #tag-Segmentation:checked ~ #publications > .div:not(.Segmentation) {
+  #tag-Vision-Language Model:checked ~ #publications > .div:not(.Vision-Language Model) {
     display: none !important;
   }
   
 
   
-  #tag-Detection:checked ~ #publications > .item:not(.tag-Detection) {
-    display: none !important;
-  }
-  
-  #tag-Segmentation:checked ~ #publications > .item:not(.tag-Segmentation) {
+  #tag-Vision-Language Model:checked ~ #publications > .item:not(.tag-Vision-Language Model) {
     display: none !important;
   }
   
 
 .project-view {
-	padding-top: .5rem;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+    padding-top: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 @media (min-width:48.0625em) {
-	.project-view {
-		justify-content: center;
-	}
+    .project-view {
+        justify-content: center;
+    }
 }
 
 .item:last-child > hr {
@@ -203,43 +192,43 @@
     <div class="project-view">
       <input type="radio" name="tag" id="tag-all" aria-labelledby="tag-all" checked>
       
-      <input type="radio" name="tag" id="tag-Detection" aria-labelledby="tag-Detection">
-      
-      <input type="radio" name="tag" id="tag-Segmentation" aria-labelledby="tag-Segmentation">
+      <input type="radio" name="tag" id="tag-Vision-Language Model" aria-labelledby="tag-Vision-Language Model">
       
     
       <label style="font-size: .95rem !important; cursor: pointer" for="tag-all" class="tag-label tag-all" id="label-all">All</label>
       
-      <label style="font-size: .95rem !important; cursor: pointer" for="tag-Detection" class="ms-4 tag-label tag-Detection" id="label-Detection">Detection</label>
-      
-      <label style="font-size: .95rem !important; cursor: pointer" for="tag-Segmentation" class="ms-4 tag-label tag-Segmentation" id="label-Segmentation">Segmentation</label>
+      <label style="font-size: .95rem !important; cursor: pointer" for="tag-Vision-Language Model" class="ms-4 tag-label tag-Vision-Language Model" id="label-Vision-Language Model">Vision-Language Model</label>
       
 
       <div class="row mt-4" style="flex: 0 0 100%;" id="publications">
         
         <div class="col-12 px-0 mb-3 ">
-          <p style="font-weight: 400">2020</p>
+          <p style="font-weight: 400">2024</p>
         </div>
         
         
-        <div class="item col-12 px-0 tag-XXX ">
-          <p class="mb-2" style="font-size: 1rem; font-weight: 400 !important;"><a href="/publication/xx">ABCD</a></p>
+        <div class="item col-12 px-0 tag-Dialogue System tag-Chatbot tag-User Persona ">
+          <p class="mb-2" style="font-size: 1rem; font-weight: 400 !important;"><a href="/publication/kcc24_kirino">KIRINO: An Interactive Chatbot System for User Persona</a></p>
           
           <p class="mb-2" style="font-size: .95rem; font-weight: 200 !important;">
-            <a href="https://underthelights.github.io" style="font-weight: 400;">Kyuhwan Shim</a></p>
-          <p class="mb-2" style="font-size: .95rem; font-weight: 300 !important;"><span style="font-weight: 400">arXiv</span>.</p>
-          
-          <p class="mb-2" style="font-size: .95rem; font-weight: 400 !important;"><i class="fa-solid fa-medal"></i>&nbsp;&nbsp;XXX Award</p>
+            Ganghun Kim†, Hyunjae Kim†, Geon Choi†, Kyuhwan Shim†, Myoung-Wan Koo*</p>
+          <p class="mb-2" style="font-size: .95rem; font-weight: 300 !important;"><span style="font-weight: 400">Korean Computer Congress 2024 & Sogang Convergence Technology Competition</span>.</p>
           
           
           <p style="font-size: .9rem; font-weight: 300 !important;">
-              <a href="/publication/xx"><i class="fa-solid fa-external-link-alt"></i>&nbsp;&nbsp;Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
               
-              <a href="/assets/pdf/xx.pdf"><i class="fa-solid fa-file-pdf"></i>&nbsp;&nbsp;Preprint</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://underthelights.github.io/kirino_page"><i class="fa-solid fa-link"></i>&nbsp;&nbsp;Project Page</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              
+              <a href="/publication/kcc24_kirino"><i class="fa-solid fa-external-link-alt"></i>&nbsp;&nbsp;Abstract</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              
+              <a href="/assets/pdf/kcc24_kirino.pdf"><i class="fa-solid fa-file-pdf"></i>&nbsp;&nbsp;PDF</a>&nbsp;&nbsp;&nbsp;&nbsp;
               
               
               
-              <a href="/assets/pdf/XXX/pdf"><i class="fa-solid fa-file-powerpoint"></i>&nbsp;&nbsp;Slides</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="/assets/pdf/kirino_slide.pdf"><i class="fa-solid fa-file-powerpoint"></i>&nbsp;&nbsp;Slides</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              
+              
+              <a href="/assets/pdf/kirino_poster.pdf"><i class="fa-solid fa-presentation-screen"></i>&nbsp;&nbsp;Poster</a>&nbsp;&nbsp;&nbsp;&nbsp;
               
               
           </p>
@@ -251,6 +240,7 @@
       </div>
     </div>
 </div>
+
       </div>
     </main><footer>
   <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">

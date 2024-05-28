@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         TeX: {
+         equationNumbers: {
+             autoNumber: "AMS"
+         }
+         },
+         tex2jax: {
+         inlineMath: [ ['$', '$'] ],
+         displayMath: [ ['$$', '$$'] ],
+         processEscapes: true,
+     }
+     });
+     MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>10. DNN Deep Neural Network 2 (1) ✱ Kyuhwan Shim</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <link href="/assets/fontawesome/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  <!-- GA -->
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8LB4J4EL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VG8LB4J4EL');
+</script>
+
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/main/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/main/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/main/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/main/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/main/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/main/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/main/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/main/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/main/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/main/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/main/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/main/favicon/favicon-16x16.png">
+  <link rel="manifest" href="">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/main/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Opengraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/main/favicon/og.png10.-DNN-Deep-Neural-Network-2-(1).jpg">
+  <meta property="og:title" content="10. DNN Deep Neural Network 2 (1) | Kyuhwan Shim">
+  <meta property="og:description" content="Paper overview of  et al., ">
+
+  <!-- Google scholar -->
+  
+  <meta name="citation_title" content="10. DNN Deep Neural Network 2 (1)">
+  
+  <meta name="citation_publication_date" content="">
+  
+  <meta name="citation_conference_title" content="">
+  
+  <meta name="citation_pdf_url" content="https://underthelights.github.io/assets/pdf/10.-DNN-Deep-Neural-Network-2-(1).pdf">
+  
+</head>
+<body><header class="page-content">
+  <nav class="navbar navbar-expand-md navbar-light py-4">
+    <div class="container-fluid">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/news">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/publication">publication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/oconnect">oconnect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/cv">CV</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">fun</a>
+              <div class="dropdown-menu">
+                  <a href="/music" class="dropdown-item">music</a>
+                  <a href="/artwork" class="dropdown-item">artwork</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dropdown-toggle {
+    background-color: transparent;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+  }
+  .dropdown-toggle:hover {
+    font-weight: 500
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ .dropdown-menu {
+    --bs-dropdown-border-radius: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+ }
+ .dropdown-item {
+  font-size: .95rem !important;
+  padding: .3rem .75rem !important;
+ }
+ .dropdown-item:active {
+  background-color: #999 !important
+ }
+</style><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <style>
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    
+      font-family: 'Arial', sans-serif;
+      /* Use a modern font */
+      margin-top: 20px;
+      margin-bottom: 10px;
+  }
+  /* 포스트 헤더에 적용되는 여백 제거 */
+  .post-header, h1, h2, h3, h4, h5, h6 {
+      margin-left: 0 !important; 
+      padding-left: 0 !important;
+  }
+
+
+  .post-title {
+      font-size: 2em; /* 폰트 크기 증가 */
+      font-weight: bold; /* 볼드체 */
+      color: #333; /* 색상 변경 */
+      box-shadow: inset 0 -20px 0 #bbb7e8;
+      max-width: max-content;
+    }
+
+  /* Updated styling for h1 */
+  h1 {
+    font-size: 1.5em;
+    /* Increase font size for main titles */
+    box-shadow: inset 0 -10px 0 #bbb7e8;
+    max-width: max-content; 
+    font-weight: bold; /* 볼드체 */
+    border-bottom: none;
+    /* Remove bottom border */
+    padding-bottom: 0;
+    /* Adjust padding if needed */
+  }
+
+  h2 {
+    font-size: 1.2em;
+    margin-left: none;
+    font-weight: bold; /* 볼드체 */
+    max-width: max-content; 
+    background-color: #cdcbe9;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    max-width: max-content; 
+    
+    max-width: max-content; 
+    background-color: #bbb7e8;
+  }
+
+  h4 {
+    font-size: 0.75em;
+    color: #888888;
+  }
+
+  h5 {
+    font-size: 0.5em;
+    color: #a6a6a6;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #bcbcbc;
+  }
+
+  /* Add some additional styling if needed */
+  .post-content {
+    margin-left: 20px; /* 왼쪽 여백 추가 */
+    /* margin-right: 20px; 오른쪽에 TOC 너비 + 여백 만큼 추가 */
+    line-height: 1.6;/* Improve readability */
+    color: #333;/* Dark grey color for text */
+  }
+  /* Category Chart Style */
+  .category-chart {
+    font-family: 'Arial', sans-serif;
+    /* width: 100%; */
+    /* height: 100px; Adjust as needed */
+  }
+
+  .category-list li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  /* 이미지 스타일 */
+  img {
+    display: block; /* 이미지를 블록 레벨로 설정 */
+    width: 50%; /* 또는 원하는 너비 */
+    height: auto; /* 비율 유지 */
+    margin-bottom: 5px; /* 이미지와 캡션 사이의 간격 */
+    text-align: center;
+  }
+
+  /* 이미지 캡션 스타일링 */
+  .em {
+    color: #757575;
+    font-size: 0.8em;
+    
+    /* margin-top: 5px; */
+    display: block; /* 캡션을 블록 요소로 설정, 이미지 아래로 강제 배치 */
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  /* Blockquote 스타일 */
+  blockquote {
+      margin-left: 20px;
+      border-left: 1.5px solid #ccc; /* 좌측 선 */
+      border-top: 1.5px solid #ccc; /* 좌측 선 */
+      border-right: 1.5px solid #ccc; /* 좌측 선 */
+      border-bottom: 1.5px solid #ccc; /* 좌측 선 */
+
+      padding-left: 15px;
+      color: #666; /* 글자 색상 */
+  }
+
+
+
+</style>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <!-- Table of Contents Container -->
+<div class="toc-container">
+    <nav class="toc">
+      <strong>Table of Contents</strong>
+      <!--  -->
+      <!-- Jekyll TOC Liquid Code -->
+      <ul><li><a href="#data-processing">Data Processing</a><ul><li><a href="#step-1-preprocess-the-data">Step 1: Preprocess the data</a></li></ul></li><li><a href="#weight-initialization">Weight Initialization</a></li><li><a href="#proper-initialization-is-an-active-area-of-research">Proper initialization is an active area of research</a></li><li><a href="#batch-normalization">Batch Normalization</a></li><li>—</li><li><a href="#model-ensembles">Model Ensembles</a></li><li><a href="#how-to-improve-single-model-performance">How to improve single-model performance?</a></li><li><a href="#regularization-add-term-to-loss">Regularization: Add term to loss</a></li><li><a href="#regularization-dropout">Regularization: Dropout</a><ul><li><a href="#how-can-this-possibly-be-a-good-idea">How can this possibly be a good idea?</a></li></ul></li></ul></li><li><a href="#dropout-test-time">Dropout: Test time</a><ul><li><a href="#dropout-summary">Dropout Summary</a></li><li><a href="#more-common-inverted-dropout">More common: “Inverted dropout”</a></li></ul></li><li><a href="#regularization-a-common-pattern">Regularization: A common pattern</a></li></ul>
+
+      <!-- <ul><li><a href="#data-processing">Data Processing</a><ul><li><a href="#step-1-preprocess-the-data">Step 1: Preprocess the data</a></li></ul></li><li><a href="#weight-initialization">Weight Initialization</a></li><li><a href="#proper-initialization-is-an-active-area-of-research">Proper initialization is an active area of research</a></li><li><a href="#batch-normalization">Batch Normalization</a></li><li>—</li><li><a href="#model-ensembles">Model Ensembles</a></li><li><a href="#how-to-improve-single-model-performance">How to improve single-model performance?</a></li><li><a href="#regularization-add-term-to-loss">Regularization: Add term to loss</a></li><li><a href="#regularization-dropout">Regularization: Dropout</a><ul><li><a href="#how-can-this-possibly-be-a-good-idea">How can this possibly be a good idea?</a></li></ul></li></ul></li><li><a href="#dropout-test-time">Dropout: Test time</a><ul><li><a href="#dropout-summary">Dropout Summary</a></li><li><a href="#more-common-inverted-dropout">More common: “Inverted dropout”</a></li></ul></li><li><a href="#regularization-a-common-pattern">Regularization: A common pattern</a></li></ul> -->
+    </nav>
+</div>
+
+<style>
+    /* TOC 스타일 */
+.toc-container {
+  position: fixed;
+  right: 10px;
+  top: 100px;
+  z-index: 1000;
+  /* max-width: 50px; 가로 너비 조정, 필요에 따라 값을 변경하세요 */
+  font-size: 0.75rem;
+}
+
+.toc {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 200px; /* 가로 너비 조정, 필요에 따라 값을 변경하세요 */
+}
+
+
+.toc strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc ul li a {
+  text-decoration: none;
+  color: #007bff;
+  display: block;
+  padding: 5px 0;
+}
+
+.toc ul li a:hover,
+.toc ul li a.active { /* 추가된 active 클래스 스타일 */
+  font-weight: bold;
+  /* box-shadow: inset 0 -10px 0 #bbb7e8; */
+  background-color: #bbb7e8;
+}
+
+
+
+  button {
+    padding: 5px 10px;
+    /* 상하 10px, 좌우 20px 패딩으로 텍스트 주변 여유 공간 추가 */
+    font-size: 0.87rem;
+    /* 글자 크기 */
+    color: white;
+    /* 글자 색상 */
+    background-color: #007bff;
+    /* 배경 색상 */
+    border: none;
+    /* 테두리 제거 */
+    border-radius: 5px;
+    /* 모서리 둥글게 */
+    cursor: pointer;
+    /* 커서 모양 변경 */
+    transition: background-color 0.3s;
+    /* 호버 효과를 위한 전환 설정 */
+    text-align: center;
+    /* 글자를 버튼 중앙에 위치 */
+    display: inline-block;
+    /* 인라인 블록 요소로 설정하여 자연스럽게 텍스트 중앙 정렬 */
+    line-height: normal;
+    /* 기본 라인 높이 설정 */
+    vertical-align: middle;
+    /* 수직 방향으로 중앙 정렬 */
+    margin-top: 5px;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+    /* 호버 시 배경 색상 변경 */
+  }
+
+
+  /* reset base styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* page header */
+  header {
+    margin-bottom: 2rem;
+    padding-left: 6.5rem;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  header p {
+    margin: .5rem 0;
+    font-size: 1rem !important
+  }
+
+  main b {
+    font-weight: 500
+  }
+
+  /* normal body content */
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    margin-left: 6.5rem;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    border-bottom: 1px solid black;
+    font-size: .9rem;
+    margin: 1rem 0 .5rem 6.5rem
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: inherit;
+    /*#0000ee;*/
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  /* misc */
+  .pdf {
+    font-size: .9rem !important;
+    font-weight: 300;
+    margin-left: 1.5rem;
+    white-space: nowrap;
+  }
+
+  .pdf i {
+    margin-right: .1rem;
+  }
+
+  .material {
+    font-size: small;
+    margin-left: .5rem;
+  }
+
+  :global(i) {
+    padding-right: 4px !important
+  }
+
+  /* dated entries */
+  .dated-entry {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .dated-date {
+    width: 6.5rem;
+    text-align: right;
+    padding-top: .15rem;
+    padding-right: 1.5rem;
+    font-size: .8rem
+  }
+
+  .dated-content {
+    width: calc(100% - 6.5rem);
+    font-size: .95rem
+  }
+
+  .oneline-entries {
+    margin-bottom: 0.5rem;
+  }
+
+  .oneline-entries .dated-entry {
+    margin-bottom: 0;
+  }
+
+  /* hide extra awards info for now, not sure what to include */
+  #awards em {
+    display: none;
+  }
+
+  .author-tooltip {
+    font-weight: 400;
+    font-size: .8rem !important;
+    text-align: center;
+  }
+
+  /* on narrow displays, make the font smaller */
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  /* when printing, make the font smaller and the page full-width */
+  @media print {
+    html {
+      font-size: 12px;
+    }
+
+    main {
+      margin-top: 0;
+      max-width: 100%;
+    }
+  }
+
+</style>
+
+<script>
+    document.addEventListener('scroll', function() {
+      var sections = document.querySelectorAll('section'); // 섹션 선택자 수정
+      var menu_links = document.querySelectorAll('.toc a'); // TOC 링크 선택자 수정
+    
+      var fromTop = window.scrollY;
+    
+      sections.forEach(function(section) {
+        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          menu_links.forEach(function(link) {
+            if (section.getAttribute('id') && link.getAttribute('href').includes(section.getAttribute('id'))) {
+              link.classList.add('active');  // 현재 섹션의 TOC 링크에 'active' 클래스 추가
+            } else {
+              link.classList.remove('active'); // 다른 모든 링크에서 'active' 클래스 제거
+            }
+          });
+        }
+      });
+    });
+    </script>
+    
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">10. DNN Deep Neural Network 2 (1)</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-05-26T00:00:00+09:00" itemprop="datePublished">
+        May 26, 2022
+      </time></p>
+    <!-- 태그와 카테고리 표시 -->
+    <div class="post-categories">
+      
+      <strong><span>📚 Categories:</span></strong>
+      
+      <a href="blog-categories-notes">Notes</a>
+      
+      
+    </div>
+
+    <div class="post-tags">
+      
+      <strong><span>🏷️ Tags:</span></strong>
+      
+      <a href="blog-tags-ml">ML</a>
+      
+      
+    </div>
+
+
+  </header>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul>
+  <li>구조상 차이 : hidden layer 개수
+fully connected layer -&gt; conv layer</li>
+  <li>Activation, normalization 하는 부분들</li>
+  <li>weight update하는 부분들</li>
+</ul>
+
+<p>여러 학습 알고리즘이 제안되며 더 좋은 성능을 가지게 됨</p>
+
+<h1 id="data-processing">Data Processing</h1>
+
+<p>input layer - hidden lyaer - output layer로 그려진 NN</p>
+
+<ul>
+  <li>x, y, z (hidden lyaer 하나로만 두고 보면) y layer 의 첫 번째 node를 볼 때 각자 연결된다</li>
+  <li>fc 구조가 기본적인 구조</li>
+  <li>앞 node의 weight combination + bias</li>
+  <li>
+    <p>Consider what happens when the input to a neuron is always positive…</p>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/0.png" alt="0" /></p>
+
+    <ul>
+      <li>i의 변화에 따라 x도 변화 → w가 모든 같은 부호</li>
+    </ul>
+  </li>
+  <li>w update slowly → learn slowly
+    <ul>
+      <li>이상적인 w에 도달하지 않을 수 있다</li>
+      <li>학습 시간에도 문제가 될 수 있다</li>
+    </ul>
+  </li>
+  <li>What can we say about the gradients on w?</li>
+  <li>Always all positive or all negative!</li>
+  <li>(this is also why you want zero-mean data!)
+    <ul>
+      <li>data normalization : $\mu = 0$</li>
+      <li>for input hidden layer</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="step-1-preprocess-the-data">Step 1: Preprocess the data</h2>
+
+<p>(Assume X [NxD] is data matrix, each example in a row)</p>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/1.png" alt="1" /></p>
+
+<ul>
+  <li>normalized data : $N(0, 1^2)$
+    <ul>
+      <li>learn faster</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/2.png" alt="2" /></p>
+
+<p>In practice for Images: Zero-center only</p>
+
+<ul>
+  <li>e.g. consider CIFAR-10 example with [32,32,3] images</li>
+  <li>Subtract the mean image (e.g.AlexNet)
+    <ul>
+      <li>(mean image = [32,32,3] array)
+        <ul>
+          <li>RGB 평균 구해서 average</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Subtract per-channel mean (e.g.VGGNet)
+    <ul>
+      <li>(mean along each channel = 3 numbers)</li>
+    </ul>
+  </li>
+  <li>Not common to normalize variance (for PCA or whitening)
+    <ul>
+      <li>w 효과적으로</li>
+      <li>PCA → data rotation, whitening → Cov to Identity Mat</li>
+      <li>if original data에 대한 학습 중 특정 w를 학습해야 한다면</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="weight-initialization">Weight Initialization</h1>
+
+<p>원래 w : randomly init.</p>
+
+<ul>
+  <li>
+    <p>Q: what happens when W=0 init is used?</p>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/3.png" alt="3" /></p>
+  </li>
+</ul>
+
+<p>f’(0) x_i → wi에 update됨</p>
+
+<p>모든 w에 동일한 pattern으로 update</p>
+
+<p>i가 달라짐에 다르게 but 같게 실행 : 지그재그로 수행되는 것보다 성능이 안좋을 수 있음</p>
+
+<ul>
+  <li>First idea: Small random numbers
+    <ul>
+      <li>(gaussian with zero mean and 1e-2 standard deviation)</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">W</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">D</span><span class="p">,</span><span class="n">H</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>small w : hidden layer가 커질수록 → backprop되는 layer 적어짐
+        <ul>
+          <li>뒤 layer로 갈수록 앞 layer update 작아짐 : 학습 잘 안됨</li>
+        </ul>
+      </li>
+      <li>big w : vanishing GD : update 안될수록 f’ 작아짐
+        <ul>
+          <li></li>
+        </ul>
+      </li>
+      <li>Works ~okay for small networks, but problems with deeper networks.</li>
+    </ul>
+  </li>
+  <li>Lets look at some activation statistics
+    <ul>
+      <li>10-layer net with 500 neurons on each layer, using tanh</li>
+      <li>non-linearities, and initializing as described in previous slide.</li>
+    </ul>
+  </li>
+  <li>All activations become zero!</li>
+  <li>Q: think about the backward pass. What do the gradients look like?
+    <ul>
+      <li>Hint: think about backward pass for a W*X gate.</li>
+    </ul>
+  </li>
+  <li>*1.0 instead of *0.01</li>
+  <li>Almost all neurons completely saturated, either -1 and 1. Gradients will be all zero.</li>
+</ul>
+
+<p>Deep Neural Networks
+Weight Initialization</p>
+
+<h1 id="proper-initialization-is-an-active-area-of-research">Proper initialization is an active area of research</h1>
+
+<ul>
+  <li>Understanding the difficulty of training deep feedforward neural networks
+by Glorot and Bengio, 2010</li>
+  <li>Exact solutions to the nonlinear dynamics of learning in deep linear neural networks by Saxe et al, 2013</li>
+  <li>Random walk initialization for training very deep feedforward networks by Sussillo and Abbott, 2014</li>
+  <li>Delving deep into rectifiers: Surpassing human-level performance on ImageNet classification by He et al., 2015</li>
+  <li>Data-dependent Initializations of Convolutional Neural Networks by Krähenbühl et al., 2015</li>
+  <li>All you need is a good init, Mishkin and Matas, 2015 …</li>
+</ul>
+
+<h1 id="batch-normalization">Batch Normalization</h1>
+
+<p>[Ioffe and Szegedy, 2015]</p>
+
+<p>layer에 data를 넣을 때 전체 data를 randomly partition하여 mini batch 생성</p>
+
+<ul>
+  <li>“you want unit gaussian activations? just make them so.”</li>
+  <li>consider a batch of activations at some layer.</li>
+</ul>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/4.png" alt="4" /></p>
+
+<ul>
+  <li>Improves gradient flow through the network</li>
+  <li>Allows higher learning rates</li>
+  <li>Reduces the strong dependence on initialization</li>
+  <li>Acts as a form of regularization in a funny way, and slightly reduces the need for dropout, maybe</li>
+  <li>Note: at test time BatchNorm layer functions differently:</li>
+  <li>The mean/std are not computed based on the <strong>batch(test batch)</strong>.</li>
+  <li>Instead, a single fixed empirical mean of activations during training is used.
+    <ul>
+      <li>(e.g. can be estimated during training with running averages)</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1>—</h1>
+
+<h1 id="model-ensembles">Model Ensembles</h1>
+
+<ol>
+  <li>Train multiple independent models</li>
+  <li>At test time average their results (여러 model result average)
+    <ul>
+      <li>Enjoy 2% extra performance</li>
+      <li>single model : learning method 변경</li>
+    </ul>
+    <ul>
+      <li>ex. tanh → ReLU : 종합하여 result 추출</li>
+    </ul>
+  </li>
+</ol>
+
+<h1 id="how-to-improve-single-model-performance">How to improve single-model performance?</h1>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/5.png" alt="5" /></p>
+
+<p>Regularization</p>
+
+<h1 id="regularization-add-term-to-loss">Regularization: Add term to loss</h1>
+
+<h1 id="regularization-dropout">Regularization: Dropout</h1>
+
+<ul>
+  <li>
+    <p>In each forward pass, randomly set some neurons to zero Probability of dropping is a hyperparameter; 0.5 is common</p>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/6.png" alt="6" /></p>
+  </li>
+  <li>
+    <p>Srivastava et al, “Dropout: A simple way to prevent neural networks from overfitting”, JMLR 2014</p>
+  </li>
+</ul>
+
+<p>Example forward pass with a 3-layer network using dropout</p>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/7.png" alt="7" /></p>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/8.png" alt="8" /></p>
+
+<ul>
+  <li>How can this possibly be a good idea?</li>
+  <li>Forces the network to have a redundant representation;
+    <ul>
+      <li>Prevents co-adaptation of features</li>
+    </ul>
+
+    <p>개별 node들이 학습에 적극적으로 사용되도록 강제화시키는 작업</p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/9.png" alt="9" /></p>
+
+<h3 id="how-can-this-possibly-be-a-good-idea">How can this possibly be a good idea?</h3>
+
+<p>randomly selection of node → network 구조 다양 - 종합적 사용</p>
+
+<ul>
+  <li>Another interpretation:
+    <ul>
+      <li>Dropout is training a large <strong>ensemble</strong> of models (that share parameters).</li>
+      <li>Each binary mask is one model</li>
+      <li>An FC layer with 4096 units has 24096 ~ 101233 possible masks!</li>
+      <li>Only ~ 1082 atoms in the universe..</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="dropout-test-time">Dropout: Test time</h1>
+
+<ul>
+  <li>
+    <p>Dropout makes our output random!</p>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/10.png" alt="10" /></p>
+  </li>
+  <li>Want to “average out” the randomness at test-time
+    <ul>
+      <li>$y = f(x) = E_z[f(x,z)] = \int p(z)f(x,z)dz$ㅓㄹ</li>
+      <li>여러 var mask  ㅇ - mu, sum</li>
+    </ul>
+  </li>
+  <li>But this integral seems hard …</li>
+  <li>Want to approximate the integral
+    <ul>
+      <li>$y = f(x) = E_z[f(x,z)] = \int p(z)f(x,z)dz$</li>
+    </ul>
+  </li>
+  <li>
+    <p>Consider a single neuron.</p>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/11.png" alt="11" /></p>
+  </li>
+  <li>At test time we have:
+    <ul>
+      <li>$E[a] = w_1x + w_2y$</li>
+    </ul>
+  </li>
+  <li>
+    <p>During training we have:</p>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/12.png" alt="12" /></p>
+  </li>
+  <li><strong>At test time, multiply by dropout probability</strong></li>
+</ul>
+
+<p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/13.png" alt="13" /></p>
+
+<ul>
+  <li>p to be dropped → *p : 값을 줄여나가는 식으로 진행</li>
+  <li>At test time all neurons are active always
+    <ul>
+      <li>→ We must scale the activations so that for each neuron:</li>
+      <li>output at test time = expected output at training time</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="dropout-summary">Dropout Summary</h2>
+
+<ul>
+  <li>drop in forward pass
+    <ul>
+      <li>train때 사용된 w값이 test 시점에도 반영</li>
+    </ul>
+  </li>
+  <li>
+    <p>scale at test time</p>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/14.png" alt="14" /></p>
+  </li>
+</ul>
+
+<h2 id="more-common-inverted-dropout">More common: “Inverted dropout”</h2>
+
+<ul>
+  <li>train시 p로 나누어줌</li>
+  <li>test time is unchanged!
+    <ul>
+      <li>test 단계에 적용 → test 에서는 X X</li>
+      <li>if v1 &gt; p → test시점 (1-p)</li>
+    </ul>
+
+    <p><img src="/assets/img/2022-05-26-10.-DNN-Deep-Neural-Network-2-(1).md/15.png" alt="15" /></p>
+  </li>
+</ul>
+
+<h1 id="regularization-a-common-pattern">Regularization: A common pattern</h1>
+
+
+  </div><a class="u-url" href="/10.-DNN-Deep-Neural-Network-2-(1)" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer>
+  <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">
+  <div class="row m-0">
+    <div class="col-12 col-md-3 col-sm-4 mb-4 mb-sm-0">
+      <p>
+        <a href="https://github.com/underthelights/underthelights.github.io" style="font-weight: 300">Kyuhwan Shim</a>
+        <br>Up-to-date as of <span id="date">loading...</span></p>
+      <i class="fas fa-location-dot mr-1"></i> Seoul is <img style="width: auto; height: 23px;" id="weather_icon">
+      <span id="weather">Loading...</span>
+    </div>
+    <div class="col-12 col-md-9 col-sm-8">
+      <p>
+        <a style="font-weight: 300" href="https://linkedin.com/in/kyuhwan-shim"><i class="fab fa-linkedin" style="margin-right: 10.5px"></i>LinkedIn</a><br>
+        <a style="font-weight: 300" href="https://fb.com/s.kyuhwn"><i class="fab fa-facebook" style="margin-right: 8px"></i>Facebook</a><br>
+        <a style="font-weight: 300" href="https://www.instagram.com/s.kyuhwn"><i class="fab fa-instagram" style="margin-right: 10.5px"></i>Instagram</a><br>
+        <a style="font-weight: 300" href="https://github.com/underthelights"><i class="fab fa-github" style="margin-right: 10.5px"></i>GitHub</a><br>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="/assets/js/weather.js"></script>
+<script src="/assets/js/github_date.js"></script>
+</body>
+
+</html>

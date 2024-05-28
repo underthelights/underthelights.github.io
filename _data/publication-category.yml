@@ -1,3 +1,4 @@
 types:
-  - "Detection"
-  - "Segmentation"
+  - "Vision-Language Model"
+  # - "Detection"
+  # - "Segmentation"

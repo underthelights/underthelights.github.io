@@ -20,7 +20,6 @@ description: Publication list of Kyuhwan Shim
     font-weight: 500;
   }
 
-
   {% for type in category.types %}
   #tag-all:checked ~ #publications > #{{ type | replace: ' / ', '' }} > .item:not(.item), #publications > .div:not(.div) {
     display: none !important;
@@ -37,16 +36,16 @@ description: Publication list of Kyuhwan Shim
   {% endfor %}
 
 .project-view {
-	padding-top: .5rem;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+    padding-top: .5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 @media (min-width:48.0625em) {
-	.project-view {
-		justify-content: center;
-	}
+    .project-view {
+        justify-content: center;
+    }
 }
 
 .item:last-child > hr {
@@ -87,7 +86,10 @@ description: Publication list of Kyuhwan Shim
           {% endif %}
           {% unless paper.note contains 'accepted' %}
           <p style="font-size: .9rem; font-weight: 300 !important;">
-              <a href="{{ paper.slug | prepend: '/publication/' | relative_url }}"><i class="fa-solid fa-external-link-alt"></i>&nbsp;&nbsp;Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              {% if paper.link %}
+              <a href="https://underthelights.github.io/{{ paper.link }}"><i class="fa-solid fa-link"></i>&nbsp;&nbsp;Project Page</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              {% endif %}
+              <a href="{{ paper.slug | prepend: '/publication/' | relative_url }}"><i class="fa-solid fa-external-link-alt"></i>&nbsp;&nbsp;Abstract</a>&nbsp;&nbsp;&nbsp;&nbsp;
               {% if paper.venue == "arXiv" %}
               <a href="{{ '/assets/pdf/' | append: paper.slug | append: '.pdf' | relative_url }}"><i class="fa-solid fa-file-pdf"></i>&nbsp;&nbsp;Preprint</a>&nbsp;&nbsp;&nbsp;&nbsp;
               {% else %}
@@ -102,6 +104,7 @@ description: Publication list of Kyuhwan Shim
               {% if paper.poster %}
               <a href="{{ '/assets/pdf/' | append: paper.poster | relative_url }}"><i class="fa-solid fa-presentation-screen"></i>&nbsp;&nbsp;Poster</a>&nbsp;&nbsp;&nbsp;&nbsp;
               {% endif %}
+              
           </p>
           {% endunless %}
           {% unless forloop.last %}

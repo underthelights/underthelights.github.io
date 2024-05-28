@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-30T00:41:28+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Kyuhwan Shim</title><subtitle>Kyuhwan Shim is a senior undergraduate in CS at Sogang University.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-05-29T03:13:09+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Kyuhwan Shim</title><subtitle>Kyuhwan Shim is a senior undergraduate in CS at Sogang University.
 </subtitle><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><entry><title type="html">회고와 대회</title><link href="http://localhost:4000/%ED%9A%8C%EA%B3%A0%EC%99%80-%EB%8C%80%ED%9A%8C" rel="alternate" type="text/html" title="회고와 대회" /><published>2023-11-16T00:00:00+09:00</published><updated>2023-11-16T00:00:00+09:00</updated><id>http://localhost:4000/%ED%9A%8C%EA%B3%A0%EC%99%80-%EB%8C%80%ED%9A%8C</id><content type="html" xml:base="http://localhost:4000/%ED%9A%8C%EA%B3%A0%EC%99%80-%EB%8C%80%ED%9A%8C"><![CDATA[<h1 id="블로그">블로그</h1>
 
 <ul>
@@ -48,7 +48,2359 @@
       <li>ML</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="경험" /><category term="일상기록" /><summary type="html"><![CDATA[블로그]]></summary></entry><entry><title type="html">빅콘테스트 후기 (2022년 이노베이션 분야)</title><link href="http://localhost:4000/%EB%B9%85%EC%BD%98%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0-(2022%EB%85%84-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%B6%84%EC%95%BC)" rel="alternate" type="text/html" title="빅콘테스트 후기 (2022년 이노베이션 분야)" /><published>2022-12-30T00:00:00+09:00</published><updated>2022-12-30T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B9%85%EC%BD%98%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0-(2022%EB%85%84-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%B6%84%EC%95%BC)</id><content type="html" xml:base="http://localhost:4000/%EB%B9%85%EC%BD%98%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0-(2022%EB%85%84-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%B6%84%EC%95%BC)"><![CDATA[<h1 id="의미없는-경험은-없다">의미없는 경험은 없다!</h1>
+</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="경험" /><category term="일상기록" /><summary type="html"><![CDATA[블로그]]></summary></entry><entry><title type="html">Final Repackaging for ML (1)</title><link href="http://localhost:4000/Final-Repackaging-for-ML-(1)" rel="alternate" type="text/html" title="Final Repackaging for ML (1)" /><published>2023-06-14T00:00:00+09:00</published><updated>2023-06-14T00:00:00+09:00</updated><id>http://localhost:4000/Final-Repackaging-for-ML-(1)</id><content type="html" xml:base="http://localhost:4000/Final-Repackaging-for-ML-(1)"><![CDATA[<h1 id="7-knn">7. kNN</h1>
+
+<details>
+  <summary><u>**kNN = Instance based learning**</u></summary>
+
+
+주어진 test sample X에 대하여, kNN samples (xn1, yn1) … (xnk, ynk)를 위치시켜 majority class label yn1, .. ynk를 xt에 assign한다.
+
+
+
+  </details>
+<details>
+  <summary><u>**kNN pros and cons**</u></summary>
+
+- pros :
+	- training is very fast : feature extraction and save
+	- learn complex target fn
+	- doesn’t lose info
+- cons :
+	- slow at test  → not goot
+	- requires large storage
+	- not robust against irrevalent attributes, outliers
+
+
+  </details>
+<details>
+  <summary><u>**Distance Metrics**</u></summary>
+
+- kNN - test 시점 ) data와 Near한지 distance 계산
+- distance : 모든 Classification , regression에서 중요
+	- 단 Nominal data다루는 DT에서는 불필요
+	- similiarity와 반비례
+- Euclidean distance : $\sqrt{\Sigma_{d=1}^{D} |x_{td} - x_{nd}|^2}$
+- Manhattan distance : ${\Sigma_{d=1}^{D} |x_{td} - x_{nd}|}$
+- $L^n$-norm : $\sqrt{\Sigma_{d=1}^{D} |x_{td} - x_{nd}|^n}$
+
+
+  </details>
+<details>
+  <summary>**VDM**</summary>
+
+
+provide d measurements for nominal attributes
+
+
+
+  </details>
+<details>
+  <summary><u>**Problem from Euclidean distance**</u></summary>
+
+1. High dim data - curse of dimensionality
+	- 너무 많이 feature, attrib 증가시킬 경우 dim이 너무 많이 증가해 차원의저주
+	- sample로부터 available info 가 많고 정확하다면 dim 높아도 괜찮음
+2. 보통 sparse하고 density를 shrink하여 적용한다.
+3. 과연 d가 동일하다고 data feature를 잘 나타낼까?
+	- MSB, LSB 등 bit 연산으로부터 잘 표현이 안될수도 있음
+	- Hamming d.
+
+
+  </details>
+<details>
+  <summary><u>**Behavior of limit**</u></summary>
+
+
+$\lim _{n \rightarrow \infty} \leq 2 \epsilon ^*$
+
+
+pf) goodnote 참고
+
+
+
+  </details>
+<details>
+  <summary><u>**Standardization**</u></summary>
+
+
+z = x - mu / sigma
+
+
+
+  </details>
+<details>
+  <summary><u>**how to choose k**</u></summary>
+
+- k is too small → sensitive to noise points
+- k is too big → neighborhood may include pts from other classes
+	- smoother when k get bigger
+- 보통 $k = \sqrt N$
+- $n \rightarrow \infty$, k gets larger → good performance as good as bayes classifier
+
+
+  </details>
+<details>
+  <summary><u>**Cross Validation !!!**</u></summary>
+
+- N fold cross validation → k to minimize cross valid error
+
+overfitting에 의해 - train error를 줄이는 것이 무작정 좋지는 않다
+
+
+
+  </details>
+<details>
+  <summary><u>**Condensing!!!**</u></summary>
+
+- [Aim] reduce the number of training samples
+- Decision boundary consistent : same with entire training set
+	- min. consistent set : smallest subset of samples
+
+1) init subset with single ex. 
+→ 2) nearest neighbor 생성, epsilon나오는 incorrected samples 선택 
+→ 3) 2)반복 Until no transfers or subset is full → result 구하기
+
+
+
+  </details>
+<details>
+  <summary><u>**Voronoi Diagram**</u></summary>
+
+- Voronoi Diagram : div space into such cells : 구획으로 나누고 boundary 영향없는 sample del
+- Delaunary triagulation 생성 → circumcircle center pt 끼리 연결 : 
+각 sample pt class에 따라 전체 영역 Class 결정
+	- Delaunary triagulation : 삼각형의 세 점에 외접하는 삼각형, 각도 최대화
+	- not unique
+- 
+
+
+  </details>
+<h1 id="8-ann"><strong>8. ANN</strong></h1>
+
+<details>
+  <summary><u>**Differences with**</u> </summary>
+
+- Similar : SVM처럼 high dimension mapping과 유사한 input layer to hidden layer
+	- 원래 feature space에서는 not linearly separable → phi fn(high dim) 으로 sol
+
+
+  </details>
+<details>
+  <summary><u>**Bitwise Calc.**</u></summary>
+
+
+perceptron : AND, OR연산 가능하나 XOR 불가능 
+
+- sol: XOR이 nonlinear해서 생긴 문제 : 2 Decision boundary
+
+
+  </details>
+<details>
+  <summary><u>**ANN Training**</u></summary>
+
+- input - hidden - output : hidden layer 수에 따라 네트워크 구조가 좌우되며 linearly nonsolvable 문제도 해결해낼 수 있다
+- 1) decide input /output / hidden layer node number 
+→ 2) find weight using training alg (backpropagation)
+- #class = #node
+
+
+  </details>
+<details>
+  <summary><u>**Backpropagation**</u></summary>
+
+- (등장배경) NN-SVM-DNN에서 SVM이 많이 쓰이는 경우였음. NN에서 overfitting / XOR문제
+- (Idea) Weight w를 Error 감소하는 방향으로 Update - between prediction vs ground truth val
+- (prob. similar to perceptron) stuck in local minima, iteratively get w, many w to get y
+- chain rule
+
+
+  </details>
+<details>
+  <summary><u>**Vanishing Gradient Problem**</u></summary>
+
+
+error들이 backpropagate하면 gradient가 vanish하는 현상 : layer에서 소수점이 곱해질수록 0으로 수렴하기 때문이다. w = w - eta dE/du
+
+- sol : requires lots of data
+- nonlinear ReLU
+- Layerwise learning : 충분히 학습되면 넘어감
+
+
+  </details>
+<details>
+  <summary><u>**Overfitting**</u></summary>
+
+- Only get good result for train data only
+
+get stuck in local minima 
+
+- solution : randomly set initial val +many data + much computation power→ train many times → avg 추출
+
+good model check
+
+- solution : train data, test data 변화시키며 stable result를 보이는지 확인한다
+
+
+  </details>
+<h1 id="9-dnn">9. DNN</h1>
+
+<details>
+  <summary><u>**Why is better than traditional ML**</u></summary>
+
+- SVM) Manual, Human supervised, div and conquer
+	- 기존에 human이 feature extraction한 후 classification함.
+	- SVM에서는 Hand-crafted phi fn을 활용해서 alg에서 Pattern이 더 잘 보이도록 수정했다
+- DL) Automatical, end-to-end NN
+	- end-to-end joint system : NN이라는 hierarchical structure로 feature extract + classification 과정 수행
+		- → data를 지속적으로 분류 : 자체적으로 자동적으로 배우고 지능적인 결정 수행
+	- modularization : automatically learned from data (each classes)
+
+
+  </details>
+<details>
+  <summary><u>**DNN consist**</u></summary>
+
+- input layer + multiple hidden l + output layer
+
+
+  </details>
+<details>
+  <summary><u>**(CNN) Layers : FC Layer, Locally connected layer**</u></summary>
+
+
+corelation 구하는 작업 → 조합을 다음 layer로 전달한다.
+
+- FC : globally corelated - rsrc waste, too much calc., not enough data to train pm
+- LC : 일정 convolution내 node (different locations-convolutions with learned kernel)
+	- convolution : 특정 Window size filter
+
+
+  </details>
+<details>
+  <summary><u>**(CNN) Conv. operations**</u></summary>
+
+- Conv A * B = B * A
+- cross-corelation : A . B ≠ B . A
+- auto-correlation : 자기 자신과 동일
+
+
+  </details>
+<details>
+  <summary><u>**(CNN) Pooling**</u></summary>
+
+
+filter responses at different location → robustnest to spatial location of filters
+
+- max, avg, l2 pooling
+
+
+  </details>
+<details>
+  <summary><u>**(CNN) size of feature map 계산**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**tasks**</u></summary>
+
+- Classification : exact class 분류
+- Localization : obj 주변에 box를 두고 정답과 적어도 50%이상 겹쳐야 함
+- Obj Detection : n개의 obj에 모두 boundary box 처리
+
+
+  </details>
+<details>
+  <summary><u>**Alexnet**</u></summary>
+
+- act. fn. : ReLU in Hidden layers → faster, expressive than sigmoid
+- ten different 224*224 patches from from 256*256 img
+- dropout to reg. weight in FC layers
+- padding
+
+
+  </details>
+<details>
+  <summary><u>**FC Layer**</u> </summary>
+
+
+has no constrains the input img size (상관 없음)
+
+
+
+  </details>
+<details>
+  <summary><u>**DNN Evolution**</u></summary>
+
+
+NN - Perceptron - Backporpagatino ,RNN, RBM - CNN, MNIST, LSTM, BRNN - DBN - GAN - AlphaGo
+
+- data labeled
+- obj detection focused
+- GPU
+	- good for mat*mat multiplies + high bandwidth
+- shallower
+
+
+  </details>
+<details>
+  <summary><u>**Backgrounds**</u></summary>
+
+- HW (GPU) + Data (Big data) + Alg (learning Alg)
+- limit : cannot do commonsense reasoning - 상식, 윤리의 Lack
+
+
+  </details>
+<h1 id="10-dnn2">10. DNN2</h1>
+
+<details>
+  <summary><u>**Data Processing**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Weight Init.**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Batch Normalization**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Regularization**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Dropout**</u></summary>
+
+- (배경) deep NN 일수록 특정 node가 학습 시 dropped case 발생
+- (train) assume dropout rate p → (test) no dropout
+
+
+  </details>
+<details>
+  <summary><u>**regularization common pattern**</u></summary>
+
+
+
+  </details>
+<h1 id="11-ensemble-learning">11. Ensemble learning</h1>
+
+<details>
+  <summary>Ensemble Learning</summary>
+
+1. 
+
+
+  </details>
+<details>
+  <summary>Generate Ensembles </summary>
+
+
+
+  </details>
+<details>
+  <summary>**Ensemble learning via negative correlation learning:**</summary>
+
+- Generating sequentially new predictors **negatively correlated** with the existing ones
+	- 현재 classifier하고 negative corelation갖는 classifier를 학습하여 융합한다
+
+
+  </details>
+<details>
+  <summary>Bagging</summary>
+
+- Averaging the prediction over a collection of predictors generated from **bootstrap samples** (both classification and regression)
+
+	bootstrap sample :trian data있으면 subset sampling
+
+	- 각각 sampling으로부터 classifier 학습
+
+		Random하게 sampling하며 다양한 model
+
+
+
+  </details>
+<details>
+  <summary>Boosting</summary>
+
+- Weighted vote with a collection of classifiers that were trained sequentially from training sets given priority to instances **wrongly classified**
+
+	Boosting : 여러 단계를 거쳐 classifier 학습
+
+	- 이전 단계의 classifier의 오답에 초점을 맞춘다.
+
+	오류가 나오는 data들을 모아 다음 stage에서 초점을 맞추어 학습하여 융합한다
+
+
+
+  </details>
+<details>
+  <summary>Boosting - Adaboost</summary>
+
+
+
+  </details>
+<details>
+  <summary>Adaboost vs Boosting</summary>
+
+
+
+  </details>
+<details>
+  <summary>Random Forest</summary>
+
+
+RandomForest:
+
+- Averaging the prediction over a collection of trees constructed using a **randomly selected subset of features**
+	- tree를 randomly생성하여 randomly select해서 만든다.
+
+
+  </details>
+<details>
+  <summary>Heterogeneous ensembles:</summary>
+
+- Combining a set of **heterogeneous predictors**
+	- NN + SVM + DT 등 융합
+
+
+  </details>
+<details>
+  <summary>Model Selection</summary>
+
+
+
+  </details>
+<h1 id="12-clustering">12. Clustering</h1>
+
+<details>
+  <summary><u>**K-means clustering**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**K-means clustering properties**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Agglomerative clustering**</u> </summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Agglomerative clustering - hierarchical clustering : strength, complexity**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Closest pair (single-link clustering)**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Farthest pair (complete-link clustering)**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Average of all pairs**</u></summary>
+
+
+
+  </details>
+<h1 id="13-dimensionality-reduction">13. Dimensionality Reduction</h1>
+
+<details>
+  <summary><u>**Goal of Dimensionality Reduction**</u> </summary>
+
+
+Visualization 용이 : 3dim 이하로 Reduct → visualize easy
+
+
+Performance 향상 : easy to handle data
+
+
+Computation cost 감소 
+
+
+
+  </details>
+<details>
+  <summary><u>**Data Compression**</u></summary>
+
+
+(필요성) Too high dimension of detection windows : computationally intensive
+
+- Cannot handle them : too high dimensionality → pixel diminish시켜 사용
+- Curse of dimensionality : 너무 Data dimension이 높아지면 accuracy가 떨어지는 현상
+	- boolean이 아닌 Observed value (measured) : boolean이 아니라 acc 떨어질 수 있음
+
+
+  </details>
+<details>
+  <summary><u>**Feature Extraction**</u></summary>
+
+
+(과정) very high-dim raw data → feature extraction dimension reduction → classifier
+
+
+
+  </details>
+<details>
+  <summary><u>**dimension reduction**</u></summary>
+
+
+axis에 projection한 형태로 reduct dimension
+
+
+
+  </details>
+<details>
+  <summary><u>**왜 좌표축을 rotate한 것이라고 표현하는가? (multivariate dataset into new config)**</u></summary>
+
+- simplify data
+- easy to look at rel. between variable - patterns of units
+
+
+  </details>
+<details>
+  <summary><u>**PCA process**</u></summary>
+
+- [goal] find k-dim projection  which preserves best variance
+
+
+  </details>
+<details>
+  <summary><u>**PCA  - Eigenvalue, vector의 의미?**</u></summary>
+
+- <u>**eigenvector :PCA분석을 했을 때 data가 가장 크게 분산된 방향으로 표현하는 방향벡터이고 그 정도를 가리키는 것은 eigenvalue.**</u>
+- smaller eigenvalue 순 - eigenvector 정렬 → 크게 var되는 방향으로 정렬
+- 가장 큰 eigenvector로 하여 좌표축을 변환해도 data들이 잘 표현이 됨
+	- data를 Eigenvector에 Projection : 새로운 좌표값으로 나오게 됨
+
+
+  </details>
+<details>
+  <summary><u>**LDA**</u></summary>
+
+
+LDA : labeled 
+
+
+LDA의 필요성
+
+
+
+  </details>
+<details>
+  <summary><u>**PCA vs. LDA**</u></summary>
+
+
+
+  </details>
+<details>
+  <summary><u>**Eigenface**</u></summary>
+
+
+x new = sigma wi xi
+
+- data의 Weighted sum으로 나온다 : linear data
+- whoe data to DNN → 더 효과적이더라
+
+
+  </details>
+<h1 id="14-rl">14. RL</h1>
+
+<details>
+  <summary><u>**Characteristics of Reinforcement Learning**</u> </summary>
+
+- Feedback is delayed, not instantaneous
+- Time really matters (sequential, non i.i.d. data)
+	- 시간이 중요한 요소 중 하나
+	- sequential : 전반의 선택이 후반의 선택에 영향
+	iid = independent identically distributed - 상호 연관
+- Agent’s actions affect the subsequent data it receives
+	- agent action이 이후 data에 영향을 미친다.
+- **Goal: select actions to maximize total future reward**
+	- 일련의 행동에 따른 reward가 최대가 되도록 학습한다
+
+
+  </details>
+<details>
+  <summary><u>**Diff. with supervised, unsupervised learning**</u></summary>
+
+- What makes reinforcement learning different from other machine learning paradigms?
+- supervised l. vs unsupervised l. vs. RL
+	- supervised : label + data
+	- Unsupervised : just use given data
+	- RL : data + reward - Reward에 해당하는 추가적인 input이 존재함
+
+→ There is no supervisor, only a reward signal
+
+
+
+  </details>
+<details>
+  <summary><u>**Rewards**</u></summary>
+
+- Indicate show well agent is doing at step t &amp; The agent’s job is to maximize cumulative reward
+- 각각의 시간에 얼마나 잘 행동 했는지 보고 reward 최대화되는 방향으로 행동하도록 학습
+- Reinforcementlearning is based on the reward hypothesis
+	- reward = 사람이 만든 기준
+	ex. Atari game : target 별 최대한의 점수를 학습할 수 있도록 학습이 되기도 함. 점수가 많은 쪽을 더 빨리 얻을 수 있도록 학습시키는 양상이 생길 수 있다,
+	- Reward hypothesis: all goals can be described by the m**aximization of expected cumulative reward**
+- Reward may be delayed reward는 delay를 수반하여 주어질 수 있다
+- 현재 action으로 인한 reward에 더 중점을 둘 것인지, 미래의 reward에 중점을 더 둘 것인지 : user setting할 수도 있고 학습 단계에서 어떻게 parameter를 설정했는지에 따라 / 학습이 잘 효과적으로 이루어질수 있는지를 고려하여 모수 조정
+	- (greedy) 현재 reward에 초점을 맞추는 경우 - current reward
+	- (optimal) 전체 reward에 초점을 맞추는 경우 - total reward
+		- Itmay be better to sacrifice immediate reward to gain more long-term reward (greedy optimal)
+
+
+  </details>
+<details>
+  <summary><u>**구성 of RL**</u></summary>
+
+- At each stept the agent: agent가 주변을 관찰하고, reward를 받아 action을 취함
+	- Executes action At
+	- Receives observation Ot
+	- Receives scalar reward Rt
+- An RL agent may include one or more of these components:
+	- Policy: agent’s behavior function 행동 정의
+	- Value function: how good is each state and/or action 얼마나 좋은가
+	- Model: agent’s representation of the environment  학습 모델
+
+&lt;agent, environment의 상호작용&gt;
+agent는 action을 취하고 state에 따라 Reward를 받게 됨
+env는 action을 받아들여서 agent에게 주고 변환된 statement를 agent에게 줌
+
+- t타임으로 이루어지는 요소들
+
+
+  </details>
+<details>
+  <summary><u>**Bellman Eq**</u></summary>
+
+
+$$
+V(s) = max_a(R(s,a) + \gamma V(s'))
+$$
+
+- $R(s,a) $: reward: state에서 취한 action에 따른 reward
+- $V(s)$ : is the value function - value function:전체 reward 를 어떻게 표현할 것인가
+- $\gamma$ : is the discounting factor
+	- 현재-미래 reward중 어느 것에 초점을 맞출 것인지 중요도 맞추는 상수
+- $s'$ : is the next state agent can go from
+	- s : 현재 state, s’ : next state
+
+$$
+V(s) = max_a(R(s,a) + \gamma V(s'))
+$$
+
+- By calculating V(s) for all states
+	- Agent can move to the state with larger state value
+- 임의의 출발점에서 state function 커지는 쪽으로 action을 취하면 된다
+→ equation을 이용해서 value funcition을 구한후 최적의 path를 구할 수 있다
+
+
+  </details>
+<details>
+  <summary><u>**Sequential Decision Making**</u></summary>
+
+- 현재의 action이 다음 턴 action에 영향을 미치는데, 오랜 turn에 대해 영향을 끼칠수도 있음.
+- Actions may have long term consequences
+	- state가 있고 action을 취해서 s1-(a1)-&gt;s2-(a2)-&gt;s3
+
+
+  </details>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="ML" /><summary type="html"><![CDATA[7. kNN]]></summary></entry><entry><title type="html">9. DNN Deep Neural Network (1)</title><link href="http://localhost:4000/9.-DNN-Deep-Neural-Network-(1)" rel="alternate" type="text/html" title="9. DNN Deep Neural Network (1)" /><published>2023-05-24T00:00:00+09:00</published><updated>2023-05-24T00:00:00+09:00</updated><id>http://localhost:4000/9.-DNN-Deep-Neural-Network-(1)</id><content type="html" xml:base="http://localhost:4000/9.-DNN-Deep-Neural-Network-(1)"><![CDATA[<p>박운상 교수
+Office: R-911
+Tel: 705-8936
+Email: <a href="mailto:unsangpark@sogang.ac.kr">unsangpark@sogang.ac.kr</a></p>
+
+<h1 id="deep-learning">Deep Learning</h1>
+
+<ul>
+  <li>A machine learning subfield. Exceptional performance in learning patterns.</li>
+  <li>Deep learning algorithms attempt to learn (multiple levels of) representation by using a hierarchy of multiple layers.</li>
+  <li>If you provide the system tons of information, it begins to understand it and respond in useful ways.</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/0.png" alt="0" /></p>
+
+<ul>
+  <li>Manually designed features are often over-specified, incomplete and take a long time to design and validate</li>
+  <li>Learned Features are easy to adapt, fast to learn</li>
+  <li>Deep learning provides a very flexible, (almost?) universal, learnable
+framework for representing world, visual and linguistic information.</li>
+  <li>Can learn both unsupervised and supervised</li>
+  <li>Effective end-to-end joint system learning</li>
+  <li>Utilize large amounts of training data</li>
+</ul>
+
+<h2 id="history">History</h2>
+
+<ul>
+  <li>In ~2012, deep learning (DL) started outperforming other machine learning (ML) techniques, first in speech and vision, then NLP</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/1.png" alt="1" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/2.png" alt="2" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/3.png" alt="3" /></p>
+
+<h2 id="structure">Structure</h2>
+
+<p>어떻게 DL이 좋은 성능을 내는가?</p>
+
+<ul>
+  <li>Fat + Short vs. Thin + Tall Networks</li>
+  <li>The same number of parameters</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/4.png" alt="4" /></p>
+
+<ul>
+  <li>Deep → Modularization</li>
+  <li></li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/5.png" alt="5" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/6.png" alt="6" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/7.png" alt="7" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/8.png" alt="8" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/9.png" alt="9" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/10.png" alt="10" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/11.png" alt="11" /></p>
+
+<ul>
+  <li>Before 2006, deeper usually does not imply better performance.</li>
+  <li><a href="/a8916a1612b345718745d8cf339ab58b">Geoffrey Hinton showed how to train deep network in 2006 [1]</a>
+    <ul>
+      <li>Learned layers one by one</li>
+    </ul>
+  </li>
+  <li><a href="/a8916a1612b345718745d8cf339ab58b">Deep Neural Networks showed good classification performance with large image data set in 2012. [2] </a>
+    <ul>
+      <li>GPU</li>
+      <li>Big data</li>
+      <li>Better learning algorithms</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/12.png" alt="12" /></p>
+
+<p><a href="http://www.gizmodo.com.au/2015/04/the-basic-recipe-for-machinelearning-explained-in-a-single-powerpoint-slide/">http://www.gizmodo.com.au/2015/04/the-basic-recipe-for-machinelearning-explained-in-a-single-powerpoint-slide/</a></p>
+
+<ul>
+  <li>Rectified Linear Unit (ReLU)
+    <ul>
+      <li>Fast to compute</li>
+      <li>Vanishing gradient problem</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/13.png" alt="13" /></p>
+
+<ul>
+  <li><a href="/a8916a1612b345718745d8cf339ab58b">[Xavier Glorot, AISTATS’11] [3]</a></li>
+  <li><a href="/a8916a1612b345718745d8cf339ab58b">[Andrew L. Maas, ICML’13] [4]</a></li>
+  <li><a href="/a8916a1612b345718745d8cf339ab58b">[Kaiming He, arXiv’15] [5]</a></li>
+</ul>
+
+<h1 id="dropout">Dropout</h1>
+
+<p><a href="/a8916a1612b345718745d8cf339ab58b">Dropout [6]</a></p>
+
+<ul>
+  <li>Each time before computing the gradients</li>
+  <li>Each neuron has $p \times 100 \%$ chance to be dropped
+    <ul>
+      <li>The structure of the network is changed</li>
+    </ul>
+  </li>
+  <li>Use the new network for training</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/14.png" alt="14" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/15.png" alt="15" /></p>
+
+<ul>
+  <li>Weights should be multiplied by (1-p) when testing</li>
+</ul>
+
+<h2 id="training-stage">Training stage</h2>
+
+<p>Assume dropout rate is 50%</p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/16.png" alt="16" /></p>
+
+<h3 id="testing-stage">Testing stage</h3>
+
+<p>No dropout</p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/17.png" alt="17" /></p>
+
+<h1 id="convolutional-neural-network">Convolutional Neural Network</h1>
+
+<h2 id="fully-connected-layer">Fully connected layer</h2>
+
+<ul>
+  <li>Example: 200x200 image * 40K hidden units → ~2B parameters</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/18.png" alt="18" /><em>Slide Credit: Marc’Aurelio Ranzato</em></p>
+
+<ul>
+  <li>Waste of resources + we have not enough training samples</li>
+  <li>Spatial correlation is local</li>
+</ul>
+
+<h2 id="locally-connected-layer">Locally Connected Layer</h2>
+
+<ul>
+  <li>Example: 200x200 image * 40K hidden units → ~4M parameters (Filter size: 10x10)
+Page 20- Spatial correlation is local</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/19.png" alt="19" /></p>
+
+<ul>
+  <li>Waste of resources + we have not enough training samples</li>
+  <li>Spatial correlation is local</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/20.png" alt="20" /></p>
+
+<ul>
+  <li>Statistics is similar at different locations
+    <ul>
+      <li>Share the same parameters across</li>
+    </ul>
+  </li>
+  <li>different locations (weight sharing)
+    <ul>
+      <li>Convolutions with learned kernels</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="convolution-operation">Convolution operation</h2>
+
+<p>$F(m,n) = f * h = \Sigma_{l= -\frac w 2}^{\frac f 2}\Sigma_{k= -\frac w 2}^{\frac w 2} {f(m+k, n+l) *h(\frac w 2 -k, \frac w 2 -l)}$</p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/21.png" alt="21" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/22.png" alt="22" /></p>
+
+<ul>
+  <li>If a feature is useful in some locations during training, detectors for that feature will be useful in all locations during testing</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/23.png" alt="23" /></p>
+
+<h2 id="pooling">Pooling</h2>
+
+<ul>
+  <li>By “pooling” (e.g., taking max) filter responses at different locations, we gain robustness to the exact spatial location of features.</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/24.png" alt="24" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/25.png" alt="25" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/26.png" alt="26" /></p>
+
+<h3 id="max-pooling">Max-pooling</h3>
+
+<p>$h_i^n(r,c) = max_{\bar r \in N(r), \bar c \in N(c), } h_i^{n-1} (\bar r, \bar c)$</p>
+
+<h3 id="average-pooling">Average-pooling</h3>
+
+<p>$h_i^n(r,c) = mean_{\bar r \in N(r), \bar c \in N(c), } h_i^{n-1} (\bar r, \bar c)$</p>
+
+<h3 id="l2-pooling">L2-pooling</h3>
+
+<p>$h_i^n(r,c) = \sqrt{\Sigma_{\bar r \in N(r), \bar c \in N(c), } h_i^{n-1} (\bar r, \bar c)}$</p>
+
+<h2 id="convolution-kernel-filter-examples">Convolution kernel (filter) examples</h2>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/27.png" alt="27" /></p>
+
+<ul>
+  <li>
+    <p>Examples of learned object parts from object categories</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/28.png" alt="28" /></p>
+  </li>
+</ul>
+
+<h2 id="lenet-5-1998">LeNet-5 (1998)</h2>
+
+<p><a href="/a8916a1612b345718745d8cf339ab58b">[7] Le-Net</a></p>
+
+<ul>
+  <li>Yann LeCun and his collaborators developed a really good recognizer for
+handwritten digits by using backpropagation in a feedforward net with
+    <ul>
+      <li>Many hidden layers (at that time),</li>
+      <li>3 convolution layer,</li>
+      <li>2 subsampling (pooling) layer</li>
+      <li>5*5 convolution kernels,</li>
+      <li>~340,000 connections,</li>
+      <li>~60,000 parameter</li>
+    </ul>
+  </li>
+  <li>
+    <p>Used for reading ~10% of the checks in North America</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/29.png" alt="29" /></p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/30.png" alt="30" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/31.png" alt="31" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/32.png" alt="32" /></p>
+
+<h2 id="backpropagation-in-cnn">Backpropagation in CNN</h2>
+
+<ul>
+  <li>Same color shares the same weight</li>
+  <li>Compute the gradients as usual, and then modify the gradients so that they satisfy the constraints</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/33.png" alt="33" /></p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/34.png" alt="34" /></p>
+
+<ul>
+  <li>The 82 errors made by LeNet5</li>
+  <li>Notice that most of the errors are cases that people find quite easy.</li>
+  <li>The human error rate is probably 20 to 30 errors.</li>
+  <li>LeNet uses knowledge about the invariances to design:
+    <ul>
+      <li>local connectivity</li>
+      <li>weight-sharing</li>
+      <li>Pooling</li>
+      <li>~ 80 errors</li>
+    </ul>
+  </li>
+  <li>Using many different transformations of the input and other tricks (Ranzato2008)
+    <ul>
+      <li>~ 40 errors</li>
+    </ul>
+  </li>
+  <li>Using carefully designed extra training data (Ciresan 2010)
+    <ul>
+      <li>For each training image, they produced many new training examples by applying many different transformations</li>
+      <li>~ 35 errors</li>
+    </ul>
+  </li>
+</ul>
+
+<p>[Ciresan 2010][8]</p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/35.png" alt="35" /><em>PyTorch implementation of LeNet-5 for MNIST, https://github.com/radsn/LeNet5</em></p>
+
+<ul>
+  <li>The top printed digit is the right answer.</li>
+  <li>The bottom two printed digits are the network’s best two guesses.</li>
+  <li>The right answer is almost always in the top 2 guesses.</li>
+  <li>With model averaging they can now get about 25 errors.</li>
+</ul>
+
+<h1 id="from-handwritten-digits-to-3-d-objects">From Handwritten Digits to 3-D objects</h1>
+
+<ul>
+  <li>Recognizing real objects in color photographs downloaded from the web is much more complicated than recognizing hand-written digits:
+    <ul>
+      <li>Hundred times as many classes (1000 vs 10)</li>
+      <li>Hundred times as many pixels (256* 256 color vs. 28* 28 gray)</li>
+      <li>Two dimensional image of three-dimensional scene</li>
+      <li>Multiple objects in each image</li>
+      <li>Cluttered background</li>
+    </ul>
+  </li>
+  <li>Will the same type of convolutional neural network work?</li>
+</ul>
+
+<h1 id="the-ilsvrc-2012-competition-on-imagenet">The ILSVRC-2012 Competition on ImageNet</h1>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/36.png" alt="36" /></p>
+
+<ul>
+  <li>[9] ImageNet
+    <ul>
+      <li>Over 15 million labeled high-resolution images</li>
+      <li>Roughly 22,000 categories</li>
+      <li>Collected from the web</li>
+      <li>Labeled by human using Amazon’s Mechanical Turk crowd-sourcing tool</li>
+    </ul>
+  </li>
+  <li>ImageNet Large-Scale Visual Recognition Challenge (ILSVRC)
+    <ul>
+      <li>Uses a subset of ImageNet</li>
+      <li>1,000 categories</li>
+      <li>1.2 million training images</li>
+      <li>50,000 validation images</li>
+      <li>150,000 test images</li>
+    </ul>
+  </li>
+  <li>The classification task:
+    <ul>
+      <li>Get the “correct” class in your top 5 bets. There are 1000 classes.</li>
+    </ul>
+  </li>
+  <li>The localization task:
+    <ul>
+      <li>For each bet, put a box around the object. Your box must have at least 50%
+  overlap with the correct box.</li>
+    </ul>
+  </li>
+  <li>Some of the best existing computer vision methods were tried on this dataset by leading computer vision groups from Oxford, INRIA, XRCE(XEROX), …
+    <ul>
+      <li>Computer vision systems use complicated multi-stage systems</li>
+      <li>The early stages are typically hand-tuned by optimizing a few parameters</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="examples-from-the-test-set-with-the-networks-guesses">Examples from the test set (with the network’s guesses)</h2>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/37.png" alt="37" /></p>
+
+<p>Error rates on the ILSVRC-2012 competition</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>classification</th>
+      <th>classification &amp; localization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>UToronto</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>16.4%</td>
+      <td>34.1%</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>UTokyo</td>
+      <td>26.1%</td>
+      <td>53.6%</td>
+    </tr>
+    <tr>
+      <td>Oxford University Computer Vision Group</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>26.9%</td>
+      <td>50.0%</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>INRIA + XRCE</td>
+      <td>27.0%</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>undefined- UToronto (deep learning - Alex Krizhevsky, AlexNet)</p>
+<ul>
+  <li>INRIA (French national research institute in CS) + XRCE (Xerox Research Center Europe)</li>
+</ul>
+
+<h1 id="a-cnn-for-imagenet">A CNN for ImageNet</h1>
+
+<p>AlexNet[10]</p>
+
+<ul>
+  <li>Alex Krizhevsky (NIPS 2012) developed a very deep convolutional neural net of the type pioneered by Yann LeCun.</li>
+  <li>7 hidden layers not counting some max pooling layers</li>
+  <li>The early layers are convolutional, the last two layers are fully connected</li>
+  <li>The activation functions are
+    <ul>
+      <li>Rectified linear units in every hidden layer. These train much faster and are more expressive than sigmoid.</li>
+      <li>Normalization for better activation</li>
+    </ul>
+  </li>
+  <li>Use “dropout” to regularize the weights in the fully connected layers</li>
+  <li>224<em>224 patches are taken from the 256</em>256 images (10 different versions) and leftright reflections are used to get more data</li>
+  <li>Used all 10 different patches at test time</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/38.png" alt="38" /></p>
+
+<h2 id="more-examples-from-alexnet">More examples from AlexNet</h2>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/39.png" alt="39" /></p>
+
+<h2 id="hardware-for-alexnet">Hardware for AlexNet</h2>
+
+<ul>
+  <li>He uses a very efficient implementation of convolutional nets on two NvidiaGTX 580 Graphics Processor Units (over 1000 fast little cores)
+    <ul>
+      <li>GPUs are very good for matrix-matrix multiplies.</li>
+      <li>GPUs have very high bandwidth to memory.</li>
+      <li>This allows him to train the network in a week.</li>
+      <li>It also makes it quick to combine results from 10 patches at test time.</li>
+    </ul>
+  </li>
+  <li>We can spread a network over many cores if we can communicate the states fast enough.</li>
+  <li>As cores get cheaper and datasets get bigger, big neural nets will improve faster than old-fashioned computer vision systems.</li>
+</ul>
+
+<h1 id="evolution-of-the-dnn">Evolution of the DNN</h1>
+
+<ul>
+  <li>Network depths and the performance</li>
+  <li>
+    <p>ILSVRC classification error (top-5 error)</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/40.png" alt="40" /></p>
+  </li>
+</ul>
+
+<h1 id="fully-convolutional-networks">Fully Convolutional Networks</h1>
+
+<ul>
+  <li>
+    <p>Fully connected layer constrains the input image size</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/41.png" alt="41" /></p>
+  </li>
+  <li>
+    <p>Fully convolutional network structure has no constrains on the input image size</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/42.png" alt="42" /></p>
+  </li>
+</ul>
+
+<h1 id="machine-learning-deep-learning-data-mining-big-data">Machine Learning, Deep Learning, Data Mining, Big data</h1>
+
+<h2 id="big-data">Big Data</h2>
+
+<ul>
+  <li>기존 데이터의 크기 범주를넘어서는 규모(2010~)</li>
+  <li>기존 데이터 처리 이슈 공유</li>
+  <li>대용량 데이터 분산저장/처리 방법 필요</li>
+</ul>
+
+<h2 id="machine-learning">Machine Learning</h2>
+
+<ul>
+  <li>데이터의 속성을 일반적으로 분석하는 방법, 주로 분류/회귀 작업에 사용됨(1950~)</li>
+  <li>지도학습/비지도학습/군집화</li>
+  <li>체스 게임으로부터 발전</li>
+</ul>
+
+<h2 id="deep-learning-1">Deep learning</h2>
+
+<ul>
+  <li>심층 인공신경망 기술을 사용하는 기계학습 방법(2010~)</li>
+  <li>기존 기계학습 방법의 성능을 뛰어 넘음</li>
+</ul>
+
+<h2 id="data-mining">Data Mining</h2>
+
+<ul>
+  <li>데이터에 내재된 속성을 분석 (1930~)</li>
+  <li>기계학습과 유사하나 데이터 간의 규칙을 분석하는 측면으로 차별화</li>
+</ul>
+
+<h2 id="some-history">Some history</h2>
+
+<ul>
+  <li>
+    <p>Frank Rosenblatt, Perceptron (1957, 1962): Early description and engineering of single-layer and multilayer artificial neural networks.</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/43.png" alt="43" /></p>
+  </li>
+  <li>
+    <p>Kasparov vs Deep Blue, 1997</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/44.png" alt="44" /></p>
+  </li>
+  <li>
+    <p>Lee Sedol vs AlphaGo, 2016</p>
+
+    <p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/45.png" alt="45" /></p>
+  </li>
+</ul>
+
+<h3 id="timelines">timelines</h3>
+
+<ul>
+  <li>1943: Neural networks</li>
+  <li>1957-62: Perceptron</li>
+  <li>1970-86: Backpropagation, RBM, RNN</li>
+  <li>1979-98: CNN, MNIST, LSTM, Bidirectional RNN</li>
+  <li>2006: “Deep Learning”, DBN• 2009: ImageNet + AlexNet</li>
+  <li>2014: GANs</li>
+  <li>2016-17: AlphaGo, AlphaZero</li>
+  <li>Turing Award given for:
+    <ul>
+      <li>“The conceptual and engineering breakthroughs that have made deep neural
+  networks a critical component of computing.”
+  • Yann LeCun
+  • Geoffrey Hinton
+  • Yoshua Bengio</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="limitations-of-deep-learning">Limitations of Deep Learning</h2>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/46.png" alt="46" /></p>
+
+<ul>
+  <li>Prediction from Rodney Brooks:
+“By 2020, the popular press starts having stories that the era of Deep Learning is over.”</li>
+  <li>2019 is the year it became cool to say that “deep learning” has limitations.</li>
+  <li>Books, articles, lectures, debates, videos were released that learning-based methods cannot do commonsense reasoning.</li>
+</ul>
+
+<h2 id="statics-of-acceptance-rate-neurips">Statics of acceptance rate NeurIPS</h2>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/47.png" alt="47" /></p>
+
+<h2 id="deep-learning-frameworktoolkits">Deep Learning Framework/Toolkits</h2>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/48.png" alt="48" /></p>
+
+<h2 id="alexnet">AlexNet</h2>
+
+<p>https://sushscience.wordpress.com/2016/12/04/understanding-alexnet/</p>
+
+<p><img src="/assets/img/2023-05-24-9.-DNN-Deep-Neural-Network-(1).md/49.png" alt="49" /></p>
+
+<hr />
+
+<p>[1] Geoffrey Hinton showed how to train deep network in 2006</p>
+
+<p>[2] Deep Neural Networks showed good classification performance with large image data set in 2012.</p>
+
+<p><a href="/a8916a1612b345718745d8cf339ab58b">[3] [Xavier Glorot, AISTATS’11]</a></p>
+
+<p>Deep Sparse Rectifier Neural Networks. <em><strong>Xavier Glorot, Antoine Bordes, Yoshua Bengio</strong></em>
+ <em>Proceedings of the Fourteenth International Conference on Artificial Intelligence and Statistics.</em> PMLR 15:315-323, 2011.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- [https://proceedings.mlr.press/v15/glorot11a.html](https://proceedings.mlr.press/v15/glorot11a.html)
+</code></pre></div></div>
+
+<p><a href="/a8916a1612b345718745d8cf339ab58b">[4] [Andrew L. Maas, ICML’13] </a></p>
+
+<p>Rectifier nonlinearities improve neural network acoustic models (2013) by Andrew L. Maas , Awni Y. Hannun , Andrew Y. Ng</p>
+
+<p><a href="https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf">https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf</a></p>
+
+<p><a href="/a8916a1612b345718745d8cf339ab58b">[5] [Kaiming He, arXiv’15] </a></p>
+
+<p>Deep Residual Learning for Image Recognition📹
+by Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun</p>
+
+<p><a href="https://arxiv.org/abs/1512.03385">https://arxiv.org/abs/1512.03385</a></p>
+
+<p><a href="/a8916a1612b345718745d8cf339ab58b">[6] Dropout: A Simple Way to Prevent Neural Networks from Overfitting</a></p>
+
+<p><em><strong>Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, Ruslan Salakhutdinov</strong></em>; 15(56):1929−1958, 2014.</p>
+
+<p><a href="https://jmlr.org/papers/v15/srivastava14a.html">https://jmlr.org/papers/v15/srivastava14a.html</a></p>
+
+<p><a href="/a8916a1612b345718745d8cf339ab58b">[7] Le-Net</a></p>
+
+<p><a href="http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf">http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf</a></p>
+
+<p>[8] [Ciresan 2010]</p>
+
+<p>[9] ImageNet</p>
+
+<p>ImageNet: A large-scale hierarchical image database</p>
+
+<p>by Jia Deng; Wei Dong; Richard Socher; Li-Jia Li; Kai Li; Li Fei-Fei</p>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="ML" /><summary type="html"><![CDATA[박운상 교수 Office: R-911 Tel: 705-8936 Email: unsangpark@sogang.ac.kr]]></summary></entry><entry><title type="html">8. ANN Artificial Neural Network (1)</title><link href="http://localhost:4000/8.-ANN-Artificial-Neural-Network-(1)" rel="alternate" type="text/html" title="8. ANN Artificial Neural Network (1)" /><published>2023-05-17T00:00:00+09:00</published><updated>2023-05-17T00:00:00+09:00</updated><id>http://localhost:4000/8.-ANN-Artificial-Neural-Network-(1)</id><content type="html" xml:base="http://localhost:4000/8.-ANN-Artificial-Neural-Network-(1)"><![CDATA[<h1 id="ann-introduction">ANN Introduction</h1>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/0.png" alt="0" /><em>h+ p ://cs231n.stanford.edu/slides/winter1516_lecture4.pdf</em></p>
+
+<ul>
+  <li></li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/1.png" alt="1" /><em>© 2017, SNU BioIntelligence Lab, h+ p ://bi.snu.ac.kr/</em></p>
+
+<ul>
+  <li></li>
+  <li>Classification with a line, $y = ax + b$
+    <ul>
+      <li>single, multi layer perceptron with NN</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/2.png" alt="2" /></p>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/3.png" alt="3" /></p>
+  </li>
+  <li>
+    <p>Generalization</p>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/4.png" alt="4" /></p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/5.png" alt="5" /></p>
+
+<h2 id="artificial-neural-networks-2-layers">Artificial Neural Networks (2 layers)</h2>
+
+<ul>
+  <li>NN 기본 구조 perceptron → hidden layer 쌓아 DNN</li>
+  <li>Two-layer network
+    <ul>
+      <li>input layer + output layer (2)</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/6.png" alt="6" /></p>
+
+    <ul>
+      <li>sigmoid 형태</li>
+      <li>no hidden layer → linearly separable prob only</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/7.png" alt="7" /></p>
+
+<h2 id="and">AND</h2>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/8.png" alt="8" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/9.png" alt="9" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/10.png" alt="10" /></p>
+
+<h2 id="or">OR</h2>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/11.png" alt="11" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/12.png" alt="12" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/13.png" alt="13" /></p>
+
+<h2 id="xor">XOR</h2>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/14.png" alt="14" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/15.png" alt="15" /></p>
+
+<ul>
+  <li>Two layer network cannot implement XOR.
+    <ul>
+      <li>perceptron 으로 분류 시 error가 크게 나타남</li>
+    </ul>
+  </li>
+  <li>Non-linear
+    <ul>
+      <li>two decision boundary (nonlinear)</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/16.png" alt="16" /></p>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/17.png" alt="17" /></p>
+  </li>
+</ul>
+
+<h1 id="multi-layer-networks">Multi-layer Networks</h1>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/18.png" alt="18" /></p>
+
+<ul>
+  <li>input - hidden - output</li>
+  <li>hidden layer 개수 → 몇 개인지에 따라 network 구조가 좌우됨
+    <ul>
+      <li>linearly nonsolvable 문제들도 풀 수 있게 된다</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/19.png" alt="19" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/20.png" alt="20" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/21.png" alt="21" /></p>
+
+<ul>
+  <li>hidden layer 1개 추가 → 많은 가중치 w들을 학습한다</li>
+  <li>수백개 hidden layer →  수천, 수만 w 학습</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/22.png" alt="22" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/23.png" alt="23" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/24.png" alt="24" /></p>
+
+<ul>
+  <li>$wx = \Sigma_i w_i x_i$</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/25.png" alt="25" /></p>
+
+<ul>
+  <li>feature space : input layer → hidden layer</li>
+  <li>SVM과 유사한 효과 : high dimension
+    <ul>
+      <li>원래 feature space: 원래는 not linearly separable하지만 high dimension phi fn을 활용</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/26.png" alt="26" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/27.png" alt="27" /></p>
+
+<ul>
+  <li>hidden layer를 추가하면 → 복잡한 boundary를 구할 수 있다</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/28.png" alt="28" /></p>
+
+<h1 id="ann-training">ANN Training</h1>
+
+<ul>
+  <li>ANN training?
+    <ul>
+      <li>Estimate w by using training data</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/29.png" alt="29" /></p>
+
+    <p>|               | training                                                                            |
+  | ————- | ———————————————————————————– |
+  | perceptron    | w                                                                                   |
+  | SVM           | w :</p>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>margin, slack var, Phi fn</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>Bayesian</td>
+              <td>G(mu, sigma^2) : prior</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>density modeling → likelihood</p>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>prior P → post P</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>Decision Tree</td>
+              <td>Tree 구조</td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>kNN</td>
+              <td>save train data</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>k value : train통해 결정</li>
+      <li>dinstance metric  : 
+  L1 vs L2 vs Euclidean |
+  | ANN           | w
+  NN Structure</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>I/H/O Layer개수</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>DNN</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>undefined	- test data 분류 작업
+	- regularizer
+	- hyperparameter normalize</p>
+<ul>
+  <li>By experiment ← train 중 parameter 결정</li>
+  <li>data  : multimedia</li>
+</ul>
+
+<h2 id="1-decide-input-layers-node-number">1. Decide input layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/30.png" alt="30" /></p>
+
+<h2 id="2-decide-output-layers-node-number">2. Decide output layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/31.png" alt="31" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/32.png" alt="32" /></p>
+
+<ul>
+  <li>구조만 보면 class가 몇 개인지 모른다</li>
+  <li>class 수 = node 수
+    <ul>
+      <li>classification : output layer node의 activation 여부 확인</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-decide-hidden-layers-node-number">3. Decide hidden layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/33.png" alt="33" /></p>
+
+<h2 id="4-find-weight-using-training-algorithm">4. Find weight using training algorithm</h2>
+
+<ul>
+  <li>Use back-propagation algorithm. Supervised learning.</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/34.png" alt="34" /></p>
+
+<h1 id="back-propagation-algorithm">Back-propagation Algorithm</h1>
+
+<ul>
+  <li>등장 배경 : NN → SVM →DNN
+    <ul>
+      <li>image가 낮인지 밤인지 예견하는 문제</li>
+      <li>data를 잘 준비했어야 하는데 overfitting을 해결하지 못하여 SVM이 1990-2010년도 성행</li>
+    </ul>
+  </li>
+  <li>train with back propagation algorithm
+    <ul>
+      <li>w값 arbitraily initialize → feed forward :
+        <ul>
+          <li><u>**w :**</u> $\epsilon \downarrow$<u>**방향으로 update**</u></li>
+          <li>between prediction , ground truth value</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$y = f (\Sigma_i x_i w_{ij} + b)$
+    <ul>
+      <li>network의 구조가 결정되면 다음 layer의 node값에 bias를 더하는 함수</li>
+      <li>perceptron 문제와 유사하게 발생 :
+        <ul>
+          <li>local minima</li>
+          <li>many w → T 증가</li>
+          <li>iterative하게 w 구하는 과정</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/35.png" alt="35" /></p>
+
+    <p>모든 edge에 할당된 w에 대하여 backpropagation</p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/36.png" alt="36" /></p>
+
+<ul>
+  <li>w update하면 iteration 반복 많아짐</li>
+  <li>hidden 많아지면 update bigger</li>
+  <li>
+    <p>$E = \Sigma_k \frac 1 2 (z_k - t_k)^2$</p>
+
+    <p>tk : ground truth</p>
+
+    <ul>
+      <li>제곱을 하고 2로 나누어준 이유 : perceptron처럼, 미분을 위해 제곱하고 1/2 *2하면 표현식이 간단해진다</li>
+      <li>error 미분 : wij, wji 미분하여 update</li>
+    </ul>
+  </li>
+</ul>
+
+<p>chain rule</p>
+
+<ul>
+  <li>$\frac{\partial E}{\partial w_{kj}} = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial w_{kj}}  $</li>
+  <li>$\frac{\partial E}{\partial w_{ji}} = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial w_{ji}}  = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial y_j}\frac{\partial y_j}{\partial w_{ji}}  $</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/37.png" alt="37" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/38.png" alt="38" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/39.png" alt="39" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/40.png" alt="40" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/41.png" alt="41" /></p>
+
+<ul>
+  <li>big NN의 한계 : hidden layer 제한 → 다양한 성능 제한</li>
+  <li><strong>hidden layer수 증가 감소 이유 :???</strong>
+    <ul>
+      <li>output에서 input으로 backpropagate할 수록 더 많은 chain rule (Differentiation) 수행 → update양 감소</li>
+    </ul>
+  </li>
+  <li>To update weights far from the output layer, more nodes and their derivatives are involved. Due to the chain rule, the amount of update becomes smaller.</li>
+</ul>
+
+<h2 id="activation-function-sigmoid">Activation function: sigmoid</h2>
+
+<p>perceptron, SVM</p>
+
+<ul>
+  <li>input data (weight) - f(x) update
+    <ul>
+      <li>동일한 input에 대해 error 계산</li>
+      <li>error가 각 iteration별로 작아짐</li>
+    </ul>
+  </li>
+  <li>input data 바꾸면 - updated w도 new input data에 부적절할수도 있으니 fix해야 한다</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/42.png" alt="42" /></p>
+
+<ul>
+  <li>부적합</li>
+  <li>SVM에서, nondifferentiable fn : hinge loss → 구간 나누어 미분 → 복잡해지는 미분 계산 과정 itreation
+    <ul>
+      <li>수학적으로 옳지는 않다??</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/43.png" alt="43" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/44.png" alt="44" /></p>
+
+<ul>
+  <li>back propagation example
+    <ul>
+      <li>Ex) 1st error = 0.298371109 
+  2nd error = 0.291027924
+  …
+  …
+  10000th error = 0.000035085</li>
+      <li>output neurons after 10000th iteration : 
+  0.015912196 (vs 0.01 target) 
+  0.984065734 (vs 0.99 target)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/45.png" alt="45" /></p>
+
+<ul>
+  <li>error : 역전파하면서 error 감소
+    <ul>
+      <li>10000th로 갈수록 0으로 error 수렴</li>
+    </ul>
+  </li>
+  <li>output neuron : target에 근사</li>
+</ul>
+
+<h1 id="deep-neural-network">Deep Neural Network</h1>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/46.png" alt="46" /></p>
+
+<ul>
+  <li>raw data in real world : 영상 획득, microphone 녹음 등 ..</li>
+</ul>
+
+<p>DNN : Number of hidden layers</p>
+
+<ul>
+  <li>
+    <h1 id="of-hidden-layers-leq-1--shallow-neural-network">of hidden layers $\leq 1$ → Shallow Neural Network</h1>
+  </li>
+  <li>
+    <h1 id="of-hidden-layers-geq-2--deep-neural-network">of hidden layers $\geq 2$ → Deep Neural Network</h1>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/47.png" alt="47" /></p>
+
+<h2 id="dnn-training">DNN Training</h2>
+
+<h3 id="vanishing-gradient-problem">Vanishing gradient problem</h3>
+
+<p>Problem with non-linear activation</p>
+
+<ul>
+  <li>As errors are back propagated, the gradient vanishes</li>
+  <li>Derivatives of sigmoid are 0~0.25. As these are multiplied at multiple layers, they become smaller and smaller</li>
+  <li>$w_{ji} = w_{ij} -\eta \frac {\partial E}{\partial w_{ji}}$: as $\frac {\partial E}{\partial w_{ji}}$becomes smaller, $w$ is not well updated, especially for the layers far from the output layer</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/48.png" alt="48" /></p>
+
+<ul>
+  <li>Typically requires lots of labeled data
+    <ul>
+      <li>Collecting data is time consuming and expensive (time, price)</li>
+      <li>but time 소모 증가, 비용 증가
+        <ul>
+          <li>data collection, tagging, labeling</li>
+        </ul>
+      </li>
+      <li>2010년도 DNN의 발전배경  :
+        <ul>
+          <li>Big data → 수집 용이</li>
+          <li>GPU (HW Support)</li>
+          <li>Algorithm적 발달</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><u>_**Overfitting problem**_</u>
+    <ul>
+      <li>When training data is not sufficient, model only can handle the training data well (poor performance at test time)</li>
+      <li>data 변화 요인에 w 학습하고 , 다양한 test에 대해서도 적용</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/49.png" alt="49" /></p>
+  </li>
+  <li>ground truth sampling → data에 fit하여 정답과 일치하도록</li>
+  <li>overfitting : regression, classification 시 정답을 보지 않아도 train well됨을 확인함</li>
+  <li>Get stuck in <strong>local minima : iteration시 유의</strong>
+    <ul>
+      <li>Problem even with enough training data</li>
+      <li>solution : 초기값을 randomly setting하고 train을 많이 하여 그 avearge를 추출한다
+        <ul>
+          <li>test set에 대해 일반적으로 성능 좋아짐</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Train Set 에서의 문
+    <ul>
+      <li>input data : raw data→ input layer : x1, x2</li>
+      <li>state of the nature $\in$ real world</li>
+      <li>학습 data로 model을 만들지만 prediction-ground truth가 0이라고 하여도 좋은 model인지 아닌지 확신할 수 없다.
+        <ul>
+          <li>사실 정답을 알 리가 없다 : 그 정답으로 추출된 제한된 관찰에 의해 얻어진 학습 data로 model을 구한 것이기에</li>
+        </ul>
+      </li>
+      <li>sol <strong>→ train data를 변화시키며 model이 얼마나 안정된 결과를 보이는지 (test data를 변화시키기도 해보자)</strong></li>
+    </ul>
+  </li>
+  <li>Vanishing gradient problem
+    <ul>
+      <li>ReLU(Rectified Linear Unit)
+        <ul>
+          <li>$\max(0,x)$ gradient update</li>
+        </ul>
+      </li>
+      <li>Layer-wise training
+        <ul>
+          <li>
+            <p>충분히 학습되었다면 건너뜀</p>
+
+            <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/50.png" alt="50" /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Requires <strong>lots</strong> of labeled data</li>
+  <li><strong>Overfitting</strong> problem</li>
+  <li>Get stuck in <strong>local minima</strong>
+    <ul>
+      <li>Mitigated by increasing data and computation power</li>
+    </ul>
+  </li>
+  <li>시간 소모 :
+    <ul>
+      <li>depend on performance of HW</li>
+      <li>w update : vanishing gradient → activation fn 변화</li>
+    </ul>
+  </li>
+</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="ML" /><summary type="html"><![CDATA[ANN Introduction]]></summary></entry><entry><title type="html">7. k-Nearest Neighbor</title><link href="http://localhost:4000/7.-k-Nearest-Neighbor" rel="alternate" type="text/html" title="7. k-Nearest Neighbor" /><published>2023-05-10T00:00:00+09:00</published><updated>2023-05-10T00:00:00+09:00</updated><id>http://localhost:4000/7.-k-Nearest-Neighbor</id><content type="html" xml:base="http://localhost:4000/7.-k-Nearest-Neighbor"><![CDATA[<h1 id="k-nearest-neighbor-classifier">k-Nearest Neighbor Classifier</h1>
+
+<ul>
+  <li>perceptron : linear classifier</li>
+  <li>SVM : linear, nonlinear classifier
+    <ul>
+      <li>given data → 분류하는 hyperplane를 구한다.</li>
+      <li>GD로 계산한다 : iteration 수천~수백 epoch 연산을 수행한다</li>
+      <li>(1) phi fn으로 고차원 mapping data 처리 가능
+        <ul>
+          <li>kernel trick ($\epsilon$→0)</li>
+        </ul>
+      </li>
+      <li>(2) soft margin</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/0.png" alt="0" /></p>
+
+<ul>
+  <li>Store all training samples $(x_i, y_i)$ - 모든 데이터 저장
+    <ul>
+      <li>학습 data 저장하면 끝이다 (extra data task 불필요)</li>
+    </ul>
+  </li>
+  <li>Nearest Neighbor classifier
+    <ul>
+      <li>Given a test sample $x_t$, locate the nearest training sample $(x_{n1}, y_{n1})$,</li>
+      <li>then assign $y_{n1}$as the class label of $x_t$</li>
+      <li></li>
+    </ul>
+  </li>
+  <li>k-Nearest Neighbor classifier
+    <ul>
+      <li>Given a test sample $x_t$, locate the k-nearest training samples $(x_{n1}, y_{n1}), …,(x_{nk}, y_{nk}) $ then assign <strong>majority class label</strong> of $y_{n1}, … y_{nk}$ to $x_t$
+        <ul>
+          <li><strong>majority class label</strong>  : majority voting, nearst sample labeling algorithm</li>
+        </ul>
+      </li>
+      <li>Take mean of , if they are real valued $\hat{f} = \frac 1 k \Sigma_{i=1}^{k} f(x_{ni})$</li>
+      <li>Also called as <strong>Instance</strong> based learning</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/1.png" alt="1" /></p>
+
+<ul>
+  <li>test 시점에서 data 들어오면 해당 data와 near sample 판단 : <strong>sample간 거리 계산</strong>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>$L^2$-norm : $\sqrt{\Sigma_{d=1}^{D}</td>
+              <td>x_{td} - x_{nd}</td>
+              <td>^2}$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>test data에 대해 거리를 계산할 때 test sample과 near한지 distance 계산한다.</li>
+    </ul>
+  </li>
+  <li>sample dimension이 증가하면 → calculation cost 증가
+    <ul>
+      <li>모든 sample들끼리 거리를 계산하면 - dimension 증가되면</li>
+    </ul>
+
+    <p>(해결) kNN Optimization</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - 학습 시 계산 적게 storage 크게 : 어떻게 save하는가?
+  - test 시 계산 많이 :  어떻게 줄이는가?
+</code></pre></div>    </div>
+  </li>
+  <li>When to consider
+    <ul>
+      <li>Vector features</li>
+      <li>~Less than 20 attributes (=20 dim)</li>
+      <li>Sufficient amount of training data</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/2.png" alt="2" /></p>
+
+<ul>
+  <li><strong>Advantages</strong>
+    <ul>
+      <li><u>**Training is very fast :**</u> feature extraction &amp; save</li>
+      <li>Learn complex target functions</li>
+      <li>Don’t lose information</li>
+    </ul>
+  </li>
+  <li><strong>Disadvantages</strong>
+    <ul>
+      <li>Slow at query time ( ⇒ test time)
+        <ul>
+          <li><strong>train 에서의 연산이 많은 것이 좋을까?</strong> 아니면 test 에서의 연산이 많은 것이 좋을까?
+            <ul>
+              <li>test하기 전 enough time으로 저장 (sample 그대로 저장)</li>
+              <li>train offline / test online,offline</li>
+              <li><strong>so→ test 시점 연산이 적은 것이 유리함</strong></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Requires large storage</li>
+      <li>Not robust against irrelevant <strong>attributes or outliers</strong>
+        <ul>
+          <li>SVM, Perceptron : boundary에 크게 영향이 없음</li>
+          <li>kNN : test sampel decision에 변화 가능함</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="distance-metric">Distance Metric</h1>
+
+<ul>
+  <li>Search operation is expensive with high dimensions</li>
+</ul>
+
+<h2 id="distance">Distance</h2>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/3.png" alt="3" /></p>
+
+<ul>
+  <li>모든 classify / regress에서 중요함
+    <ul>
+      <li>decision tree : nominal data → distance 불필요</li>
+      <li>각 feature 값들이 서로 다른 w를 가질 수 있음
+        <ul>
+          <li>ex. age, height</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>distance = 1/similarity</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/4.png" alt="4" /></p>
+
+<p>feature vector하나 dimension은 의미가 없으며, 전체가 모여 압축된 형태로 표현된다.</p>
+
+<h2 id="equations-of-selected-distance-functions">equations of selected distance functions</h2>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/5.png" alt="5" /></p>
+
+<ul>
+  <li></li>
+</ul>
+
+<h2 id="value-difference-metric-vdm">Value difference metric (VDM)</h2>
+
+<ul>
+  <li>attribute class 통해 판단 → 동일 class 속하는 것이 관찰되면 attribute가 더 가깝다고 본다.
+    <ul>
+      <li>ex. R-B가 더 많이 같은 class를 가지고 있으면 → R-B &gt; R-G</li>
+    </ul>
+  </li>
+  <li>Providing distance measurements for nominal attributes
+    <ul>
+      <li>$vdm_a(x,y) = \Sigma_{c=1}^C (\frac{N_{a,x,c}}{N_{a,x}}-\frac{N_{a,y,c}}{N_{a,y}})^2$</li>
+      <li>𝑵𝒂,𝒙 : # times attribute a had value x
+  𝑵𝒂,𝒙,𝒄: # times attribute a had value x and class was c
+  𝑪 : # output classes</li>
+      <li>a : color / x : big / y : medium, small ??</li>
+    </ul>
+  </li>
+  <li>Two values are considered closer if they have more similar classifications, i.e., if they have more similar correlations with the output classes</li>
+</ul>
+
+<h1 id="problem-with-euclidean-distance">Problem with Euclidean distance</h1>
+
+<ul>
+  <li>High dimensional data
+    <ul>
+      <li>dimension : color, length, weight…등의 data attribute</li>
+      <li>더 많은 attribute를 추가할수록 performance 상승</li>
+      <li>그러나 너무 많이 feature/ attribute 증가시키면 dim이 너무 많이 증가하여 curse of dimensionality에 빠질 수 있다
+        <ul>
+          <li>data가 고차원일수록 취급이 어려움
+  data에 관련하여 알아야 할 정보가 많은데 잘 활용치 못하면 classifier 성능 저하됨</li>
+        </ul>
+      </li>
+      <li>(Number of samples - available info) 양이 많고 + 정확한 정보라면 dimension이 높아도 괜찮다.</li>
+    </ul>
+  </li>
+  <li>Can produce counter-intuitive results</li>
+  <li>Shrinking density – sparsification effect
+    <ul>
+      <li>data dimension을 낮추어 처리하면 data가 sparse한 형태</li>
+    </ul>
+  </li>
+  <li>d가 같다고 data feature를 잘 반영하는지에 대해서는 잘 고려해봐야 함
+    <ul>
+      <li>각 feature dimesion이 data significance를 나타냄 → feature거리를 측정하는 것이 유사성과 차이점을 덜 반영할 수도 있음</li>
+      <li>binary feature : 과연 d가 동일한 값이라고 data feature를 잘 나타내는 것일까?</li>
+      <li>1 1 1 1 1 1 1 1 1 1 1 0
+  0 1 1 1 1 1 1 1 1 1 1 1
+  d = 1.4142</li>
+      <li>1 0 0 0 0 0 0 0 0 0 0 0
+  0 0 0 0 0 0 0 0 0 0 0 1
+  d = 1.4142</li>
+    </ul>
+  </li>
+  <li>hamming distance
+    <ul>
+      <li>각 bit 사이 같은/다른 bit 나타나는지 판단</li>
+    </ul>
+  </li>
+  <li>histogram intersection
+    <ul>
+      <li>
+        <p>$\Sigma_i \min(h_{1i}, h_{2i})$</p>
+
+        <p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/6.png" alt="6" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="behavior-in-the-limit">Behavior in the limit</h1>
+
+<ul>
+  <li>성능
+    <ul>
+      <li>kNN ($\epsilon$ up) &lt; optimal classifier ($\epsilon$ down)</li>
+    </ul>
+  </li>
+  <li>$\epsilon^*(x) $ <strong>:</strong> Error of optimal prediction</li>
+  <li>$\epsilon_{NN}(x) $ : Error of nearaest neighbor</li>
+</ul>
+
+<p>Theorem :</p>
+
+\[\lim_{n\rightarrow \inf} \leq 2\epsilon^*\]
+
+<ul>
+  <li>proof:
+    <ul>
+      <li>$p_+$ : data가 (+)일 확률, $p_{NN\in(-)}$ : nearest neighbor이 (-)일 확률</li>
+      <li>$\epsilon_{NN} = p_+p_{NN\in(-)}+p_-p_{NN\in(+)} = p_+(1-p_{NN\in(+) })+(1-p_+)p_{NN\in(+)} $
+        <ul>
+          <li>$\epsilon_{NN} \sim\epsilon_{+} $ : Nearest Neighbor과 optimal한 sample의 결과가 동일하다</li>
+        </ul>
+      </li>
+      <li>$\lim_{n \rightarrow \infty} p_{NN\in (+)} = p_+$$lim_{n \rightarrow \inf} p_{NN\in (+)} = p_+$</li>
+      <li>$\lim_{n \rightarrow \inf} p_{NN\in (-)} = p_-$</li>
+      <li>$\lim_{n \rightarrow \inf} \epsilon_{NN} = p_+(1-p_+) + (1-p_+)p_+ = 2p_+(1-p_+) = 2\epsilon^<em>(1-\epsilon^</em>)\leq2 \epsilon^*$
+        <ul>
+          <li>$2p_+(1-p_+)$
+            <ul>
+              <li>prediction : (+) or (-)</li>
+              <li>$p_+$가 맞으면 $(1-\epsilon^<em>)$ 맞고 $\epsilon^</em>$ 틀림</li>
+              <li>$p_+$가 맞으면 $(1-\epsilon^<em>)$ 틀리고 $\epsilon^</em>$ 맞음</li>
+            </ul>
+          </li>
+          <li>$\epsilon^* \in [0,1]$</li>
+        </ul>
+      </li>
+      <li>NN Classifier can have up to twice as much error of <strong>optical error</strong>
+        <ul>
+          <li>= Bayesian Classifier</li>
+          <li>Sampling할 때 특정 d보고 sample → 전체 population know</li>
+          <li>→ 전체 population 정보가지고 classifier를 생성하면 classifier error : optimal classification error이고</li>
+          <li>우리가 얻을 최소의 error → optimal classifier</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Theorem :</p>
+
+\[\lim_{n\rightarrow \infty, k \rightarrow \infty, \frac k n \rightarrow 0 } \leq \epsilon^*\]
+  </li>
+</ul>
+
+<h1 id="standardization">Standardization</h1>
+
+<ul>
+  <li>Transform raw feature values into z-scores $z_{ij} = \frac{x_{ij} - \mu_j}{\sigma_j}$
+    <ul>
+      <li>$x_{ij}$ is the ith sample and jth feature (dimension)</li>
+      <li>$\mu_j$ is the average of all for feature</li>
+      <li>$\sigma_j$ is the standard deviation of all for feature</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/7.png" alt="7" /></p>
+
+<h1 id="efficient-searching">Efficient searching</h1>
+
+<ul>
+  <li>sample 주변을 확인해야 함 : 어떠한 data 주변에 존재할지</li>
+  <li>KD trees
+    <ul>
+      <li>
+        <p>n개 KD Tree 구성하면 - $\epsilon \downarrow$ : 각 class score, $w_{sum}$계산</p>
+
+        <p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/8.png" alt="8" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Choose dimension</li>
+  <li>Choose pivot (median)</li>
+  <li>Split data, repeat</li>
+  <li></li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/9.png" alt="9" /></p>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/10.png" alt="10" /></p>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/11.png" alt="11" /></p>
+
+<h1 id="choosing-k">Choosing k</h1>
+
+<ul>
+  <li>Choosing the value of k:
+    <ul>
+      <li>If k is too small, sensitive to noise points</li>
+      <li>If k is too large, neighborhood may include points from other classes</li>
+    </ul>
+  </li>
+  <li>Rule of thumb:
+k = sqrt(N)
+N: number of training samples</li>
+  <li>Use N fold cross validation – Pick k to minimize the cross validation error</li>
+  <li>For each of N test example
+    <ul>
+      <li>Find its k nearest neighbors</li>
+      <li>Make a classification based on these k neighbors</li>
+      <li>Calculate classification error</li>
+      <li>Output average error over all examples</li>
+    </ul>
+  </li>
+  <li>Use the k that gives lowest average error on the training data
+    <ul>
+      <li>이론적으로 $k \uparrow$이면 smoother해짐</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/12.png" alt="12" /></p>
+
+<ul>
+  <li>Bayes-optimal boundary given true generating model
+    <ul>
+      <li>ideal case : $k, n \rightarrow \infty$, $\frac k n \rightarrow 0$, $\epsilon^* \leq \epsilon_{kNN}\leq2\epsilon^*$</li>
+    </ul>
+
+\[\lim_{n\rightarrow \infty, k \rightarrow \infty, \frac k n \rightarrow 0 } \leq \epsilon^*\]
+
+    <p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/13.png" alt="13" /></p>
+  </li>
+  <li>As number of training <u>samples</u> $\rightarrow \infty$, and k becomes large, k-Nearest Neighbor classifier shows performance as good as that of Bayes classifier</li>
+</ul>
+
+<h1 id="cross-validation">Cross-validation</h1>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/14.png" alt="14" /></p>
+
+<ul>
+  <li>train error가 낮아지는게 무작정 좋지는 않을 수 있다 (overfitting)</li>
+</ul>
+
+<h1 id="condensing">Condensing</h1>
+
+<ul>
+  <li>
+    <p>Aim is to reduce the number of training samples</p>
+
+    <p>더 작은 dataset으로의 압축</p>
+  </li>
+  <li>Retain only the samples that are needed to define the decision boundary</li>
+  <li>Decision Boundary Consistent – a <strong>subset</strong> whose nearest neighbor decision boundary is identical to the boundary of the entire training set
+    <ul>
+      <li>전체 original data와 동일한 boundary 구해짐</li>
+    </ul>
+  </li>
+  <li>Minimum Consistent Set – the <strong>smallest subset</strong> of the training data that correctly classifies all of the original training data
+    <ul>
+      <li>가장 작은 Sample sel</li>
+    </ul>
+  </li>
+  <li>
+    <p>Original data</p>
+
+    <p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/15.png" alt="15" /></p>
+
+    <ul>
+      <li>decision boundary 구성 Sample만을 남겨 이 data만을 남긴다.</li>
+      <li>2,3개 씩 저장해도 boundary가 유지된다.</li>
+      <li>전체 Dataset을 활용해도 decision boundary는 동일하게 구해진다.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Condensed data</p>
+
+    <p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/16.png" alt="16" /></p>
+  </li>
+  <li>
+    <p>Minimum Consistent Set</p>
+
+    <p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/17.png" alt="17" /></p>
+  </li>
+</ul>
+
+<h2 id="condensed-nearest-neighbor-cnn">Condensed Nearest Neighbor (CNN)</h2>
+
+<ul>
+  <li>iteration 최소 data로 errorless 구하기??
+    <ol>
+      <li>Initialize subset with a single (or k) training example</li>
+    </ol>
+    <ol>
+      <li>하나의 Data를 임의로 추출
+        <ol>
+          <li>Classify all remaining samples using the subset, and transfer any incorrectly classified samples to the other subset</li>
+        </ol>
+      </li>
+      <li>그 Data를 이용하여 NN → $\epsilon$이 나오는 임의의 Data 선택
+        <ol>
+          <li>Return to 2 until no transfers occurred or the subset is full</li>
+        </ol>
+      </li>
+      <li>data, error 구하기</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/18.png" alt="18" /></p>
+
+<p>→ 초기 Data 선택에 따라 decision boundary 변화</p>
+
+<ul>
+  <li>kNN → decision boundary
+    <ul>
+      <li>어떤 group에 test data 속하는지 확인</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="condensation">Condensation</h1>
+
+<ul>
+  <li>Each cell contains one sample, and every location within the cell is closer to that sample than to any other sample.</li>
+  <li>A <strong>Voronoi diagram</strong> divides the space into such cells.
+    <ul>
+      <li>구획으로 나누고 boundary에 영향 없는 Sample을 제거하는 방향</li>
+    </ul>
+  </li>
+  <li>Every query point will be assigned the classification of the sample within that cell. The decision boundary separates the class regions based on the 1-NN decision rule.</li>
+  <li>Knowledge of this boundary is sufficient to classify new points.</li>
+  <li>The boundary itself is rarely computed; many algorithms seek to retain only those points necessary to generate an identical boundary.</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/19.png" alt="19" /></p>
+
+<ul>
+  <li>data 주어지면 그로부터 얻는 1NN boundary가 유일하게 결정됨
+    <ul>
+      <li>→ train data 전부 저장하지 않아도 boundary만 저장하면 됨</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="voronoi-diagram-구성하는-방법">Voronoi Diagram 구성하는 방법</h2>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/20.png" alt="20" /></p>
+
+<ul>
+  <li><strong>Delaunay triangulation (Delone triangulation)</strong> for a given set P of discrete points is a triangulation DT(P) such that no point in P is inside the <strong>circumcircle</strong> of any triangle in DT(P)</li>
+  <li>Circumcircle (circumscribed circle) of a polygon is a circle that passes through all the vertices of the polygon</li>
+  <li>어떠한 점도 해당 Circle 내 들어가지 않도록, 다각형을 둘러싼 원 형성
+    <ul>
+      <li>→세 점을 둘러싼 원, 원 내부에 주어진 점을 포함하면 안 되는 형태로</li>
+    </ul>
+  </li>
+  <li>Avoid sliver triangles. (maximize angles of triangles) 
+예각삼각형을 피하고, 각도 최대화
+    <ul>
+      <li>
+        <p>Delaunay triangulation is not unique</p>
+
+        <p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/21.png" alt="21" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>Circumcenters of Delaunay triangles are the vertices of the Voronoi diagram</li>
+  <li>If two triangles share an edge in the Delaunay triangulation, their circumcenters are to be connected with an edge in the Voronoi tesselation</li>
+  <li>방법 : delaunary triangle 만들고 → circumcircle의 가운뎃점 pt → centered point 연결</li>
+  <li>Voronoi Diagram의 최종 목표 : 모든 영역 안에 임의의 지점은 그 안의 Sample point와 최단 거리를 갖는 영역으로 정의함</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/22.png" alt="22" /></p>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/23.png" alt="23" /></p>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/24.png" alt="24" /></p>
+
+<ul>
+  <li>각 sample point의 class에 따라, 전체 영역의 class 결정</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/25.png" alt="25" /></p>
+
+<ul>
+  <li>test Data 들어오면, 이를 포함한 voronoi diagram이면 class 결정</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-10-7.-k-Nearest-Neighbor.md/26.png" alt="26" /></p>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="ML" /><summary type="html"><![CDATA[k-Nearest Neighbor Classifier]]></summary></entry><entry><title type="html">빅콘테스트 후기 (2022년 이노베이션 분야)</title><link href="http://localhost:4000/%EB%B9%85%EC%BD%98%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0-(2022%EB%85%84-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%B6%84%EC%95%BC)" rel="alternate" type="text/html" title="빅콘테스트 후기 (2022년 이노베이션 분야)" /><published>2022-12-30T00:00:00+09:00</published><updated>2022-12-30T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B9%85%EC%BD%98%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0-(2022%EB%85%84-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%B6%84%EC%95%BC)</id><content type="html" xml:base="http://localhost:4000/%EB%B9%85%EC%BD%98%ED%85%8C%EC%8A%A4%ED%8A%B8-%ED%9B%84%EA%B8%B0-(2022%EB%85%84-%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98-%EB%B6%84%EC%95%BC)"><![CDATA[<h1 id="의미없는-경험은-없다">의미없는 경험은 없다!</h1>
 
 <ul>
   <li><strong>빅콘테스트란?</strong> 국내 최대 규모의 데이터 사이언스 경연 대회이다. 신한카드, LG U Plus, Finda 등 20여개에 이르는 다양한 참여사들이 주관하며, 그에 따라 참가자의 수준 또한 상당히 높은 편이다</li>
@@ -3455,566 +5807,7 @@ undefined- Chained matrix multiplication problem</li>
   <span class="p">}</span>
 </code></pre></div>    </div>
   </li>
-</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[divide and conquer: top - down 효율적이기도 하나 매우 비효율적이 되기도 함 splitted된 사례들이 서로 관련 없는 문제를 풀때 잘 통함 dynamic programming : bottom -up 아래에서 위로 올라가며 효율을 추구하자는 방식 NOW Divide-and-Conquer Method Dynamic Programming Method Greedy Method Backtracking Method Local Search Method Branch-and-Bound Method Etc. From Wikipedia: Dynamic programming is both a mathematical optimization method and a computer programming method. A complicated problem is broken down into simpler sub-problems in a recursive manner. Overlapping subproblems A problem is broken down into subproblems which are reused several times or a recursive algorithm for the problem solves the same subproblem over and over rather than always generating new subproblems. Optimal substructure A solution to a given optimization problem can be constructed efficiently from optimal solutions of its subproblems. When applicable, the method **takes far less time than other methods** that don’t take advantage of the subproblem overlap like the divide- and-conquer technique.]]></summary></entry><entry><title type="html">[ALG] 3.2. Selection Algorithm</title><link href="http://localhost:4000/ALG-3.2.-Selection-Algorithm" rel="alternate" type="text/html" title="[ALG] 3.2. Selection Algorithm" /><published>2022-09-26T00:00:00+09:00</published><updated>2022-09-26T00:00:00+09:00</updated><id>http://localhost:4000/%5BALG%5D-3.2.-Selection-Algorithm</id><content type="html" xml:base="http://localhost:4000/ALG-3.2.-Selection-Algorithm"><![CDATA[<h1 id="1-selection-of-both-maximum-and-minimum-elements">1. Selection of Both Maximum and Minimum Elements</h1>
-
-<ul>
-  <li><strong>Problem</strong>
-    <ul>
-      <li>Find both the maximum and the minimum elements of a set containing n elements (assume $n = 2m$ for some integer $m$).</li>
-    </ul>
-  </li>
-  <li>
-    <p>[Aho 2.6]</p>
-
-    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">begin</span>
-      <span class="n">MAX</span> <span class="o">&lt;-</span> <span class="n">any</span> <span class="n">element</span> <span class="n">in</span> <span class="n">S</span><span class="p">;</span>
-      <span class="k">for</span> <span class="n">all</span> <span class="n">other</span> <span class="n">elements</span> <span class="n">x</span> <span class="n">in</span> <span class="n">S</span> <span class="k">do</span>
-        <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">MAX</span> <span class="n">then</span> <span class="n">MAX</span><span class="o">&lt;-</span> <span class="n">x</span>
-    <span class="n">end</span>
-</code></pre></div>    </div>
-
-    <ul>
-      <li>$T(n) = (n-1) + (n-2) = 2n-3$ comparisons</li>
-    </ul>
-
-    <p>$T(n) = 2T(n/2) + 2$ for $n &gt; 2$, $T(n) = 1$ for $n=2$</p>
-
-    <p>$→ T(n) = (3/2)n - 2$ comparisons</p>
-
-    <ul>
-      <li>This is the minimum!</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">procedure</span> <span class="n">MAXMIN</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="o">:</span>
-	<span class="k">if</span> <span class="o">|</span><span class="n">S</span><span class="o">|</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">then</span>	
-		<span class="n">begin</span>	
-			<span class="n">let</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">};</span>	
-			<span class="k">return</span> <span class="p">(</span><span class="n">MAX</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span> <span class="n">MIN</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>	
-		<span class="n">end</span>
-	<span class="k">else</span>	
-		<span class="n">begin</span>	
-			<span class="n">divide</span> <span class="n">S</span> <span class="n">into</span> <span class="n">two</span> <span class="n">subset</span> <span class="n">S1</span><span class="p">,</span><span class="n">S2</span><span class="p">,</span> <span class="n">each</span> <span class="n">with</span> <span class="n">the</span> <span class="n">half</span> <span class="n">of</span> <span class="nf">elements</span>	
-			<span class="p">(</span><span class="n">max1</span><span class="p">,</span> <span class="n">min1</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">MAXMIN</span><span class="p">(</span><span class="n">S1</span><span class="p">);</span>	<span class="p">(</span><span class="n">max2</span><span class="p">,</span> <span class="n">min2</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">MAXMIN</span><span class="p">(</span><span class="n">S2</span><span class="p">);</span>	
-			<span class="k">return</span><span class="p">(</span><span class="n">MAX</span><span class="p">(</span><span class="n">max1</span><span class="p">,</span> <span class="n">max2</span><span class="p">),</span> <span class="n">MIN</span><span class="p">(</span><span class="n">min1</span><span class="p">,</span> <span class="n">min2</span><span class="p">))</span>	
-		<span class="n">end</span>
-</code></pre></div></div>
-
-<h1 id="2-multiplication-of-two-n-bit-numbers">2. Multiplication of Two n-bit Numbers</h1>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/0.png" alt="0" /></p>
-
-<ul>
-  <li>The traditional method requires $O(n^2)$ bit operations.</li>
-  <li>A divide-and-conquer approach</li>
-</ul>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/1.png" alt="1" /></p>
-
-<ul>
-  <li>$n=2m$
-    <ul>
-      <li>$xy = (a2^{\frac n 2} + b)(c2^{\frac n 2} + d) = ac2^n + (ad+bc)2^\frac n 2 + bd$</li>
-      <li>divide하면 여기까지는 자연스럽게 감</li>
-    </ul>
-
-    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  u = (a+b)*(c+d);
-  v = a*c, w = b*d;
-  z = v * pow(2,n) + (u-v-w) * pow(2, n/2) + w;
-</code></pre></div>    </div>
-  </li>
-  <li>[Aho 2.6]
-    <ul>
-      <li>$T(n) = 1$ for $n=1$</li>
-      <li>$T(n) = 3T( \frac n 2) + cnT(n)=3T(\frac n 2)+cn$for $n&gt;1 → T(n)=O(n\log3)$</li>
-      <li>$O(n^2) → O(n^{1.59})$</li>
-    </ul>
-  </li>
-  <li>Read [Neapolitan 2.6].</li>
-</ul>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/2.png" alt="2" /></p>
-
-<h1 id="alg-322-selection-of-the-k-th-smallest-element-1">[ALG] 3.2.2. Selection of the k-th Smallest Element (1)</h1>
-
-<h1 id="selection-of-the-k-th-smallest-element">Selection of the k-th Smallest Element</h1>
-
-<ul>
-  <li><em>ref</em>. [A. Aho, J. Hopcroft, and J. Ullman, Design and Analysis of Algorithms, Addison-Wesley, 1974. 3.6]</li>
-  <li>Problem
-    <ul>
-      <li>Given a <u>sequence of</u> <u>_S_</u> of <em>n</em> elements and an integer $k (1 &lt;= k &lt;= n)$, find the $k^{th}$ smallest element of <em>S</em>.</li>
-    </ul>
-  </li>
-</ul>
-
-<p>당장 해결하라고 하면 어떻게 해결하려고 할까?</p>
-
-<ul>
-  <li><strong>Solution 1:</strong>
-    <ul>
-      <li>Choose the smallest element repeatedly k times.
-  반복적으로 1, 2, … k번째로 작은 수를 찾는다.
-        <ul>
-          <li>효율성을 떠나서 가장 빠르게 생각나는 풀이 방법</li>
-          <li>$C = c(n-1)+c(n-2)+c(n-3)+…+c(n-k) = c \cdot k \cdot n - c \cdot \frac {k(k+1)} 2$
-            <ul>
-              <li>1번째 작은것 뽑는 시간, 2번째, …, k번째 작은 것 뽑는 시간의 합 → Linear Time Algorithm</li>
-              <li>$O(n) ?$ : 아님
-                <ul>
-                  <li>input size : n, k</li>
-                  <li>k : 어떤 값이느냐에 따라서 천차만별인 time complexity
-                    <ul>
-                      <li>k = 1 → linear time (n-1번 비교)</li>
-                      <li>n = 100, k = 100</li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>if $k= \frac n 2$ then $C = c \cdot \frac {n^2} 2 - c \cdot \frac {n^2 + 2n} 8 = O(n^2)$
-            <ul>
-              <li>시간 복잡도가 k=1에서 n까지 가는데 $O(c) \rightarrow O(n) \rightarrow O(n^2)$</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/3.png" alt="3" /></p>
-
-<ul>
-  <li><strong>Solution 2:</strong>
-    <ul>
-      <li>Build a min-heap, and then extract the smallest element repeatedly <em>k</em> times.
-        <ul>
-          <li>임의의 데이터 n개의 sequence로부터 min(max) heap을 구성할 때 Linear Time 소요</li>
-          <li>$C = c \cdot n + d \cdot k \cdot log n $</li>
-          <li>if $k= \frac n 2$ then $C = c \cdot n + d \cdot \frac n 2 \cdot \log n = O(n \log n)$</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/4.png" alt="4" /></p>
-
-<ul>
-  <li><strong>Can we design an</strong> $O(n)$<strong>-time algorithm?</strong></li>
-</ul>
-
-<p>어떻게 linear time algorithm을 만들기 위해서 노력했을까?</p>
-
-<ul>
-  <li>생각의 흐름에 따른 추적</li>
-</ul>
-
-<h1 id="1-observation">1. Observation</h1>
-
-<p>divide and conquer : 지금까지 배운 것</p>
-
-<ul>
-  <li>At least $O(n)$ time is necessary.</li>
-  <li>If we use a divide-and-conquer scheme like the merge sort,</li>
-  <li>$T(n) = 2T(\frac n 2) + cn =&gt; O( n\log n)$
-    <ul>
-      <li>n개 짜리의 문제를 2개로 나누고 linear time의 bound가 되는 그런 상황</li>
-      <li>n개 짜리 문제가 $\frac n 2$개 두 개로 나누어지고 이것이 또 $\frac n 4$로 나누어짐</li>
-      <li>두 개를 쪼개서, 알아서 conquer해서 찾아와라</li>
-      <li>→ level마다 $cn$ 개의 stage, binary tree의 height $cn \cdot \log n$</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/5.png" alt="5" /></p>
-
-<ul>
-  <li>What about $T(n) = 3T(\frac n 3) + cn$?
-    <ul>
-      <li>$n \rightarrow \frac n 3+\frac n 3+\frac n 3$</li>
-      <li>subproblem들의 합</li>
-    </ul>
-  </li>
-  <li>What about $T(n) = 100T(\frac n {100}) + cn$?
-    <ul>
-      <li>$n \rightarrow \frac n {100} \cdot  100$</li>
-      <li>subproblem들의 합</li>
-    </ul>
-  </li>
-  <li>$T(n) = T(0.4n) + T(0.6n) + cn \rightarrow T(n) = O (n \log n)$
-    <ul>
-      <li>subproblem 합이 원래 문제</li>
-      <li>cn이 linear time일 때 총 시간복잡도는 $O (n \log n)$</li>
-    </ul>
-  </li>
-  <li>$T(n) = T(0.39n) + T(0.6n) + cn \rightarrow T(n) = O (n)$
-    <ul>
-      <li>$n &gt; (0.39 + 0.6)n$</li>
-      <li>$n = 2^{20} = 1048576$ 의 경우 유의미한 차이가 존재함</li>
-    </ul>
-  </li>
-  <li>Can we design an O(n)-time algorithm for this selection problem?
-    <ul>
-      <li>
-        <p>What about $T(n) = T(an) + T(bn) + cn$ with $a + b &lt; 1$?</p>
-
-        <p>n개짜리 문제를 두 개로 푸는데</p>
-
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - 그 때 subproblem의 합이 원래 것보다 작고
-  - 나머지 부가비용은 $cn$
-</code></pre></div>        </div>
-      </li>
-      <li>
-        <p>ex. $a = 0.43, b=0.37 \rightarrow?$ㅉ
-undefined	- Pascal’s Triangle</p>
-        <ul>
-          <li>무한등비수열</li>
-        </ul>
-
-        <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/6.png" alt="6" /></p>
-
-        <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/7.png" alt="7" /></p>
-      </li>
-    </ul>
-  </li>
-  <li>cost : $cn{1+(a+b)+(a+b)^2+…} \leq cn \frac 1 {1-a+b}$
-    <ul>
-      <li>so $O(n)$</li>
-    </ul>
-  </li>
-</ul>
-
-<h1 id="2-algorithm">2. Algorithm</h1>
-
-<ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Step 1: Divide S into $\lfloor \frac {</td>
-          <td>S</td>
-          <td>} 5 \rfloor$ sequence of 5 elements each with up to four leftover elements.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/8.png" alt="8" /></p>
-
-    <ul>
-      <li>정렬이 안 된 임의의 데이터들을 5개씩 묶음</li>
-    </ul>
-  </li>
-  <li>Step 2: Sort each 5-element sequence.
-    <ul>
-      <li>다섯개 묶음까지만 하는것 같은데 나머지 세개에 대해서는 어떻게 할까?
-        <ul>
-          <li>ex. T(43) : 43개가 쭉 있는데 거기에 두 개 집어넣음. 무한대 두개 넣어도 똑같음</li>
-        </ul>
-      </li>
-    </ul>
-
-    <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/9.png" alt="9" /></p>
-
-    <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/10.png" alt="10" /></p>
-  </li>
-  <li>Step 3: Let M be the sequence of medians of the 5-element sets. Then, let m be the median of the elements in <em>M</em>.
-    <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$</td>
-              <td>M</td>
-              <td>= \frac n 5$</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/11.png" alt="11" /></p>
-      </li>
-    </ul>
-  </li>
-  <li>Step 4: Let _S_1,_S_2, and _S_3 be the sequences of elements in S less than, equal to, and greater than m, respectively.
-S를 세 부분집합으로 나눈 후 : 작거나 / 같거나 / 크거나
-    <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>If $</td>
-              <td>S1</td>
-              <td>&gt;= k$, then find the k-th smallest element of S1.</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>else if $(</td>
-              <td>S1</td>
-              <td>+</td>
-              <td>S2</td>
-              <td>&gt;= k)$, then m is the $k^{th}$ smallest element of S.</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>else find the $(k –</td>
-              <td>S1</td>
-              <td>-</td>
-              <td>S2</td>
-              <td>)^{th}$ smallest element of _S_3.</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-    </ul>
-
-    <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/12.png" alt="12" /></p>
-
-    <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/13.png" alt="13" /></p>
-  </li>
-</ul>
-
-<blockquote>
-  <p>💡 - size n인 배열에서 몇 번째로 작은 element인지 찾아라 :</p>
-</blockquote>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- size n인 배열에서 몇 번째로 작은 element인지 찾아라 :
-	- step 3에서 m집합을 구성한 다음 median을 찾아라
-	- $|M| = \frac n 5$ : divide and conquer - 27개보다 더 작은 것을 찾으니까 s1에서 작은 것을 찾으면 됨
-- 어떤 m보다 작은 애들 다 구해논 것, 같은 것, 더 큰 것을 구해둔 것
-- if) s1 = 100, s2 = 5, s3 = 200일 때
-	- 27번째 작은 것을 찾고자 한다면, S1에 존재
-	- 103번을 찾고자 한다면, S2에 존재
-		- 103 - 100 = 3 →
-	- 120번째 작은 것을 찾는다면, S3에 존재
-		- 120 - 100 - 5 = 15번째로 작은 원소 선택 - 각 subproblem에서 똑같은 방식으로 풀어보려고 한다. 정말 절실하게 subproblem의 tc가 원래 문제 사이즈 n보다 작게 하려고 하는데, 어떤 문제를 푸는가
-- 내가 풀고자 하는 문제와 똑같은 방식으로 풀고자 함
-- $T(n) \rightarrow T(\frac n 5)$ : - 왜 $T(\frac 3 4 n)$로 bound가 되는가 생각해보자 : m을 잘 선택해서 → size가 적당
-- 앞서 정렬한 다음 가운데 것을 모아서 m을 찾아냄
-- m보다 작은 애들, 같은 애들, 큰 애들을 묶음 → m을 잘 선택했기 때문에 S1, S2, S3 각각에 어느 정도 원소가 존재하도록 쪼갠 것
-- $T(|S_1|) $ or $T(|S_3|) $
-	- $|S_1| \leq \frac 3 4 n$
-	- 도대체 어떻게 했길래 각각 작거나 같은 것이 적당히 뽑힌 것인가 : m을 적당히 잘 선택했기에!
-</code></pre></div></div>
-
-<h2 id="pseudocode">pseudocode</h2>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">procedure</span> <span class="n">SELECT</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">s</span><span class="p">)</span><span class="o">:</span>
-<span class="k">if</span> <span class="o">|</span><span class="n">S</span><span class="o">|&lt;</span><span class="mi">50</span> <span class="n">then</span>
-	<span class="n">begin</span>
-		<span class="n">sort</span> <span class="n">S</span><span class="p">;</span>
-		<span class="k">return</span> <span class="n">kth</span> <span class="n">smallest</span> <span class="n">element</span> <span class="n">in</span> <span class="n">S</span>
-	<span class="n">end</span>
-<span class="k">else</span>
-	<span class="n">begin</span>
-		<span class="n">divide</span> <span class="n">S</span> <span class="n">into</span> <span class="o">|</span><span class="n">S</span><span class="o">|/</span><span class="mi">5</span> <span class="n">sequences</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">elements</span> <span class="n">each</span> <span class="n">with</span> <span class="n">up</span> <span class="n">to</span> <span class="n">four</span> <span class="n">leftover</span> <span class="n">elements</span><span class="p">;</span>
-		<span class="n">sort</span> <span class="n">each</span> <span class="mi">5</span><span class="o">-</span><span class="n">element</span> <span class="n">sequence</span><span class="p">;</span>
-		<span class="n">let</span> <span class="n">M</span> <span class="n">be</span> <span class="n">the</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">medians</span> <span class="n">of</span> <span class="n">the</span> <span class="mi">5</span><span class="o">-</span><span class="n">element</span> <span class="n">sets</span><span class="p">;</span>
-		<span class="n">m</span> <span class="o">&lt;-</span> <span class="n">SELECt</span> <span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
-		<span class="n">let</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="n">and</span> <span class="n">s3</span> <span class="n">be</span> <span class="n">the</span> <span class="n">sequences</span> <span class="n">of</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">S</span> <span class="n">less</span> <span class="n">than</span><span class="p">,</span> <span class="n">equal</span> <span class="n">to</span><span class="p">,</span> <span class="n">and</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">m</span><span class="p">,</span> <span class="n">respectively</span><span class="p">;</span>
-		<span class="k">if</span> <span class="o">|</span><span class="n">s1</span><span class="o">|&gt;=</span> <span class="n">k</span>
-			<span class="n">then</span> <span class="k">return</span> <span class="n">m</span>
-		<span class="k">else</span>
-			<span class="k">return</span> <span class="n">SELECT</span> <span class="p">(</span><span class="n">k</span><span class="o">-|</span><span class="n">s1</span><span class="o">|-|</span><span class="n">s2</span><span class="o">|</span><span class="p">,</span> <span class="n">s3</span><span class="p">)</span>
-	<span class="n">end</span>
-
-
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>Pseudocode Analysis</p>
-
-    <p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/14.png" alt="14" /></p>
-  </li>
-  <li>
-    <p>A divide-and-conquer strategy</p>
-  </li>
-</ul>
-
-<h2 id="facts">Facts</h2>
-
-<ul>
-  <li>(A) At least one-fourth of the elements of S are less than or equal to <em>m</em>.</li>
-  <li>(B) At least one-fourth of the elements of S are <u>greater than or equal to</u> <u>_m_</u><u>.</u>
-    <ul>
-      <li>m보다 같거나 큰 애들</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$</td>
-              <td>S_1</td>
-              <td>&lt;= \frac {3n} 4$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$</td>
-              <td>S_3</td>
-              <td>&lt;= \frac {3n} 4$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-    </ul>
-  </li>
-  <li>S1: the set of all elements less than m</li>
-  <li>S2: the set of all elements equal to m</li>
-  <li>S3: the set of all elements greater than m</li>
-</ul>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/15.png" alt="15" /></p>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/16.png" alt="16" /></p>
-
-<h1 id="33-time-complexity">3.3. Time Complexity</h1>
-
-<ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Input size $n =</td>
-          <td>S</td>
-          <td>$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$</td>
-          <td>M</td>
-          <td>&lt;= \lceil( \frac n 5)\rceil$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$</td>
-          <td>S_1</td>
-          <td>&lt;= \frac {3n} 4$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$</td>
-          <td>S_3</td>
-          <td>&lt;= \frac {3n} 4$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>for $n \leq 49$</li>
-  <li>7이 아니라 5, 7, 9, 100001</li>
-  <li>n보다 더 작아지니까 더 좋을 것 같은데, 이 값이 커지다 보면, 대략 n/100이 된다.
-    <ul>
-      <li>5개보다는 7개가 더 좋고, … :$n/1001 + 3n/4$«n이면 더 좋으므로</li>
-      <li>→ 10001개 짜리를 sorting하는데 과연 이 10001개 sorting하는 시간이 상수 시간이냐 : 그렇게 볼 순 없다.</li>
-    </ul>
-  </li>
-  <li>이 시간이 상수시간이 안 된다.
-    <ul>
-      <li>n이 어느정도 변해도 변하지 않는, n/100과는 어느정도 큰 것이기 때문에 미묘한 차잉가 있음을 명심하자.</li>
-    </ul>
-  </li>
-</ul>
-
-<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">procedure</span> <span class="n">SELECT</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">s</span><span class="p">)</span><span class="o">:</span>
-<span class="k">if</span> <span class="o">|</span><span class="n">S</span><span class="o">|&lt;</span><span class="mi">50</span> <span class="n">then</span>
-	<span class="n">begin</span>
-		<span class="n">sort</span> <span class="n">S</span><span class="p">;</span>
-		<span class="k">return</span> <span class="n">kth</span> <span class="n">smallest</span> <span class="n">element</span> <span class="n">in</span> <span class="n">S</span>
-	<span class="n">end</span>
-<span class="k">else</span>
-	<span class="n">begin</span>
-		<span class="n">divide</span> <span class="n">S</span> <span class="n">into</span> <span class="o">|</span><span class="n">S</span><span class="o">|/</span><span class="mi">5</span> <span class="n">sequences</span> <span class="n">of</span> <span class="mi">5</span> <span class="n">elements</span> <span class="n">each</span> <span class="n">with</span> <span class="n">up</span> <span class="n">to</span> <span class="n">four</span> <span class="n">leftover</span> <span class="n">elements</span><span class="p">;</span>
-		<span class="n">sort</span> <span class="n">each</span> <span class="mi">5</span><span class="o">-</span><span class="n">element</span> <span class="n">sequence</span><span class="p">;</span>
-		<span class="n">let</span> <span class="n">M</span> <span class="n">be</span> <span class="n">the</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">medians</span> <span class="n">of</span> <span class="n">the</span> <span class="mi">5</span><span class="o">-</span><span class="n">element</span> <span class="n">sets</span><span class="p">;</span>
-		<span class="n">m</span> <span class="o">&lt;-</span> <span class="n">SELECt</span> <span class="p">(</span><span class="n">M</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">M</span><span class="p">);</span>
-		<span class="n">let</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="n">and</span> <span class="n">s3</span> <span class="n">be</span> <span class="n">the</span> <span class="n">sequences</span> <span class="n">of</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">S</span> <span class="n">less</span> <span class="n">than</span><span class="p">,</span> <span class="n">equal</span> <span class="n">to</span><span class="p">,</span> <span class="n">and</span> <span class="n">greater</span> <span class="n">than</span> <span class="n">m</span><span class="p">,</span> <span class="n">respectively</span><span class="p">;</span>
-		<span class="k">if</span> <span class="o">|</span><span class="n">s1</span><span class="o">|&gt;=</span> <span class="n">k</span>
-			<span class="n">then</span> <span class="k">return</span> <span class="n">m</span>
-		<span class="k">else</span>
-			<span class="k">return</span> <span class="n">SELECT</span> <span class="p">(</span><span class="n">k</span><span class="o">-|</span><span class="n">s1</span><span class="o">|-|</span><span class="n">s2</span><span class="o">|</span><span class="p">,</span> <span class="n">s3</span><span class="p">)</span>
-	<span class="n">end</span>
-
-</code></pre></div></div>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/17.png" alt="17" /></p>
-
-<h2 id="complexity-analysis">Complexity Analysis</h2>
-
-<p><img src="/assets/img/2022-09-26-[ALG]-3.2.-Selection-Algorithm.md/18.png" alt="18" /></p>
-
-<h1 id="alg-323-selection-algorithm-complexity-analysis-1">[ALG] 3.2.3. Selection Algorithm: Complexity Analysis (1)</h1>
-
-<ul>
-  <li>Theorem
-    <ul>
-      <li>$\forall c, d \in \mathbb{R^+}$, if the following recurrence relation holds:</li>
-      <li>$T(n) \leq d$ for $n≤49$</li>
-      <li>$T(n) \leq T(\frac n 5) + T (\frac {3n} 4) + cn, n \geq 50$</li>
-      <li>then $T(n) = O(n)$</li>
-    </ul>
-  </li>
-  <li>Proof
-    <ul>
-      <li>We want to prove that $T(n) \leq kn$ for some constant $k,∀n≥1$
-        <ol>
-          <li>Base case
-            <ul>
-              <li>$T(n) \leq d \leq dn, ∀n≥1$</li>
-              <li>Therefore, $T(n)≤kn ∀1≤n≤49 $ if we select k such that $k \geq d$</li>
-            </ul>
-          </li>
-          <li>Inductive step
-            <ul>
-              <li>assume that $n≥5$ and $T(m) \leq km, \forall m &lt; n$
-                <ul>
-                  <li>Then, $T(n) \leq T(\frac n 5) + T (\frac {3n} 4) + cn$</li>
-                </ul>
-              </li>
-              <li>$T(n)\leq k \frac n 5 + k \frac {3n} 4+ cn = \frac {19}{20}kn +cn$</li>
-              <li>$T(n)= kn + (c-\frac k {20})n \leq kn$
-                <ul>
-                  <li>if $k \geq 20c$</li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ol>
-      </li>
-      <li>So if we choose <em>k</em> s.t. $k=\max(d,20c), T(n)≤kn$ for all $n≥50.$</li>
-    </ul>
-  </li>
-</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[1. Selection of Both Maximum and Minimum Elements]]></summary></entry><entry><title type="html">[ALG] 3.3. Master Theorem</title><link href="http://localhost:4000/ALG-3.3.-Master-Theorem" rel="alternate" type="text/html" title="[ALG] 3.3. Master Theorem" /><published>2022-09-26T00:00:00+09:00</published><updated>2022-09-26T00:00:00+09:00</updated><id>http://localhost:4000/%5BALG%5D-3.3.-Master-Theorem-</id><content type="html" xml:base="http://localhost:4000/ALG-3.3.-Master-Theorem"><![CDATA[<h1 id="master-theorem-1">Master Theorem 1</h1>
+</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[divide and conquer: top - down 효율적이기도 하나 매우 비효율적이 되기도 함 splitted된 사례들이 서로 관련 없는 문제를 풀때 잘 통함 dynamic programming : bottom -up 아래에서 위로 올라가며 효율을 추구하자는 방식 NOW Divide-and-Conquer Method Dynamic Programming Method Greedy Method Backtracking Method Local Search Method Branch-and-Bound Method Etc. From Wikipedia: Dynamic programming is both a mathematical optimization method and a computer programming method. A complicated problem is broken down into simpler sub-problems in a recursive manner. Overlapping subproblems A problem is broken down into subproblems which are reused several times or a recursive algorithm for the problem solves the same subproblem over and over rather than always generating new subproblems. Optimal substructure A solution to a given optimization problem can be constructed efficiently from optimal solutions of its subproblems. When applicable, the method **takes far less time than other methods** that don’t take advantage of the subproblem overlap like the divide- and-conquer technique.]]></summary></entry><entry><title type="html">[ALG] 3.3. Master Theorem</title><link href="http://localhost:4000/ALG-3.3.-Master-Theorem" rel="alternate" type="text/html" title="[ALG] 3.3. Master Theorem" /><published>2022-09-26T00:00:00+09:00</published><updated>2022-09-26T00:00:00+09:00</updated><id>http://localhost:4000/%5BALG%5D-3.3.-Master-Theorem-</id><content type="html" xml:base="http://localhost:4000/ALG-3.3.-Master-Theorem"><![CDATA[<h1 id="master-theorem-1">Master Theorem 1</h1>
 
 <p>[Neapolitan 2.8]</p>
 
@@ -4231,2051 +6024,4 @@ undefined
 
 <p>Compare $d(s, s^{‘})$ with $δ$</p>
 
-<p><img src="/assets/img/2022-09-26-[ALG]-3.3.-Master-Theorem-.md/3.png" alt="3" /></p>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[Master Theorem 1]]></summary></entry><entry><title type="html">[ALG] 3.0. Algorithm Design</title><link href="http://localhost:4000/ALG-3.0.-Algorithm-Design" rel="alternate" type="text/html" title="[ALG] 3.0. Algorithm Design" /><published>2022-09-19T00:00:00+09:00</published><updated>2022-09-19T00:00:00+09:00</updated><id>http://localhost:4000/%5BALG%5D-3.0.-Algorithm-Design</id><content type="html" xml:base="http://localhost:4000/ALG-3.0.-Algorithm-Design"><![CDATA[<h1 id="the-divide-and-conquer-approach">The Divide-and-Conquer Approach</h1>
-
-<p>각각을 나누어 conquer해서 정복하다 : 원래 문제를 푸는 것과 같은 방식으로 combine해서 원래 문제의 해를 찾는 문제 해결 방식. 여러가지 부류의 변형이 존재한다.</p>
-
-<ul>
-  <li>(1) <strong>Divide</strong> an instance of a problem into one or more smaller instances
-    <ul>
-      <li>문제의 인스턴스를 하나 이상의 작은 인스턴스로 나눕니다.</li>
-    </ul>
-  </li>
-  <li>(2) <strong>Conquer</strong> (Solve) each of the smaller instances. Unless a smaller instance is sufficiently small, use recursion to do this.
-    <ul>
-      <li>각 작은 인스턴스를 정복합니다. 작은 인스턴스가 충분히 작지 않으면 재귀적을 사용하여 이 작업을 수행합니다.</li>
-    </ul>
-  </li>
-  <li>(3) If necessary, <strong>combine</strong> the solutions to the smaller instances to obtain the solution to the original instance.
-    <ul>
-      <li>필요한 경우 작은 인스턴스에 대한 솔루션을 결합하여 원래 인스턴스에 대한 솔루션을 확보합니다.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/assets/img/2022-09-19-[ALG]-3.0.-Algorithm-Design.md/0.png" alt="0" /></p>
-
-<h1 id="recursion">Recursion</h1>
-
-<ul>
-  <li>Tower of Hanoi
-    <ul>
-      <li><a href="https://www.geeksforgeeks.org/c-program-for-tower-of-hanoi/">Geeksforgeeks</a></li>
-      <li>
-        <p>작은거 위에 큰 거 올리지 않는 연산</p>
-
-        <p><img src="/assets/img/2022-09-19-[ALG]-3.0.-Algorithm-Design.md/1.png" alt="1" /></p>
-      </li>
-    </ul>
-  </li>
-  <li>$T(n) = 2T(n-1) +1, n&gt;1$</li>
-  <li>$T(1)=1$</li>
-  <li>Recursive thinking!
-    <ul>
-      <li><a href="https://introcs.cs.princeton.edu/java/23recursion/">princeton</a></li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/assets/img/2022-09-19-[ALG]-3.0.-Algorithm-Design.md/2.png" alt="2" /></p>
-
-<ul>
-  <li>recursion의 묘미 - compact하게 recursion하게 표현
-    <ul>
-      <li>3개 옮기는 데도 복잡하게 가지만 이를 compact하게 바꾸어주는 작업</li>
-    </ul>
-  </li>
-  <li>전체를 옮기는데 하나를 옮긴다 : n개의 disk를 옮기는 비용
-    <ul>
-      <li>n개의 비용은 어떻게 될까 : $T(n) = 2 T(n-1) + 1 (n \geq 2)$</li>
-      <li>작은 것 두 번 옮기고 마지막 하나 가야하므로 → 정확하게는 $1 (n=1)$</li>
-    </ul>
-
-    <p>→ $O(2^n)$</p>
-  </li>
-  <li>$T(n) = $
-    <ul>
-      <li>$a_n = 2a_{n-1} +1 (n \geq 2), a_1 = 1$ → $a_n = ?$</li>
-    </ul>
-  </li>
-  <li>recursion을 잘 다루면 매우 효율적으로 되고, 대표적으로 divide and conquer 방법론</li>
-</ul>
-
-<h1 id="sorting">Sorting</h1>
-
-<blockquote>
-  <p>💡 A sorting algorithm is said to be stable if two items with equal keys appear in the same order in sorted output as they appear in the input array to be sorted.<br />
-Sorting Algorithm의 Stability : 정렬되지 않은 상태에서 같은 key 값을 가진 원소의 순서가 정렬 후에도 유지하느냐</p>
-
-  <p>일부 정렬 알고리즘은 삽입 정렬, 병합 정렬, 버블 정렬 등과 같이 본질적으로 안정적입니다. (정렬 후에도 원래의 순서가 유지됨)</p>
-</blockquote>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sorting Algorithm의 Stability : 정렬되지 않은 상태에서 같은 key 값을 가진 원소의 순서가 정렬 후에도 유지하느냐
-
-
-일부 정렬 알고리즘은 삽입 정렬, 병합 정렬, 버블 정렬 등과 같이 본질적으로 안정적입니다. (정렬 후에도 원래의 순서가 유지됨)
-</code></pre></div></div>
-
-<ul>
-  <li>Problem:
-    <ul>
-      <li>Given a list of n items, arrange them <strong>in a certain order.</strong>
-        <ul>
-          <li>Ex: non-increasing, non-decreasing, or etc. : 크기순서대로 정렬한다</li>
-          <li>이론적, 알고리즘적으로 문제 해결하는 측면이 있고, practical하게 하는거랑</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Some criteria for choosing a sorting algorithm
-    <ul>
-      <li>How many items will you be sorting? 얼마나 많은 원소를 정렬할 것인가?</li>
-      <li>Will there be duplicate items in the data? 데이터에 중복 항목이 있습니까?</li>
-      <li>What do you know about the data? 데이터에 대해 알고 계십니까?
-        <ul>
-          <li>Is the data already partially sorted?데이터는 이미 부분적으로 정렬되어 있는가?</li>
-          <li>Do you know the distribution of the items?품목의 분포를 알고 있습니까?</li>
-          <li>Are the keys of items very long or hard to compare?항목 키가 매우 길거나 비교하기 어렵습니까?
-            <ul>
-              <li>정수 데이터를 sorting하는 건가, 여러 string을 비교하는것인가에 따라 사용하는 알고리즘이 접근 방식이 달라질 수 있다.</li>
-              <li>이에 괘념치 않고 sorting alg를 좋다더니 쓰자 하면 버벅되는 꼴이 일어날 것.</li>
-            </ul>
-          </li>
-          <li>Is the range of possible keys very small? 가능한 키의 범위가 매우 작습니까?</li>
-        </ul>
-      </li>
-      <li>Do you have to worry about disk accesses? 디스크 액세스에 대해 염려해야 합니까?</li>
-      <li>Do you need a <u>**stable**</u> sorting algorithm? 안정적인 정렬 알고리즘이 필요한가?
-        <ul>
-          <li>stable한 알고리즘 15 31 2 7 6 7 9 ⇒ 2 6 7 7 9 15 13</li>
-          <li>같은 값이 있을 때 그 순서가 유지 - 같은 7, 7의 순서가 변하지 않음 (stable soritng alg)</li>
-        </ul>
-      </li>
-      <li>How much time do you have to write and debug your routine? 루틴을 작성하고 디버깅하는 데 얼마나 많은 시간이 필요합니까?</li>
-    </ul>
-  </li>
-  <li>ref. <a href="https://drive.google.com/drive/u/0/folders/1IyehEF9hz96cFu5js6ZWyfR4_Mvk1xb8">Skiena, Steven S. The Algorithm Design Manual: The CD-ROM. 2 June 1997. 7 Dec. 2005</a>,
-    <ul>
-      <li>원래 <a href="http://www2.toki.or.id/book/AlgDesignManual/BOOK/BOOK4/NODE148.HTM">링크</a> 깨짐</li>
-    </ul>
-  </li>
-  <li>정수처럼 4byte 저장되는건지 등 어떤 data를 정렬하느냐에 따라서 sw 개발자로서의 approach가 천차만별 : divide and conquer 이해가 ㅁ목적</li>
-  <li>GPU Parallel Sorting</li>
-</ul>
-
-<h3 id="a-formal-definition-of-sorting">A Formal Definition of Sorting</h3>
-
-<ul>
-  <li>A <strong>partial order</strong> on a set S is a relation R such that for each a, b, and c in S:
-    <ul>
-      <li>$aRa$ is true (R is reflexive).</li>
-      <li>$aRb$ and $bRc$ imply $aRc$ (R is transitive)</li>
-      <li>$aRb$ and $bRa$ imply $a=b$ (R is antisymmetric)</li>
-    </ul>
-  </li>
-  <li>A Linear Order or Total Older on a set <em>S</em> is a partial order R on S such that for every pair of elements a, b, either aRb or bRa.</li>
-  <li>The sorting problem
-    <ul>
-      <li>Given a sequence of <em>n</em> elements $a_1, a_2, …, a_n$ drawn from a set having a linear order $\preceq$</li>
-      <li>find a permutation $Π=(π_1,π_2,…,π_n) $of $(1,2,…,n)$ that will map the sequence into a nondecreasing sequence $a_{\pi_1}, a_{\pi_2},…,a_{\pi_n}$,  such that $a_{\pi_1} \preceq a_{\pi_i+1}$,  for $1 \leq i &lt; n$</li>
-    </ul>
-  </li>
-  <li>Ex: ≤ on $\mathbb{Z}, \subseteq$ on sets</li>
-  <li>Sorting on data with partial order?</li>
-</ul>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[The Divide-and-Conquer Approach]]></summary></entry><entry><title type="html">[ALG] 3.1. Sorting</title><link href="http://localhost:4000/ALG-3.1.-Sorting" rel="alternate" type="text/html" title="[ALG] 3.1. Sorting" /><published>2022-09-19T00:00:00+09:00</published><updated>2022-09-19T00:00:00+09:00</updated><id>http://localhost:4000/%5BALG%5D-3.1.-Sorting</id><content type="html" xml:base="http://localhost:4000/ALG-3.1.-Sorting"><![CDATA[<h1 id="alg-311-merge-sort-1">[ALG] 3.1.1. Merge Sort (1)</h1>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>divide and conquer 관점에서 - merge sort를 바라보면, 맨 위 임의로 주어진 배열 data를 아래처럼 정렬한다고 하자. 
-
-
-divide and conqer가 자연스럽게 들어오면, 이제부터 몇 주가 편하게 갈 것이다.
-
-
-# 1. Merge Sort
-
-- **Problem**: Sort _n_ keys in nondecreasing sequence.
-- **Inputs**: positive integer _n_, array of keys _S_ indexed from 1 to _n_.
-- **Outputs**: the array _S_ containing the keys in nondecreasing order. 배열 S는 감소하지 않는 순서로 정렬된 key를 갖는다
-	1. **Divide** the array into two subarrays each with $\frac n 2$ items.
-		1. 전반부 후반부 한 덩어리씩 나눈다 : 절반으로 나누어서
-	2. **Conquer** each subarray by sorting it recursively.
-		1. 한 element만 남게 되면 정렬 끝
-	3. **Combine** the solutions to the subarrays by merging them into a single sorted array.
-		1. merge의 경우 크기 순서대로 되어 있는데 각 부분의 solution을 적절히 combine해서 찾는다
-		2. 각 그룹중에 비교해서 더 작은 놈 나와 해서 sublist들을 merge하는 과정. : recursive하게 sort하여 정렬된 list로 merge하여 각 데이터를 총합하는 방식
-
-![0](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/0.png)
-
-- A simple implementation
-
-	```c
-	// Sort a list from A[left] to A[right].
-	// Should be optimized for higher efficiency!!!
-	void merge_sort(item_type *A, int left, int right)
-	{
-	    int middle;
-	    if (left &lt; right)
-	    {
-	        // divide : O(1)
-	        middle = (left + right) / 2;
-	
-	        // conquer : 2T(n/2) - subprogram들을 같은 방식으로 
-					merge_sort(A, left, middle);
-	        merge_sort(A, middle + 1, right);
-	
-	        // combine : O(n)
-					merge(A, left, middle, right);
-	    }
-	}
-	
-	item_type *buffer;
-	// extra space for merge sort, allocated beforehand
-	void merge(item_type *A, int left, int middle, int right)
-	{
-	    int i, i_left, i_right;
-	    memcpy(buffer + left, A + left, 
-						 sizeof(item_type) * (right - left + 1));
-	    // O(r-l+1), O(n)
-	    i_left = left;
-	    i_right = middle + 1;
-	    i = left;
-	
-	    while ((i_left &lt;= middle) &amp;&amp; (i_right &lt;= right))
-	    {
-	        if (buffer[i_left] &lt; buffer[i_right])
-	            A[i++] = buffer[i_left++];
-	        else
-	            A[i++] = buffer[i_right++];
-	    }
-	    while (i_left &lt;= middle)
-	        A[i++] = buffer[i_left++];
-	    while (i_right &lt;= right)
-	        A[i++] = buffer[i_right++];
-	}
-	```
-
-
-	![1](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/1.png)
-
-
-	![2](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/2.png)
-
-- Space Complexity
-	- order of n만큼의 working space를 안 쓰고, input array의 n만 써서 활용할 때, 그런 알고리즘의 경우 O(n log n)만큼의 time complexity 이상이 찍힐 수 있겠구나.
-	- 가능은 하다 : input array O, Working space X
-		- inplace merge sort는 굉장히 복잡한 것으로 알고 있음.
-	- 시간 복잡도를 증가시키지 않으면서, working space의 추가적인 memory를 안 쓰는 것 (상수 memory 사용)
-	- 
-</code></pre></div></div>
-<details>
-  <summary>In-place merge sort</summary>
-
-
-[bookmark](https://www.geeksforgeeks.org/in-place-merge-sort/)
-
-- stable을 유지하면서 working space는 linear space만 쓰는 것 → 어떤식으로 생각해서 접근할 것인가? 중요
-- merge 할 때 추가적인 working space는 안 쓰고, 자연스럽게 생각할 수 있는 것들 :
-	- 자연스러운 생각이 들 수 있게 길들여야만 복잡한 것을 하고 하나하나 자연스럽게 생각하는 습관 들이기
-- Maintain two pointers that point to the start of the segments which have to be merged.
-- Compare the elements at which the pointers are present.
-- If _element1 &lt; element2_ then _element1_ is at right position, simply increase _pointer1_.
-- Else shift all the elements between element1 and _element2(including element1 but excluding element2)_ right by 1 and then place the element2 in the previous place_(i.e. before shifting right)_ of element1. Increment all the pointers by _1_.
-
-![3](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/3.png)
-
-<details>
-  <summary>C++ Code </summary>
-
-
-```c
-// C++ program in-place Merge Sort
-#include <iostream>
-using namespace std;
-
-// Merges two subarrays of arr[].
-// First subarray is arr[l..m]
-// Second subarray is arr[m+1..r]
-// Inplace Implementation
-void merge(int arr[], int start, int mid, int end)
-{
-	int start2 = mid + 1;
-
-	// If the direct merge is already sorted
-	if (arr[mid] &lt;= arr[start2]) {
-		return;
-	}
-
-	// Two pointers to maintain start
-	// of both arrays to merge
-	while (start &lt;= mid &amp;&amp; start2 &lt;= end) {
-
-		// If element 1 is in right place
-		if (arr[start] &lt;= arr[start2]) {
-			start++;
-		}
-		else {
-			int value = arr[start2];
-			int index = start2;
-
-			// Shift all the elements between element 1
-			// element 2, right by 1.
-			while (index != start) {
-				arr[index] = arr[index - 1];
-				index--;
-			}
-			arr[start] = value;
-
-			// Update all the pointers
-			start++;
-			mid++;
-			start2++;
-		}
-	}
-}
-
-/* l is for left index and r is right index of the
-sub-array of arr to be sorted */
-void mergeSort(int arr[], int l, int r)
-{
-	if (l &lt; r) {
-
-		// Same as (l + r) / 2, but avoids overflow
-		// for large l and r
-		int m = l + (r - l) / 2;
-
-		// Sort first and second halves
-		mergeSort(arr, l, m);
-		mergeSort(arr, m + 1, r);
-
-		merge(arr, l, m, r);
-	}
-}
-
-/* UTILITY FUNCTIONS */
-/* Function to print an array */
-void printArray(int A[], int size)
-{
-	int i;
-	for (i = 0; i &lt; size; i++)
-		cout &lt;&lt;" "&lt;&lt; A[i];
-	cout &lt;&lt;"\n";
-}
-
-/* Driver program to test above functions */
-int main()
-{
-	int arr[] = { 12, 11, 13, 5, 6, 7 };
-	int arr_size = sizeof(arr) / sizeof(arr[0]);
-
-	mergeSort(arr, 0, arr_size - 1);
-
-	printArray(arr, arr_size);
-	return 0;
-}
-
-// This code is contributed by shivanisinghss2110
-```
-
-
-
-  &lt;/details&gt;
-
-  &lt;/details&gt;	- 
-
-	## Worst Case Copmlexity of merge sort
-
-	- $O(n^2) $:
-	- 
-	- An example of merging two arrays
-		- left, right 각각 $
-		\frac n 2$개
-
-	→ 그림으로 바꾸기
-
-
-		![4](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/4.png)
-
-
-	## Worst-case time complexity
-
-
-	![5](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/5.png)
-
-
-	![6](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/6.png)
-
-
-	![7](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/7.png)
-
-	- 편의상 $n=2m$이라 할 경우 $(m \in Z^+ \cup \{0\}$)
-		- $T(n) = 2T(\frac {n} {2}) + cn, n \geq 2$
-			- 2 : Number of subproblems
-			- $\frac n 2$ : Subproblem size
-		- $T(1)=1 \rightarrow T(n) = O(nlogn)$
-		- Merge Sort Complexity Analysis
-	- n개의 원소를 k개와 l개로 나누어 진행한다고 가정하면 ($n=k+l$),
-		- $T(n) = T(k) + T(l) + cn (k \approx l)$
-		- $n = 2^m$ 이 아닌 일반적인 경우에도 같은 시간 복잡도를 가짐을 증명할 수 있음.
-
-	## Solving Recurrence Equations
-
-	- Solve the following recurrences $T(n)$ for given $T(1)=1$
-		1. $T(n) = aT(n-1) + bn$
-		2. $T(n) = T(\frac n 2) + bn \log n$
-		3. $T(n) = aT(n-1) + bn^2$
-		4. $T(n) = aT(n/2) + bn^2$
-		5. $T(n) = T(\frac n 2) + c \log n$
-		6. $T(n) = T(\frac n 2) + cn$
-		7. $T(n) = 2T(\frac n 2) + cn$
-		8. $T(n) = 2T(\frac n 2) + cn \log n$
-		9. $T(n) = T(n-1) + T(n-2)$, for $T(1)=T(2)=1$
-	- space complexity : embedded program 등 사실 제일 중요한 요소중에 하나로서, 현실 사회에서도 반드시 개발할 때 고려해야 함
-
-	→ Space Complexity : $O(n)$
-
-	- Space complexity : merge sort algorithm을 구현하는데 lienar space보다 더 적게 할수 있나?
-		- 불가능: 데이터 input n개를 모두 저장해야하다
-		- input array O(n)이 필요하고, 더 필요한건 O(n)이니가 알고리즘 관점에서 문제가 되지는 않음 : O(n)
-		- 실제 구현한다고할 때, 심각한 문제가 될 수 있음.
-	- Time complexity : time complexity가 나왔을 때 진짜 알고리즘 전공하거나 어느정도 수준이 되면 이거보다 더 빠른 알고리즘을 만들 수 있을까 싶을 것임. → $O(n \log n)$을 넘어설 수는 없다.
-		- alg - implementation은 서로 다른 세상이다.
-
-	## Some Derivations
-
-	1. T(n) = 2 T(n/2) + cn, T(1) = 1
-		- assume $n=2^m$, i.e., $m=\log_2m$ for some $m \geq 0, m \in \mathbb{Z}$
-		- $T(2^m) 
-		
-		\\= 2T(2^{m-1})+c \cdot 2^mT(2m)
-		\\ =2T(2m−1)+c⋅2m\\=2{2T(2m−2)+c⋅2m−1}+c⋅2m
-		\\=2^2⋅T(2m−2)+2⋅c⋅2m\\=2^2{2⋅T(2m−3)+c⋅2m−2}+2⋅c⋅2m...\\=2m⋅T(20)+m⋅c⋅2m=n⋅1+(\log 2n)⋅c⋅n=O(n \log n)$
-
-			$\\= 2 \{2T(2^{m-2})+c \cdot 2^{m-1} \}+c \cdot 2^m$
-
-
-			$\\=2^2 \cdot T(2^{m-2})+2 \cdot c \cdot 2^m$
-
-
-			$\\= 2^2 \{2 \cdot T(2^{m-3})+c \cdot 2^{m-2} \}+2 \cdot c \cdot 2^m$
-
-
-			$\\ ... \\= 2^m \cdot T(2^0) + m \cdot c \cdot 2^m$
-
-
-			$\\= n \cdot 1 + (log_2 n) \cdot c \cdot n = O(n \log n )$
-
-
-		![8](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/8.png)
-
-	2. $T(n) = T(n-1) + cn, T(1) = 1$
-	3. $T(n) = 2 T(n/2) + cn^2, T(1) = 1$
-		- Assume $n=2^m$ for some $m \in \mathbb{Z} - \mathbb {Z^-}$
-undefined		- $2 \cdot T (2^{m-1}) + c \cdot 2 ^2m2⋅T(2m−1)+c⋅22m=2$
-
-			$\\ = 2 \{ 2 \cdot T(2^{m-2}) + c \cdot 2 ^{2(m-1)} \} + c \cdot 2 ^2m$
-
-
-			$\\= 2^2 \cdot T(2^{m-2}) + c \{ 2^{2m-1} + 2 ^{2m}\}$
-
-
-			$\\ = 2 \{ 2 \cdot T(2^{m-3}) + c \cdot 2 ^{2(m-2)} \} + c \{ 2^{2m-1} + 2^{2m} \}$
-
-
-			$\\= 2^3 \cdot T(2^{m-3})+ c \{ 2^{2m-2} + 2^{2m-1} + 2 ^{2m}\}$
-
-
-			$\\ … \\= 2^m + 2 \cdot c \cdot 2^{2m} - 2 \cdot c \cdot 2^m$
-
-
-			$\\ =2 \cdot c \cdot n^2 - (2 \cdot c -1) n = O(n^2)$
-
-
-	## Another Implementation of Merge Sort
-
-	- ref. [Horowitz 7.6.3]
-
-		```c
-		typedef struct {
-		  int key;
-		  int link;
-		} element;
-		```
-
-
-		![9](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/9.png)
-
-	- `rmerge` returns an integer that points to the start of the sorted list. start = rmerge(list, 0, n-1);
-
-		```c
-		int rmerge(element list[], int lower, int upper)
-		{
-		    /*sort the list, list[lower], ..., list[upper]. 
-				// the link field in each record is initially set to -1*/ 
-				// list[lower], …, list[upper]까지 오름차순으로 정렬.
-				// 각 레코드의 link filed는 초기에 -1로 설정int middle;
-		    if (lower &gt;= upper)
-		        return lower;
-		    else
-		    {
-		        middle = (lower + upper) / 2;
-		        return listmerge(list, rmerge(list, lower, middle), rmerge(list, middle + 1, upper));
-		    }
-		}
-		```
-
-	- `listmerge` takes two sorted chains, first and second, and returns an integer that points to the start of a new sorted chain that includes the first and second chains.
-
-		```c
-		int listmerge(element list[], int first, int second)
-		{
-		    // first와 second가 가리키는 서브리스트들을 합병int start = n;
-		    while (first != -1 &amp;&amp; second != -1)
-		    {
-		        if (list[first].key &lt;= list[second].key)
-		        {
-		            list[start].link = first;
-		            start = first;
-		            first = list[first].link;
-		        }
-		        else
-		        {
-		            list[start].link = second;
-		            start = second;
-		            second = list[second].link;
-		        }
-		    }
-		    if (first == -1)
-		        list[start].link = second;
-		    else
-		        list[start].link = first;
-		    return list[n].link;
-		    // 합병된 리스트의 시작 인덱스를 return
-		}
-		```
-
-		- `listmerge` 함수 수행 예 start
-
-			![10](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/10.png)
-
-
-# [ALG] 3.1.2. Quick Sort (1)
-
-
-	## 3.1.2. Quick Sort
-
-	- comparison sort 중 하나
-		- merge sort보다 worst case  : O(n^2)
-		- 일반적으로 quick sort의 변형이 제일 빠르다고 실험을 통해 알려져 있음
-	- Pivot strategy
-		1. **Divide**
-			- Select a **pivot element**, and then divide the array into two subarrays such that ....
-				- 원소 중 하나를 뽑음
-			- 비용 : $O(n)$ - 상수시간 안에 뽑고 쭉 n개를 보면서 15보다 크면 오른쪽으로 가고 15보다 작으면 왼쪽 그룹에 배치하여 모으는 작업 - 하나 씩 건드리는 작업이므로 n-1개를 보아야 함.
-		2. **Conquer**
-			- sort each subarray recursively.
-			- $T(n_1) + T(n_2)  (n_1 + n_2+1 = n)$
-		3. **Combine**
-			- do nothing.
-			- conquer 결과를 갖고 전체 결과를 만들어 냄.
-			- merge sort: 각 subproblem을 해결해서 합쳐 원래 문제의 해답을 얻는 단계
-			- quick sort : 이미 다 정렬된 케이스
-
-		![11](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/11.png)
-
-
-	![12](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/12.png)
-
-	- merge sort : 계산 과정에서 binary tree가 만들어지는데, well-balanced binary tree가 만들어짐.
-		- quick sort의 경우 well-balenced tree가 안될 수도있고, skewed (한 쪽으로 치우쳐진) tree
-		- worst case의 경우 : 높이는 $O(n)$ + stack overflow의 가능성
-			- 완전 정렬된 경우 맨 왼쪽 것을 pivot으로 삼았을 때
-			- 거꾸로 정렬된 경우
-		- 시간복잡도 등 여러 측면에서 well-balanced가 skewed보다 낫다.
-		- 평균적으로 임의의 데이터가 들어왔을 때 quick sort가 빠르다.
-	- Quick sort worst case Time Complexity : $O(n^2)$
-		- $T(n) = T(n-1) + cn (n\geq 2)$
-			- cn : divide cost
-			- 한 쪽으로만 skewed된 tree
-			- → $T(n) = O(n^2)$
-		- $T(n) = 1 (n =1)$
-	- average T.c. $O(n \log n)$, worst t.c. : $O(n^2)$
-		- 일반적으로 quick sort가 구현하는데 있어서 빠르다
-		- merge sort : average, worst - $O(n \log n)$
-	- A simple implementation
-		- $r-l&gt;0 → r-l+1 &gt;1$
-			- 2개 이상의 개수 판별
-
-		![13](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/13.png)
-
-
-		```c
-		// Sort a list from A[left] to A[right].
-		// Should be optimized for higher efficiency!!!
-		void quick_sort(item_type *A, int left, int right)
-		{
-		    int pivot;
-		    if (right - left &gt; 0)
-		    {
-		        // divide
-		        pivot = partition(A, left, right);
-		        // conquer
-						quick_sort(A, left, pivot - 1);
-		        quick_sort(A, pivot + 1, right);
-		    }
-		}
-		```
-
-
-		```c
-		#define SWAP(a, b) {
-			item_type tmp;
-			tmp = a;
-			a = b;
-			b = tmp;
-		}
-		
-		int partition(item_type *A, int left, int right)
-		{
-		    int i, pivot;
-		    pivot = left; //제일 왼 쪽에 있는 element를 pivot으로 설정
-		    for (i = left; i &lt; right; i++)
-		    {
-		        if (A[i] &lt; A[right])
-		        {
-		            SWAP(A[i], A[pivot]);
-		            pivot++;
-		            // How is the pivot element chosen in this function?
-		        }
-		    }
-		    SWAP(A[right], A[pivot]);
-		    return (pivot);
-		}
-		```
-
-
-		![14](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/14.png)
-
-		- → 스스로 이해해볼 것
-
-		&gt; ☀️ 첫 벉재 프로그래밍 과제  
-		&gt; - 구현과 이론 사이 간극, 성능 검정
-
-
-	# 직관적인 시간 복잡도 추정
-
-	- skewed보다는 well-balanced가 더 나음
-	- $T(n) = T(m_1) + T(m_2) + cn (m_1 + m_2 = n-1)$ if $n&gt;1$
-	- $T(1) = 1$
-	- → $O(n \log n) \leq T(n) \leq O(n^2)$
-
-	![15](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/15.png)
-
-	- node에 붙은 것을 다 더하면 n^2
-	- log n *n 해서 n \log n
-	- 평균적으로 봤을 때 n log n
-
-	# Cost Analysis
-
-	- worst case : $O(n^2) &lt;&lt; $merge, quick sort
-
-	![16](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/16.png)
-
-	- Cost
-		- $T(n) = T(m_1) + T(m_2) + cn (m_1 + m_2 = n-1)$ if $n&gt;1$
-	- Analysis
-		- Divide : $O(n)$
-		- Conquer : $T(m_1)+T(m_2)$
-		- Combine : $O(1)$
-	- Worst-case time complexity
-		- 매 단계에서 선택한 pivot element가 가장 크거나 가장 작을 경우,
-		- $T(n) = T(0) + T(n-1) + cn, T(1)=1$ then $T(n)=O(n^2)$
-		- $T(1) = 1$
-		- $T(n) = O(n^2)$
-		- Skewed vs well-balanced trees
-			- 
-
-			![17](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/17.png)
-
-	- Average-case time complexity
-		- $T(n) = \sum_{p=1}^n {T(p-1) + T(n-p)} + cn$
-		- $T(0) = 1 \rightarrow$
-		- $\therefore T(n) = O(n log n)$
-		- 
-
-			![18](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/18.png)
-
-	- mathematical induction
-
-		![19](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/19.png)
-
-
-		![20](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/20.png)
-
-
-	# Average Case Time Complexity
-
-
-	### 첫 번째 사실
-
-	- $n \leq 0, \forall n \in \mathbb{Z}, T_{ave}(n)$ 을 n개의 원소를 가지는 배열을 퀵 정렬 방법을 사용하여 정렬하는데 걸리는 평균 수행시간이라고 하자. 그러먼 어떤 양의 정수 b와 c에 대해 다음과 같은 재귀 관계 존재
-		- $T_{ave} (n) \geq cn + \frac {1}{n} \sum_{p=1}^{n} \{ T_{ave} (p-1) + T_{ave} (n-p) \}$
-		- $\\= cn + \frac{2}{n} {\sum_{p=0}^{n-1} {T_{ave}(p)}}$
-		- $\forall n \geq 2$
-	- $T_{ave} (1) \leq b$
-	- $T_{ave} (0) \leq b$
-	- $Cost_{ave} = \sum_{p=1}^n {P_r (p) \cdot Cost(p)} = \frac {1}{n} \sum_{p=1}^n {... + ...}$
-
-	### 두 번째 사실
-
-	- $k=2(b+c)$ 라 할 때, 2보다 같거나 큰 모든 정수 n 에 대하여 $T_{ave} (n) \leq kn \log_e n$과 같은 관계 존재
-	- 증명: 위의 부등식을 수학적 귀납법을 사용하여 증명하자.
-		1. $n=2$
-			- 첫 번째 사실로부터 다음과 같은 관계 성립
-				- $T_{ave}(2) \leq 2c + T_{ave} (0) + T_{ave} (1) \leq 2(b+c) \leq k \cdot 2 \ log_e 2$
-			- ∴ 따라서 두 번째 사실 성립
-		2. 3보다 같거나 큰 임의의 n_n_ 이 given
-			- Assume that : m&lt;n_m_&lt;_n_ 인 모든 m_m_ 에 대하여 두 번째 사실 성립한다고 가정하자.
-			- 그러면 첫 번째 사실과 이 과정을 사용하여 다음과 같은 관계 유도 가능
-			- $T_{ave} (n) \leq cn + \frac {2} {n} \sum_{m=0}^{n-1} {T_{ave} (m)}$
-				- $\\ = cn + \frac 2 m \{ T_{ave} (0)+T_{ave} (1) \} + \frac {2} {n} \sum_{m=2}^{n-1} {T_{ave}(m)}$
-				- $\\ \leq cn + \frac {4b} n + \frac {2k} n \sum_{m=2}^{n-1} {m log_e m}$
-			- 그러므로 $T_{ave} (n) \leq cn + \frac {2} {n} \sum_{p=0}^{n-1} {T_{ve} (p)}∀n≥2$
-			- $\frac 2 n \Sigma_{m=2}^{n-1} T_{ave} (m) : T_{ave}(m) \leq km \log _e m \leq \frac {2k}{n} \Sigma _{m=2}^{n-1} m \log_e n$
-		- 함수 $x \log_e x$가 x_x_에 대하여 아래로 볼록한 함수이어서 $m log_e m \leq \int_m^{m+1} x \log_e x dx$라는 사실을 이용하면 다음과 같은 관계식을 얻는다.
-			- $T_{ave} (n)= cn + \frac {4b}n + \frac {2k}n \int_2^n x log_e x dx$
-			- $≤cn+n4b+n2k{2n2 \log_en−4n^2}=kn \log_e n+{cn+n^4b−2kn}$
-
-				$\\ \leq cn + \frac {4b}{n} + \frac{2k}{n} \{ \frac{n^2 log_e n}{2} - \frac {n^2} 4 \}$
-
-
-				$\\= knlog_e n + \{ cn + \frac{4b} n - \frac {kn} 2\}$
-
-
-			&gt; $\int_2^n x log_e x dx =[\frac 1 2 x^2 log_e x - \frac {x^2} 4]_2^n$
-
-
-				$= (\frac {n^2} 2) log_e n - \frac {n^2} 4 - (2log_e 2 - 1) \leq \frac {n^2} {2} {log_e n} - \frac {n^2} {4}$
-
-		- 이 때, $cn + \frac{4b} n - \frac {kn} 2 = (c-\frac k 2 )n + \frac {4b} n = b(\frac 4 n -n)$ 과 같고 이 값은 2보다 같거나 큰 n에 대해 항상 0보다 같거나 작으므로 $ T_{ave} (n) \leq kn log_e n$이 되어 3보다 같거나 큰 임의의 n에 대해서도 두 번째 사실이 성립한다. 따라서 2보다 같거나 큰 모든 정수 n에 대해 다음과 같은 두 번째 사실이 성립한다.
-
-		![21](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/21.png)
-
-
-		![22](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/22.png)
-
-
-		![23](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/23.png)
-
-
-	## Another Implementation
-
-
-	&gt; 🏝️ 중간고사 빈칸 .??? 코드가 편해질 때 까지!
-
-
-	```c
-	void quicksort(element list[], int left, int right)
-	{
-	    // list[left], …, list[right]까지 오름차순으로 정렬.
-	    // list[left].key를 중추 키(pivot key)로 선정
-	    // list[left].key ≤ list[right + 1].key 라고 가정
-	    int pivot, i, j;
-	    element temp;
-	    if (left &lt; right)
-	    {
-	        i = left;
-	        j = right + 1;
-	        pivot = list[left].key;
-	        do
-	        {
-	            // pivot을 중심으로 왼쪽과 오른쪽 리스트 생성
-	            // 왼쪽 리스트: pivot보다 적은 키들을 저장, 오른쪽은 반대do
-	            // 왼쪽부터 pivot보다 큰 키를 검색
-	            i++;
-	            while (list[i].key &lt; pivot);
-	            do // 오른쪽부터 pivot보다 작은 키를 검색
-	                j--;
-	            while (list[j].key &gt; pivot);
-	            if (i &lt; j)
-	                // 각 리스트의 속성을 만족하도록 데이터 교환
-	                SWAP(list[i], list[j], temp);
-	        } while (i &lt; j);
-	        SWAP(list[left], list[j], temp);
-	        quicksort(list, left, j – 1);
-	        // 왼쪽 리스트를 다시 정렬
-	        quicksort(list, j + 1, right);
-	        // 오른쪽 리스트를 다시 정렬
-	    }
-	}
-	
-	//code 약간 다르니 수정
-	```
-
-
-	## Comparison Sorts
-
-	- source: WikiPedia
-
-		![24](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/24.png)
-
-	- 못난이 삼형제 sort : $O(n^2)$
-		- insertion, select, bubble
-		- n log n 방법들이 있음에도 n^2를 공부 : 장점은 구현하기 쉽다. 그리고 n log n, n^2늬 차이는 n이 커질 때 차이가 나는 것이지, 10개 즈음이면 복잡하게 function call하면서 쓸 필요가 없는 것이다. 너무 구현이 단순해서 오히려 더 빠를수도 있다.
-		- insertion : 이를 이용하여 quick sort를 더 빠르게 할 수 있다.
-
-	cost comparison
-
-
-	![25](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/25.png)
-
-
-	---
-
-
-	## Improving the Performance of Quick Sort
-
-
-	<첫 번째="" technique="">
-
-	- How can you select a “good” pivot element? : pivot element를 잘 선택하는 것이 중요
-		- Choose a <u>random</u> element in the list.
-		- 가장 이상적인 케이스 : Choose **the** <u>**median**</u> **of the first, middle, and final** elements in the list.
-			- 세 개만 보자, 다섯 개만 보자 : constant time
-				- 데이터가 11개 있는데 그 중 크기 순으로부터 5번째 것을 찾아라 → linear time에 될까?
-					- linear time에 당연히 된다.
-					- median이 아니라 임의의 kth element를 찾는 문제도 나중에 divide and conquer에 나오고, 당연히 median 찾는 것도 가능
-		- Choose **the** <u>**median**</u> **of the entire elements** in the list. (bad idea)
-			- 다 보자 : 상수 시간에서 lienar time (to pick pivot element)
-		- 이론적으로는 아무 문제 없음
-			- 그러나 그만큼의 linear time 만큼이 추가되는 것이기 때문에 구현 측면에서 좋지 않음
-		- Etc.
-
-	![26](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/26.png)
-
-	- Program 7.4. improved quicksort
-		- Choosing the median of the first, middle, and final elements as the partitioning element and cutting off the recursion for small subfiles can significantly improve the performance of quicksort.
-		- This implementation partitions on the median of the first, middle, and final elements in the array (otherwise leaving these elements out of the partitioning process).
-		- Files of size 11 or smaller are ignored during partitioning; then, insertion from is used to finish the sort.
-
-	<두 번째="" technique="">
-
-	- if (r - l &lt;= M)  // r-l+1 &lt;= M + 1
-		- compiler가 다 없애줌 : compiler의 최적화
-	- merge sort:
-		- 함수의 작동 기작 : 처음에 전체에 대해서 함수가 호출되고, recursively 1/2로 나누어지며 원소가 1개일 때 까지 split되며 control이 왔다갔다한다.
-		- stack에 각 정보를 저장해 두고 내려간다.
-		- quick sort → insertion
-			- 이빨 빠지듯 중간에 quicksort가 이루어지지 않은 부분에 대해서
-
-		```c
-		#define M
-		
-		void quicksort(ITEM[] a, int l, int r)
-		{
-		//첫 벉재 technique : 어떻게 하면 pivot을 더 좋은 것을 뽑을가?
-		//두 번째 technique : 
-		// 정렬하려는 개수 r-l+1인데 이를 r-l+1 &lt;= M+1 
-		// 해당 문장이 의미하는 바 : 정렬하고자 하는 원소의 개수가 주어진 상수값 m+1보다 작거나 같으면 정렬하지 말고 넘어가라. m=5, 7, 10, .. 사용하는 computing system에서 실험을 통해 얻어야 하는 값 (적당히 작은 값)
-		// 원소으ㅐ 개수가 5-6개 정도 되면 그냥 빠져나와라 : 정렬이 안 된 경우 -&gt;건너뛴 부분 생김
-		// insertion sort를 적용하면 이론적으로는 n^2이지만 정렬 안 하고 건너 뛴 부분들이 있을 때 전체적으로 sorting이 되어 있는데 부분 부분 정렬되지 않은 부분 -&gt; linear time에 돈 부분
-		
-		// 왜 빨라지는지 생각해 보고 올 것.
-		    if (r - l &lt;= M)
-		        return;
-				// r-l+1 &lt;= M + 1
-		
-		    exch(a, (l + r) / 2, r - 1);
-		    compExch(a, l, r - 1);
-		    compExch(a, l, r);
-		    compExch(a, r - 1, r);
-		    int i = partition(a, l + 1, r - 1);
-		//median을 찾아 divide하는 단계
-		    quicksort(a, l, i - 1);
-		    quicksort(a, i + 1, r);
-		//양 쪽에 대하여 quick sort
-		}
-		
-		void sort(ITEM a[], int l, int r)
-		{
-		    quicksort(a, l, r);
-		    insertion(a, l, r);
-		}
-		```
-
-	- How can you minimize the bookkeeping cost involved in the recursive calls?
-		- Much of the pushing and popping of the frame stack is unnecessary.
-		- Lists of size smaller than M are ignored during quick sort, then do a single sorting pass at the end.
-		- depth만큼의 stack 필요함
-		- 한없이 줄줄 내려가는 recursive function call : skewed되어서 줄줄이 내려가는 케이스의 경우 system에서 stack overflow
-
-	![27](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/27.png)
-
-	- How can you minimize the bookkeeping cost involved in the recursive calls?
-		- pivot element: 제일 왼 쪽에 있는 것을 갖고 싶다
-		- 작은 쪽에 대해서는 recursivesy
-			- 큰 쪽 : 속도보다는 큰 데이터에 알맞게
-		- Avoid making the recursive call on the larger subrange.
-		- The depth of recursion $\leq O(\log n)$
-
-	```c
-	quicksortTRO(E, first, last)
-	{
-	  int first1, last1, first2, last2;
-	  first2 = first;
-	  last2 = last;
-	  while (last2 - first2 &gt; 1)
-	  {
-	
-	      pivotElement = E[first];
-	      pivot = pivotElement.key;
-	      int splitPoint = partition(E, pivot, first2, last2);
-	      E[splitPoint] = pivotElement;
-	      if (splitPoint &lt; (first2 + last2) / 2)
-	      {
-	          first1 = first2;
-	          last1 = splitPoint - 1;
-	          first2 = splitPoint + 1;
-	          last2 = last2;
-	      }
-	      else
-	      {
-	          first1 = splitPoint + 1;
-	          last1 = last2;
-	          first2 = first2;
-	          last2 = splitPoint - 1;
-	      }
-	      quicksortTro(E, first1, last1);
-	// continue loop for fist2, last2.
-	  }
-	  return;
-	}
-	
-	
-	```
-
-
-	![28](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/28.png)
-
-
-	## Example: Quick Sort
-
-
-	By courtesy of David R. Musser
-
-	- Average-case: $O(n \log n)$
-	- Worst-case: $O(n^2)$
-
-		![29](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/29.png)
-
-	- 코드 상에서는 별 차이 없지면 simulation에서는 에러가 날 수도 있다.
-		- tech 1,2, 3
-
-	## Performance Comparisons
-
-	- 
-
-	![30](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/30.png)
-
-
-	## Quicksort: Implementation 2 [K. Loudon]
-
-
-	```c
-	#include <stdlib.h>
-	#include <string.h>
-	#include "sort.h"
-	static int compare_int(const void *int1, const void *int2)
-	{
-	    // Compare two integers (used during median-of-// three partitioning
-			if (*(const int *)int1 &gt; *(const int *)int2)
-		    return 1;
-	
-	    else if (*(const int *)int1 &lt; *(const int *)int2) 
-			return -1;
-	
-	    else return 0;
-	}
-	
-	static int partition(void *data, int esize, int i, int k, int (*compare)(const void *key1, const void *key2))
-	{
-	    char *a = data;
-	    void *pval, *temp;
-	    int r[3];
-	    /*  Allocate storage for the partition value and swapping. */
-	    if ((pval = malloc(esize)) == NULL)
-	        return -1;
-	    if ((temp = malloc(esize)) == NULL)
-	    {
-	        free(pval);
-	        return -1;
-	    }
-	    /* Use the median-of-three method to find the partition value.  */
-	    r[0] = (rand() % (k - i + 1)) + i;
-	    r[1] = (rand() % (k - i + 1)) + i;
-	    r[2] = (rand() % (k - i + 1)) + i;
-	    issort(r, 3, sizeof(int), compare_int);
-	    memcpy(pval, &amp;a[r[1] * esize], esize);
-	    /* Create two partitions around the partition   value.  */
-	    i--;
-	    k++;
-	    while (1)
-	    {
-	        /* Move left until an element is found in the wrong partition. */
-	        *do { k--; }
-	        while (compare(&amp;a[k * esize], pval) &gt; 0)
-	            ;
-	        /* Move right until an element is found in the wrong partition. */ do
-	        {
-	            i++;
-	        } while (compare(&amp;a[i * esize], pval) &lt; 0);
-	
-	        if (i &gt;= k)
-	        {
-	            break;
-	        }
-	        /* Stop partitioning when the left and right counters cross. */ else
-	        {
-	            /* Swap the elements now under the left and   right counters.  */ memcpy(temp, &amp;a[i * esize], esize);
-	            memcpy(&amp;a[i * esize], &amp;a[k * esize], esize);
-	            memcpy(&amp;a[k * esize], temp, esize);
-	        }
-	    }
-	
-	    /* Free the storage allocated for
-	         partitioning. */
-	    free(pval);
-	    free(temp);
-	    /* Return the position dividing the two partitions. */ return k;
-	}
-	
-	int qksort(void *data, int size, int esize, int i, int k, int (*compare)(const void *key1, const void *key2))
-	{
-	    int j;
-	    /* Stop the recursion when it is not possible
-	         to partition further. */
-	    if (i &lt; k)
-	    {
-	        // Determine where to partition the elements
-	        if ((j = partition(data, esize, i, k, compare)) &lt; 0)
-	            return -1;
-	        // Recursively sort the left partition
-	        if (qksort(data, size, esize, i, j, compare) &lt; 0)
-	            return -1;
-	
-	        // Recursively sort the right partition
-	        if (qksort(data, size, esize, j + 1, k, compare) &lt; 0)
-	            return -1;
-	    }
-	
-	    return 0;
-	}
-	```
-
-
-# [ALG] 3.1.3. Insertion Sort (1)
-
-
-	## Insertion Sort: Example 1
-
-
-	매번 for loop이 돌 때마다 정렬된 stack이 다시 정렬됨
-
-
-	![31](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/31.png)
-
-	- 정렬된 배열이 끝에 가선 다 정리됨.
-	- comparison sort : nlog n보다 더 빨리 할수 없다고 증명되어 있음.
-	- $O(n^2)$ : worst case time complexity
-		- $1+2+3+ ... + (n-1)$
-		- 처음에 15 비교 → 10, 15 비교, …
-		- 제일 오른쪽애랑비교하여 나보다 크면오른쪽으로 가라, 작으면 왼쪽으로 가라
-	- best case time complexity
-		- 1 + 1 + … + 1 = n-1 = O(n) - linear time
-	- inp place algorithm
-
-	## Insertion Sort: Example 2
-
-
-	![32](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/32.png)
-
-	- 전체적으로는 정렬 잘 된 것처럼 보이지만 중간에 잘 안된 케이스 존재
-		- worst case는 o(n^2)이지만 linear처럼 돌아가게 됨.
-			- n이 100만 일 때 엄청나게 큰 차이 존재
-	- Insertion : $O(n+d)$ in the worst case over sequences that have d inversions
-	- When does the insertion sort run fast?
-	- 이러한 insertion sort의 성질을 quick sort의 성능 향상에 활용하자.
-		- 이러한 insertion sort의 성질을 이용해서 quick sort를 더 빠르게 어떻게 할 것인가? (practical 구현 관점)
-			- 
-
-	## Implementation
-
-
-	```c
-	void insertion_sort(int *A, int n)
-	{
-	    int i, j, tmp;
-	    for (i = 1; i &lt; n; i++)
-	    {
-	        tmp = A[i];
-	        j = i;
-	        while ((j &gt; 0) &amp;&amp; (tmp &lt; A[j - 1]))
-	        {
-	            A[j] = A[j - 1];
-	            j--;
-	        }
-	        A[j] = tmp;
-	    }
-	}
-	```
-
-	- Sort a list of elements by iteratively inserting a next element in a progressively growing sorted array.
-
-		```c
-		#include <stdlib.h>
-		#include <string.h>
-		#include "sort.h"
-		int issort(void *data, int size, int esize, int (*compare)(const void *key1, const void *key2))
-		{
-		    char *a = data;
-		    void *key;
-		    int i, j; // Allocate storage for the key element.
-		    if ((key = (char *)malloc(esize)) == NULL)
-		        return -1;
-		    // Repeatedly insert a key element among the sorted elements.
-		    for (j = 1; j &lt; size; j++)
-		    {
-		        memcpy(key, &amp;a[j * esize], esize);
-		        i = j - 1;
-		        // Allocate storage for the key element.
-		        if ((key = (char *)malloc(esize)) == NULL)
-		            return -1;
-		        // Repeatedly insert a key element among the sorted elements.
-		        for (j = 1; j &lt; size; j++)
-		        {
-		            memcpy(key, &amp;a[j * esize], esize);
-		            i = j - 1;
-		            /* Determine the position at which to insert the key element. */ while (i &gt;= 0 &amp;&amp; compare(&amp;a[i * esize], key) &gt; 0)
-		            {
-		
-		                memcpy(&amp;a[(i + 1) * esize], &amp;a[i * esize], esize);
-		                i--;
-		            }
-		            memcpy(&amp;a[(i + 1) * esize], &amp;a[i * esize], esize);
-		            i--;
-		        }
-		        memcpy(&amp;a[(i + 1) * esize], key, esize);
-		    }
-		    // Free the storage allocated for sorting.free(key);
-		    return 0;
-		}
-		```
-
-
-	## Run-Time Analysis
-
-	- Worst case
-		- No. of comparisons:
-			- $1+2+ ...+n-1 = O(\frac {n^2}{2})$ : 완전히 뒤집혀진 경우 최악
-		- No. of record assignments:
-			- $1+2+ ...+n-1 = O(\frac {n^2}{2})+2(n-1)$
-				- 왜 2가 붙는가 :
-
-		![33](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/33.png)
-
-
-		![34](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/34.png)
-
-	- Average case
-		- No. of comparisons
-
-			$\sum_{i=1}^{n-1} {\frac{1+2+...+i+i}{i+1} } =\sum_{i=1}^{n-1} {(\frac{i}{2}+1-\frac{1}{i+1})}$
-
-
-			$\approx \frac{(n-1)(n+4)}{4} - \ln n = O(\frac{n^2} 4)$
-
-		- No. of record assignments
-
-			$\sum_{i=1}^{n-1} {\frac{0+1+2+...+i}{i+1} +2} = \frac{n(n-1)}{4}+2(n-1) = O(\frac{n^2}4)$
-
-			- 0번으로 시작해서 8번째에 insert : 확률적으로 위치는
-
-			![35](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/35.png)
-
-
-	## Example (skip)
-
-
-	![36](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/36.png)
-
-
-# [ALG] 3.1.4. Selection Sort (1)
-
-
-	## Implementation
-
-	- $T(n) = O(n^2)$
-
-		```c
-		#define SWAP(a, b) {
-		    item_type tmp;
-		    tmp = a;
-		    a = b;
-		    b = tmp;
-		}
-		
-		void selection_sort(item_type *A, int n)
-		{
-		    int i, j, cur;
-		
-		    for (i = 0; i &lt; n - 1; i++)
-		    {
-		        cur = i;
-		        for (j = i + 1; j &lt; n; j++)
-		            if (A[j] &lt; A[cur])
-		                cur = j;
-		        SWAP(A[i], A[cur]); // what if i == cur? }
-		    }
-		}
-		```
-
-
-	## Example
-
-
-	![37](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/37.png)
-
-
-	## Run-Time Analysis
-
-	- Worst case
-		- No. of comparisons
-
-			$\sum_{i=0}^{n-2} (n-i-1) = \frac {n(n-1)} 2 = O (\frac {n^2} {2})$
-
-		- No. of record assignments
-
-			$3(n-1) = O(3n)$
-
-	- Average case
-		- No. of comparisons
-
-			$\sum_{i=0}^{n-2} (n-i-1) = \frac {n(n-1)} 2 = O (\frac {n^2} {2})$
-
-		- No. of record assignments
-
-			$3(n-1) = O(3n)$
-
-	- [생각해보기] If we code like “if (i != cur) SWAP(A[i], A[cur]);”, what is the average cost?
-
-# [ALG] 3.1.5. Bubble Sort (1)
-
-
-	## Example
-
-
-	![38](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/38.png)
-
-
-	## Implementation
-
-
-	```c
-	#define SWAP(a, b) {
-			item_type tmp;
-			tmp = a;
-			a = b;
-			b = tmp;
-	}
-	
-	void bubble_sort(item_type *A, int n)
-	{
-	    int i, j;
-	
-	    for (i = 0; i &lt; n - 1; i++)
-	    {
-	        for (j = n - 1; j &gt; i; j--)
-	        {
-	            if (A[j] &lt; A[j - 1])
-	                SWAP(A[j], A[j - 1]);
-	        }
-	    }
-	}
-	```
-
-
-	![39](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/39.png)
-
-
-	## Run-Time Analysis
-
-	- Refer to The Art of Computer Programming (Vol. 3)
-	- Worst Case
-		- No. of comparisons
-
-			$\sum_{i=1}^{n-1} (n-1-i) = \frac {n(n-1)} 2 = O (\frac {n^2} {2})$
-
-		- No. of record assignments
-
-			$\sum_{i=1}^{n-1} 3i = \frac 3 2 n(n-1)= O (\frac {3} {2} n^2)$
-
-	- Average case
-		- No. of comparisons
-
-			$\sum_{i=1}^{n-1} (n-1-i) = \frac {n(n-1)} 2 = O (\frac {n^2} {2})$
-
-		- No. of record assignments
-
-			$\frac 1 2 \sum_{i=1}^{n-1} 3i = \frac 3 2 n(n-1)= O (\frac {3} {4} n^2)$
-
-
-# [ALG] 3.1.6. Cost Comparison (1)
-
-	- 
-
-	![40](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/40.png)
-
-	- # of comparisons
-		- Insertion
-			- (average) $\frac {n^2} 4$
-			- (worst) $\frac{n^2} 2$
-		- Bubble
-			- (average) $\frac{n^2}{2} $
-			- (worst) $\frac{n^2}2$
-		- selection : $\frac{n^2}2$
-	- # of record assignments
-		- Insertion
-			- (average) $\frac{3n^2} 4$
-			- (worst) $\frac{n^2}2$
-		- Bubble
-			- (average) $\frac 4 3n^2$
-			- (worst) $\frac{3n^2}2$
-		- selection : $3n$
-
-	## Comparison Sorts
-
-
-	[https://en.wikipedia.org/wiki/Sorting_algorithm#Comparison_of_algorithms](https://en.wikipedia.org/wiki/Sorting_algorithm#Comparison_of_algorithms)
-
-
-	![41](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/41.png)
-
-
-	## Performance Comparisons
-
-	- By courtesy of David R. Musser
-	- 
-
-		![42](/assets/img/2022-09-19-[ALG]-3.1.-Sorting.md/42.png)
-
-</string.h></stdlib.h></string.h></stdlib.h></두></첫></iostream></details></details>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[[ALG] 3.1.1. Merge Sort (1)]]></summary></entry><entry><title type="html">[ALG] 2. Heap-based PQ</title><link href="http://localhost:4000/ALG-2.-Heap-based-PQ" rel="alternate" type="text/html" title="[ALG] 2. Heap-based PQ" /><published>2022-09-12T00:00:00+09:00</published><updated>2022-09-12T00:00:00+09:00</updated><id>http://localhost:4000/%5BALG%5D-2.-Heap-based-PQ</id><content type="html" xml:base="http://localhost:4000/ALG-2.-Heap-based-PQ"><![CDATA[<p>Heap-based Priority Queue, Heap Sort</p>
-
-<h1 id="a-variety-of-priority-queue-implementations">A Variety of Priority Queue Implementations</h1>
-
-<ul>
-  <li>Heap이라는 개념 - 매우 전공에서 중요한 자료구조. 실제로 컴퓨터 system에서 메모리르 다루는 데 쓰이는 핵심적인 구조중 하나</li>
-  <li>Insert, delete : 원소를 집어넣고 빼고 - queue</li>
-  <li>Push, Pop : 데이터를 집어넣었다가 빼고 - stack</li>
-  <li>data를 넣었다가 뺐다가 이런것을 반복하는 것들. 구현이 적합한 stack
-    <ul>
-      <li>→ queue, stack은 굉장히 특정 형태를 갖는 방식으로 데이터를 넣고 빼는 작업</li>
-    </ul>
-  </li>
-  <li>[Priority Queue 1: Max(Min) Heap]</li>
-  <li>[Priority Queue 2: Min-Max Heap]</li>
-  <li>[Priority Queue 3: Heap and Hashing]</li>
-  <li>[Priority Queue 4: Deap]</li>
-  <li>[Priority Queue 5: Leftist Tree]</li>
-  <li>[Priority Queue 6: Binomial Heap]</li>
-  <li>[Priority Queue 7: Fibonacci Heap]</li>
-  <li>
-
-    <p><img src="/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/0.png" alt="0" /></p>
-  </li>
-</ul>
-
-<h1 id="job-scheduling-example-priority-queue">[Job Scheduling Example: Priority Queue]</h1>
-
-<ul>
-  <li>Consider the following sequence of requests in an operating system:</li>
-  <li>multiprocessing을 할 때 여러 process가 도는데,
-    <ul>
-      <li>예를 들어 바이러스가 침입했고 이를 막기 위한 process가 제일 먼저</li>
-      <li>제한된 rsrc를 시간 쪼개가며 쓴다. cpu 입장에서는 다음에 시간을 나누어 process를 돌릴 놈을 나와라 하여 처리해 주고 그 다음 줄 서있는 놈들 중 process 번호, owner , priority일 때 여러 policy로 OS를 만들 수 있다.</li>
-    </ul>
-
-    <p><img src="/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/1.png" alt="1" /></p>
-  </li>
-  <li>data 저장소에 처리해달라는 것이 들어가 있고, data 저장소에 들어갔다 나왔다가 계속반복되고 있다. 가장 먼저 들어온 애를 가장 먼저 처리해 주고, OS마다 인터넷에서 동영상 보는 process보다는 운영체제들이 바이러스 및 네트워크 처리 등 priority 높은 process들이 있다.</li>
-  <li>data저장소에 element가 있는데 priorty를 가지고 우선순위가 높은 놈 나와, 하는 것이 priority-based
-    <ul>
-      <li>각각의 원소들이 들어갈 때 계속 들어가고 뺄 때는 priority에 따라 나오게 함.</li>
-      <li>데이터 저장 :나올 때 우선순위 설정</li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="requirement-1">Requirement 1</h2>
-
-<ul>
-  <li>CPU executes the process with the highest priority first.</li>
-  <li>Use a heap structure – a simple max heap :)</li>
-  <li>
-
-    <p><img src="/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/2.png" alt="2" /></p>
-
-    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_process</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">proc_id</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="o">*</span><span class="n">owner</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">priority</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">Process</span><span class="p">;</span>
-	
-<span class="k">static</span> <span class="n">Process</span> <span class="o">*</span><span class="n">_proc_heap</span><span class="p">;</span>
-<span class="k">static</span> <span class="kt">int</span> <span class="n">_proc_heap_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">static</span> <span class="kt">int</span> <span class="n">_proc_heap_ptr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	
-<span class="kt">int</span> <span class="nf">PH_create</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
-<span class="kt">int</span> <span class="nf">PH_full</span><span class="p">();</span>
-<span class="kt">int</span> <span class="nf">PH_empty</span><span class="p">();</span>
-<span class="kt">int</span> <span class="nf">PH_insert</span><span class="p">(</span><span class="n">Process</span> <span class="n">item</span><span class="p">);</span>
-<span class="kt">int</span> <span class="nf">PH_delete</span><span class="p">(</span><span class="n">Process</span> <span class="o">*</span><span class="n">item</span><span class="p">);</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h2 id="requirement-2">Requirement 2</h2>
-
-<ul>
-  <li>
-    <p>The priority of processes can be modified after they are placed in the priority queue.</p>
-
-    <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kt">int</span> <span class="nf">H_change_priority</span><span class="p">(</span><span class="kt">int</span> <span class="n">proc_id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new_priority</span><span class="p">);</span>
-</code></pre></div>    </div>
-
-    <ul>
-      <li>This function requires locating a particular process in the heap, but the basic heap operations provide no efficient way to do it.</li>
-      <li>Employ an auxiliary data structure such as a hash table that keeps track of the location of each process in the heap structure.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Once the two requirements are satisfied, the operating system can process the following basic commands efficiently</p>
-
-    <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  INSERT  &lt;proc_id&gt;  &lt;owner&gt;  &lt;priority&gt;
-  DELETE
-  CHANGEPR &lt;proc_id&gt; &lt;new_priority&gt; PRINTHEAP
-  END
-</code></pre></div>    </div>
-  </li>
-</ul>
-
-<h1 id="alg-22-pq1-maxmin-heap-1">[ALG] 2.2. PQ1: Max(Min) Heap (1)</h1>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>_ref_. [Horowitz 5.6.2] [Neapolitan 7.6]
-
-
-# PQ1: Max(Min) Heap
-
-- Problem
-	- The following operations must be performed as mixed in data processing:
-		- Store a record with a key in an arbitrary order.
-		- Fetch the record with the current largest key.
-- A solution
-	- &lt;u&gt;Design a&lt;/u&gt; &lt;u&gt;**data structure**&lt;/u&gt; that offers an efficient implementation of the following operations:
-- &lt;u&gt;**Insert an element with an arbitrary key.**&lt;/u&gt;
-- &lt;u&gt;**Delete an element with the largest key.**&lt;/u&gt;
-
-	![3](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/3.png)
-
-	- key = priority 의미
-		- 두 가지 operation을 효율적으로 구현하는 자료구조를 설계하여 구현하라
-		- insert, delete 등 용어는 알아서 생각하면 될 것.
-- 배열 array 가지고 구혆할 수 있는 방법
-	- 0, 1, 2, 3. .. 끝에다 계속 집어넣으면 됨
-	- 제일 끝에 있는 애를 보내주면 끝이 된다.
-	- insert하고 delete의 연산이 있는데, data가 현재 배열 data 저장소에 n개 원소가 있을 때 insert, delete의 비용은
-		- insert $O(1)$
-		- sequential search → delete $O(n)$
-- system 들어가는 것은 느려도 상관 없는데 나올 때는 빨리 나와야 한다고 하면 array가 더 좋을수도 있음
-	- 일반적으로 heap이 성능이 좋기는 함
-
-	![4](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/4.png)
-
-
-	|        | array | array | heap     |
-	| ------ | ----- | ----- | -------- |
-	| insert | O(1)  | O(n)  | o(log n) |
-	| delete | O(n)  | O(1)  | O(log n) |
-</code></pre></div></div>
-
-<p>undefined
-	# An Array Implementation</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Ref. [Sedgewick 9.2]
-
-	```c
-	void PQinit();
-	int PQempty();
-	void PQinsert(int);
-	int PQdelmin();
-	void PQdec(int);
-	
-	#include &lt;stdlib.h&gt;
-	static int *pq;
-	static int N;
-	#define MAX_N 10000;
-	
-	void PQinit()
-	{
-	    pq = malloc(MAX_N * sizeof(int));
-	    N = 0;
-	}
-	int PQempty()
-	{
-	    return N == 0;
-	}
-	void PQinsert(int v)
-	{
-	    pq[N++] = v;
-	}
-	
-	int PQdelmin()
-	{
-	    int j, min = 0;
-	    for (j = 1; j &lt; N; j++)
-	        if (less(pq[min], pq[j]))
-	            min = j;
-	    exch(pq[min], pq[N - 1]);
-	    return pq[--N];
-	}
-	
-	int less(int i, int j)
-	{
-	    return **... * *;
-	}
-	
-	void exch(int i, int j)
-	{
-	    ...
-	}
-	
-	void PQdec(int k)
-	{
-	    ...
-	}
-	```
-
-- What will be the worst-case time complexity of each operation?
-
-# Max(Min) Heap: Definitions
-
-
-![5](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/5.png)
-
-- tree
-	- rooted tree
-		- 일반적인 tree에서 vertex를 하나 잡아 올려 root
-		- binary - 최대 두 개 까지의 child를 가지는 tree
-		- full binary tree : 모두 두개 child를 갖는 tree
-		- complete binary tree : 제일 끝의 leaf 몇 개만 날아간 bt
-			- pointerless representation
-			- 왼쪽 child는 parent의 두 배, 오른쪽 child는 parent의 두 배 +1
-	- a kind of graph
-		- connected + acyclic
-		- vertex, edge
-
-## Definition 1
-
-- [Horowitz 5.6.2] [Neapolitan 7.6]
-- A max(min) heap is a complete binary tree where the key value in each internal node is no smaller(larger) than the key values in its children.
-
-## Definition 2
-
-- A binary tree has the max(min) heap property if and only if
-	- The number of nodes of the tree is either 0 or 1, or
-	node 0개거나 1개면 max heap
-	- For the tree that has at least two nodes, the key in the root is no smaller(larger) than that in each child and the subtree rooted at the child has the max(min) heap property.
-	
-	root node는 자신의 child보다 같거나 작지 않다 (같거나 크다)
-	그리고 각각의 child를 root으로 하는 subtree.
-	- 나랑 같이 생겼는데 size만 작은 것의 성질 : recursion 성질을 잘 생각해보면 밑으로 내려가면 결국 어떤 node든 건에 parent는 child보다 크다.
-- A &lt;u&gt;max(min) heap&lt;/u&gt; is a complete binary tree that has the &lt;u&gt;max(min) heap property.&lt;/u&gt;
-	- max heap : complete BT - max heap property를 갖는
-
-![6](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/6.png)
-
-
-### Brainstorming on Max Heap Operations
-
-- Max Heap Example
-	- 성질을 잘 이해할 것 : 자기 자신보다 같거나 크니까 36이 아니라 101이어도괜찮음
-- Deletion Example 1
-	- data 저장된 것들 중 priority/key 제일 큰 것 나감. - 103
-	- 계속해서 complete BT 유지하려고 하는데 대장 103이 나가버림.
-	- 원래 있던 것보다 원소 개수가 하나 더 줄은, heap을 유지하는 방법은 어떻게 되는가?
-
-		→ 자식보다 같거나 크다는 성질 : 101을, 99를 올리느냐 고민하며 101이 올라가며 빈 곳을 다른 node들이 채워 줌.
-
-
-		max heap property가 깨지기 때문에 아님. 무조건 하나씩 위로 올리는 것은 아님을 확인할 수 있음. 9를 올리면 맨 끝 13은 해결할 수 없음
-
-
-	![7](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/7.png)
-
-- Deletion Example 2
-	- 13을 왕 시키면 항상은 문제 생기지 않음
-		- 우연히 밑의 원소가 13일 때는 문제가 안생기겠지만.
-	- child에서 101, 99중에 이 동네 왕 한번 해 볼까 하고 살펴보는 그 상황ㅇ으로 바뀌게 됨. 13이 왕 해볼까 하는 상황에서 101을 올려보는 상황이고 왼쪽 아래로 내려감.
-	- 많은 tree의 문제들이 recursion 자체를 서서 활용가능함
-	- delete alg의 최대 비용, 시간 비용 - 최대 몇 칸까지 내려가는가 (3칸) - log적으로 보여얗 ㅏㅁ
-	- complete bt는 됨.
-	- 경로에 있는 애들은 ‘내가 내 child보다 크다’라는 heap 조건을 잘 지켰음
-	- 두 child보다 큰 13 &gt; 9, 6의 형태 - 두 child보다 같거나 크다는 성질을 유지하며 내려옴./
-- Insertion Example
-	- 50을 집어넣어라. 그러면 complete bt 만들어야 하나ㅣ node를 하나 만들고 100을 집어넣는다.
-	- root까지의 path 경로에 있는 관계만 따지면 됨 :
-		- left family에서 100이 있건 없건 아무 상관없음 (heap의 정리에 의해서)
-		- 형제 관계 중에서도 상관없고, 중요한 건 부모와 나의 관계일 뿐
-		- 경로를 쫓아 올라가며 부모를 보고 부모보다 크면 자신잉 부모가 됨. (부모보다 작으면 그 시점에서 멈춤. 같은 논리로, 경로를 max heap 성질을 유지하면서 왔고 + 나머지는 유지가 되어 있고 → 알고리즘의 합리성 검증
-		- 최악의 경우 log(n) time
-
-	![8](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/8.png)
-
-- $C = \log_2 n$
-- Deletion from a Max Heap
-- ref. [Horowitz 5.6.2]
-
-	```c
-	#define MAX_ELEMENTS 200
-	#define HEAP_FULL(n) (n == MAX_ELEMENTS - 1) #define HEAP_EMPTY(n)(!n)
-	typedef struct
-	{
-	    int key;
-	    /* other fields */
-	} element;
-	element heap[MAX_ELEMENTS];
-	int n = 0;
-	```
-
-
-	![9](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/9.png)
-
-
-	$2^c \leq n &lt; 2^{c+1} \rightarrow c \leq log_2 n &lt;c+1$
-
-
-	```c
-	//최대 히프에 삽입
-	void insert_max_heap(element item, int *n)
-	{
-	    int i;
-	    if (HEAP_FULL(*n))
-	    {
-	        fprintf(stderr, "the heap is FULL\n");
-	        exit(1);
-	    }
-	    i = ++(*n);
-	    while ((i != 1) &amp;&amp; (item.key &gt; heap[i / 2].key))
-	    {
-	        heap[i] = heap[i / 2];
-	        i /= 2;
-	    }
-	    heap[i] = item;
-	}
-	
-	```
-
-
-	![10](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/10.png)
-
-
-	$C \sim log_2n $
-
-
-	```c
-	element delete_max_heap(int *n)
-	{
-	    int parent, child;
-	    element item, temp;
-	    if (HEAP_EMPTY(*n))
-	    {
-	        fprintf(stderr, "The heap is empty\n");
-	        exit(EXIT_FAILURE);
-	    }
-	
-	    item = heap[1];
-	
-	    temp = heap[(*n)--];
-	    parent = 1;
-	    child = 2;
-	    while (child &lt;= *n)
-	    {
-	
-	        if ((child &lt; *n) &amp;&amp; (heap[child].key &gt; heap[child + 1].key))
-	            child++;
-	        if (temp.key &lt;= heap[child].key)
-	            break;
-	
-	        heap[parent] = heap[child];
-	        parent = child;
-	        child *= 2;
-	    }
-	    heap[parent] = temp;
-	    return item;
-	}
-	```
-
-
-	![11](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/11.png)
-
-
-	![12](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/12.png)
-
-
-	$O(\log n)$
-
-- child가 있을 때까진 내려가야 한다.
-	- child가 2개면 left , right 중 큰 거 선택해서 줄줄줄 while 문에서 돈다.
-- 중간고사에서 빈칸 매꾸기 문제 가능
-
-	child 2개 : 
-
-
-# Another Heap Implementation (Min Heap)
-
-- _ref_. [Sedgewick 9.3]
-
-	```c
-	void PQinit(int);
-	int PQempty();
-	void PQinsert(int);
-	int PQdelmin();
-	static int *pq;
-	static int N;
-	void PQinit(int maxN)
-	{
-	    pq = malloc(maxN * sizeof(int));
-	    N = 0;
-	}
-	
-	int PQempty()
-	{
-	    return N == 0;
-	}
-	
-	void PQinsert(int v)
-	{
-	    pq[++N] = v;
-	    fixUp(pq, N);
-	}
-	
-	Item PQdelmin()
-	{
-	    exch(pq[1], pq[N]);
-	    fixDown(pq, 1, N - 1);
-	    return pq[N--];
-	}
-	
-	fixUp(int a[], int k)
-	{
-	    while (k &gt; 1 &amp;&amp; a[k / 2] &gt; a[k])
-	    {
-	        exch(a[k], a[k / 2]);
-	        k = k / 2;
-	    }
-	}
-	
-	fixDown(int a[], int k, int N)
-	{
-	    int j;
-	    while (2 * k &lt;= N)
-	    {
-	        j = 2 * k;
-	        if (j &lt; N &amp;&amp; a[j] &gt; a[j + 1])
-	            j++;
-	        if (a[k] &lt;= a[j])
-	            break;
-	        exch(a[k], a[j]);
-	        k = j;
-	    }
-	}
-	```
-
-- What will be the worst-case time complexity of each operation?
-
-&gt; 💡 sort by comparisoin algorithm. 원소 n개 있을 때 n log n 속도 보다 빠르게 불가능하다.
-
-
-## Comparisons of Priority Queue Implementations
-
-
-![13](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/13.png)
-
-
-# Heap Sort
-
-
-Horowitz 7.7., Neapolitan 7.6
-
-- Method
-	1. Convert an input array of n unordered items into a max heap.
-	2. Extract the items from the heap one at a time to build an ordered array.
-- Sort by comparison : comparison을 통해 정렬하는 방법은 input size n에 대해서 cost는 아무리 좋은 알고리즘을 만들더라도 $O(n \log n)$보다 더 빠르게 할 수는 없다 (optimal이다)
-	- 불가능하다고 증명된 바 있음
-
-	&gt; 💡 원소의 개수 n에 대해서 정렬이 안된 임의의 배열에 대해서 min, max heap은 ilnear time에 적용할 수 있다. 그리고 그 둘은 유용한 자료구조
-
-- max heap : 크기가 같거나 큰 순서대로 데이터를 정렬하는 것이 목표인데, max heap 상태에서는 정렬은 정확하게는 안 되어있는 어정쩡한 상태. 대충 정렬은 된 듯한데 중간에 삐쭉한, 정확하게 맞지는 않은 상태.
-- unordered data를 크기 순서대로 정리하려고 함. 한 단계 중간단계를 거쳐서 max heap 으로 변경한 다음 ordered 단계로 변환
-
-![14](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/14.png)
-
-- 1번 단계의 시간 복잡도 - n이 걸리고 2번에서 n이 걸려서 N log n 타임의 데이터를 정렬한다.
-- 주어진 정수들을 비감소 순서(non-decreasing order)대로 정렬하라.
-	- nondecreasing ≠ increasing (단조증가 등의 차이)
-
-	```c
-	typedef struct
-	{
-	    int key;
-	    /* other fields */
-	} element;
-	Element list[MAX_SIZE];
-	```
-
-
-	```c
-	void heapsort(element list[], int n)
-	{
-	    /*perform heapsort on the array*/ int i, j;
-	    element temp;
-	
-	    // (1) Make a (max) heap
-	    for (i = (n) / 2; i &gt; 0; i--)
-	        adjust(list, i, n);
-	
-	    // (2) Extract items one by one
-	    for (i = n - 1; i &gt; 0; i--)
-	    {
-	        SWAP(list[1], list[i + 1], temp);
-	        adjust(list, 1, i);
-	    }
-	}
-	```
-
-	- (1) Make a (max) heap : $O(n)$
-	- (2) Extract Items : $O(n \log n)$
-
-→ n log n
-
-
-upper bound eㅚ면서 operation들이 없어지고 다 하면 각각은 tight upper bound
-
-
-제일 큰 거 나와 해서 집어넣어주고 n-2개 대해서 똑같은거 반복하니까 
-
-
-log n-1
-
-
-처음에 n개 있었는데 나머지 n-1개에 대해서 어떤 node가 leaf에 들어갈 수 있는지 없는지 확인
-
-
-$2^c \leq n &lt; 2^{c+1} \rightarrow c \leq \log_2 n &lt;c+1$
-
-
-## Make a Max Heap
-
-1. $O(n\log n) \rightarrow O(n\log n)$
-	- Make a (max) heap.
-
-		![15](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/15.png)
-
-
-		![16](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/16.png)
-
-
-		![17](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/17.png)
-
-
-		![18](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/18.png)
-
-
-		![19](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/19.png)
-
-
-## The `adjust()` function
-
-
-&gt; 💡 과거 알고리즘 만든 사람의 논리를 분석해서 적용해보자. 그러면 computatinoal thinking 상황에서 자연스럽게 파악하며 성장할 수 있다!
-
-- cost : 각각에 대해서 핵심이 되는 operation
-	- root에서 시작해서 두 child중에 큰 것 (list[child].key &lt;
-- 어떻게 생각했을까 추적해보면 : ‘혹시 정의에 의해서 :
-	- 정의 : root node는 두 child보다 같거나 크고, 각각의 child를 root로 하는 subtree가 max heap이면 recursive한 max heap이 구성된다
-	- 두 child를 root로 하는 tree
-- code
-
-	```c
-	void adjust(element list[], int root, int n)
-	{
-	    int child, rootkey;
-	    element temp;
-	    temp = list[root];
-	    rootkey = list[root].key;
-	    child = 2 * root;
-	    while (child &lt;= n)
-	    {
-	        if ((child &lt; n) &amp;&amp; (list[child].key &lt; list[child + 1].key))
-	            child++;
-	        if (rootkey &gt;= list[child].key)
-	            break;
-	        else
-	        {
-	            list[child / 2] = list[child];
-	            child *= 2;
-	        }
-	    }
-	    list[child / 2] = temp;
-	}
-	```
-
-
-	![20](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/20.png)
-
-	- Executed d times, where d is the depth of the tree with root i → $O(d)$
-
-# Cost of Make-Heap
-
-
-![21](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/21.png)
-
-- Executed d_d_ times, where d_d_ is the depth of the tree with root i_i_
-	- So $O(d)$ time
-- `Output`: a binary tree T adjusted so that the entire binary tree satisfies the heap property
-- `Input`: a binary tree T whose left and right subtrees satisfy the heap property but whose root may not
-
-## Proof of correctness of Heap Construction Algorithm
-
-
-```c
-//make a max heap
-for(i =n/2;i&gt;0;i--)
-	adjust(list,i,n);
-```
-
-- $i = \frac n 2 , \frac n 2 -1, \frac n 2 -2, ... 2, 1$
-- Loop Invariant
-	- just before each iteration for the for-loop starts, each node numbered i+1, i+2, … n is the root of a max heap
-- Proof of correctness by mathematical Induction
-	- base step (base case, basis)
-		- when $i = \frac n 2 $ (why?)
-	- induction step (inductive step)
-		- assume that the loop invariant holds for $i=k(k&lt;\frac n 2)$
-		- then it also holds for $i = k-1$
-			- $k+1, k+2, ... n \rightarrow k, k+1, k+2, ... n$
-			- fact 1 : each child node of node k is a max-heap
-			- fact 2 : the `adjust()` function makes the node k a root of max-heap
-			- fact 3 : it also preserves the property that the nodes k+1, .. n are roots of max-heaps
-- notes
-	- when the for-loop terminates, the node 1 is the root of a max-heap
-
-## Extract items one by one.
-
-- 꼼꼼히 따져보면서 성적 및 시험에서 그동안 기출 문제를 올릴 예정인데, 이를 강조하는 이유가 나타날 듯
-- 제일 큰 놈 나왈 해서 leaf에다 집어넣고,
-	- 비용이 n log n : 매번 해 주는 비용을 생각해보면
-	- 매번 제일 큰 것 나와 해서 줄줄줄 update를 반복하다보면 제일큰 것 순서대로 쌓이게 될 것.
-
-![22](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/22.png)
-
-- Time Complexity Analysis
-	- $2^k \leq 2n2k≤2n, −k&lt;−\log2n$
-		- $k &lt; -\log_2 n$
-	- then $2k−k−1&lt;2n−\log2n−1$
-
-		$2^k -k -1 &lt; 2n - log_2n -1$
-
-	- so $C_{MH} = O(n)$
-- $I = -k+ \frac {1 \cdot (2^k-1)}{2-1} = 2^k -k -1I=−k+2−11⋅(2k−1)=2k−k−1$
-
-	$∴ C_{MH} \leq 2^k -k -1$
-
-- $2I= (k-1)2^1 + (k-2)2^2 + (k-3)2^3 + ...+1 \cdot 2^{k-1}$
-	- $\rightarrow 2I-1I= -(k-1) + 2^1+ 2^2 + ... + 2^{k-2}$
-- $I= (k-1)2^0 + (k-2)2^1 + (k-3)2^2 + ...+1 \cdot 2^{k-2}$
-- $C_{MH} \leq (k-1)2^0 + (k-2)2^1 + (k-3)2^2 + ...+1 \cdot 2^{k-2}$
-
-![23](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/23.png)
-
-
-$2^{k-1} \leq n &lt; 2^k$ → $k-1 \leq \log_2 n &lt; k$
-
-
-## Complexity of Item Extractions
-
-
-![24](/assets/img/2022-09-12-[ALG]-2.-Heap-based-PQ.md/24.png)
-
-
-```c
-for (int i = n / 2; i &gt; 0; i--)
-    adjust(list, i, n);
-for (int i = n - 1; i &gt; 0; i--)
-{
-    SWAP(list[1], list[i + 1], temp);
-    adjust(list, 1, i);
-}
-```
-
-- Heap Sort : $C_{MH} +C_{IE} = O(n)+ O(n \log n) = O(n \log n)$
-- $C_{IE}
-\\=⌊\log (n-1)⌋+⌊\log (n-2)⌋+⌊\log (n-3)⌋...+⌊\log2⌋+⌊\log 1⌋\\ \leq \log2 + \log3 + ...+\log {(n-1)} = \log (n-1)!\\=O((n-1)\log (n-1)) = O(n \log n)\\&lt; \sum_{i=2}^n \log_2 n
-\\= O(n \log n)
-\\≤log2+log3+...+log(n−1)\\&lt;∑i=2n \log 2n\\ =O(n \log n)$
-- for a given $n$, the cost (depth) is $c = ⌊\log_2n⌋$
-- $O(\log n!) = O(n \log n)$
-	- proof
-
-## Heap Sort in C Implementation
-
-- 상황에 맞게 판단하여 적용
-	- constant time , log n하고는 엄청난 차이가 존재하는 시간 복잡도
-	- 2^20이 백만인데 그에 비례하는 시간,
-
-# Priority Queue 2 : Min-Max Heap
-
-- Problem
-	- The following operations must be performed as mixed in data processing:
-		- Store a record with a key in an arbitrary order.
-		- Fetch the record with the current largest key.
-		- Fetch the record with the current smallest key.
-- A solution
-	- Design a data structure that offers the efficient implementation of the following operations (Double-Ended Priority Queue):
-		- Insert an element with an arbitrary key.
-		- Delete an element with the largest key.
-		- Delete an element with the smallest key.
-		- → 어떻게 풀 것인지
-
-O(log n) → 
-
-- ref._ref_. [Horowitz 9.1]
-
----
-
-
-{교육과정 외}
-
-
-Priority Queue 3: Heap and Hashing
-
-
-Priority Queue 4: Deap
-
-
-Priority Queue 5: Leftist Tree
-
-
-Priority Queue 6: Binomial Heap
-
-
-Priority Queue 7: Fibonacci Heap
-</code></pre></div></div>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[Heap-based Priority Queue, Heap Sort]]></summary></entry></feed>
+<p><img src="/assets/img/2022-09-26-[ALG]-3.3.-Master-Theorem-.md/3.png" alt="3" /></p>]]></content><author><name>Kyuhwan Shim</name><email>kyuhwan.shim@sogang.ac.kr</email></author><category term="Notes" /><category term="Algorithm" /><summary type="html"><![CDATA[Master Theorem 1]]></summary></entry></feed>

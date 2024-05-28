@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  
+  <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         TeX: {
+         equationNumbers: {
+             autoNumber: "AMS"
+         }
+         },
+         tex2jax: {
+         inlineMath: [ ['$', '$'] ],
+         displayMath: [ ['$$', '$$'] ],
+         processEscapes: true,
+     }
+     });
+     MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+         alert("Math Processing Error: "+message[1]);
+         });
+     </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>8. ANN Artificial Neural Network (1) ✱ Kyuhwan Shim</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
+
+  <link href="/assets/fontawesome/all.min.css" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+  <!-- GA -->
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VG8LB4J4EL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VG8LB4J4EL');
+</script>
+
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/main/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/main/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/main/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/main/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/main/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/main/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/main/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/main/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/main/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/main/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/main/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/main/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/main/favicon/favicon-16x16.png">
+  <link rel="manifest" href="">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/images/main/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Opengraph -->
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/images/main/favicon/og.png8.-ANN-Artificial-Neural-Network-(1).jpg">
+  <meta property="og:title" content="8. ANN Artificial Neural Network (1) | Kyuhwan Shim">
+  <meta property="og:description" content="Paper overview of  et al., ">
+
+  <!-- Google scholar -->
+  
+  <meta name="citation_title" content="8. ANN Artificial Neural Network (1)">
+  
+  <meta name="citation_publication_date" content="">
+  
+  <meta name="citation_conference_title" content="">
+  
+  <meta name="citation_pdf_url" content="https://underthelights.github.io/assets/pdf/8.-ANN-Artificial-Neural-Network-(1).pdf">
+  
+</head>
+<body><header class="page-content">
+  <nav class="navbar navbar-expand-md navbar-light py-4">
+    <div class="container-fluid">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/news">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/publication">publication</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/project">Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/oconnect">oconnect</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/cv">CV</a>
+          </li>
+          <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown">fun</a>
+              <div class="dropdown-menu">
+                  <a href="/music" class="dropdown-item">music</a>
+                  <a href="/artwork" class="dropdown-item">artwork</a>
+              </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .dropdown-toggle {
+    background-color: transparent;
+    border-color: #fff;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out;
+  }
+  .dropdown-toggle:hover {
+    font-weight: 500
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+ .dropdown-menu {
+    --bs-dropdown-border-radius: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important
+ }
+ .dropdown-item {
+  font-size: .95rem !important;
+  padding: .3rem .75rem !important;
+ }
+ .dropdown-item:active {
+  background-color: #999 !important
+ }
+</style><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <style>
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    
+      font-family: 'Arial', sans-serif;
+      /* Use a modern font */
+      margin-top: 20px;
+      margin-bottom: 10px;
+  }
+  /* 포스트 헤더에 적용되는 여백 제거 */
+  .post-header, h1, h2, h3, h4, h5, h6 {
+      margin-left: 0 !important; 
+      padding-left: 0 !important;
+  }
+
+
+  .post-title {
+      font-size: 2em; /* 폰트 크기 증가 */
+      font-weight: bold; /* 볼드체 */
+      color: #333; /* 색상 변경 */
+      box-shadow: inset 0 -20px 0 #bbb7e8;
+      max-width: max-content;
+    }
+
+  /* Updated styling for h1 */
+  h1 {
+    font-size: 1.5em;
+    /* Increase font size for main titles */
+    box-shadow: inset 0 -10px 0 #bbb7e8;
+    max-width: max-content; 
+    font-weight: bold; /* 볼드체 */
+    border-bottom: none;
+    /* Remove bottom border */
+    padding-bottom: 0;
+    /* Adjust padding if needed */
+  }
+
+  h2 {
+    font-size: 1.2em;
+    margin-left: none;
+    font-weight: bold; /* 볼드체 */
+    max-width: max-content; 
+    background-color: #cdcbe9;
+  }
+
+  h3 {
+    font-size: 1.1em;
+    max-width: max-content; 
+    
+    max-width: max-content; 
+    background-color: #bbb7e8;
+  }
+
+  h4 {
+    font-size: 0.75em;
+    color: #888888;
+  }
+
+  h5 {
+    font-size: 0.5em;
+    color: #a6a6a6;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: #bcbcbc;
+  }
+
+  /* Add some additional styling if needed */
+  .post-content {
+    margin-left: 20px; /* 왼쪽 여백 추가 */
+    /* margin-right: 20px; 오른쪽에 TOC 너비 + 여백 만큼 추가 */
+    line-height: 1.6;/* Improve readability */
+    color: #333;/* Dark grey color for text */
+  }
+  /* Category Chart Style */
+  .category-chart {
+    font-family: 'Arial', sans-serif;
+    /* width: 100%; */
+    /* height: 100px; Adjust as needed */
+  }
+
+  .category-list li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  /* 이미지 스타일 */
+  img {
+    display: block; /* 이미지를 블록 레벨로 설정 */
+    width: 50%; /* 또는 원하는 너비 */
+    height: auto; /* 비율 유지 */
+    margin-bottom: 5px; /* 이미지와 캡션 사이의 간격 */
+    text-align: center;
+  }
+
+  /* 이미지 캡션 스타일링 */
+  .em {
+    color: #757575;
+    font-size: 0.8em;
+    
+    /* margin-top: 5px; */
+    display: block; /* 캡션을 블록 요소로 설정, 이미지 아래로 강제 배치 */
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  /* Blockquote 스타일 */
+  blockquote {
+      margin-left: 20px;
+      border-left: 1.5px solid #ccc; /* 좌측 선 */
+      border-top: 1.5px solid #ccc; /* 좌측 선 */
+      border-right: 1.5px solid #ccc; /* 좌측 선 */
+      border-bottom: 1.5px solid #ccc; /* 좌측 선 */
+
+      padding-left: 15px;
+      color: #666; /* 글자 색상 */
+  }
+
+
+
+</style>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <!-- Table of Contents Container -->
+<div class="toc-container">
+    <nav class="toc">
+      <strong>Table of Contents</strong>
+      <!--  -->
+      <!-- Jekyll TOC Liquid Code -->
+      <ul><li><a href="#ann-introduction">ANN Introduction</a><ul><li><a href="#artificial-neural-networks-2-layers">Artificial Neural Networks (2 layers)</a></li><li><a href="#and">AND</a></li><li><a href="#or">OR</a></li><li><a href="#xor">XOR</a></li></ul></li><li><a href="#multi-layer-networks">Multi-layer Networks</a></li><li><a href="#ann-training">ANN Training</a><ul><li><a href="#1-decide-input-layers-node-number">1. Decide input layer’s node number</a></li><li><a href="#2-decide-output-layers-node-number">2. Decide output layer’s node number</a></li><li><a href="#3-decide-hidden-layers-node-number">3. Decide hidden layer’s node number</a></li><li><a href="#4-find-weight-using-training-algorithm">4. Find weight using training algorithm</a></li></ul></li><li><a href="#back-propagation-algorithm">Back-propagation Algorithm</a><ul><li><a href="#activation-function-sigmoid">Activation function: sigmoid</a></li></ul></li><li><a href="#deep-neural-network">Deep Neural Network</a></li><li><a href="#of-hidden-layers-leq-1--shallow-neural-network">of hidden layers $\leq 1$ → Shallow Neural Network</a></li><li><a href="#of-hidden-layers-geq-2--deep-neural-network">of hidden layers $\geq 2$ → Deep Neural Network</a><ul><li><a href="#dnn-training">DNN Training</a><ul><li><a href="#vanishing-gradient-problem">Vanishing gradient problem</a></li></ul></li></ul></li></ul>
+
+      <!-- <ul><li><a href="#ann-introduction">ANN Introduction</a><ul><li><a href="#artificial-neural-networks-2-layers">Artificial Neural Networks (2 layers)</a></li><li><a href="#and">AND</a></li><li><a href="#or">OR</a></li><li><a href="#xor">XOR</a></li></ul></li><li><a href="#multi-layer-networks">Multi-layer Networks</a></li><li><a href="#ann-training">ANN Training</a><ul><li><a href="#1-decide-input-layers-node-number">1. Decide input layer’s node number</a></li><li><a href="#2-decide-output-layers-node-number">2. Decide output layer’s node number</a></li><li><a href="#3-decide-hidden-layers-node-number">3. Decide hidden layer’s node number</a></li><li><a href="#4-find-weight-using-training-algorithm">4. Find weight using training algorithm</a></li></ul></li><li><a href="#back-propagation-algorithm">Back-propagation Algorithm</a><ul><li><a href="#activation-function-sigmoid">Activation function: sigmoid</a></li></ul></li><li><a href="#deep-neural-network">Deep Neural Network</a></li><li><a href="#of-hidden-layers-leq-1--shallow-neural-network">of hidden layers $\leq 1$ → Shallow Neural Network</a></li><li><a href="#of-hidden-layers-geq-2--deep-neural-network">of hidden layers $\geq 2$ → Deep Neural Network</a><ul><li><a href="#dnn-training">DNN Training</a><ul><li><a href="#vanishing-gradient-problem">Vanishing gradient problem</a></li></ul></li></ul></li></ul> -->
+    </nav>
+</div>
+
+<style>
+    /* TOC 스타일 */
+.toc-container {
+  position: fixed;
+  right: 10px;
+  top: 100px;
+  z-index: 1000;
+  /* max-width: 50px; 가로 너비 조정, 필요에 따라 값을 변경하세요 */
+  font-size: 0.75rem;
+}
+
+.toc {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 200px; /* 가로 너비 조정, 필요에 따라 값을 변경하세요 */
+}
+
+
+.toc strong {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc ul li a {
+  text-decoration: none;
+  color: #007bff;
+  display: block;
+  padding: 5px 0;
+}
+
+.toc ul li a:hover,
+.toc ul li a.active { /* 추가된 active 클래스 스타일 */
+  font-weight: bold;
+  /* box-shadow: inset 0 -10px 0 #bbb7e8; */
+  background-color: #bbb7e8;
+}
+
+
+
+  button {
+    padding: 5px 10px;
+    /* 상하 10px, 좌우 20px 패딩으로 텍스트 주변 여유 공간 추가 */
+    font-size: 0.87rem;
+    /* 글자 크기 */
+    color: white;
+    /* 글자 색상 */
+    background-color: #007bff;
+    /* 배경 색상 */
+    border: none;
+    /* 테두리 제거 */
+    border-radius: 5px;
+    /* 모서리 둥글게 */
+    cursor: pointer;
+    /* 커서 모양 변경 */
+    transition: background-color 0.3s;
+    /* 호버 효과를 위한 전환 설정 */
+    text-align: center;
+    /* 글자를 버튼 중앙에 위치 */
+    display: inline-block;
+    /* 인라인 블록 요소로 설정하여 자연스럽게 텍스트 중앙 정렬 */
+    line-height: normal;
+    /* 기본 라인 높이 설정 */
+    vertical-align: middle;
+    /* 수직 방향으로 중앙 정렬 */
+    margin-top: 5px;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+    /* 호버 시 배경 색상 변경 */
+  }
+
+
+  /* reset base styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* page header */
+  header {
+    margin-bottom: 2rem;
+    padding-left: 6.5rem;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  header p {
+    margin: .5rem 0;
+    font-size: 1rem !important
+  }
+
+  main b {
+    font-weight: 500
+  }
+
+  /* normal body content */
+  h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    margin-left: 6.5rem;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    border-bottom: 1px solid black;
+    font-size: .9rem;
+    margin: 1rem 0 .5rem 6.5rem
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: inherit;
+    /*#0000ee;*/
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  /* misc */
+  .pdf {
+    font-size: .9rem !important;
+    font-weight: 300;
+    margin-left: 1.5rem;
+    white-space: nowrap;
+  }
+
+  .pdf i {
+    margin-right: .1rem;
+  }
+
+  .material {
+    font-size: small;
+    margin-left: .5rem;
+  }
+
+  :global(i) {
+    padding-right: 4px !important
+  }
+
+  /* dated entries */
+  .dated-entry {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+
+  .dated-date {
+    width: 6.5rem;
+    text-align: right;
+    padding-top: .15rem;
+    padding-right: 1.5rem;
+    font-size: .8rem
+  }
+
+  .dated-content {
+    width: calc(100% - 6.5rem);
+    font-size: .95rem
+  }
+
+  .oneline-entries {
+    margin-bottom: 0.5rem;
+  }
+
+  .oneline-entries .dated-entry {
+    margin-bottom: 0;
+  }
+
+  /* hide extra awards info for now, not sure what to include */
+  #awards em {
+    display: none;
+  }
+
+  .author-tooltip {
+    font-weight: 400;
+    font-size: .8rem !important;
+    text-align: center;
+  }
+
+  /* on narrow displays, make the font smaller */
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  /* when printing, make the font smaller and the page full-width */
+  @media print {
+    html {
+      font-size: 12px;
+    }
+
+    main {
+      margin-top: 0;
+      max-width: 100%;
+    }
+  }
+
+</style>
+
+<script>
+    document.addEventListener('scroll', function() {
+      var sections = document.querySelectorAll('section'); // 섹션 선택자 수정
+      var menu_links = document.querySelectorAll('.toc a'); // TOC 링크 선택자 수정
+    
+      var fromTop = window.scrollY;
+    
+      sections.forEach(function(section) {
+        if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+          menu_links.forEach(function(link) {
+            if (section.getAttribute('id') && link.getAttribute('href').includes(section.getAttribute('id'))) {
+              link.classList.add('active');  // 현재 섹션의 TOC 링크에 'active' 클래스 추가
+            } else {
+              link.classList.remove('active'); // 다른 모든 링크에서 'active' 클래스 제거
+            }
+          });
+        }
+      });
+    });
+    </script>
+    
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">8. ANN Artificial Neural Network (1)</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2023-05-17T00:00:00+09:00" itemprop="datePublished">
+        May 17, 2023
+      </time></p>
+    <!-- 태그와 카테고리 표시 -->
+    <div class="post-categories">
+      
+      <strong><span>📚 Categories:</span></strong>
+      
+      <a href="blog-categories-notes">Notes</a>
+      
+      
+    </div>
+
+    <div class="post-tags">
+      
+      <strong><span>🏷️ Tags:</span></strong>
+      
+      <a href="blog-tags-ml">ML</a>
+      
+      
+    </div>
+
+
+  </header>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="ann-introduction">ANN Introduction</h1>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/0.png" alt="0" /><em>h+ p ://cs231n.stanford.edu/slides/winter1516_lecture4.pdf</em></p>
+
+<ul>
+  <li></li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/1.png" alt="1" /><em>© 2017, SNU BioIntelligence Lab, h+ p ://bi.snu.ac.kr/</em></p>
+
+<ul>
+  <li></li>
+  <li>Classification with a line, $y = ax + b$
+    <ul>
+      <li>single, multi layer perceptron with NN</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/2.png" alt="2" /></p>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/3.png" alt="3" /></p>
+  </li>
+  <li>
+    <p>Generalization</p>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/4.png" alt="4" /></p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/5.png" alt="5" /></p>
+
+<h2 id="artificial-neural-networks-2-layers">Artificial Neural Networks (2 layers)</h2>
+
+<ul>
+  <li>NN 기본 구조 perceptron → hidden layer 쌓아 DNN</li>
+  <li>Two-layer network
+    <ul>
+      <li>input layer + output layer (2)</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/6.png" alt="6" /></p>
+
+    <ul>
+      <li>sigmoid 형태</li>
+      <li>no hidden layer → linearly separable prob only</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/7.png" alt="7" /></p>
+
+<h2 id="and">AND</h2>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/8.png" alt="8" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/9.png" alt="9" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/10.png" alt="10" /></p>
+
+<h2 id="or">OR</h2>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/11.png" alt="11" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/12.png" alt="12" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/13.png" alt="13" /></p>
+
+<h2 id="xor">XOR</h2>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/14.png" alt="14" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/15.png" alt="15" /></p>
+
+<ul>
+  <li>Two layer network cannot implement XOR.
+    <ul>
+      <li>perceptron 으로 분류 시 error가 크게 나타남</li>
+    </ul>
+  </li>
+  <li>Non-linear
+    <ul>
+      <li>two decision boundary (nonlinear)</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/16.png" alt="16" /></p>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/17.png" alt="17" /></p>
+  </li>
+</ul>
+
+<h1 id="multi-layer-networks">Multi-layer Networks</h1>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/18.png" alt="18" /></p>
+
+<ul>
+  <li>input - hidden - output</li>
+  <li>hidden layer 개수 → 몇 개인지에 따라 network 구조가 좌우됨
+    <ul>
+      <li>linearly nonsolvable 문제들도 풀 수 있게 된다</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/19.png" alt="19" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/20.png" alt="20" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/21.png" alt="21" /></p>
+
+<ul>
+  <li>hidden layer 1개 추가 → 많은 가중치 w들을 학습한다</li>
+  <li>수백개 hidden layer →  수천, 수만 w 학습</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/22.png" alt="22" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/23.png" alt="23" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/24.png" alt="24" /></p>
+
+<ul>
+  <li>$wx = \Sigma_i w_i x_i$</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/25.png" alt="25" /></p>
+
+<ul>
+  <li>feature space : input layer → hidden layer</li>
+  <li>SVM과 유사한 효과 : high dimension
+    <ul>
+      <li>원래 feature space: 원래는 not linearly separable하지만 high dimension phi fn을 활용</li>
+      <li></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/26.png" alt="26" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/27.png" alt="27" /></p>
+
+<ul>
+  <li>hidden layer를 추가하면 → 복잡한 boundary를 구할 수 있다</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/28.png" alt="28" /></p>
+
+<h1 id="ann-training">ANN Training</h1>
+
+<ul>
+  <li>ANN training?
+    <ul>
+      <li>Estimate w by using training data</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/29.png" alt="29" /></p>
+
+    <p>|               | training                                                                            |
+  | ————- | ———————————————————————————– |
+  | perceptron    | w                                                                                   |
+  | SVM           | w :</p>
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>margin, slack var, Phi fn</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>Bayesian</td>
+              <td>G(mu, sigma^2) : prior</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>
+        <p>density modeling → likelihood</p>
+      </li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>prior P → post P</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>Decision Tree</td>
+              <td>Tree 구조</td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>kNN</td>
+              <td>save train data</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>k value : train통해 결정</li>
+      <li>dinstance metric  : 
+  L1 vs L2 vs Euclidean |
+  | ANN           | w
+  NN Structure</li>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>I/H/O Layer개수</td>
+              <td> </td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td>DNN</td>
+              <td> </td>
+            </tr>
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>undefined	- test data 분류 작업
+	- regularizer
+	- hyperparameter normalize</p>
+<ul>
+  <li>By experiment ← train 중 parameter 결정</li>
+  <li>data  : multimedia</li>
+</ul>
+
+<h2 id="1-decide-input-layers-node-number">1. Decide input layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/30.png" alt="30" /></p>
+
+<h2 id="2-decide-output-layers-node-number">2. Decide output layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/31.png" alt="31" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/32.png" alt="32" /></p>
+
+<ul>
+  <li>구조만 보면 class가 몇 개인지 모른다</li>
+  <li>class 수 = node 수
+    <ul>
+      <li>classification : output layer node의 activation 여부 확인</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="3-decide-hidden-layers-node-number">3. Decide hidden layer’s node number</h2>
+
+<ul>
+  <li>By experiments, use domain knowledge</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/33.png" alt="33" /></p>
+
+<h2 id="4-find-weight-using-training-algorithm">4. Find weight using training algorithm</h2>
+
+<ul>
+  <li>Use back-propagation algorithm. Supervised learning.</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/34.png" alt="34" /></p>
+
+<h1 id="back-propagation-algorithm">Back-propagation Algorithm</h1>
+
+<ul>
+  <li>등장 배경 : NN → SVM →DNN
+    <ul>
+      <li>image가 낮인지 밤인지 예견하는 문제</li>
+      <li>data를 잘 준비했어야 하는데 overfitting을 해결하지 못하여 SVM이 1990-2010년도 성행</li>
+    </ul>
+  </li>
+  <li>train with back propagation algorithm
+    <ul>
+      <li>w값 arbitraily initialize → feed forward :
+        <ul>
+          <li><u>**w :**</u> $\epsilon \downarrow$<u>**방향으로 update**</u></li>
+          <li>between prediction , ground truth value</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>$y = f (\Sigma_i x_i w_{ij} + b)$
+    <ul>
+      <li>network의 구조가 결정되면 다음 layer의 node값에 bias를 더하는 함수</li>
+      <li>perceptron 문제와 유사하게 발생 :
+        <ul>
+          <li>local minima</li>
+          <li>many w → T 증가</li>
+          <li>iterative하게 w 구하는 과정</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/35.png" alt="35" /></p>
+
+    <p>모든 edge에 할당된 w에 대하여 backpropagation</p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/36.png" alt="36" /></p>
+
+<ul>
+  <li>w update하면 iteration 반복 많아짐</li>
+  <li>hidden 많아지면 update bigger</li>
+  <li>
+    <p>$E = \Sigma_k \frac 1 2 (z_k - t_k)^2$</p>
+
+    <p>tk : ground truth</p>
+
+    <ul>
+      <li>제곱을 하고 2로 나누어준 이유 : perceptron처럼, 미분을 위해 제곱하고 1/2 *2하면 표현식이 간단해진다</li>
+      <li>error 미분 : wij, wji 미분하여 update</li>
+    </ul>
+  </li>
+</ul>
+
+<p>chain rule</p>
+
+<ul>
+  <li>$\frac{\partial E}{\partial w_{kj}} = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial w_{kj}}  $</li>
+  <li>$\frac{\partial E}{\partial w_{ji}} = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial w_{ji}}  = \frac{\partial E}{\partial z_{k}} \frac{\partial z_k}{\partial y_j}\frac{\partial y_j}{\partial w_{ji}}  $</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/37.png" alt="37" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/38.png" alt="38" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/39.png" alt="39" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/40.png" alt="40" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/41.png" alt="41" /></p>
+
+<ul>
+  <li>big NN의 한계 : hidden layer 제한 → 다양한 성능 제한</li>
+  <li><strong>hidden layer수 증가 감소 이유 :???</strong>
+    <ul>
+      <li>output에서 input으로 backpropagate할 수록 더 많은 chain rule (Differentiation) 수행 → update양 감소</li>
+    </ul>
+  </li>
+  <li>To update weights far from the output layer, more nodes and their derivatives are involved. Due to the chain rule, the amount of update becomes smaller.</li>
+</ul>
+
+<h2 id="activation-function-sigmoid">Activation function: sigmoid</h2>
+
+<p>perceptron, SVM</p>
+
+<ul>
+  <li>input data (weight) - f(x) update
+    <ul>
+      <li>동일한 input에 대해 error 계산</li>
+      <li>error가 각 iteration별로 작아짐</li>
+    </ul>
+  </li>
+  <li>input data 바꾸면 - updated w도 new input data에 부적절할수도 있으니 fix해야 한다</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/42.png" alt="42" /></p>
+
+<ul>
+  <li>부적합</li>
+  <li>SVM에서, nondifferentiable fn : hinge loss → 구간 나누어 미분 → 복잡해지는 미분 계산 과정 itreation
+    <ul>
+      <li>수학적으로 옳지는 않다??</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/43.png" alt="43" /></p>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/44.png" alt="44" /></p>
+
+<ul>
+  <li>back propagation example
+    <ul>
+      <li>Ex) 1st error = 0.298371109 
+  2nd error = 0.291027924
+  …
+  …
+  10000th error = 0.000035085</li>
+      <li>output neurons after 10000th iteration : 
+  0.015912196 (vs 0.01 target) 
+  0.984065734 (vs 0.99 target)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/45.png" alt="45" /></p>
+
+<ul>
+  <li>error : 역전파하면서 error 감소
+    <ul>
+      <li>10000th로 갈수록 0으로 error 수렴</li>
+    </ul>
+  </li>
+  <li>output neuron : target에 근사</li>
+</ul>
+
+<h1 id="deep-neural-network">Deep Neural Network</h1>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/46.png" alt="46" /></p>
+
+<ul>
+  <li>raw data in real world : 영상 획득, microphone 녹음 등 ..</li>
+</ul>
+
+<p>DNN : Number of hidden layers</p>
+
+<ul>
+  <li>
+    <h1 id="of-hidden-layers-leq-1--shallow-neural-network">of hidden layers $\leq 1$ → Shallow Neural Network</h1>
+  </li>
+  <li>
+    <h1 id="of-hidden-layers-geq-2--deep-neural-network">of hidden layers $\geq 2$ → Deep Neural Network</h1>
+  </li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/47.png" alt="47" /></p>
+
+<h2 id="dnn-training">DNN Training</h2>
+
+<h3 id="vanishing-gradient-problem">Vanishing gradient problem</h3>
+
+<p>Problem with non-linear activation</p>
+
+<ul>
+  <li>As errors are back propagated, the gradient vanishes</li>
+  <li>Derivatives of sigmoid are 0~0.25. As these are multiplied at multiple layers, they become smaller and smaller</li>
+  <li>$w_{ji} = w_{ij} -\eta \frac {\partial E}{\partial w_{ji}}$: as $\frac {\partial E}{\partial w_{ji}}$becomes smaller, $w$ is not well updated, especially for the layers far from the output layer</li>
+</ul>
+
+<p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/48.png" alt="48" /></p>
+
+<ul>
+  <li>Typically requires lots of labeled data
+    <ul>
+      <li>Collecting data is time consuming and expensive (time, price)</li>
+      <li>but time 소모 증가, 비용 증가
+        <ul>
+          <li>data collection, tagging, labeling</li>
+        </ul>
+      </li>
+      <li>2010년도 DNN의 발전배경  :
+        <ul>
+          <li>Big data → 수집 용이</li>
+          <li>GPU (HW Support)</li>
+          <li>Algorithm적 발달</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><u>_**Overfitting problem**_</u>
+    <ul>
+      <li>When training data is not sufficient, model only can handle the training data well (poor performance at test time)</li>
+      <li>data 변화 요인에 w 학습하고 , 다양한 test에 대해서도 적용</li>
+    </ul>
+
+    <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/49.png" alt="49" /></p>
+  </li>
+  <li>ground truth sampling → data에 fit하여 정답과 일치하도록</li>
+  <li>overfitting : regression, classification 시 정답을 보지 않아도 train well됨을 확인함</li>
+  <li>Get stuck in <strong>local minima : iteration시 유의</strong>
+    <ul>
+      <li>Problem even with enough training data</li>
+      <li>solution : 초기값을 randomly setting하고 train을 많이 하여 그 avearge를 추출한다
+        <ul>
+          <li>test set에 대해 일반적으로 성능 좋아짐</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Train Set 에서의 문
+    <ul>
+      <li>input data : raw data→ input layer : x1, x2</li>
+      <li>state of the nature $\in$ real world</li>
+      <li>학습 data로 model을 만들지만 prediction-ground truth가 0이라고 하여도 좋은 model인지 아닌지 확신할 수 없다.
+        <ul>
+          <li>사실 정답을 알 리가 없다 : 그 정답으로 추출된 제한된 관찰에 의해 얻어진 학습 data로 model을 구한 것이기에</li>
+        </ul>
+      </li>
+      <li>sol <strong>→ train data를 변화시키며 model이 얼마나 안정된 결과를 보이는지 (test data를 변화시키기도 해보자)</strong></li>
+    </ul>
+  </li>
+  <li>Vanishing gradient problem
+    <ul>
+      <li>ReLU(Rectified Linear Unit)
+        <ul>
+          <li>$\max(0,x)$ gradient update</li>
+        </ul>
+      </li>
+      <li>Layer-wise training
+        <ul>
+          <li>
+            <p>충분히 학습되었다면 건너뜀</p>
+
+            <p><img src="/assets/img/2023-05-17-8.-ANN-Artificial-Neural-Network-(1).md/50.png" alt="50" /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Requires <strong>lots</strong> of labeled data</li>
+  <li><strong>Overfitting</strong> problem</li>
+  <li>Get stuck in <strong>local minima</strong>
+    <ul>
+      <li>Mitigated by increasing data and computation power</li>
+    </ul>
+  </li>
+  <li>시간 소모 :
+    <ul>
+      <li>depend on performance of HW</li>
+      <li>w update : vanishing gradient → activation fn 변화</li>
+    </ul>
+  </li>
+</ul>
+
+  </div><a class="u-url" href="/8.-ANN-Artificial-Neural-Network-(1)" hidden></a>
+</article>
+
+
+      </div>
+    </main><footer>
+  <hr style="margin-left: 15px; color: #000 !important; background-color: #000 !important; opacity: 1 !important; width: 40px; height: .5px !important; margin-bottom: 2rem !important;">
+  <div class="row m-0">
+    <div class="col-12 col-md-3 col-sm-4 mb-4 mb-sm-0">
+      <p>
+        <a href="https://github.com/underthelights/underthelights.github.io" style="font-weight: 300">Kyuhwan Shim</a>
+        <br>Up-to-date as of <span id="date">loading...</span></p>
+      <i class="fas fa-location-dot mr-1"></i> Seoul is <img style="width: auto; height: 23px;" id="weather_icon">
+      <span id="weather">Loading...</span>
+    </div>
+    <div class="col-12 col-md-9 col-sm-8">
+      <p>
+        <a style="font-weight: 300" href="https://linkedin.com/in/kyuhwan-shim"><i class="fab fa-linkedin" style="margin-right: 10.5px"></i>LinkedIn</a><br>
+        <a style="font-weight: 300" href="https://fb.com/s.kyuhwn"><i class="fab fa-facebook" style="margin-right: 8px"></i>Facebook</a><br>
+        <a style="font-weight: 300" href="https://www.instagram.com/s.kyuhwn"><i class="fab fa-instagram" style="margin-right: 10.5px"></i>Instagram</a><br>
+        <a style="font-weight: 300" href="https://github.com/underthelights"><i class="fab fa-github" style="margin-right: 10.5px"></i>GitHub</a><br>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script src="/assets/js/weather.js"></script>
+<script src="/assets/js/github_date.js"></script>
+</body>
+
+</html>
