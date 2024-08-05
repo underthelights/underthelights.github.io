@@ -1,22 +1,19 @@
-##  Kyuhwan Shim 🤗 
-- Undergraduate Research Intern @ the [BI Lab](https://bi.snu.ac.kr), [Seoul Nat'l University](https://cse.snu.ac.kr)
-- Senior Undergraduate majoring Computer Science 💻 @ [Sogang University](https://cs.sogang.ac.kr)
-- Previously,
-  - ML Engineer Intern @ [Nota Inc.](https://nota.ai), Seoul, Korea (23.03 ~ 23.08)
-  - Designer @ [OCONNECT](https://oconnect.kr), Ulsan, Korea (20.06 ~ 23.06)
-- Links
-  - [E-mail](mailto:kyuhwan.shim@sogang.ac.kr) / [Curriculum Vitae](https://underthelights.github.io/cv.pdf)/ [📄 GitBlog](https://underthelights.github.io)  
+# Greetings! I'm Kyuhwan Shim. 🤗 
+
+My research currently focused on the intersection of visual grounding and leveraging multimodal models to reason about the real-world as an agent. My long-term goal is to develop robot-learning paradigms in real-world problems by enhancing visual reasoning and grounding objects with language understandings.
+
+I am pursuing my Master's Degree at Grauduate School of Artificial Intelligence in Seoul National University. I received my Bachelor's Degree from Sogang Unviersity. 
 
 
-### Run locally
+## Run locally
 <!-- 0. Make sure you have Jekyll environment ready - if you haven't, run `gem install bundler` -->
-1. Go to the project directory and run `bundle exec jekyll serve`
-
-
-<!-- ### How to sync the data you just updated
-1. Push every change you just made!
-2. It will be live normally within 5 minutes -->
-
+Go to the project directory and run `bundle exec jekyll serve`
 
 ## Contact
-kyuhwan.shim (at) sogang (dot) ac (dot) kr
+kyuhwan.shim (at) snu (dot) ac (dot) kr
+
+
+## Links
+- [E-mail](mailto:kyuhwan.shim@sogang.ac.kr)
+- [Curriculum Vitae](https://underthelights.github.io/cv.pdf)
+- [📄 GitBlog](https://underthelights.github.io)

@@ -1,6 +1,6 @@
 project:
   - title: "Camera Invariant Domain Adaptation"
-    description: "Top 30"
+    description: "Talent Pool Invitation (Samsung Electronics), Top 30"
     image: "samsung_ai.png"
     collaborators:
       - Hyunjae Kim
@@ -10,8 +10,8 @@ project:
     image: "GANGSEO.png"
     collaborators:
       - Heejin Park
-      - Moonil Yang
       - Mijung Bang
+      - Moonil Yang
       
   - title: "Jeju Island Travel Route Recommender System for Eco-Friendly & Gen-MZ (Winner)"
     description: "BIG CONTEST 2022 Winner (by NIA, Shinhan Card)"

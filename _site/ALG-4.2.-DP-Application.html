@@ -547,7 +547,7 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">[ALG] 4.2. DP Application</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-09-29T00:00:00+09:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-09-29T00:00:00+02:00" itemprop="datePublished">
         Sep 29, 2022
       </time></p>
     <!-- 태그와 카테고리 표시 -->
@@ -708,13 +708,13 @@ undefined- Problem</li>
   </li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">m</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span>
     <span class="k">return</span> <span class="mi">0</span>
   <span class="k">else</span> <span class="k">if</span> <span class="n">X</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">==</span><span class="n">Y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-    <span class="k">return</span> <span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
   <span class="k">else</span> 
-    <span class="n">retrun</span> <span class="nf">max</span><span class="p">(</span><span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">),</span><span class="nc">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">retrun</span> <span class="nb">max</span><span class="p">(</span><span class="n">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">),</span><span class="n">LCS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div></div>
 
 <h2 id="451omnalgorithm">4.5.1. $O(mn)$ Algorithm</h2>

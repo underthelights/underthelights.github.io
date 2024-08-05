@@ -4,15 +4,15 @@ title: "KIRINO: An Interactive Chatbot System for User Persona"
 year: 2024
 month: 4
 authors:
-  - Ganghun Kim†
-  - Hyunjae Kim†
-  - Geon Choi†
-  - Kyuhwan Shim†
-  - Myoung-Wan Koo*
+  - Ganghun Kim*
+  - Hyunjae Kim*
+  - Geon Choi*
+  - Kyuhwan Shim*
+  - Myoung-Wan Koo†
 venue: Korean Computer Congress 2024 & Sogang Convergence Technology Competition 
 venue_full: "KCC"
 abstract: "This research aims to develop a dialog system that reflects the persona of a speaker in a dialog system. For this purpose, we designed an abstract architecture based on the Retrieval-Augmented Generation (RAG) architecture, which generates the persona of each speaker based on the content of the conversation and presents a method to use it to personalize the conversation. We focused on developing a persona-based dialog system to address the problem of interactive agents giving inconsistent answers, talking out of context, and sometimes giving uninteresting answers in order to maintain natural conversations with humans. Experimental results show that our proposed method can improve the quality and naturalness of conversations, which suggests that it can contribute to improving the quality of conversational interfaces."
-# award: XXX Award
+award: Excellence Paper Award
 slide: kirino_slide.pdf
 poster: kirino_poster.pdf
 link: kirino_page
@@ -24,10 +24,10 @@ bibtex: |-
   @article{kirino2024,
     title={KIRINO: An Interactive Chatbot System for User Persona},
     author={Kyuhwan Shim and Ganghun Kim and Hyunjae Kim and Geon Choi and Myoung-Wan Koo},
-    journal={KCC},
+    journal={Korea Computer Congress},
     year={2024},
     month={April},
-    note={KCC}
+    note={Korea Computer Congress}
   }
 featured: true
 type: Vision-Language Model
