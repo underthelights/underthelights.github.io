@@ -34,7 +34,7 @@ project:
     id: lg_aimers
   - title: Game Review NLP Dashboard
     image: game-review-analysis.jpg
-    code : nlp-dashboard
+    code : https://github.com/itsnowkim/insight_proj
     link : https://itsnowkim-nlp-dashboard-main-fpsbhh.streamlit.app/Analytics
     paper: https://drive.google.com/file/d/1-iEuXCP5vmTFGluzUuzB7bs4ijwEFJ0L/view?usp=sharing
     detail: >
