@@ -3,6 +3,7 @@ project:
     image: samsung_ai.png
     code : 
     link : https://dacon.io/competitions/official/236132/overview/description
+    paper : https://drive.google.com/file/d/19zF3f-9vLC4RSb9fXOn7W2s2cPoyKFHC/view?usp=sharing
     # paper: 
     # slide: samsung_ai.pdf
     detail: >
@@ -21,7 +22,7 @@ project:
     # code : 
     link : https://dacon.io/en/competitions/official/236080/overview/description
     award : https://drive.google.com/file/d/1PA8f44wlax5uR_29AvfnqPGz51SPycP6/view 
-    slide: samsung_ai.pdf
+    slide: https://drive.google.com/file/d/1TZq0Mu4kye22qpHClt7d8SWKIiZI1uBP/view?usp=sharing
     detail: >
       <p>스마트 공장의 제어 시스템 구축을 위한 제품 품질 분류 AI 모델 개발</p>
       <p style='text-align: center;'><b>Team: Yunah Choi</b></p>
@@ -35,7 +36,7 @@ project:
     image: game-review-analysis.jpg
     code : nlp-dashboard
     link : https://itsnowkim-nlp-dashboard-main-fpsbhh.streamlit.app/Analytics
-    paper: game-review-analysis-ppt.pdf
+    paper: https://drive.google.com/file/d/1-iEuXCP5vmTFGluzUuzB7bs4ijwEFJ0L/view?usp=sharing
     detail: >
       <p>Implemented a Game Review NLP Dashboard applying NLP methods such as BiLSTM and Fine-tuned KoBERT. The project received the Grand Prize at the 2023 Spring INSIGHT Projects Competition.</p>
 
@@ -54,8 +55,8 @@ project:
 
   - title: Risk Rating Model for Small Business Owners (Gangseo-gu)
     image: gangseo.png
-    award : award_강서구_최우수상.pdf
-    paper: gangseo_risk-rating-model.pdf
+    award : https://drive.google.com/file/d/1WdX06ZbtWvYvjXwCwl0PzQvnKN4UUJ5_/view?usp=drive_link
+    paper: https://drive.google.com/file/d/1CUrcEPBGtgYC5gKSNbJzW3pi1RPuxRw5/view?usp=drive_link
     link: https://public.tableau.com/app/profile/heejin.park2241/viz/_16793225446900/sheet0
     detail: >
       <p>Developed a Risk Rating model for small business owners in Gangseo-gu using the credit rating model. Received the Mayor of Gangseo-gu Office Award.</p>
@@ -74,9 +75,9 @@ project:
 
   - title: Carbon Footprint Calculator & Eco-friendly Travel Route Recommendation (Shinhan Card & NIA)
     image: flight.gif
-    award : award_최우수상-BIGCONTEST.pdf
+    award : https://drive.google.com/file/d/1qwXlX3hWxUBZ6qaR1nGZNPtNbhaZPoGl/view?usp=drive_link
     link: https://underthelights.github.io/DAVENGERS/
-    paper: davengers_carbon_footprint_recsys.pdf
+    paper: https://drive.google.com/file/d/1peN1vnXzLK5E7Qi40avpIJMANBaVW3FB/view?usp=drive_link
     detail: >
       <p>Developed a Carbon Footprint calculator and Eco-friendly travel route recommendation system in Jeju Island. Awarded the Innovation League Grand Prize (Runner-Up) at BIG CONTEST '22.</p>
 
@@ -94,7 +95,7 @@ project:
 
   - title: Shell Project
     image: shell-project.jpg
-    code: System-Programming-
+    code: https://github.com/underthelights/System-Programming-
     detail: >
       <p>Designed a custom shell that translates user's commands to the Kernel using C language. Built Linux shell with basic commands like 'cd', 'mkdir', 'rmdir', etc.</p>
 
@@ -107,7 +108,7 @@ project:
 
   - title: Stock Server Project
     image: stock-server.jpg
-    code: System-Programming-
+    code: https://github.com/underthelights/System-Programming-
     detail: >
       <p>Constructed a concurrent stock server that can be connected by multiple clients for buying or selling stocks concurrently.</p>
 
@@ -120,9 +121,9 @@ project:
 
   - title: Solar Power System considering the impact of Wave Height
     image: wave_height_solar.png
-    award : award_우수상-2018과학전람회.pdf
-    paper: 파고의 영향을 고려한 수상 추적식 태양광 발전 시스템의 제안.pdf
-    slide : wave_height_solar_poster.pdf
+    award : https://drive.google.com/file/d/1KcwO7CA0IMRVS5UIBMqYeIV4SnqOdEf2/view?usp=drive_link
+    paper: https://drive.google.com/file/d/15hCObcAkUot7UVm0jZ3oW2a--OWQ7fRO/view?usp=drive_link
+    slide : https://drive.google.com/file/d/11W-5Y1yJsE7i9_sQYGqdBi1q1JS7xzbp/view?usp=drive_link
     detail: >
       <p>
         Existing water photovoltaic power generation uses the sun's semi-permanent energy and water, an idle resource. And this can only be applied on the water without waves. Therefore, we built a water-tracking solar power generation system.
@@ -135,9 +136,9 @@ project:
 
   - title: Laser Cutting Machine Using Mechanum Wheel
     image: mechanum_wheel.png
-    paper : 메카넘 휠을 활용한 레이저 커팅기 개발.pdf
-    award : award_특상-2017과학전람회.pdf
-    slide : mechanum_wheel_poster.pdf
+    paper : https://drive.google.com/file/d/1nkvnECxujgUwZ4slDoWmPd16uf3osqao/view?usp=drive_link
+    award : https://drive.google.com/file/d/1pqiNYdRTKNxU8gQ9kz1P284Ut-OkNXbG/view?usp=drive_link
+    slide : https://drive.google.com/file/d/1pEoxVY25cqlQfiGGUrwPFc1o592eoVRh/view?usp=drive_link
     detail: >
       <p>
         Laser cutting machines can easily process materials, but they are heavy and have the disadvantage that the size of the material is limited depending on the size of the laser cutting machine. Our team wants to compensate for the shortcomings of the laser cutting machine by using the Mechanum wheel. The driving equation and efficiency according to the direction of movement of the mechanical wheel are explored. It also develops a device that cuts the material by moving it according to the drawing.
