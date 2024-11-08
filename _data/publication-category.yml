@@ -1,4 +1,4 @@
 types:
-  - "Vision-Language Model"
-  # - "Detection"
-  # - "Segmentation"
+  - "Vision Language Model"
+  - "Robotics"
+  - "RAG"
