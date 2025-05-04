@@ -34,15 +34,34 @@ layout: default
         {% endif %}
       </div>
       <div class="row mt-2">
+        
+        {% assign my_name = "Kyuhwan Shim" %}
         {% if author_data.website %}
-        <a href="{{ author_data.website }}">
-          <p class="author-name">{{ author_data.name }} {% for co in page.coauthors %}{% if co == author_data.name %}*{% endif %}{% endfor %}</p>
-          <p class="affiliation-name">{{ author_data.affiliation }}</p>
-        </a>
+          <a href="{{ author_data.website }}">
+            <p class="author-name">
+                {% if author_data.name == my_name %}
+                <strong style="color: #0000ff; font-weight: bold !important; text-decoration: underline;">{{ author_data.name }}</strong>
+              {% else %}
+                {{ author_data.name }}
+              {% endif %}
+              {% for co in page.coauthors %}{% if co == author_data.name %}*{% endif %}{% endfor %}
+            </p>
+            <p class="affiliation-name">{{ author_data.affiliation }}</p>
+          </a>
         {% else %}
-        <p class="author-name">{{ author_data.name }} {% for co in page.coauthors %}{% if co == author_data.name %}*{% endif %}{% endfor %}</p>
-        <p class="affiliation-name">{{ author_data.affiliation }}</p>
+          <p class="author-name">
+            {% if author_data.name == my_name %}
+              <strong style="color: #003478; font-weight: bold !important;">{{ author_data.name }}</strong>
+            {% else %}
+              {{ author_data.name }}
+            {% endif %}
+            {% for co in page.coauthors %}{% if co == author_data.name %}*{% endif %}{% endfor %}
+          </p>
+          <p class="affiliation-name">{{ author_data.affiliation }}</p>
         {% endif %}
+        
+
+        
       </div>
     </div>
     {% else %}
@@ -72,7 +91,7 @@ layout: default
       {% if page.slide %}<a style="padding-right: 4px" href="{{ page.slide | relative_url }}" rel="external"><i class="fa-solid fa-file-powerpoint"></i> Slide</a> {% endif %}
       {% if page.poster %}<a style="padding-right: 4px" href="{{ page.poster | relative_url }}" rel="external"><i class="fa-solid fa-presentation-screen"></i> Poster</a> {% endif %}
       {% if page.demo %}<a style="padding-right: 4px" href="{{ page.demo }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Demo</a>{% endif %}
-      {% if page.bibtex %}<a style="padding-right: 4px" href="https://bi.snu.ac.kr/~khshim" rel="external"><i class="fa-solid fa-book"></i> BibTeX</a>{% endif %}
+      {% if page.bibtex %}<a style="padding-right: 4px" href="https://underthelights.github.io" rel="external"><i class="fa-solid fa-book"></i> BibTeX</a>{% endif %}
     </p>
   </div>
 </div>
