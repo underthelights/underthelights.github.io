@@ -1,4 +1,23 @@
 list:
+  - title: "Paper Accepted to RSS 2025 (Main Conference)"
+    date: "2025-04-05"
+    description: "Our paper was accepted to the 2025 Robotics: Science and Systems (RSS) Conference. . The paper introduces a novel vision-language-action framework that enables robotic policies to be trained using natural language supervision."
+    thumbnail: ""
+
+  - title: "CLIP-RT Accepted to LangRob@CoRL 2024"
+    date: "2024-10-19"
+    description: "Our paper was accepted to the Third Workshop on Language and Robot Learning (LangRob) at CoRL 2024. The work presents a new approach to training language-conditioned robotic policies through natural language supervision."
+    thumbnail: ""
+
+  - title: "RoboCup@Home 2024 – 2nd & 3rd Place in OPL and DSPL"
+    date: "2024-07-21"
+    description: "Our team, TIDYBOY, won 🥈2nd place in the Open Platform League (OPL) and 🥉3rd place in the Domestic Standard Platform League (DSPL) at RoboCup@Home 2024, held in Eindhoven, Netherlands. The competition emphasized integrated perception, planning, and manipulation in a domestic environment."
+    thumbnail: ""
+  - title: "Excellence Undergraduate Paper Award @ Korea Computer Congress 2024"
+    date: "2024-06-27"
+    description: "Received the Best Paper Award at the Korean Computer Congress (KCC) 2024 for the paper 'KIRINO : An Interactive Chatbot System for User Persona'."
+    thumbnail: "https://abit.ly/1ohrze"
+
   - title: "Undergraduate Researcher @ BI Lab, Seoul Nat'l U."
     date: "2023-12-28" # ISO 8601 Format
     description: "Advised by Byoung-Tak Zhang"
