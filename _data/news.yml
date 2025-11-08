@@ -1,22 +1,28 @@
 list:
+  - title: "Research Scientist Intern @ LG AI Research"
+    date: "2025-11-01"
+    description: "Joining LG AI Research as a Research Scientist Intern in the Vision Lab."
+    thumbnail: "https://www.lgresearch.ai/img/common/lgresearch.jpg"
+
   - title: "Paper Accepted to RSS 2025 (Main Conference)"
     date: "2025-04-05"
     description: "Our paper was accepted to the 2025 Robotics: Science and Systems (RSS) Conference. . The paper introduces a novel vision-language-action framework that enables robotic policies to be trained using natural language supervision."
-    thumbnail: ""
+    thumbnail: "https://roboticsconference.org/images/RSS2025-logo.png"
 
   - title: "CLIP-RT Accepted to LangRob@CoRL 2024"
     date: "2024-10-19"
     description: "Our paper was accepted to the Third Workshop on Language and Robot Learning (LangRob) at CoRL 2024. The work presents a new approach to training language-conditioned robotic policies through natural language supervision."
-    thumbnail: ""
+    thumbnail: "https://i.ytimg.com/vi/kL7izv6PXS0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCBJps02qETXyH_rdn0abGFry6AKQ"
 
   - title: "RoboCup@Home 2024 – 2nd & 3rd Place in OPL and DSPL"
     date: "2024-07-21"
     description: "Our team, TIDYBOY, won 🥈2nd place in the Open Platform League (OPL) and 🥉3rd place in the Domestic Standard Platform League (DSPL) at RoboCup@Home 2024, held in Eindhoven, Netherlands. The competition emphasized integrated perception, planning, and manipulation in a domestic environment."
-    thumbnail: ""
+    thumbnail: "https://media.licdn.com/dms/image/v2/D4E22AQGhVnntilvjvA/feedshare-shrink_800/feedshare-shrink_800/0/1709292911621?e=2147483647&v=beta&t=XWxUZt6DXwXVS5LI4M8EnVLJemRTgArhU6zkcw313z4"
+
   - title: "Excellence Undergraduate Paper Award @ Korea Computer Congress 2024"
     date: "2024-06-27"
     description: "Received the Best Paper Award at the Korean Computer Congress (KCC) 2024 for the paper 'KIRINO : An Interactive Chatbot System for User Persona'."
-    thumbnail: "https://abit.ly/1ohrze"
+    thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYAjFh0-bx6nXTHaJrv_386MT3276lAaUbWg&s"
 
   - title: "Undergraduate Researcher @ BI Lab, Seoul Nat'l U."
     date: "2023-12-28" # ISO 8601 Format
