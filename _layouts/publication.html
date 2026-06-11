@@ -5,11 +5,7 @@ layout: default
 <div class="container py-4">
   <div class="row pb-3">
     <p class="publication-title">{{ page.title }}</p>
-    {% if page.note %}
-    <p><span style="font-weight: 400">{{ page.venue }}.</span> ({{ page.note }})</p>
-    {% else %}
-    <p style="font-weight: 400">Published in {{ page.venue }}.</p>
-    {% endif %}
+    <p style="font-weight: 400">{{ page.venue }}{% if page.note %} ({{ page.note }}){% endif %}</p>
     {% if page.award %}
     <p style="font-weight: 400"><i class="fa-solid fa-medal" style="margin-right: 6px"></i>{{ page.award }}</p>
     {% endif %}
@@ -19,20 +15,7 @@ layout: default
     {% for author in page.authors %}
     {% assign author_data = site.data.people.people | where:"name", author | first %}
     {% if author_data %}
-    <div class="col my-3">
-      <div class="row">
-        {% if author_data.website %}
-        {% if author_data.image %}
-        <a href="{{ author_data.website }}"></a>
-        {% else %}
-        <a href="{{ author_data.website }}"></a>
-        {% endif %}
-        {% else %}
-        {% if author_data.image %}
-        {% else %}
-        {% endif %}
-        {% endif %}
-      </div>
+    <div class="col-6 col-md-auto my-3">
       <div class="row mt-2">
         
         {% assign my_name = "Kyuhwan Shim" %}
@@ -65,7 +48,7 @@ layout: default
       </div>
     </div>
     {% else %}
-    <div class="col my-3">
+    <div class="col-6 col-md-auto my-3">
       <div class="row mt-2">
         <p class="author-name">{{ author }}{% for co in page.coauthors %}{% if co == author %}*{% endif %}{% endfor %}</p>
       </div>
