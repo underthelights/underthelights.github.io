@@ -1,12 +1,22 @@
 list:
+  - title: "MoAQ Accepted to CVPR & ICML 2026 Workshops"
+    date: "2026-05-01"
+    description: "'Making Your Action Policies Interpretable: Mixture of Action Queries' was accepted to the Foundation Models Meet Embodied Agents Workshop @ CVPR 2026 and the AI4GOOD Workshop @ ICML 2026."
+    thumbnail: ""
+
+  - title: "ESPADA Accepted to IEEE RA-L"
+    date: "2025-12-09"
+    description: "'ESPADA: Execution Speedup via Semantics Aware Demonstration Data Downsampling for Imitation Learning' was accepted to IEEE Robotics and Automation Letters (RA-L). Preprint available on <a href='https://arxiv.org/abs/2512.07371'>arXiv</a>."
+    thumbnail: ""
+
   - title: "Research Scientist Intern @ LG AI Research"
     date: "2025-11-01"
-    description: "Joining LG AI Research as a Research Scientist Intern in the Vision Lab."
+    description: "Joining LG AI Research as a Research Scientist Intern in the Physical Intelligence Lab."
     thumbnail: "https://www.lgresearch.ai/img/common/lgresearch.jpg"
 
-  - title: "Paper Accepted to RSS 2025 (Main Conference)"
+  - title: "CLIP-RT Accepted to RSS 2025 (Oral Presentation)"
     date: "2025-04-05"
-    description: "Our paper was accepted to the 2025 Robotics: Science and Systems (RSS) Conference. . The paper introduces a novel vision-language-action framework that enables robotic policies to be trained using natural language supervision."
+    description: "Our paper CLIP-RT was accepted to Robotics: Science and Systems (RSS) 2025 as an oral presentation. The paper introduces a novel vision-language-action framework that enables robotic policies to be trained using natural language supervision."
     thumbnail: "https://roboticsconference.org/images/RSS2025-logo.png"
 
   - title: "CLIP-RT Accepted to LangRob@CoRL 2024"
@@ -21,7 +31,7 @@ list:
 
   - title: "Excellence Undergraduate Paper Award @ Korea Computer Congress 2024"
     date: "2024-06-27"
-    description: "Received the Best Paper Award at the Korean Computer Congress (KCC) 2024 for the paper 'KIRINO : An Interactive Chatbot System for User Persona'."
+    description: "Received the Excellence Paper Award (Undergraduate Division) at Korea Computer Congress (KCC) 2024 for the paper 'KIRINO : An Interactive Chatbot System for User Persona'."
     thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYAjFh0-bx6nXTHaJrv_386MT3276lAaUbWg&s"
 
   - title: "Undergraduate Researcher @ BI Lab, Seoul Nat'l U."
