@@ -15,7 +15,7 @@ coauthors:
 note: Oral
 venue: >
   <a href="https://roboticsconference.org"> <strong>Robotics: Science and Systems (RSS) 2025</strong>  </a><br>
-  <a href="https://sites.google.com/view/langrob-corl24/">3rd Workshop on Language and Robot Learning (LangRob)</a> @ <a href="https://corl2024.org"> <strong>CoRL 2024</strong></a>
+  <a href="https://sites.google.com/view/langrob-corl24/">3rd Workshop on Language and Robot Learning (LangRob)</a> @ <a href="https://www.corl.org"> <strong>CoRL 2024</strong></a>
 tldr: >
   We explore how non-experts can teach robotic skills only through natural language supervision. We propose 'CLIP-RT', the VLA model that learns visuomotor policies directly from this supervision.
 
@@ -25,7 +25,6 @@ abstract: >
 paper: "https://arxiv.org/abs/2411.00508"
 page: "https://clip-rt.github.io"
 github: "https://github.com/clip-rt/clip-rt"
-poster: "http://clip-rt.github.io/poster.pdf"
 image: "/assets/images/publication/cliprt.gif"
 category: 
   - "Robotics"
@@ -37,6 +36,7 @@ bibtex: |-
   author={Kang, Gi-Cheon and Kim, Junghyun and Shim, Kyuhwan and Lee, Jun Ki and Zhang, Byoung-Tak},
   journal={arXiv preprint arXiv:2411.00508},
   year = {2024}
+  }
 featured: true
 type: Robot Transformer, Vision-Language Model
 ---

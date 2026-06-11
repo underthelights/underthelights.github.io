@@ -66,11 +66,8 @@ layout: default
     </div>
     {% else %}
     <div class="col my-3">
-      <div class="row">
-        <div class="author-image" style="{{ '/assets/images/author/default.jpg' | relative_url | prepend: 'background-image: url(' | append: ')' }}"></div>
-      </div>
       <div class="row mt-2">
-        <p class="author-name">{{ author }}</p>
+        <p class="author-name">{{ author }}{% for co in page.coauthors %}{% if co == author %}*{% endif %}{% endfor %}</p>
       </div>
     </div>
     {% endif %}
@@ -79,19 +76,30 @@ layout: default
   <!-- <div class="row mb-5">
     <img class="publication-image" alt="Landscape" src="{{ page.slug | prepend: '/assets/images/publication/' | append: '.jpg' | relative_url }}"/>
   </div> -->
+  {% if page.abstract %}
   <div class="row mb-5">
     <p class="section-title">Abstract</p>
     <p>{{ page.abstract }}</p>
   </div>
-  <div class="row">
+  {% endif %}
+  {% if page.paper or page.page or page.github or page.video or page.slide or page.poster or page.demo %}
+  <div class="row mb-5">
     <p class="section-title">Materials</p>
     <p class="metadata">
-      {% if page.venue == "arXiv" or page.note == "to appear" %}<a style="padding-right: 4px" href="{{ page.slug | relative_url }}" rel="external"><i class="fa-solid fa-file-pdf"></i> Preprint</a> {% else %}{% unless page.pdf == false %}<a style="padding-right: 4px" href="{{ page.slug | prepend: '/assets/pdf/' | append: '.pdf' | relative_url }}" rel="external"><i class="fa-solid fa-file-pdf"></i> PDF</a> {% endunless %}{% endif %}
-      {% if page.video %}<a style="padding-right: 4px" href="{{ page.video | prepend: 'https://youtu.be/'}}" rel="external"><i class="fa-solid fa-play"></i> Video</a>{% endif %}
-      {% if page.slide %}<a style="padding-right: 4px" href="{{ page.slide | relative_url }}" rel="external"><i class="fa-solid fa-file-powerpoint"></i> Slide</a> {% endif %}
-      {% if page.poster %}<a style="padding-right: 4px" href="{{ page.poster | relative_url }}" rel="external"><i class="fa-solid fa-presentation-screen"></i> Poster</a> {% endif %}
+      {% if page.paper %}<a style="padding-right: 4px" href="{{ page.paper }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-pdf"></i> Paper</a> {% endif %}
+      {% if page.page %}<a style="padding-right: 4px" href="{{ page.page }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-up-right-from-square"></i> Project Page</a> {% endif %}
+      {% if page.github %}<a style="padding-right: 4px" href="{{ page.github }}" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a> {% endif %}
+      {% if page.video %}<a style="padding-right: 4px" href="{{ page.video | prepend: 'https://youtu.be/'}}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-play"></i> Video</a> {% endif %}
+      {% if page.slide %}<a style="padding-right: 4px" href="{{ page.slide }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-powerpoint"></i> Slide</a> {% endif %}
+      {% if page.poster %}<a style="padding-right: 4px" href="{{ page.poster }}" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-image"></i> Poster</a> {% endif %}
       {% if page.demo %}<a style="padding-right: 4px" href="{{ page.demo }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-desktop"></i> Demo</a>{% endif %}
-      {% if page.bibtex %}<a style="padding-right: 4px" href="https://underthelights.github.io" rel="external"><i class="fa-solid fa-book"></i> BibTeX</a>{% endif %}
     </p>
   </div>
+  {% endif %}
+  {% if page.bibtex %}
+  <div class="row">
+    <p class="section-title">BibTeX</p>
+    <pre style="background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 1rem; font-size: .85rem; white-space: pre-wrap;"><code>{{ page.bibtex }}</code></pre>
+  </div>
+  {% endif %}
 </div>
