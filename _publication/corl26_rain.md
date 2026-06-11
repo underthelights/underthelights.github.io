@@ -1,6 +1,6 @@
 ---
 layout: publication
-title: "Beyond Fixed Tasks: Scaling Robot Data with Region-Aware Interaction Network"
+title: "RAIN: Robotic Task Generalization with Region-Aware Interaction Networks"
 year: 2026
 month: 9
 authors:
@@ -25,7 +25,7 @@ category:
   - "International"
 bibtex: |-
   @article{lee2026rain,
-    title={Beyond Fixed Tasks: Scaling Robot Data with Region-Aware Interaction Network},
+    title={RAIN: Robotic Task Generalization with Region-Aware Interaction Networks},
     author={Lee, Seunghun and Shim, Kyuhwan and Song, Yeogyeong and Kim, Seung-Hwan and Lee, Sihaeng and Zhang, Byoung-Tak and Lim, Sunghoon and Lee, Gunhee},
     year={2026}
   }
