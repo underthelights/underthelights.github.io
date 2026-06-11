@@ -104,7 +104,13 @@
 
           <div class="pub-content">
             <p class="mb-2" style="font-size: 1rem; font-weight: 400 !important;">
+              {% if paper.page %}
+              <a href="{{ paper.page }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>
+              {% elsif paper.paper %}
+              <a href="{{ paper.paper }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>
+              {% else %}
               <a href="{{ paper.slug | prepend: '/publication/' | relative_url }}">{{ paper.title }}</a>
+              {% endif %}
             </p>
 
             <p class="mb-2" style="font-size: .95rem; font-weight: 200 !important;">
