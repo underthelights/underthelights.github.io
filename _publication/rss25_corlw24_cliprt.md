@@ -12,6 +12,7 @@ authors:
 coauthors:
   - Gi-Cheon Kang
   - Junghyun Kim 
+note: Oral
 venue: >
   <a href="https://roboticsconference.org"> <strong>Robotics: Science and Systems (RSS) 2025</strong>  </a><br>
   <a href="https://sites.google.com/view/langrob-corl24/">3rd Workshop on Language and Robot Learning (LangRob)</a> @ <a href="https://corl2024.org"> <strong>CoRL 2024</strong></a>

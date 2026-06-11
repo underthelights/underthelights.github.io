@@ -16,7 +16,7 @@ coauthors:
   - Kyuhwan Shim
  
 venue: >
-  <a href="https://www.kiise.or.kr/conference/kcc/2025/"> <strong>Korean Computer Congress 2024</strong>  </a><br>
+  <a href="https://www.kiise.or.kr/conference/kcc/2024/"> <strong>Korea Computer Congress 2024</strong>  </a><br>
   <a href="https://convedu.sogang.ac.kr/front/cmsboardview.do?currentPage=3&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=5551&siteId=convedu&pkid=908203"><strong>Sogang Convergence Technology Competition</strong></a>
 
 tldr: >

@@ -16,11 +16,12 @@ description: Curriculum vitae of Kyuhwan Shim
       <li><a href="#publications">Publications</a></li>
       <li><a href="#research">Research Experience</a></li>
       <li><a href="#work">Work Experience</a></li>
+      <li><a href="#teaching">Teaching Experience</a></li>
       <li><a href="#awards">Awards & Activities</a></li>
       <li><a href="#scholarships">Scholarships</a></li>
       <li><a href="#certificates">Certificates</a></li>
       <!-- <li><a href="#activities">Activities</a></li> -->
-      <li><a href="#medias">Medias</a></li>
+      <li><a href="#media">Media</a></li>
       <li><a href="#speech">Speech</a></li>
 
       <!-- 추가적인 섹션 링크들 -->
@@ -91,7 +92,7 @@ description: Curriculum vitae of Kyuhwan Shim
               <div class="dated-content"><a style="font-weight: 500" href="{{ '/publication/' | append: pub.slug | relative_url }}">{{ pub.title }}</a><br>
                 {% for author in pub.authors %}
                 {% assign author_data = site.data.people.people | where:"name", author | first %}
-                {% if author == "Kyuhwan Shim" %}<a style="font-weight: 500 !important" href="https://underthelights.github.io" data-bs-toggle="tooltip" title="{{ author }} is a Ph.D. student at the {{ author_data.affiliation }}">Kyuhwan Shim</a>{% else %}{% if author_data.website %}<a href="{{ author_data.website }}" class="coauthor">{{ author }}</a>{% else %}<span class="coauthor">{{ author }}</span>{% endif %}{% endif %}{% unless forloop.last%}, {% endunless %}
+                {% if author == "Kyuhwan Shim" %}<a style="font-weight: 500 !important" href="https://underthelights.github.io" data-bs-toggle="tooltip" title="{{ author }} is a graduate student at the {{ author_data.affiliation }}">Kyuhwan Shim</a>{% else %}{% if author_data.website %}<a href="{{ author_data.website }}" class="coauthor">{{ author }}</a>{% else %}<span class="coauthor">{{ author }}</span>{% endif %}{% endif %}{% unless forloop.last%}, {% endunless %}
                 {% endfor %}
                 <br>
                 {{ pub.venue }}.{% if pub.note %} ({{ pub.note}}){% endif %}<br>
@@ -104,11 +105,19 @@ description: Curriculum vitae of Kyuhwan Shim
 
         <section id="research">
           <h2>Research Experience</h2>
-          
+
+          <div class="dated-entry">
+            <div class="dated-date">Nov 2025 - Present</div>
+            <div class="dated-content">
+              <b><a href="https://www.lgresearch.ai">Physical Intelligence Lab @ LG AI Research</a></b><br>
+              Research Scientist Intern<br>
+            </div>
+          </div>
+
           <div class="dated-entry">
             <div class="dated-date">Jul 2024 - Aug 2024</div>
             <div class="dated-content">
-              <b><a href="https://ais.uni-bonn.de">Autonomous Intelligent Systems Group @ Universität Bonn 🇩</a></b><br>
+              <b><a href="https://ais.uni-bonn.de">Autonomous Intelligent Systems Group @ Universität Bonn 🇩🇪</a></b><br>
               Visiting Student Researcher<br>
               <!-- <small>Advisor: Dain Jeong</a></small> -->
               <!-- <br> -->
@@ -142,8 +151,7 @@ description: Curriculum vitae of Kyuhwan Shim
           <h2>Work Experience</h2>
           
           <div class="dated-entry">
-            <div class="dated-date"> 2024 </div>
-              <!-- Mar 2024 - Jul 2024</div> -->
+            <div class="dated-date">Mar 2024 - Aug 2024</div>
             <div class="dated-content">
               <b><a href="https://bi.snu.ac.kr/Robocup/2024/index.html">Team TIDYBOY-DSPL</a></b>, 
               Robocup2024 <br>
@@ -186,11 +194,11 @@ description: Curriculum vitae of Kyuhwan Shim
 
 
           <div class="dated-entry">
-            <div class="dated-date">2020 - 2023</div>
+            <div class="dated-date">Jun 2020 - Feb 2023</div>
             <div class="dated-content">
               <b><a href="https://oconnect.kr">OCONNECT</a></b>, <a href="https://unist.ac.kr/">Ulsan Nat'l Institute of
                 Science & Technology</a><br>
-              Co-Founder & Programmer<br>
+              Co-Founder, Chief Design & Operating Officer<br>
               <!-- <br> -->
               <small>
                 Assist developing <strong>ONESTEP</strong>, an easy-insert socket 
@@ -207,10 +215,9 @@ description: Curriculum vitae of Kyuhwan Shim
           </div>
 
           <div class="dated-entry">
-            <div class="dated-date">2020F - 2022S</div>
+            <div class="dated-date">Aug 2020 - Apr 2022</div>
             <div class="dated-content">
-              <b><a href="https://oconnect.kr">Yeongdong Firehouse </a></b>, <a
-                href="https://cb119.chungbuk.go.kr/yd119/main.do">Yeongdong Firestation</a>
+              <b><a href="https://cb119.chungbuk.go.kr/yd119/main.do">Yeongdong Firestation</a></b>, Yeongdong, Korea
 
               <br>
               <small>
@@ -220,13 +227,35 @@ description: Curriculum vitae of Kyuhwan Shim
           </div>
         </section>
 
-        
+        <section id="teaching">
+          <h2>Teaching Experience</h2>
+          <div class="dated-entry">
+            <div class="dated-date">Mar 2025 - Jun 2025</div>
+            <div class="dated-content">
+              <b>Artificial Intelligence (4190.408)</b>, Seoul Nat'l University<br>
+              Teaching Assistant
+            </div>
+          </div>
+          <div class="dated-entry">
+            <div class="dated-date">Jun 2017 - Dec 2017</div>
+            <div class="dated-content">
+              <b>Translation Volunteer</b>, Khan Academy & Chungnam Science High School
+            </div>
+          </div>
+        </section>
 
         <section id="awards">
           <h2>Awards & Activities</h2>
-          
+
         <div class="dated-entry">
-          <div class="dated-date">Sep 2023</div>
+          <div class="dated-date">2024, 2025</div>
+            <div class="dated-content">
+              <b>Encouragement Award</b>, Seoul Nat'l University
+            </div>
+          </div>
+
+        <div class="dated-entry">
+          <div class="dated-date">Aug 2024</div>
             <div class="dated-content">
               <b>Finalist (Top 3) </b>, Robocup2024@Home<br>
               <small>
@@ -264,9 +293,9 @@ description: Curriculum vitae of Kyuhwan Shim
                 <span style="position: relative; display: inline-block; margin-right: 10px; font-size: 14px;">
                   <a href="" style="color: #003478; text-decoration: none; position: relative;">
                     🏆 Runner-up
-                    <span style="background-color: #fdffc6; position: absolute; left: 0; bottom: -3px; height: 5px; width: 100%; z-index: -1;">
-                    </a>
-                    </span>
+                    <span style="background-color: #fdffc6; position: absolute; left: 0; bottom: -3px; height: 5px; width: 100%; z-index: -1;"></span>
+                  </a>
+                  </span>
                 </div>
                 </small>
               </div>
@@ -408,9 +437,9 @@ description: Curriculum vitae of Kyuhwan Shim
             <div class="dated-date">May 2018</div>
             <div class="dated-content">
               <b>Excellence Prize</b>, Chungnam Office of Education <br>
-              
+
               <small>
-                <strong>Solar Power System considering the impact of wave height</strong> @ Chung-nam Science Fair
+                <strong>Solar Power System considering the impact of wave height</strong> @ Chungnam Science Fair (64th)
                 <div style="display: flex; justify-content: flex-start;">
                   <span style="position: relative; display: inline-block; margin-right: 10px; font-size: 14px;">
                     <!-- TODO -->
@@ -431,12 +460,12 @@ description: Curriculum vitae of Kyuhwan Shim
           </div>
 
           <div class="dated-entry">
-            <div class="dated-date">May 2018</div>
+            <div class="dated-date">May 2017</div>
             <div class="dated-content">
               <b>Special Prize</b>, Chungnam Office of Education <br>
-              
+
               <small>
-                <strong>Smart Laser Cutting Machine Using Mechanum Wheels</strong> @ Chung-nam Science Fair
+                <strong>Smart Laser Cutting Machine Using Mecanum Wheels</strong> @ Chungnam Science Fair (63rd)
                 <div style="display: flex; justify-content: flex-start;">
                   <span style="position: relative; display: inline-block; margin-right: 10px; font-size: 14px;">
                     <!-- TODO -->
@@ -458,7 +487,7 @@ description: Curriculum vitae of Kyuhwan Shim
           </div>
         </section>
           
-        <section id="Scholarships">
+        <section id="scholarships">
           <h2>Scholarships</h2>
           <div class="dated-entry">
             <div class="dated-date">2020-2023</div>
@@ -508,8 +537,6 @@ description: Curriculum vitae of Kyuhwan Shim
           </div>
         </section>
 
-        
-        </section>
           <section id="certificates">
             <h2>Certificates</h2>
             <div class="dated-entry">
@@ -607,8 +634,8 @@ description: Curriculum vitae of Kyuhwan Shim
             </div> -->
           <!-- </section> -->
 
-          <section id="Medias">
-            <h2>Medias</h2>
+          <section id="media">
+            <h2>Media</h2>
             <div class="dated-entry">
               <div class="dated-date">2023</div>
               <div class="dated-content">
@@ -666,9 +693,9 @@ description: Curriculum vitae of Kyuhwan Shim
               <div class="dated-content">
                 <b>YOLOv8 Seminar </b><br>
                 <small>
-                  "Deep Dive into YOLOv8" Seminar for all employs of Nota Inc.
+                  "Deep Dive into YOLOv8" Seminar for all employees of Nota Inc.
                   <br>
-                  Analysis the architecture and methodology introduced or utilized in v8 in depth
+                  In-depth analysis of the architecture and methodology introduced in YOLOv8
                   
                   <br><button class="button" style="left"
                   onclick="location.href='https://drive.google.com/file/d/1DTspxtaP3RQmM72VkgVP3dvdASvjdiXC/view'">Presentation</button><br>
