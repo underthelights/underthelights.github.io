@@ -734,7 +734,14 @@ description: Curriculum vitae of Kyuhwan Shim
     right: 10px;
     top: 100px;
     z-index: 1000;
-    max-width: 20px;
+    max-width: 200px;
+  }
+
+  /* 화면이 좁으면 떠 있는 TOC가 본문을 가리므로 숨김 */
+  @media (max-width: 991px) {
+    .toc-container {
+      display: none;
+    }
   }
 
   .toc {
@@ -919,6 +926,37 @@ description: Curriculum vitae of Kyuhwan Shim
   @media (max-width: 480px) {
     html {
       font-size: 14px;
+    }
+  }
+
+  /* on phones, stack the date above the content instead of a side column */
+  @media (max-width: 575px) {
+    header {
+      padding-left: 0;
+    }
+
+    h2 {
+      margin-left: 0;
+    }
+
+    h3 {
+      margin: 1rem 0 .5rem 0;
+    }
+
+    .dated-entry {
+      display: block;
+    }
+
+    .dated-date {
+      width: auto;
+      text-align: left;
+      padding-right: 0;
+      margin-bottom: .1rem;
+      color: #777;
+    }
+
+    .dated-content {
+      width: 100%;
     }
   }
 

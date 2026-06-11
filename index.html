@@ -670,7 +670,7 @@ description: Graduate School of AI, Seoul National University
             {% for new in news limit: 6 %}
             <!-- Each news item is contained in a fixed height div to maintain uniformity -->
             <div class="col-12 col-sm-6 mb-4"
-                style="height: 150px; display: flex; flex-direction: column; justify-content: space-between;">
+                style="min-height: 150px; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
                     <p class="mb-0" style="font-size: 1rem; font-weight: 400 !important;">{{ new.title }}</p>
                     <p class="mb-1" style="font-size: .85rem; font-weight: 200 !important;">{{ new.date | date: "%b %-d,
