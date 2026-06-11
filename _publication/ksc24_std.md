@@ -17,8 +17,7 @@ venue: >
 award: Excellent Presentation Award
 pdf: false
 category:
-  - "Robotics"
-  - "LLM"
+  - "Domestic"
 bibtex: |-
   @inproceedings{kim2024std,
     title={Stochastic Trajectory Diversification for Language-based Robot Action Learning},

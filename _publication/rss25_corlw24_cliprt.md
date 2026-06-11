@@ -12,9 +12,8 @@ authors:
 coauthors:
   - Gi-Cheon Kang
   - Junghyun Kim 
-note: Oral
 venue: >
-  <a href="https://roboticsconference.org"> <strong>Robotics: Science and Systems (RSS) 2025</strong>  </a><br>
+  <a href="https://roboticsconference.org"> <strong>Robotics: Science and Systems (RSS) 2025</strong></a> <strong>(Oral Presentation)</strong><br>
   <a href="https://sites.google.com/view/langrob-corl24/">3rd Workshop on Language and Robot Learning (LangRob)</a> @ <a href="https://www.corl.org"> <strong>CoRL 2024</strong></a>
 tldr: >
   We explore how non-experts can teach robotic skills only through natural language supervision. We propose 'CLIP-RT', the VLA model that learns visuomotor policies directly from this supervision.
@@ -26,10 +25,8 @@ paper: "https://arxiv.org/abs/2411.00508"
 page: "https://clip-rt.github.io"
 github: "https://github.com/clip-rt/clip-rt"
 image: "/assets/images/publication/cliprt.gif"
-category: 
-  - "Robotics"
-  - "LLM"
-  - "VLA"
+category:
+  - "International"
 bibtex: |-
   @article{kang2024cliprt,
   title={CLIP-RT: Learning Language-Conditioned Robotic Policies from Natural Language Supervision},

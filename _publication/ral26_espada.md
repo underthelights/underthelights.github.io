@@ -20,8 +20,9 @@ tldr: >
 abstract: >
   Behavior-cloning based policies inherit the slow, cautious tempo of human demonstrations. ESPADA is a semantic and spatially aware framework that segments demonstrations using a VLM-LLM pipeline with 3D gripper-object relations, enabling aggressive downsampling only in non-critical segments while preserving precision-critical phases. To scale from a single annotated episode to the full dataset, ESPADA propagates segment labels via Dynamic Time Warping on dynamics-only features, achieving approximately a 2x speed-up while maintaining success rates, without extra data, architectural modifications, or any form of retraining.
 paper: "https://arxiv.org/abs/2512.07371"
+page: "https://project-espada.github.io/espada/"
 category:
-  - "Robotics"
+  - "International"
 bibtex: |-
   @article{kim2026espada,
     title={ESPADA: Execution Speedup via Semantics Aware Demonstration Data Downsampling for Imitation Learning},

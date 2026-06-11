@@ -30,9 +30,8 @@ paper: "https://underthelights.github.io/kirino_page/static/file/kcc24_kirino.pd
 slide: "http://cscp2.sogang.ac.kr/CSE4187/CSE4187/UserData/-%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C-%EC%A4%91%EA%B0%84%EB%B0%9C%ED%91%9C-_%EB%82%B4_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EA%B0%80_%EC%9D%B4%EB%A0%87%EA%B2%8C_%EA%B7%80%EC%97%AC%EC%9A%B8_%EB%A6%AC%EA%B0%80_%EC%97%86%EC%96%B4.pdf"
 poster: "https://drive.google.com/file/d/1j253FK6H5WaNtwao48PL6uoeviYHcIAt/view"
 image: "/assets/images/publication/kirino.gif"
-category: 
-  - "RAG"
-  - "LLM"
+category:
+  - "Domestic"
 bibtex: |-
   @article{kirino2024,
     title={KIRINO: An Interactive Chatbot System for User Persona},

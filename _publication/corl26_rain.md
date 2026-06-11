@@ -22,8 +22,7 @@ note: Under Review
 page: "https://underthelights.github.io/RAIN"
 pdf: false
 category:
-  - "Robotics"
-  - "VLA"
+  - "International"
 bibtex: |-
   @article{lee2026rain,
     title={Beyond Fixed Tasks: Scaling Robot Data with Region-Aware Interaction Network},

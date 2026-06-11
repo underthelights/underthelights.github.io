@@ -18,8 +18,7 @@ venue: >
 award: Excellent Presentation Award
 pdf: false
 category:
-  - "Robotics"
-  - "LLM"
+  - "Domestic"
 bibtex: |-
   @inproceedings{kim2024scaling,
     title={Scaling Language-Conditioned Policies with Fast and Lightweight Architectures},

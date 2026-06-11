@@ -18,8 +18,7 @@ venue: >
 award: Excellent Presentation Award
 pdf: false
 category:
-  - "Robotics"
-  - "LLM"
+  - "Domestic"
 bibtex: |-
   @inproceedings{kim2024generalizing,
     title={Generalizing Language-Conditioned Robotic Policies via Large Language Models},
