@@ -19,8 +19,7 @@
   },
   "scripts": {
       "start": "bundle exec jekyll serve -w -l --host 0.0.0.0",
-      "dev": "grunt watch & npm run start",
-      "boil": "git push boilerplate boilerplate:main",
+      "dev": "npm run start",
       "push": "git push origin main --tag"
   }
 }
