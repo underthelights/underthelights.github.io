@@ -1,4 +1,10 @@
 list:
+  - title: "Research Scientist @ LG AI Research"
+    date: "2026-08-01"
+    display_date: "Aug. 2026"
+    description: "I joined the Physical Intelligence Lab at <a href='https://www.lgresearch.ai'>LG AI Research</a> as a Research Scientist, working on embodied intelligence and real-world agents."
+    thumbnail: "https://www.lgresearch.ai/img/common/lgresearch.jpg"
+
   - title: "MoAQ Accepted to CVPR & ICML 2026 Workshops"
     date: "2026-05-01"
     description: "'Making Your Action Policies Interpretable: Mixture of Action Queries' was accepted to the Foundation Models Meet Embodied Agents Workshop @ CVPR 2026 and the AI4GOOD Workshop @ ICML 2026."
@@ -39,7 +45,7 @@ list:
     description: "Advised by Byoung-Tak Zhang"
     detail: ""
     thumbnail: "https://github.com/underthelights/underthelights.github.io/assets/46957634/5ae5568e-c8bb-4607-bf2d-dbda5dcad797"
-  
+
   - title: "Samsung Electronics Talent Pool (Top 15%) @ Samsung AI Challenge"
     date: "2023-09-18" # ISO 8601 Format
     description: "Camera-Invariant Domain Adaptation Challenge"
@@ -91,5 +97,3 @@ list:
   # - title: 
   #   date: 
   #   description: 
-
-  

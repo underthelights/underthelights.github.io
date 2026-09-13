@@ -154,11 +154,11 @@ description: Recent news of Kyuhwan Shim
     <br>
     <ul class="news-list frame-view">
         {% for new in news %}
-        <li class="news-item" data-title="{{ new.title }}" data-date="{{ new.date }}" data-description="{{ new.description }}" data-detail="{{ new.detail }}" data-thumbnail="{{ new.thumbnail }}">
+        <li class="news-item" data-title="{{ new.title }}" data-date="{% if new.display_date %}{{ new.display_date }}{% else %}{{ new.date | date: "%b %-d, %Y" }}{% endif %}" data-description="{{ new.description }}" data-detail="{{ new.detail }}" data-thumbnail="{{ new.thumbnail }}">
             <div class="news-thumbnail" style="background-image: url('{{ new.thumbnail }}');"></div>
             <div class="news-content">
                 <p class="news-title">{{ new.title }}</p>
-                <p class="news-date">{{ new.date | date: "%b %-d, %Y" }}</p>
+                <p class="news-date">{% if new.display_date %}{{ new.display_date }}{% else %}{{ new.date | date: "%b %-d, %Y" }}{% endif %}</p>
                 <p class="news-description">{{ new.description }}</p>
             </div>
         </li>

@@ -17,6 +17,8 @@ venue: >
   <strong>Foundation Models Meet Embodied Agents Workshop</strong> @ <a href="https://cvpr.thecvf.com"><strong>CVPR 2026</strong></a><br>
   <strong>AI4GOOD Workshop</strong> @ <a href="https://icml.cc"><strong>ICML 2026</strong></a>
 pdf: false
+selected: true
+selected_order: 2
 category:
   - "International"
 bibtex: |-

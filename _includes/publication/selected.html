@@ -1,0 +1,116 @@
+{% assign selected_papers = site.publication | where: "selected", true | sort: "selected_order" %}
+
+<section class="selected-papers">
+  <style>
+    .selected-papers-toggle {
+      align-items: center;
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid #d9e6f2;
+      color: #1f4e79;
+      cursor: pointer;
+      display: flex;
+      font: inherit;
+      font-size: 1.1rem;
+      font-weight: 500;
+      justify-content: space-between;
+      padding: 0 0 0.4rem;
+      text-align: left;
+      width: 100%;
+    }
+
+    .selected-papers-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+    }
+
+    .selected-papers-content.is-open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .selected-papers-inner {
+      overflow: hidden;
+    }
+
+    .selected-papers-list {
+      list-style: none;
+      margin: 0;
+      padding: 0.8rem 0 0;
+    }
+
+    .selected-paper-item {
+      border-bottom: 1px solid #ececec;
+      font-size: 0.93rem;
+      line-height: 1.55;
+      padding: 0.8rem 0;
+    }
+
+    .selected-paper-title {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    .selected-paper-authors,
+    .selected-paper-venue {
+      display: block;
+      font-weight: 300;
+    }
+
+    .selected-paper-venue {
+      color: #444;
+      margin-top: 0.15rem;
+    }
+  </style>
+
+  <button class="selected-papers-toggle" id="selected-papers-toggle" type="button" aria-expanded="false"
+    aria-controls="selected-papers-content">
+    <span>Selected Papers</span>
+    <span id="selected-papers-icon" aria-hidden="true">+</span>
+  </button>
+
+  <div class="selected-papers-content" id="selected-papers-content">
+    <div class="selected-papers-inner">
+      <ul class="selected-papers-list">
+        {% for paper in selected_papers %}
+        <li class="selected-paper-item">
+          {% if paper.page %}
+          <a class="selected-paper-title" href="{{ paper.page }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>
+          {% elsif paper.paper %}
+          <a class="selected-paper-title" href="{{ paper.paper }}" target="_blank" rel="noopener noreferrer">{{ paper.title }}</a>
+          {% else %}
+          <a class="selected-paper-title" href="{{ paper.url | relative_url }}">{{ paper.title }}</a>
+          {% endif %}
+
+          <span class="selected-paper-authors">
+            {% for author in paper.authors %}{% if author == "Kyuhwan Shim" %}<strong>{{ author }}</strong>{% else %}{{ author }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+          </span>
+          <span class="selected-paper-venue">{{ paper.venue }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="d-flex flex-row-reverse mt-3 mb-2">
+        <a href="{{ 'publication' | relative_url }}" style="font-size: .9rem; font-weight: 500 !important;">View all publications</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggle = document.getElementById('selected-papers-toggle');
+      var content = document.getElementById('selected-papers-content');
+      var icon = document.getElementById('selected-papers-icon');
+
+      toggle.addEventListener('click', function () {
+        var isOpen = content.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        icon.textContent = isOpen ? '−' : '+';
+      });
+    });
+  </script>
+</section>

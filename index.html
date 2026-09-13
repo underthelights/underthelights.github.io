@@ -1,13 +1,13 @@
 ---
 layout: default
 title: Kyuhwan Shim
-description: Graduate School of AI, Seoul National University
+description: Research Scientist at LG AI Research
 ---
 
 
 {% assign publications = site.publication | group_by: 'year' | sort: 'name' | reverse %}
 {% assign projects = site.data.main-project.project %}
-{% assign news = site.data.news.list %}
+{% assign news = site.data.news.list | sort: 'date' | reverse %}
 
 <div class="container py-4">
     <!-- Biography Section -->
@@ -18,9 +18,8 @@ description: Graduate School of AI, Seoul National University
             <div class="mt-3">
                 <p style="font-size: 2rem; font-weight: 500;">Kyuhwan Shim</p>
                 <p style="font-size: 1rem; font-weight: 300;">
-                    Master's Student @
-                    <a href="https://gsai.snu.ac.kr">Graduate School of AI</a><br>
-                    <a href="https://snu.ac.kr">Seoul National University</a>
+                    Research Scientist @
+                    <a href="https://www.lgresearch.ai">LG AI Research</a>
                 </p>
                 <div class="d-flex justify-content-center mt-3">
                     <a href="mailto:kyuhwan.shim@snu.ac.kr" class="document-link">
@@ -62,46 +61,54 @@ description: Graduate School of AI, Seoul National University
             </style>
 
             <p style="font-size: .95rem; font-weight: 300 !important;" class="mt-3">
-                Greetings 🤗! I'm a graduate student at the
+                I am a <strong>Research Scientist</strong> in the Physical Intelligence Lab at
+                <a href="https://www.lgresearch.ai">
+                    <img src="https://mms.businesswire.com/media/20230810311418/en/1863874/5/LG_AI_Research_Eng.jpg?download=1"
+                        alt="LG AI Research logo" class="logo">
+                    LG AI Research
+                </a>, where I study embodied intelligence and its applications to real-world agents.
+                I am also pursuing a master's degree at the
                 <a href="https://gsai.snu.ac.kr">
                     <img src="https://i.namu.wiki/i/ObjA17R-F8C_7Sj2IGvdDIU8-nOwLgewDFcNGoZkeViWne-WYBKK9IjBRkWk2-K9uMwo9qtGDcoKnNz6JV8PqA.webp"
                         alt="SNU logo" class="logo">
                     Graduate School of Artificial Intelligence
-                </a> at
-                <a href="https://snu.ac.kr">Seoul National University</a>, under the supervision of
+                </a> at <a href="https://snu.ac.kr">Seoul National University</a>, advised by
                 <a href="https://bi.snu.ac.kr/~btzhang">Prof. Byoung-Tak Zhang</a>.
-                Previously, I received my Bachelor's Degree from
+            </p>
+
+            <p style="font-size: .95rem; font-weight: 300 !important;" class="mt-3">
+                My research focuses on developing machine learning methods for robust
+                <strong>Physical Intelligence</strong> through multimodal learning. In particular, I study how embodied
+                agents can explore unfamiliar environments, adapt to changing conditions, and continuously refine their
+                actions from interaction. My interests include vision-language-action models, language-conditioned robot
+                policies, data-efficient imitation learning, and interpretable action generation.
+            </p>
+
+            <p style="font-size: .95rem; font-weight: 300 !important;" class="mt-3">
+                My work includes <strong>RAIN</strong>, a region-aware approach to robotic task generalization accepted to
+                the X-Reason Workshop at ECCV 2026; <strong>CLIP-RT</strong>, which learns language-conditioned robotic
+                policies from natural language supervision and was presented orally at Robotics: Science and Systems 2025;
+                <strong>ESPADA</strong>, a semantics-aware demonstration downsampling method published in IEEE Robotics and
+                Automation Letters; and <strong>MoAQ</strong>, an approach to interpreting action policies through mixtures
+                of action queries. Across these projects, my goal is to develop agents that learn efficiently, generalize
+                across diverse tasks, and act in interpretable, reliable, and human-aligned ways.
+            </p>
+
+            <p style="font-size: .95rem; font-weight: 300 !important;" class="mt-3">
+                Previously, I was a Visiting Student Researcher in the
+                <a href="https://ais.uni-bonn.de">Autonomous Intelligent Systems Group</a> at the University of Bonn and a
+                Vision Engineer at TIDYBOY-DSPL. I also worked as a <strong>Machine Learning Engineer</strong> at
+                <a href="https://nota.ai">
+                    <img src="https://kr.object.gov-ncloudstorage.com/nextround/mypage/company/4095/b3d99c84-85df-4c80-b4d1-b1f1e6af06b0.png"
+                        alt="Nota logo" class="logo">
+                    Nota
+                </a> and co-founded <strong>OCONNECT</strong> with my CNSH colleagues. I received my bachelor's degree in
+                Computer Science from
                 <a href="https://sogang.ac.kr">
                     <img src="https://upload.wikimedia.org/wikipedia/en/9/99/Sogang_University_emblem.png"
                         alt="Sogang University logo" class="logo">
                     Sogang University
-                </a> in Computer Science.
-            </p>
-
-            <p style="font-size: .95rem; font-weight: 300 !important;" class="mt-3">
-                My research focuses on developing machine learning algorithms to build robust
-                <strong>Physical Intelligence</strong> systems through multimodal learning.
-                I study how embodied agents explore, adapt, and continuously refine their actions in dynamic real-world environments.
-                My goal is to move beyond conventional Vision-Language-Action (VLA) models and build agents that can
-                learn and explore efficiently in the wild, 
-                generalize across diverse tasks,
-                and act in interpretable, reliable, and human-aligned ways.
-            </p>
-
-            <p style="font-size: .95rem; font-weight: 300 !important;" class="mt-3">
-                I recently joined
-                <a href="https://www.lgresearch.ai">
-                    <img src="https://mms.businesswire.com/media/20230810311418/en/1863874/5/LG_AI_Research_Eng.jpg?download=1"
-                        alt="LG AI Research logo" class="logo">
-                        <!-- LG AI Research -->
-                </a> as a <strong>Research Scientist Intern</strong>, where I explore embodied intelligence and its application to real-world agents.
-                Previously, I worked as a <strong>Machine Learning Engineer</strong> at
-                <a href="https://nota.ai">
-                    <img src="https://kr.object.gov-ncloudstorage.com/nextround/mypage/company/4095/b3d99c84-85df-4c80-b4d1-b1f1e6af06b0.png"
-                        alt="Nota logo" class="logo">
-                    <!-- Nota Inc. -->
-                </a> and co-founded
-                <strong>OCONNECT</strong> with my CNSH colleagues.
+                </a>.
             </p>
 
 
@@ -179,10 +186,7 @@ description: Graduate School of AI, Seoul National University
 
 
 <div class="container py-4">
-    <div class="project-view">
-        {% include publication/index.html %}
-    </div>
-</div>
+    {% include publication/selected.html %}
 </div>
 
 
@@ -201,7 +205,22 @@ description: Graduate School of AI, Seoul National University
                             <span><b><a href="https://lgresearch.ai">@ LG AI Research</a></b></span>
                         </div>
                         <div class="dated-date" style="font-size: .95rem; font-weight: 300;">
-                            Nov 2025 - Present
+                            Aug 2026 - Present
+                        </div>
+                    </div>
+                    <div class="dated-content" style="font-size: .95rem; font-weight: 300;">
+                        <span>Research Scientist<br> </span>
+                    </div><br>
+                </div>
+                <div class="dated-entry mb-6">
+                    <div class="d-flex justify-content-between">
+                        <div class="dated-date" style="font-size: 1rem; font-weight: 500;">
+                            <i class="fa-solid fa-flask" style="margin-right: .5rem;"></i>
+                            <span><b>Physical Intelligence Lab</b></span><br>
+                            <span><b><a href="https://lgresearch.ai">@ LG AI Research</a></b></span>
+                        </div>
+                        <div class="dated-date" style="font-size: .95rem; font-weight: 300;">
+                            Nov 2025 - Aug 2026
                         </div>
                     </div>
                     <div class="dated-content" style="font-size: .95rem; font-weight: 300;">
@@ -663,28 +682,115 @@ description: Graduate School of AI, Seoul National University
     </div>
 
 
-    <div class="container">
-        <!-- News -->
-        <p style="font-weight: 500 !important; text-transform: uppercase;">News</p>
-        <div class="row mt-4">
-            {% for new in news limit: 6 %}
-            <!-- Each news item is contained in a fixed height div to maintain uniformity -->
-            <div class="col-12 col-sm-6 mb-4"
-                style="min-height: 150px; display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                    <p class="mb-0" style="font-size: 1rem; font-weight: 400 !important;">{{ new.title }}</p>
-                    <p class="mb-1" style="font-size: .85rem; font-weight: 200 !important;">{{ new.date | date: "%b %-d,
-                        %Y"
-                        }}</p>
-                    <p style="font-size: .95rem; font-weight: 300 !important;">{{ new.description }}</p>
+    <div class="container home-news">
+        <style>
+            .home-news-toggle {
+                align-items: center;
+                background: transparent;
+                border: 0;
+                border-bottom: 2px solid #d9e6f2;
+                color: #1f4e79;
+                cursor: pointer;
+                display: flex;
+                font: inherit;
+                font-size: 1.1rem;
+                font-weight: 500;
+                justify-content: space-between;
+                padding: 0 0 0.4rem;
+                text-align: left;
+                width: 100%;
+            }
+
+            .home-news-content {
+                display: grid;
+                grid-template-rows: 0fr;
+                opacity: 0;
+                transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+            }
+
+            .home-news-content.is-open {
+                grid-template-rows: 1fr;
+                opacity: 1;
+            }
+
+            .home-news-inner {
+                overflow: hidden;
+            }
+
+            .home-news-list {
+                list-style: none;
+                margin: 0;
+                padding: 0.8rem 0 0;
+            }
+
+            .home-news-item {
+                border-bottom: 1px solid #ececec;
+                display: grid;
+                font-size: 0.93rem;
+                gap: 1rem;
+                grid-template-columns: 7rem minmax(0, 1fr);
+                line-height: 1.55;
+                padding: 0.7rem 0;
+            }
+
+            .home-news-date {
+                color: #666;
+                white-space: nowrap;
+            }
+
+            .home-news-description {
+                color: #444;
+                display: block;
+                font-weight: 300;
+                margin-top: 0.15rem;
+            }
+
+            @media (max-width: 576px) {
+                .home-news-item {
+                    gap: 0.15rem;
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+
+        <button class="home-news-toggle" id="home-news-toggle" type="button" aria-expanded="false"
+            aria-controls="home-news-content">
+            <span>News</span>
+            <span id="home-news-icon" aria-hidden="true">+</span>
+        </button>
+
+        <div class="home-news-content" id="home-news-content">
+            <div class="home-news-inner">
+                <ul class="home-news-list">
+                    {% for new in news limit: 6 %}
+                    <li class="home-news-item">
+                        <span class="home-news-date">{% if new.display_date %}{{ new.display_date }}{% else %}{{ new.date | date: "%b %Y" }}{% endif %}</span>
+                        <span>
+                            <strong>{{ new.title }}</strong>
+                            <span class="home-news-description">{{ new.description }}</span>
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="d-flex flex-row-reverse mt-3 mb-2">
+                    <a href="{{ 'news' | relative_url }}" style="font-size: .9rem; font-weight: 500 !important;">View all news</a>
                 </div>
-                <hr>
             </div>
-            {% endfor %}
         </div>
-        <div class="d-flex flex-row-reverse mt-4">
-            <a href="{{ 'news' | relative_url }}" style="font-size: .95rem; font-weight: 500 !important;">> View All</a>
-        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var toggle = document.getElementById('home-news-toggle');
+                var content = document.getElementById('home-news-content');
+                var icon = document.getElementById('home-news-icon');
+
+                toggle.addEventListener('click', function () {
+                    var isOpen = content.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                    icon.textContent = isOpen ? '−' : '+';
+                });
+            });
+        </script>
     </div>
 
     <div class="row">

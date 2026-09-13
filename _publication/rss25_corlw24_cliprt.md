@@ -35,5 +35,7 @@ bibtex: |-
   year = {2024}
   }
 featured: true
+selected: true
+selected_order: 4
 type: Robot Transformer, Vision-Language Model
 ---

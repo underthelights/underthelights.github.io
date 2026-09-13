@@ -2,7 +2,7 @@
 
 Personal academic homepage of **Kyuhwan Shim** — built with Jekyll, served on GitHub Pages.
 
-🎓 Master's student at the [Graduate School of AI](https://gsai.snu.ac.kr), Seoul National University, advised by [Prof. Byoung-Tak Zhang](https://bi.snu.ac.kr/~btzhang). Research Scientist Intern at the Physical Intelligence Lab, [LG AI Research](https://www.lgresearch.ai).
+🎓 Master's student at the [Graduate School of AI](https://gsai.snu.ac.kr), Seoul National University, advised by [Prof. Byoung-Tak Zhang](https://bi.snu.ac.kr/~btzhang). Research Scientist at the Physical Intelligence Lab, [LG AI Research](https://www.lgresearch.ai).
 
 🤖 Broadly interested in **robotics**, **multimodal learning**, and **physical intelligence** — developing **vision-language-action (VLA)** models toward generalist robot policies that perceive, reason, and act in the real world.
 
