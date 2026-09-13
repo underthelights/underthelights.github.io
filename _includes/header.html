@@ -1,10 +1,17 @@
 <header class="page-content">
   <nav class="navbar navbar-expand-md navbar-light py-4">
     <div class="container-fluid">
-      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <div class="nav-controls ms-auto order-md-2">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode">
+          <i class="fa-solid fa-moon theme-toggle__moon" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun theme-toggle__sun" aria-hidden="true"></i>
+          <span class="visually-hidden" data-theme-label>Switch to dark mode</span>
+        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse order-md-1" id="navbarTogglerDemo01">
         <ul class="navbar-nav ms-auto mt-4 mt-lg-0 navbar-nav-scroll">
           <li class="nav-item">
             <a class="nav-link {% if page.url == '/' %} active {% endif %}" aria-current="page" href="/">Home</a>
@@ -32,7 +39,7 @@
               </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% if page.url contains 'blog' %} active {% endif %}" aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<i class="fa-regular fa-arrow-up-right-from-square" style="padding-left: 5px;"></i></a>
+            <a class="nav-link {% if page.url contains 'blog' %} active {% endif %}" aria-current="page" target="_blank" rel="noopener noreferrer" href="https://underthelights.github.io/blog/">Blog<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="margin-left: 5px; vertical-align: -1px;"><path d="M5 3h8v8M13 3 3 13"/></svg></a>
           </li>
         </ul>
       </div>

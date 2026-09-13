@@ -398,15 +398,31 @@ function prefix(id) {
 
   return icon;
 }
-const city = "Seoul";
+function weatherFromWmo(code) {
+  if (code === 0) return ["☀️", "clear"];
+  if (code <= 3) return ["☁️", code === 1 ? "mostly sunny" : "cloudy"];
+  if (code === 45 || code === 48) return ["🌫️", "foggy"];
+  if (code >= 51 && code <= 57) return ["🌧️", "drizzly"];
+  if ((code >= 61 && code <= 67) || (code >= 80 && code <= 82)) return ["🌧️", "rainy"];
+  if ((code >= 71 && code <= 77) || code === 85 || code === 86) return ["🌨️", "snowy"];
+  if (code >= 95) return ["⛈️", "stormy"];
+  return ["☁️", "cloudy"];
+}
 
-
-/* [TODO] */
-const openweathermap_token = "05d354a6f8e22e86e0f4394c6f9144c8";
-
-fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${openweathermap_token}&units=metric`)           //api for the get request
-.then(response => response.json())
-.then(data => {
-  document.getElementById('weather_icon').src = `/assets/images/weather/${prefix(data.weather[0].id)}.svg`;
-  document.getElementById('weather').innerText = weather(data.weather[0].id);
+fetch("https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=weather_code&timezone=Asia%2FSeoul")
+  .then(response => {
+    if (!response.ok) throw new Error(`Weather request failed: ${response.status}`);
+    return response.json();
+  })
+  .then(data => {
+    if (!data.current || !Number.isInteger(data.current.weather_code)) {
+      throw new Error("Weather data is unavailable");
+    }
+    const [icon, label] = weatherFromWmo(data.current.weather_code);
+    document.getElementById("weather_icon").textContent = icon;
+    document.getElementById("weather").textContent = label;
+  })
+  .catch(() => {
+    document.getElementById('weather_icon').textContent = '☁️';
+    document.getElementById('weather').textContent = 'cloudy';
   });

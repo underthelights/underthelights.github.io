@@ -6,14 +6,32 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" id="theme-color" content="#ffffff">
+  <script>
+    (function () {
+      var theme = 'light';
+      try {
+        var savedTheme = localStorage.getItem('color-theme');
+        theme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (error) {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.style.colorScheme = theme;
+      document.getElementById('theme-color').content = theme === 'dark' ? '#111418' : '#ffffff';
+    }());
+  </script>
   
   <title>{% if page.url == "/" %}{{ page.title }}{% else %}{{ page.title }} ✱ Kyuhwan Shim{% endif %}</title>
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/suit/SUIT-Variable.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Noto+Sans+TC&display=swap" rel="stylesheet">
 
   <link href="{{ '/assets/fontawesome/free.min.css' | relative_url }}" rel="stylesheet">
@@ -43,7 +61,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/main/favicon/favicon-16x16.png' | relative_url }}">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="{{ '/assets/images/main/favicon/ms-icon-144x144.png' | relative_url }}">
-  <meta name="theme-color" content="#ffffff">
 
   <!-- Opengraph -->
   <meta property="og:type" content="website">
@@ -65,4 +82,15 @@
   {% endif %}
   <meta name="citation_pdf_url" content="{{ page.slug | prepend: 'https://underthelights.github.io/assets/pdf/' | append: '.pdf' }}">
   {% endif %}
+
+  {% if page.baseurl == '/oconnect' %}
+  <link rel="stylesheet" href="{{ '/oconnect/style.css' | relative_url }}">
+  {% endif %}
+  {% if page.url == '/' %}
+  <link rel="stylesheet" href="{{ '/assets/css/home.css' | relative_url }}">
+  {% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/contact-buttons.css' | relative_url }}?v=mail-brands-2">
+  <link rel="stylesheet" href="{{ '/assets/css/news.css' | relative_url }}?v=timeline-1">
+  <link rel="stylesheet" href="{{ '/assets/css/theme.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/theme.js' | relative_url }}"></script>
 </head>

@@ -1,0 +1,26 @@
+a.btn[href^="mailto:"] {
+  --mail-color: #003380;
+  --mail-hover-color: #00265f;
+  color: #fff !important;
+  background-color: var(--mail-color) !important;
+  border: 1px solid var(--mail-color) !important;
+  font-weight: 500 !important;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+a.btn[href^="mailto:"][href$="@lgresearch.ai"] {
+  --mail-color: #a50034;
+  --mail-hover-color: #85002a;
+}
+a.btn[href^="mailto:"]:hover,
+a.btn[href^="mailto:"]:active,
+a.btn[href^="mailto:"]:focus-visible {
+  color: #fff !important;
+  background-color: var(--mail-hover-color) !important;
+  border-color: var(--mail-hover-color) !important;
+  font-weight: 500 !important;
+}
+a.btn[href^="mailto:"]:focus-visible {
+  outline: 2px solid var(--mail-color);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #fff !important;
+}
