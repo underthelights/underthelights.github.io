@@ -1,0 +1,9 @@
+{%- assign news_title = include.title | escape -%}
+{%- for organization in site.data.news_organizations -%}
+  {%- if include.title contains organization.name -%}
+    {%- assign organization_name = organization.name | escape -%}
+    {%- capture organization_link -%}<a class="news-organization" href="{{ organization.url }}"><span class="news-organization-mark news-organization-mark--{{ organization.kind }}" aria-hidden="true"><img src="{{ organization.image | relative_url }}" alt=""></span><span>{{ organization_name }}</span></a>{%- endcapture -%}
+    {%- assign news_title = news_title | replace: organization_name, organization_link -%}
+  {%- endif -%}
+{%- endfor -%}
+{{- news_title -}}

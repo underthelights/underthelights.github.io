@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ '/assets/css/news.css' | relative_url }}?v=actions-3">
+{% assign entry = site.data.news.list | where: 'date', page.news_date | first %}
+<div class="container py-4 news-page news-article">
+  <a class="news-back" href="{{ '/news/' | relative_url }}">← All news</a>
+  <h1>{{ entry.title }}</h1>
+  <p class="news-article-date">{{ entry.date | date: '%b %-d, %Y' }}</p>
+  {% if entry.preview_image and entry.preview_image != empty %}<img class="news-article-image" src="{{ entry.preview_image | relative_url }}" alt="{{ entry.title | escape }}">{% endif %}
+  <div class="news-article-body">{{ entry.detail }}</div>
+</div>

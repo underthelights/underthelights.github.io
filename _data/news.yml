@@ -1,4 +1,10 @@
 list:
+  - title: "RAIN Accepted to X-Reason Workshop at ECCV 2026"
+    date: "2026-09-13" # News posting date; exact acceptance date is not recorded.
+    display_date: "Sep. 2026"
+    description: "Our paper <a href='https://underthelights.github.io/RAIN'>RAIN: Robotic Task Generalization with Region-Aware Interaction Networks</a> was accepted to the <a href='https://xreason-workshop.github.io/'>X-Reason Workshop at ECCV 2026</a>."
+    thumbnail: ""
+
   - title: "Research Scientist @ LG AI Research"
     date: "2026-08-01"
     display_date: "Aug. 2026"

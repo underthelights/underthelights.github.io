@@ -1,0 +1,16 @@
+- name: LG AI Research
+  url: https://www.lgresearch.ai
+  image: /assets/images/logo/lg-ai-research.png
+  kind: cropped
+- name: Seoul Nat'l U.
+  url: https://snu.ac.kr
+  image: /assets/images/logo/snu.svg
+  kind: emblem
+- name: Nota Inc.
+  url: https://nota.ai
+  image: /assets/images/logo/nota-color.png
+  kind: wordmark
+- name: OCONNECT
+  url: /oconnect/
+  image: /assets/images/logo/oconnect-black.png
+  kind: fixed

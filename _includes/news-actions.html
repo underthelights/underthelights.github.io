@@ -1,0 +1,7 @@
+{% if include.item.link or include.item.paper or include.item.article %}
+<div class="news-actions">
+  {% if include.item.link %}<a href="{{ include.item.link }}">Link</a>{% endif %}
+  {% if include.item.paper %}<a href="{{ include.item.paper }}">Paper</a>{% endif %}
+  {% if include.item.article %}<a href="{{ include.item.article | relative_url }}">Article</a>{% endif %}
+</div>
+{% endif %}
